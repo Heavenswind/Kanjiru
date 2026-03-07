@@ -72,3 +72,20 @@ yarn-error.log
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+
+
+.env
+
+# KanjiVG source SVGs (local cache, not shipped with app)
+scripts/kanjivg/
+
+# Android release keystore (never commit)
+android/app/*.keystore
+android/app/google-services.json
+
+# React Native / Metro
+.metro-health-check*
+android/.gradle/
+
+# OS
+Thumbs.db

@@ -1,79 +1,108 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+<div align="center">
+  <img src="assets/icon.png" width="120" alt="Kanjiru icon" />
+  <h1>漢字る — Kanjiru</h1>
+  <p>A Japanese kanji learning app built with React Native.</p>
+  <p>
+    <img src="https://img.shields.io/badge/React_Native-0.76-61DAFB?logo=react&logoColor=white" />
+    <img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?logo=typescript&logoColor=white" />
+    <img src="https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white" />
+  </p>
+</div>
 
-# Getting Started
+---
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## Features
 
-## Step 1: Start the Metro Server
+- **Learn** — Browse kanji by JLPT level with meanings, readings, radicals, and stroke order diagrams
+- **Animated stroke order** — Each stroke draws itself in sequence with order numbers, auto-playing when you open a kanji
+- **Review** — Spaced repetition (SM-2) flashcard sessions with swipeable cards
+- **Three question types** — Meaning, On-yomi, and Kun-yomi quizzes with multiple choice
+- **Progress tracking** — See your SRS levels and learning history
+- **Edge-to-edge dark UI** — Full-bleed dark theme with transparent system bars
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## Tech Stack
 
-To start Metro, run the following command from the _root_ of your React Native project:
+| Layer | Library |
+|---|---|
+| Framework | React Native 0.76 (New Architecture) |
+| Language | TypeScript |
+| Navigation | React Navigation 7 (Stack + Bottom Tabs) |
+| Animations | React Native Reanimated 3 + Gesture Handler |
+| SVG | react-native-svg |
+| State | Zustand |
+| Local DB | op-sqlite + Drizzle ORM |
+| Storage | react-native-mmkv |
+| Server state | TanStack Query |
+| Backend | Supabase |
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- Android Studio with SDK & emulator (or a physical Android device)
+- JDK 17
+
+### Install
 
 ```bash
-# using npm
+git clone <repo-url>
+cd KanjiApp
+npm install
+```
+
+### Run
+
+```bash
+# Start Metro bundler
 npm start
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
+# In a second terminal — build & install on Android
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### For iOS
+### Regenerate stroke data
+
+Stroke paths are sourced from [KanjiVG](https://github.com/KanjiVG/kanjivg) and cached locally (not committed). To rebuild `src/data/strokes.json`:
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+node scripts/buildStrokeData.js
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+SVGs are cached in `scripts/kanjivg/` after the first run, so subsequent runs are instant.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+## Project Structure
 
-## Step 3: Modifying your App
+```
+src/
+├── components/
+│   ├── cards/          # SwipeableCard
+│   └── kanji/          # StrokeOrderDiagram
+├── data/               # kanji.json, strokes.json, mnemonics.json
+├── engine/srs/         # SM-2 algorithm, distractor generation
+├── hooks/              # useKanjiData, etc.
+├── navigation/         # MainTabs, LearnStack, ReviewStack
+├── queries/            # TanStack Query hooks
+├── screens/
+│   ├── learn/          # LevelPicker, LearnSession, KanjiDetail
+│   ├── review/         # ReviewHome, ReviewSession
+│   ├── progress/       # ProgressScreen
+│   └── settings/       # SettingsScreen
+├── stores/             # Zustand stores
+└── types/              # TypeScript types
 
-Now that you have successfully run the app, let's modify it.
+scripts/
+├── buildKanjiData.js   # Builds kanji.json from source
+├── buildMnemonics.js   # Generates mnemonics
+├── buildStrokeData.js  # Downloads & extracts KanjiVG stroke paths
+└── kanjivg/            # Local SVG cache (gitignored)
+```
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Data Sources
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- **Kanji data** — JMdict / KANJIDIC2
+- **Stroke order** — [KanjiVG](https://github.com/KanjiVG/kanjivg) by Ulrich Apel (CC BY-SA 3.0)
 
-## Congratulations! :tada:
+## License
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+MIT
