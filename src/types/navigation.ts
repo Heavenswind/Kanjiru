@@ -24,9 +24,15 @@ export type ReviewStackParamList = {
   };
 };
 
+export type SearchStackParamList = {
+  Search: undefined;
+  SearchDetail: {kanjiId: string};
+};
+
 export type MainTabParamList = {
   LearnTab: undefined;
   ReviewTab: undefined;
+  SearchTab: undefined;
   ProgressTab: undefined;
   SettingsTab: undefined;
 };

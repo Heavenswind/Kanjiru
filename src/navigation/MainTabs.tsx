@@ -4,6 +4,7 @@ import {Text} from 'react-native';
 import {MainTabParamList} from '../types/navigation';
 import LearnStack from './LearnStack';
 import ReviewStack from './ReviewStack';
+import SearchStack from './SearchStack';
 import ProgressScreen from '../screens/progress/ProgressScreen';
 import SettingsScreen from '../screens/settings/SettingsScreen';
 
@@ -41,6 +42,14 @@ export default function MainTabs() {
         options={{
           tabBarLabel: 'Review',
           tabBarIcon: ({focused}) => <TabIcon label="復" focused={focused} />,
+        }}
+      />
+      <Tab.Screen
+        name="SearchTab"
+        component={SearchStack}
+        options={{
+          tabBarLabel: 'Search',
+          tabBarIcon: ({focused}) => <TabIcon label="探" focused={focused} />,
         }}
       />
       <Tab.Screen

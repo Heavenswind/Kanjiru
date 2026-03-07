@@ -1,5 +1,5 @@
-import React, {useImperativeHandle, forwardRef} from 'react';
-import {Dimensions, StyleSheet} from 'react-native';
+import React, { useImperativeHandle, forwardRef } from 'react';
+import { Dimensions, StyleSheet } from 'react-native';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -12,7 +12,7 @@ import {
   GestureDetector,
 } from 'react-native-gesture-handler';
 
-const {width: SCREEN_WIDTH} = Dimensions.get('window');
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.35;
 
 export interface SwipeableCardRef {
@@ -28,16 +28,16 @@ interface Props {
 }
 
 const SwipeableCard = forwardRef<SwipeableCardRef, Props>(
-  ({children, onSwipeLeft, onSwipeRight, enabled = true}, ref) => {
+  ({ children, onSwipeLeft, onSwipeRight, enabled = true }, ref) => {
     const translateX = useSharedValue(0);
 
     useImperativeHandle(ref, () => ({
       swipeOut: (direction) => {
         const target = direction === 'left' ? -SCREEN_WIDTH * 1.5 : SCREEN_WIDTH * 1.5;
-        translateX.value = withTiming(target, {duration: 300});
+        translateX.value = withTiming(target, { duration: 300 });
       },
       reset: () => {
-        translateX.value = 0;
+        translateX.value = withSpring(0);
       },
     }));
 
@@ -48,10 +48,10 @@ const SwipeableCard = forwardRef<SwipeableCardRef, Props>(
       })
       .onEnd(e => {
         if (e.translationX < -SWIPE_THRESHOLD) {
-          translateX.value = withTiming(-SCREEN_WIDTH * 1.5, {duration: 300});
+          translateX.value = withTiming(-SCREEN_WIDTH * 1.5, { duration: 300 });
           if (onSwipeLeft) runOnJS(onSwipeLeft)();
         } else if (e.translationX > SWIPE_THRESHOLD) {
-          translateX.value = withTiming(SCREEN_WIDTH * 1.5, {duration: 300});
+          translateX.value = withTiming(SCREEN_WIDTH * 1.5, { duration: 300 });
           if (onSwipeRight) runOnJS(onSwipeRight)();
         } else {
           translateX.value = withSpring(0);
@@ -60,8 +60,8 @@ const SwipeableCard = forwardRef<SwipeableCardRef, Props>(
 
     const animatedStyle = useAnimatedStyle(() => ({
       transform: [
-        {translateX: translateX.value},
-        {rotate: `${(translateX.value / SCREEN_WIDTH) * 15}deg`},
+        { translateX: translateX.value },
+        { rotate: `${(translateX.value / SCREEN_WIDTH) * 15}deg` },
       ],
     }));
 

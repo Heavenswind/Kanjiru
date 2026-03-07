@@ -9,6 +9,10 @@ export function useKanjiData() {
   return allKanji;
 }
 
+export function useAllKanji(): KanjiEntry[] {
+  return allKanji;
+}
+
 export function useKanjiByLevel(jlptLevel: number): KanjiEntry[] {
   return useMemo(
     () => allKanji.filter(k => k.jlptLevel === jlptLevel),
