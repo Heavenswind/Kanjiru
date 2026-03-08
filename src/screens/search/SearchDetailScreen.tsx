@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, ScrollView, StyleSheet} from 'react-native';
-import {RouteProp} from '@react-navigation/native';
+import {View, Text, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
+import {RouteProp, useNavigation} from '@react-navigation/native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {SearchStackParamList} from '../../types/navigation';
 import {useKanjiById} from '../../hooks/useKanjiData';
 import {useProgressQuery} from '../../queries/useProgressQuery';
@@ -16,6 +17,8 @@ export default function SearchDetailScreen({route}: Props) {
   const {kanjiId} = route.params;
   const kanji = useKanjiById(kanjiId);
   const {data: progress} = useProgressQuery();
+  const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
 
   if (!kanji) return null;
 
@@ -24,7 +27,10 @@ export default function SearchDetailScreen({route}: Props) {
   const strokes: string[] = (strokeData as Record<string, string[]>)[kanji.character] ?? [];
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+    <ScrollView style={styles.container} contentContainerStyle={[styles.content, {paddingTop: insets.top + 8}]}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backBtn}>
+        <Text style={styles.backText}>← Back</Text>
+      </TouchableOpacity>
       <View style={styles.characterContainer}>
         <Text style={styles.character}>{kanji.character}</Text>
         <Text style={styles.srsLabel}>{srsLabel}</Text>
@@ -120,4 +126,6 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
   },
   radicalText: {color: '#aaa'},
+  backBtn: {marginBottom: 16},
+  backText: {color: '#e94560', fontSize: 15, fontWeight: '600'},
 });

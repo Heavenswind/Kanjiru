@@ -15,12 +15,13 @@ export type LearnStackParamList = {
 
 export type ReviewStackParamList = {
   ReviewHome: undefined;
-  ReviewSession: {jlptLevel?: number};
+  ReviewSession: {jlptLevel?: number; practiceMode?: boolean};
   ReviewSummary: {
     correct: number;
     incorrect: number;
     deferred: number;
     kanjiReviewed: string[];
+    kanjiWrong: string[];
   };
 };
 

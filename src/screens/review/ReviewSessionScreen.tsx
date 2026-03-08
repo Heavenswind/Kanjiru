@@ -1,24 +1,24 @@
-import React, {useEffect, useRef, useState, useMemo} from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  SafeAreaView,
   TouchableOpacity,
 } from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {RouteProp} from '@react-navigation/native';
-import {ReviewStackParamList} from '../../types/navigation';
-import {useReviewStore} from '../../stores/useReviewStore';
-import {useGradeCard} from '../../queries/useGradeCard';
-import {useProgressQuery} from '../../queries/useProgressQuery';
-import {useSessionLog} from '../../queries/useSessionLog';
-import {generateChoices} from '../../engine/srs/distractors';
-import {useKanjiData} from '../../hooks/useKanjiData';
-import SwipeableCard, {SwipeableCardRef} from '../../components/cards/SwipeableCard';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import { ReviewStackParamList } from '../../types/navigation';
+import { useReviewStore } from '../../stores/useReviewStore';
+import { useGradeCard } from '../../queries/useGradeCard';
+import { useProgressQuery } from '../../queries/useProgressQuery';
+import { useSessionLog } from '../../queries/useSessionLog';
+import { generateChoices } from '../../engine/srs/distractors';
+import { useKanjiData } from '../../hooks/useKanjiData';
+import SwipeableCard, { SwipeableCardRef } from '../../components/cards/SwipeableCard';
 import ChoiceButton from '../../components/quiz/ChoiceButton';
 import ProgressBar from '../../components/quiz/ProgressBar';
-import {QuestionType} from '../../types/review';
+import { QuestionType } from '../../types/review';
 
 type Props = {
   navigation: StackNavigationProp<ReviewStackParamList, 'ReviewSession'>;
@@ -27,11 +27,13 @@ type Props = {
 
 type AnswerState = 'idle' | 'correct' | 'wrong';
 
-export default function ReviewSessionScreen({navigation}: Props) {
+export default function ReviewSessionScreen({ navigation, route }: Props) {
+  const practiceMode = route.params?.practiceMode ?? false;
+  const insets = useSafeAreaInsets();
   const allKanji = useKanjiData();
-  const {data: progress} = useProgressQuery();
-  const {mutate: gradeCard} = useGradeCard();
-  const {mutate: logSession} = useSessionLog();
+  const { data: progress } = useProgressQuery();
+  const { mutate: gradeCard } = useGradeCard();
+  const { mutate: logSession } = useSessionLog();
   const {
     queue,
     currentIndex,
@@ -52,6 +54,14 @@ export default function ReviewSessionScreen({navigation}: Props) {
   const current = queue[currentIndex];
   const isSessionDone = currentIndex >= queue.length;
 
+  // Auto-advance on correct
+  useEffect(() => {
+    if (answerState !== 'correct') return;
+    const t = setTimeout(() => handleNext(), 1000);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [answerState]);
+
   // Cycle: meaning → onyomi → kunyomi, skipping if no readings available
   useEffect(() => {
     if (!current) return;
@@ -68,8 +78,8 @@ export default function ReviewSessionScreen({navigation}: Props) {
     cardRef.current?.reset();
   }, [currentIndex, current]);
 
-  const {correctAnswer, choices} = useMemo(() => {
-    if (!current) return {correctAnswer: '', choices: []};
+  const { correctAnswer, choices } = useMemo(() => {
+    if (!current) return { correctAnswer: '', choices: [] };
     const pool = allKanji.filter(k => k.jlptLevel === current.jlptLevel);
     return generateChoices(current, pool, questionType);
   }, [current, questionType, allKanji]);
@@ -87,8 +97,8 @@ export default function ReviewSessionScreen({navigation}: Props) {
     setAnswerState(correct ? 'correct' : 'wrong');
     answerCurrent(correct, questionType);
 
-    // Grade via SRS
-    if (current) {
+    // Grade via SRS (skip in practice mode)
+    if (current && !practiceMode) {
       gradeCard({
         kanjiId: current.id,
         jlptLevel: current.jlptLevel,
@@ -99,23 +109,27 @@ export default function ReviewSessionScreen({navigation}: Props) {
   }
 
   function handleNext() {
-    if (currentIndex + 1 >= queue.length && deferred.length === 0) {
-      finishSession();
-    } else {
-      advance();
-    }
+    cardRef.current?.swipeOut('right');
+    setTimeout(() => {
+      if (currentIndex + 1 >= queue.length && deferred.length === 0) {
+        finishSession();
+      } else {
+        advance();
+      }
+    }, 300);
   }
 
-  function handleDefer() {
+  function handleDefer(animateCard = true) {
     deferCurrent();
-    cardRef.current?.swipeOut('left');
+    if (animateCard) cardRef.current?.swipeOut('left');
     setTimeout(() => advance(), 300);
   }
 
   function finishSession() {
-    const allAnswers = Object.values(answers);
-    const correct = allAnswers.filter(a => a.some(x => x.correct)).length;
-    const incorrect = allAnswers.filter(a => a.every(x => !x.correct)).length;
+    const allAnswers = Object.entries(answers);
+    const correct = allAnswers.filter(([, a]) => a.some(x => x.correct)).length;
+    const incorrect = allAnswers.filter(([, a]) => a.every(x => !x.correct)).length;
+    const kanjiWrong = allAnswers.filter(([, a]) => a.some(x => !x.correct)).map(([id]) => id);
 
     logSession({
       startedAt: sessionStartedAt ?? new Date(),
@@ -130,6 +144,7 @@ export default function ReviewSessionScreen({navigation}: Props) {
       incorrect,
       deferred: deferred.length,
       kanjiReviewed: Object.keys(answers),
+      kanjiWrong,
     });
     resetSession();
   }
@@ -137,14 +152,14 @@ export default function ReviewSessionScreen({navigation}: Props) {
   if (isSessionDone) return null;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={[styles.container, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 }]}>
       {/* Header */}
       <View style={styles.header}>
         <ProgressBar
-          current={currentIndex}
-          total={queue.length + deferred.length}
+          current={Object.keys(answers).length}
+          total={queue.length}
         />
-        <TouchableOpacity onPress={handleDefer} style={styles.deferBtn}>
+        <TouchableOpacity onPress={() => handleDefer()} style={styles.deferBtn}>
           <Text style={styles.deferText}>Later →</Text>
         </TouchableOpacity>
       </View>
@@ -152,24 +167,38 @@ export default function ReviewSessionScreen({navigation}: Props) {
       {/* Card */}
       <SwipeableCard
         ref={cardRef}
-        onSwipeLeft={handleDefer}
+        onSwipeLeft={() => handleDefer(false)}
+        onSwipeRight={() => handleDefer(false)}
         enabled={answerState === 'idle'}>
         <View style={styles.card}>
-          <Text style={styles.questionType}>
-            {questionType === 'meaning'
-              ? 'Meaning'
-              : questionType === 'onyomi'
-              ? 'On\'yomi  音読み'
-              : 'Kun\'yomi  訓読み'}
-          </Text>
+          {answerState === 'correct' && (
+            <Text style={styles.checkmark}>✓</Text>
+          )}
           <Text style={styles.kanji}>{current?.character}</Text>
           {current && (
-            <Text style={styles.hint}>
+            <Text style={[
+              styles.hint,
+              questionType === 'meaning' && current.readings_on[0]
+                ? { color: '#4a90d9' }
+                : questionType === 'meaning'
+                  ? { color: '#9b59b6' }
+                  : null,
+            ]}>
               {questionType === 'meaning'
                 ? current.readings_on[0] ?? current.readings_kun[0] ?? ''
                 : current.meanings[0]}
             </Text>
           )}
+          <Text style={[
+            styles.questionType,
+            questionType === 'onyomi' ? { color: '#4a90d9' } : questionType === 'kunyomi' ? { color: '#9b59b6' } : null,
+          ]}>
+            {questionType === 'meaning'
+              ? 'Meaning'
+              : questionType === 'onyomi'
+                ? 'On\'yomi  音読み'
+                : 'Kun\'yomi  訓読み'}
+          </Text>
         </View>
       </SwipeableCard>
 
@@ -193,8 +222,8 @@ export default function ReviewSessionScreen({navigation}: Props) {
         })}
       </View>
 
-      {/* Next button after answering */}
-      {answerState !== 'idle' && (
+      {/* Next button — only shown on wrong (correct auto-advances) */}
+      {answerState === 'wrong' && (
         <TouchableOpacity style={styles.nextBtn} onPress={handleNext}>
           <Text style={styles.nextText}>
             {currentIndex + 1 >= queue.length && deferred.length === 0
@@ -203,20 +232,20 @@ export default function ReviewSessionScreen({navigation}: Props) {
           </Text>
         </TouchableOpacity>
       )}
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#1a1a2e', padding: 16},
+  container: { flex: 1, backgroundColor: '#1a1a2e', paddingHorizontal: 16 },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 24,
     gap: 12,
   },
-  deferBtn: {paddingHorizontal: 12, paddingVertical: 6},
-  deferText: {color: '#888'},
+  deferBtn: { paddingHorizontal: 12, paddingVertical: 6 },
+  deferText: { color: '#888' },
   card: {
     backgroundColor: '#16213e',
     borderRadius: 20,
@@ -226,16 +255,17 @@ const styles = StyleSheet.create({
     minHeight: 200,
     justifyContent: 'center',
   },
-  questionType: {color: '#e94560', fontSize: 13, fontWeight: 'bold', letterSpacing: 1, marginBottom: 16, textTransform: 'uppercase'},
-  kanji: {fontSize: 96, color: '#fff'},
-  hint: {color: '#666', marginTop: 12, fontSize: 16},
-  choices: {gap: 2},
+  questionType: { color: '#e94560', fontSize: 13, fontWeight: 'bold', letterSpacing: 1, marginTop: 12, textTransform: 'uppercase' },
+  kanji: { fontSize: 96, color: '#fff' },
+  hint: { color: '#666', marginTop: 12, fontSize: 16 },
+  choices: { gap: 2 },
   nextBtn: {
     backgroundColor: '#e94560',
-    padding: 16,
+    padding: 12,
     borderRadius: 12,
     alignItems: 'center',
-    marginTop: 16,
+    marginTop: 12,
   },
-  nextText: {color: '#fff', fontWeight: 'bold', fontSize: 16},
+  nextText: { color: '#fff', fontWeight: 'bold', fontSize: 15 },
+  checkmark: { position: 'absolute', top: 12, right: 16, fontSize: 20, color: '#4caf50', fontWeight: 'bold' },
 });

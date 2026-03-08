@@ -21,15 +21,33 @@ export default function ReviewHomeScreen({navigation}: Props) {
     [progress],
   );
 
-  const dueKanji = useMemo(() => {
-    const kanjiById = Object.fromEntries(allKanji.map(k => [k.id, k]));
-    return dueProgress.map(p => kanjiById[p.kanjiId]).filter(Boolean);
-  }, [dueProgress, allKanji]);
+  const kanjiById = useMemo(
+    () => Object.fromEntries(allKanji.map(k => [k.id, k])),
+    [allKanji],
+  );
+
+  const dueKanji = useMemo(
+    () => dueProgress.map(p => kanjiById[p.kanjiId]).filter(Boolean),
+    [dueProgress, kanjiById],
+  );
+
+  const weakKanji = useMemo(() => {
+    return (progress ?? [])
+      .filter(p => p.repetitions > 0 && p.srsLevel <= 1)
+      .map(p => kanjiById[p.kanjiId])
+      .filter(Boolean);
+  }, [progress, kanjiById]);
 
   function handleStart() {
     if (dueKanji.length === 0) return;
     startSession(dueKanji);
     navigation.navigate('ReviewSession', {});
+  }
+
+  function handlePracticeWeak() {
+    if (weakKanji.length === 0) return;
+    startSession(weakKanji);
+    navigation.navigate('ReviewSession', {practiceMode: true});
   }
 
   const nextReview = useMemo(() => {
@@ -67,6 +85,12 @@ export default function ReviewHomeScreen({navigation}: Props) {
           {isLoading ? 'Loading...' : dueKanji.length === 0 ? 'Nothing due' : 'Start Reviews'}
         </Text>
       </TouchableOpacity>
+
+      {weakKanji.length > 0 && (
+        <TouchableOpacity style={styles.practiceBtn} onPress={handlePracticeWeak}>
+          <Text style={styles.practiceBtnText}>Practice weak kanji ({weakKanji.length})</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
@@ -93,4 +117,13 @@ const styles = StyleSheet.create({
   },
   startBtnDisabled: {backgroundColor: '#444'},
   startText: {color: '#fff', fontWeight: 'bold', fontSize: 18},
+  practiceBtn: {
+    marginTop: 16,
+    borderWidth: 1,
+    borderColor: '#e94560',
+    borderRadius: 12,
+    paddingHorizontal: 32,
+    paddingVertical: 12,
+  },
+  practiceBtnText: {color: '#e94560', fontWeight: '600', fontSize: 15},
 });

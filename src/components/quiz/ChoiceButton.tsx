@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 type State = 'idle' | 'correct' | 'wrong';
 
@@ -10,7 +10,7 @@ interface Props {
   disabled?: boolean;
 }
 
-export default function ChoiceButton({label, state, onPress, disabled}: Props) {
+export default function ChoiceButton({ label, state, onPress, disabled }: Props) {
   const bgColor =
     state === 'correct' ? '#2e7d32' : state === 'wrong' ? '#c62828' : '#16213e';
   const borderColor =
@@ -18,7 +18,7 @@ export default function ChoiceButton({label, state, onPress, disabled}: Props) {
 
   return (
     <TouchableOpacity
-      style={[styles.button, {backgroundColor: bgColor, borderColor}]}
+      style={[styles.button, { backgroundColor: bgColor, borderColor }]}
       onPress={onPress}
       disabled={disabled}
       activeOpacity={0.7}>
@@ -30,10 +30,10 @@ export default function ChoiceButton({label, state, onPress, disabled}: Props) {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 12,
-    padding: 16,
-    marginVertical: 6,
+    padding: 11,
+    marginVertical: 4,
     borderWidth: 1,
     alignItems: 'center',
   },
-  label: {color: '#fff', fontSize: 16, fontWeight: '500'},
+  label: { color: '#fff', fontSize: 17, fontWeight: '500' },
 });

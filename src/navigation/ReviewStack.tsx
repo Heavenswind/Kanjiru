@@ -29,7 +29,7 @@ export default function ReviewStack() {
       <Stack.Screen
         name="ReviewSummary"
         component={ReviewSummaryScreen}
-        options={{title: 'Results', headerLeft: () => null}}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

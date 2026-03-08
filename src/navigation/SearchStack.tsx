@@ -23,7 +23,7 @@ export default function SearchStack() {
       <Stack.Screen
         name="SearchDetail"
         component={SearchDetailScreen}
-        options={{title: 'Kanji'}}
+        options={{headerShown: false}}
       />
     </Stack.Navigator>
   );

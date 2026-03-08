@@ -1,4 +1,4 @@
-import React, {useState, useMemo} from 'react';
+import React, { useState, useMemo } from 'react';
 import {
   View,
   Text,
@@ -12,12 +12,12 @@ import {
 
 const GRID_COLS = 6;
 const CELL_SIZE = Math.floor((Dimensions.get('window').width - 16) / GRID_COLS);
-import {useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {useAllKanji} from '../../hooks/useKanjiData';
-import {SearchStackParamList} from '../../types/navigation';
-import {romajiToHiragana} from '../../utils/romaji';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useAllKanji } from '../../hooks/useKanjiData';
+import { SearchStackParamList } from '../../types/navigation';
+import { romajiToHiragana } from '../../utils/romaji';
 
 type Mode = 'meaning' | 'reading' | 'radical';
 type Nav = StackNavigationProp<SearchStackParamList, 'Search'>;
@@ -94,10 +94,7 @@ export default function SearchScreen() {
   }
 
   return (
-    <View style={[styles.container, {paddingTop: insets.top}]}>
-      {/* Header */}
-      <Text style={styles.header}>Search</Text>
-
+    <View style={[styles.container, { paddingTop: insets.top + 32 }]}>
       {/* Mode switcher */}
       <View style={styles.tabs}>
         {(['meaning', 'reading', 'radical'] as Mode[]).map(m => (
@@ -233,17 +230,17 @@ export default function SearchScreen() {
               <Text style={styles.empty}>No results</Text>
             ) : null
           }
-          renderItem={({item}) =>
+          renderItem={({ item }) =>
             mode === 'radical' ? (
               <TouchableOpacity
                 style={styles.gridCell}
-                onPress={() => navigation.navigate('SearchDetail', {kanjiId: item.id})}>
+                onPress={() => navigation.navigate('SearchDetail', { kanjiId: item.id })}>
                 <Text style={styles.gridChar}>{item.character}</Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity
                 style={styles.resultRow}
-                onPress={() => navigation.navigate('SearchDetail', {kanjiId: item.id})}>
+                onPress={() => navigation.navigate('SearchDetail', { kanjiId: item.id })}>
                 <Text style={styles.resultChar}>{item.character}</Text>
                 <View style={styles.resultInfo}>
                   <Text style={styles.resultMeaning}>{item.meanings[0]}</Text>
@@ -261,14 +258,7 @@ export default function SearchScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#1a1a2e'},
-  header: {
-    color: '#fff',
-    fontSize: 28,
-    fontWeight: 'bold',
-    paddingHorizontal: 20,
-    paddingBottom: 12,
-  },
+  container: { flex: 1, backgroundColor: '#1a1a2e' },
   tabs: {
     flexDirection: 'row',
     marginHorizontal: 16,
@@ -283,9 +273,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 8,
   },
-  tabActive: {backgroundColor: '#e94560'},
-  tabText: {color: '#555', fontSize: 12, fontWeight: '600'},
-  tabTextActive: {color: '#fff'},
+  tabActive: { backgroundColor: '#e94560' },
+  tabText: { color: '#555', fontSize: 12, fontWeight: '600' },
+  tabTextActive: { color: '#fff' },
   inputRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -303,8 +293,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 12,
   },
-  clearBtn: {padding: 4},
-  clearText: {color: '#e94560', fontSize: 13, fontWeight: '600'},
+  clearBtn: { padding: 4 },
+  clearText: { color: '#e94560', fontSize: 13, fontWeight: '600' },
   kanaPreview: {
     color: '#e94560',
     fontSize: 13,
@@ -312,9 +302,9 @@ const styles = StyleSheet.create({
     marginTop: -6,
     marginBottom: 8,
   },
-  radicalHintText: {color: '#aaa', fontSize: 13, marginHorizontal: 16, marginBottom: 4},
-  radicalResultCount: {color: '#e94560', fontSize: 13, marginHorizontal: 16, marginBottom: 4},
-  selectedScroll: {marginBottom: 4, flexGrow: 0, flexShrink: 1},
+  radicalHintText: { color: '#aaa', fontSize: 13, marginHorizontal: 16, marginBottom: 4 },
+  radicalResultCount: { color: '#e94560', fontSize: 13, marginHorizontal: 16, marginBottom: 4 },
+  selectedScroll: { marginBottom: 4, flexGrow: 0, flexShrink: 1 },
   selectedRow: {
     flexDirection: 'row',
     paddingHorizontal: 16,
@@ -329,13 +319,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
-  selectedChipText: {color: '#fff', fontSize: 12, fontWeight: '600'},
-  selectedChipX: {color: 'rgba(255,255,255,0.7)', fontSize: 11},
+  selectedChipText: { color: '#fff', fontSize: 12, fontWeight: '600' },
+  selectedChipX: { color: 'rgba(255,255,255,0.7)', fontSize: 11 },
   clearAllBtn: {
     paddingHorizontal: 10,
     paddingVertical: 5,
   },
-  radicalScroll: {maxHeight: 140, flexGrow: 0, flexShrink: 1},
+  radicalScroll: { maxHeight: 140, flexGrow: 0, flexShrink: 1 },
   radicalGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -351,10 +341,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#2a2a4a',
   },
-  radicalPillActive: {backgroundColor: '#e94560', borderColor: '#e94560'},
-  radicalPillText: {color: '#aaa', fontSize: 11},
-  radicalPillTextActive: {color: '#fff'},
-  results: {flex: 1},
+  radicalPillActive: { backgroundColor: '#e94560', borderColor: '#e94560' },
+  radicalPillText: { color: '#aaa', fontSize: 11 },
+  radicalPillTextActive: { color: '#fff' },
+  results: { flex: 1 },
   resultRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -363,10 +353,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#16213e',
   },
-  resultChar: {fontSize: 32, color: '#fff', width: 48},
-  resultInfo: {flex: 1, marginLeft: 12},
-  resultMeaning: {color: '#fff', fontSize: 15, fontWeight: '600'},
-  resultReading: {color: '#888', fontSize: 13, marginTop: 2},
+  resultChar: { fontSize: 32, color: '#fff', width: 48 },
+  resultInfo: { flex: 1, marginLeft: 12 },
+  resultMeaning: { color: '#fff', fontSize: 15, fontWeight: '600' },
+  resultReading: { color: '#888', fontSize: 13, marginTop: 2 },
   gridCell: {
     width: CELL_SIZE,
     height: CELL_SIZE,
@@ -376,6 +366,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  gridChar: {fontSize: 20, color: '#fff'},
-  empty: {color: '#555', textAlign: 'center', marginTop: 40, fontSize: 14},
+  gridChar: { fontSize: 20, color: '#fff' },
+  empty: { color: '#555', textAlign: 'center', marginTop: 40, fontSize: 14 },
 });
