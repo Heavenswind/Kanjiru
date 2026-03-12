@@ -27,19 +27,19 @@ const https = require('https');
 // ─── Config ────────────────────────────────────────────────────────────────
 
 const KANJI_JSON = path.join(__dirname, '../src/data/kanji.json');
-const CAST_JSON  = path.join(__dirname, './mnemonicCast.json');
-const OUT_FILE   = path.join(__dirname, '../src/data/vocab.json');
+const CAST_JSON = path.join(__dirname, './mnemonicCast.json');
+const OUT_FILE = path.join(__dirname, '../src/data/vocab.json');
 const BATCH_SIZE = 7; // reduced from 10 — mnemonic field makes responses longer
 
 // Parse CLI args
 const args = process.argv.slice(2);
 const USE_LOCAL = args.includes('--local');
-const modelArg  = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
-const levelArg  = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
+const modelArg = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
+const levelArg = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
 
 const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--'))
   ? modelArg
-  : 'qwen2.5:7b';
+  : 'gemma3:12b';
 const DELAY_MS = USE_LOCAL ? 0 : 13000;
 
 // Load .env for Gemini key
@@ -75,8 +75,8 @@ const CAST_REFERENCE = castData.cast
 
 function buildPrompt(batch) {
   const lines = batch.map(k => {
-    const on  = k.readings_on.slice(0, 2).join(', ') || '—';
-    const kun = k.readings_kun.slice(0, 2).map(r => r.replace(/[.-].*/,'')).filter(Boolean).join(', ') || '—';
+    const on = k.readings_on.slice(0, 2).join(', ') || '—';
+    const kun = k.readings_kun.slice(0, 2).map(r => r.replace(/[.-].*/, '')).filter(Boolean).join(', ') || '—';
     return `${k.character} | ${k.meanings[0]} | on: ${on} | kun: ${kun}`;
   }).join('\n');
 
@@ -130,7 +130,7 @@ function callOllama(prompt) {
       model: OLLAMA_MODEL,
       prompt,
       stream: false,
-      options: {temperature: 0.4, num_predict: 6000},
+      options: { temperature: 0.4, num_predict: 6000 },
     });
 
     const req = require('http').request(
@@ -139,7 +139,7 @@ function callOllama(prompt) {
         port: 11434,
         path: '/api/generate',
         method: 'POST',
-        headers: {'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body)},
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
       },
       res => {
         let data = '';
@@ -164,8 +164,8 @@ function callOllama(prompt) {
 function callGemini(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
-      contents: [{parts: [{text: prompt}]}],
-      generationConfig: {temperature: 0.4, maxOutputTokens: 6000},
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { temperature: 0.4, maxOutputTokens: 6000 },
     });
     const model = 'gemini-2.5-flash';
     const req = https.request(
@@ -173,7 +173,7 @@ function callGemini(prompt) {
         hostname: 'generativelanguage.googleapis.com',
         path: `/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`,
         method: 'POST',
-        headers: {'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body)},
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
       },
       res => {
         let data = '';
@@ -206,7 +206,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 function extractJson(text) {
   const stripped = text.replace(/^```(?:json)?\s*/im, '').replace(/\s*```\s*$/m, '').trim();
   const start = stripped.indexOf('{');
-  const end   = stripped.lastIndexOf('}');
+  const end = stripped.lastIndexOf('}');
   if (start === -1 || end === -1) throw new Error(`No JSON object found in: ${text.slice(0, 200)}`);
   return JSON.parse(stripped.slice(start, end + 1));
 }
@@ -235,7 +235,7 @@ async function processBatch(batch, retries = 3) {
       if (attempt < retries) {
         const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
         const waitMs = retryMatch ? Math.ceil(parseFloat(retryMatch[1])) * 1000 + 1000 : (USE_LOCAL ? 2000 : 35000);
-        process.stdout.write(`\n  Retrying (${attempt + 1}/${retries}): ${e.message.slice(0, 80)}... waiting ${Math.round(waitMs/1000)}s`);
+        process.stdout.write(`\n  Retrying (${attempt + 1}/${retries}): ${e.message.slice(0, 80)}... waiting ${Math.round(waitMs / 1000)}s`);
         await sleep(waitMs);
       } else {
         throw e;
