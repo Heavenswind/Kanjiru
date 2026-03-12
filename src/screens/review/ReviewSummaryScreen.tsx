@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -25,48 +25,50 @@ export default function ReviewSummaryScreen({ navigation, route }: Props) {
 
   return (
     <View style={[styles.container, { paddingTop: insets.top + 40, paddingBottom: insets.bottom + 16 }]}>
-      <Text style={styles.title}>Session Complete!</Text>
+      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <Text style={styles.title}>Session Complete!</Text>
 
-      <View style={styles.statsRow}>
-        <StatBox label="Correct" value={correct} color="#4caf50" />
-        <StatBox label="Wrong" value={incorrect} color="#ef5350" />
-        <StatBox label="Deferred" value={deferred} color="#888" />
-      </View>
+        <View style={styles.statsRow}>
+          <StatBox label="Correct" value={correct} color="#4caf50" />
+          <StatBox label="Wrong" value={incorrect} color="#ef5350" />
+          <StatBox label="Deferred" value={deferred} color="#888" />
+        </View>
 
-      <View style={styles.accuracyBox}>
-        <Text style={styles.accuracyValue}>{accuracy}%</Text>
-        <Text style={styles.accuracyLabel}>Accuracy</Text>
-      </View>
+        <View style={styles.accuracyBox}>
+          <Text style={styles.accuracyValue}>{accuracy}%</Text>
+          <Text style={styles.accuracyLabel}>Accuracy</Text>
+        </View>
 
-      <Text style={styles.reviewedTitle}>Kanji reviewed</Text>
-      <View style={styles.kanjiGrid}>
-        {reviewedKanji.map(k => (
-          <View key={k.id} style={styles.kanjiCell}>
-            <Text style={styles.kanjiChar}>{k.character}</Text>
-          </View>
-        ))}
-      </View>
+        <Text style={styles.reviewedTitle}>Kanji reviewed</Text>
+        <View style={styles.kanjiGrid}>
+          {reviewedKanji.map(k => (
+            <View key={k.id} style={styles.kanjiCell}>
+              <Text style={styles.kanjiChar}>{k.character}</Text>
+            </View>
+          ))}
+        </View>
 
-      {wrongKanji.length > 0 && (
-        <>
-          <Text style={styles.wrongTitle}>Needs extra study</Text>
-          <View style={styles.kanjiGrid}>
-            {wrongKanji.map(k => (
-              <View key={k.id} style={[styles.kanjiCell, styles.kanjiCellWrong]}>
-                <Text style={styles.kanjiChar}>{k.character}</Text>
-              </View>
-            ))}
-          </View>
-          <TouchableOpacity
-            style={styles.practiceBtn}
-            onPress={() => {
-              startSession(wrongKanji);
-              navigation.replace('ReviewSession', {practiceMode: true});
-            }}>
-            <Text style={styles.practiceBtnText}>Practice these ({wrongKanji.length})</Text>
-          </TouchableOpacity>
-        </>
-      )}
+        {wrongKanji.length > 0 && (
+          <>
+            <Text style={styles.wrongTitle}>Needs extra study</Text>
+            <View style={styles.kanjiGrid}>
+              {wrongKanji.map(k => (
+                <View key={k.id} style={[styles.kanjiCell, styles.kanjiCellWrong]}>
+                  <Text style={styles.kanjiChar}>{k.character}</Text>
+                </View>
+              ))}
+            </View>
+            <TouchableOpacity
+              style={styles.practiceBtn}
+              onPress={() => {
+                startSession(wrongKanji);
+                navigation.replace('ReviewSession', {practiceMode: true});
+              }}>
+              <Text style={styles.practiceBtnText}>Practice these ({wrongKanji.length})</Text>
+            </TouchableOpacity>
+          </>
+        )}
+      </ScrollView>
 
       <TouchableOpacity
         style={styles.doneBtn}
@@ -87,7 +89,8 @@ function StatBox({ label, value, color }: { label: string; value: number; color:
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#1a1a2e', paddingHorizontal: 24, justifyContent: 'space-between' },
+  container: { flex: 1, backgroundColor: '#1a1a2e', paddingHorizontal: 24 },
+  scrollContent: { paddingBottom: 16 },
   title: { fontSize: 24, color: '#fff', fontWeight: 'bold', marginBottom: 16, textAlign: 'center' },
   statsRow: { flexDirection: 'row', gap: 10, marginBottom: 16 },
   statBox: {

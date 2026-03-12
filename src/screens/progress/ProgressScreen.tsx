@@ -64,12 +64,16 @@ export default function ProgressScreen() {
             </View>
 
             <View style={styles.legend}>
-              {byStage.filter(s => s.count > 0).map(({stage, count, color}) => (
-                <View key={stage} style={styles.legendItem}>
+              {byStage.filter(s => s.count > 0).reduce<{label: string; count: number; color: string}[]>((acc, {stage, count, color}) => {
+                const label = getSrsLabel(stage);
+                const existing = acc.find(e => e.label === label);
+                if (existing) { existing.count += count; }
+                else { acc.push({label, count, color}); }
+                return acc;
+              }, []).map(({label, count, color}) => (
+                <View key={label} style={styles.legendItem}>
                   <View style={[styles.legendDot, {backgroundColor: color}]} />
-                  <Text style={styles.legendText}>
-                    {getSrsLabel(stage)}: {count}
-                  </Text>
+                  <Text style={styles.legendText}>{label}: {count}</Text>
                 </View>
               ))}
             </View>

@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -19,6 +20,7 @@ import SwipeableCard, { SwipeableCardRef } from '../../components/cards/Swipeabl
 import ChoiceButton from '../../components/quiz/ChoiceButton';
 import ProgressBar from '../../components/quiz/ProgressBar';
 import { QuestionType } from '../../types/review';
+import { useSettingsStore } from '../../stores/useSettingsStore';
 
 type Props = {
   navigation: StackNavigationProp<ReviewStackParamList, 'ReviewSession'>;
@@ -51,16 +53,18 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
   const [questionType, setQuestionType] = useState<QuestionType>('meaning');
 
+  const autoAdvanceOnCorrect = useSettingsStore(s => s.autoAdvanceOnCorrect);
+
   const current = queue[currentIndex];
   const isSessionDone = currentIndex >= queue.length;
 
-  // Auto-advance on correct
+  // Auto-advance on correct (when setting is enabled)
   useEffect(() => {
-    if (answerState !== 'correct') return;
+    if (answerState !== 'correct' || !autoAdvanceOnCorrect) return;
     const t = setTimeout(() => handleNext(), 1000);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [answerState]);
+  }, [answerState, autoAdvanceOnCorrect]);
 
   // Cycle: meaning → onyomi → kunyomi, skipping if no readings available
   useEffect(() => {
@@ -119,6 +123,13 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
     }, 300);
   }
 
+  function handleEndSession() {
+    Alert.alert('End Session', 'End the session and see your results?', [
+      {text: 'Cancel', style: 'cancel'},
+      {text: 'End', style: 'destructive', onPress: finishSession},
+    ]);
+  }
+
   function handleDefer(animateCard = true) {
     deferCurrent();
     if (animateCard) cardRef.current?.swipeOut('left');
@@ -155,6 +166,9 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
     <View style={[styles.container, { paddingTop: insets.top + 12, paddingBottom: insets.bottom + 12 }]}>
       {/* Header */}
       <View style={styles.header}>
+        <TouchableOpacity onPress={handleEndSession} style={styles.endBtn}>
+          <Text style={styles.endText}>✕</Text>
+        </TouchableOpacity>
         <ProgressBar
           current={Object.keys(answers).length}
           total={queue.length}
@@ -222,8 +236,8 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
         })}
       </View>
 
-      {/* Next button — only shown on wrong (correct auto-advances) */}
-      {answerState === 'wrong' && (
+      {/* Next button — shown on wrong, or on correct when auto-advance is off */}
+      {answerState !== 'idle' && (answerState === 'wrong' || !autoAdvanceOnCorrect) && (
         <TouchableOpacity style={styles.nextBtn} onPress={handleNext}>
           <Text style={styles.nextText}>
             {currentIndex + 1 >= queue.length && deferred.length === 0
@@ -244,6 +258,8 @@ const styles = StyleSheet.create({
     marginBottom: 24,
     gap: 12,
   },
+  endBtn: { paddingHorizontal: 12, paddingVertical: 6 },
+  endText: { color: '#888', fontSize: 18 },
   deferBtn: { paddingHorizontal: 12, paddingVertical: 6 },
   deferText: { color: '#888' },
   card: {

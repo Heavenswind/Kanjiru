@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect} from 'react';
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
@@ -19,9 +20,8 @@ import {upsertProgress as upsertRemote} from '../../services/supabase/progress';
 import {useQueryClient} from '@tanstack/react-query';
 import {PROGRESS_QUERY_KEY} from '../../queries/useProgressQuery';
 import {formatReading, uuid} from '../../utils/kanjiUtils';
+import {useSettingsStore} from '../../stores/useSettingsStore';
 import type {KanjiEntry} from '../../types/kanji';
-
-const BATCH_SIZE = 10;
 
 type Props = {
   navigation: StackNavigationProp<LearnStackParamList, 'LearnSession'>;
@@ -36,10 +36,17 @@ export default function LearnSessionScreen({navigation, route}: Props) {
   const {data: progress} = useProgressQuery();
   const session = useAuthStore(s => s.session);
   const queryClient = useQueryClient();
+  const lessonsPerSession = useSettingsStore(s => s.lessonsPerSession);
+  const autoShowReadings = useSettingsStore(s => s.autoShowReadings);
 
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>('studying');
-  const [showDetails, setShowDetails] = useState(false);
+  const [showDetails, setShowDetails] = useState(autoShowReadings);
+
+  // Reset details visibility when moving to a new card
+  useEffect(() => {
+    setShowDetails(autoShowReadings);
+  }, [index, autoShowReadings]);
 
   const enrolledIds = React.useMemo(
     () => new Set((progress ?? []).map(p => p.kanjiId)),
@@ -50,14 +57,13 @@ export default function LearnSessionScreen({navigation, route}: Props) {
     const levelKanji = grouped[jlptLevel] ?? [];
     return levelKanji
       .filter(k => !enrolledIds.has(k.id))
-      .slice(0, BATCH_SIZE);
-  }, [grouped, jlptLevel, enrolledIds]);
+      .slice(0, lessonsPerSession);
+  }, [grouped, jlptLevel, enrolledIds, lessonsPerSession]);
 
   const current = batch[index];
   const isLast = index === batch.length - 1;
 
   const handleNext = useCallback(async () => {
-    setShowDetails(false);
     if (isLast) {
       setPhase('enrolling');
       try {
@@ -128,13 +134,22 @@ export default function LearnSessionScreen({navigation, route}: Props) {
       <View style={styles.progressRow}>
         <View style={styles.progressHeader}>
           {index > 0 ? (
-            <TouchableOpacity onPress={() => { setIndex(i => i - 1); setShowDetails(false); }}>
+            <TouchableOpacity onPress={() => { setIndex(i => i - 1); }}>
               <Text style={styles.backText}>‹ Prev</Text>
             </TouchableOpacity>
           ) : (
-            <View />
+            <View style={styles.headerSpacer} />
           )}
           <Text style={styles.progressText}>{index + 1} / {batch.length}</Text>
+          <TouchableOpacity
+            onPress={() =>
+              Alert.alert('Leave Session', 'Leave without enrolling these kanji?', [
+                {text: 'Stay', style: 'cancel'},
+                {text: 'Leave', style: 'destructive', onPress: () => navigation.goBack()},
+              ])
+            }>
+            <Text style={styles.exitText}>✕</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.progressBar}>
           <View style={[styles.progressFill, {width: `${((index + 1) / batch.length) * 100}%`}]} />
@@ -207,6 +222,8 @@ const styles = StyleSheet.create({
   progressHeader: {flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6},
   progressText: {color: '#888', fontSize: 13},
   backText: {color: '#888', fontSize: 13},
+  exitText: {color: '#888', fontSize: 18},
+  headerSpacer: {width: 40},
   progressBar: {width: '100%', height: 4, backgroundColor: '#333', borderRadius: 2},
   progressFill: {height: 4, backgroundColor: '#e94560', borderRadius: 2},
   content: {alignItems: 'center', paddingBottom: 24, width: '100%'},
