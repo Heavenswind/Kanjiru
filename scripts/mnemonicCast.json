@@ -1,0 +1,180 @@
+{
+  "description": "Character cast for on-yomi reading mnemonics. Each character's name starts with or closely mirrors the target sound. Names are from varied cultures to stay distinct. Use them naturally in scenes — never explain the sound connection.",
+  "cast": [
+    {
+      "sound": "こう",
+      "name": "Kofi",
+      "description": "A warm Ghanaian carpenter who builds things with his bare hands"
+    },
+    {
+      "sound": "しょう",
+      "name": "Sho",
+      "description": "A laid-back surfer from California, always in board shorts"
+    },
+    {
+      "sound": "し",
+      "name": "Sheila",
+      "description": "A tough Australian woman who runs a sheep farm"
+    },
+    {
+      "sound": "そう",
+      "name": "Sosa",
+      "description": "A flashy Dominican baseball player who hits home runs"
+    },
+    {
+      "sound": "き",
+      "name": "Kiki",
+      "description": "A bubbly Belgian girl who laughs at everything"
+    },
+    {
+      "sound": "かん",
+      "name": "Khan",
+      "description": "A commanding Mongolian warlord on horseback"
+    },
+    {
+      "sound": "とう",
+      "name": "Tova",
+      "description": "A no-nonsense Swedish farmer who wakes at 4am"
+    },
+    {
+      "sound": "きょう",
+      "name": "Kyo",
+      "description": "A precise, elegant tea ceremony master"
+    },
+    {
+      "sound": "か",
+      "name": "Carlos",
+      "description": "A fast-talking Mexican street vendor who never stops moving"
+    },
+    {
+      "sound": "せい",
+      "name": "Selma",
+      "description": "A stubborn Greek grandmother who never takes no for an answer"
+    },
+    {
+      "sound": "けん",
+      "name": "Kenny",
+      "description": "A bumbling British plumber who always makes things worse"
+    },
+    {
+      "sound": "ちょう",
+      "name": "Cho",
+      "description": "A passionate Thai chef who runs a chaotic street kitchen"
+    },
+    {
+      "sound": "けい",
+      "name": "Kay",
+      "description": "A sharp Canadian detective who never loses a case"
+    },
+    {
+      "sound": "しん",
+      "name": "Shin",
+      "description": "A gentle Korean doctor who works night shifts"
+    },
+    {
+      "sound": "しゅう",
+      "name": "Shula",
+      "description": "A fierce South African rugby coach"
+    },
+    {
+      "sound": "ほう",
+      "name": "Homer",
+      "description": "A clumsy American dad who always causes accidents"
+    },
+    {
+      "sound": "よう",
+      "name": "Yolanda",
+      "description": "A dramatic Spanish opera singer who weeps on stage"
+    },
+    {
+      "sound": "じょう",
+      "name": "Joe",
+      "description": "A friendly American locksmith who fixes everything"
+    },
+    {
+      "sound": "せん",
+      "name": "Senna",
+      "description": "A fearless Brazilian racing driver"
+    },
+    {
+      "sound": "りょう",
+      "name": "Rio",
+      "description": "A Brazilian backpacker always arriving somewhere new"
+    },
+    {
+      "sound": "ぼう",
+      "name": "Bo",
+      "description": "A chubby British police officer who patrols on a bicycle"
+    },
+    {
+      "sound": "さい",
+      "name": "Sai",
+      "description": "A Thai fortune teller surrounded by candles"
+    },
+    {
+      "sound": "かい",
+      "name": "Kai",
+      "description": "A salty German sailor who's been at sea too long"
+    },
+    {
+      "sound": "てい",
+      "name": "Tay",
+      "description": "A perfectionist Scottish architect who re-draws everything"
+    },
+    {
+      "sound": "い",
+      "name": "Eve",
+      "description": "A curious English botanist always wandering into gardens"
+    },
+    {
+      "sound": "きゅう",
+      "name": "Kyu",
+      "description": "A Japanese student always late to class"
+    },
+    {
+      "sound": "ゆう",
+      "name": "Yusuf",
+      "description": "A brooding Turkish artist who paints only at night"
+    },
+    {
+      "sound": "ふ",
+      "name": "Fuad",
+      "description": "A Lebanese merchant who haggles over every price"
+    },
+    {
+      "sound": "じ",
+      "name": "Ji",
+      "description": "A wiry old Chinese grandfather covered in ink stains"
+    },
+    {
+      "sound": "しゅ",
+      "name": "Shura",
+      "description": "A fierce Russian gymnast with ice in her eyes"
+    },
+    {
+      "sound": "こ",
+      "name": "Cora",
+      "description": "A nosy Irish neighbor who knows everyone's business"
+    },
+    {
+      "sound": "たい",
+      "name": "Tai",
+      "description": "A massive Samoan rugby player who moves slowly but hits hard"
+    },
+    {
+      "sound": "きん",
+      "name": "Kin",
+      "description": "A meticulous Vietnamese goldsmith"
+    },
+    {
+      "sound": "はん",
+      "name": "Hans",
+      "description": "A stiff German engineer who follows every manual exactly"
+    },
+    {
+      "sound": "ひ",
+      "name": "Hina",
+      "description": "A cheerful Pakistani girl who bakes bread every morning"
+    }
+  ]
+}

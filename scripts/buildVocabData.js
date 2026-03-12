@@ -2,7 +2,9 @@
  * Generates vocabulary examples for all kanji.
  * Saves progress to src/data/vocab.json incrementally — safe to re-run.
  *
- * Each kanji gets 3 example words: word, reading (hiragana), meaning (English).
+ * Each kanji gets 3 example words: word, reading (hiragana), meaning (English),
+ * and a mnemonic that anchors the reading using the cast system or romaji-grounded
+ * sound-alikes.
  *
  * Usage:
  *
@@ -25,20 +27,20 @@ const https = require('https');
 // ─── Config ────────────────────────────────────────────────────────────────
 
 const KANJI_JSON = path.join(__dirname, '../src/data/kanji.json');
+const CAST_JSON  = path.join(__dirname, './mnemonicCast.json');
 const OUT_FILE   = path.join(__dirname, '../src/data/vocab.json');
-const BATCH_SIZE = 10; // kanji per API call
+const BATCH_SIZE = 7; // reduced from 10 — mnemonic field makes responses longer
 
 // Parse CLI args
 const args = process.argv.slice(2);
-const USE_LOCAL  = args.includes('--local');
-const modelArg   = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
-const levelArg   = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
+const USE_LOCAL = args.includes('--local');
+const modelArg  = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
+const levelArg  = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
 
 const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--'))
   ? modelArg
   : 'qwen2.5:7b';
-const OLLAMA_URL  = 'http://localhost:11434/api/generate';
-const DELAY_MS    = USE_LOCAL ? 0 : 13000; // no delay for local; 13s for Gemini free tier
+const DELAY_MS = USE_LOCAL ? 0 : 13000;
 
 // Load .env for Gemini key
 const envPath = path.join(__dirname, '../.env');
@@ -55,6 +57,20 @@ if (!USE_LOCAL && !GEMINI_KEY) {
   process.exit(1);
 }
 
+// ─── Cast system ────────────────────────────────────────────────────────────
+
+const castData = JSON.parse(fs.readFileSync(CAST_JSON));
+// Map: hiragana sound → { name, description }
+const CAST = {};
+for (const entry of castData.cast) {
+  CAST[entry.sound] = { name: entry.name, description: entry.description };
+}
+
+// Build the cast reference block injected into every prompt
+const CAST_REFERENCE = castData.cast
+  .map(e => `  ${e.sound} → ${e.name}: ${e.description}`)
+  .join('\n');
+
 // ─── Prompt ────────────────────────────────────────────────────────────────
 
 function buildPrompt(batch) {
@@ -64,27 +80,41 @@ function buildPrompt(batch) {
     return `${k.character} | ${k.meanings[0]} | on: ${on} | kun: ${kun}`;
   }).join('\n');
 
-  return `You are a Japanese language teacher. For each kanji below, provide exactly 3 common Japanese vocabulary words that use this kanji. Choose words that clearly demonstrate the kanji's core meaning and are commonly used.
+  return `You are a Japanese language teacher creating vocabulary study cards for English speakers.
 
-For each word provide:
+For each kanji, provide exactly 3 common vocabulary words. Each word needs:
 - "word": the Japanese word (kanji + kana as normally written)
-- "reading": the full hiragana reading of the word
+- "reading": the full hiragana reading
 - "meaning": a concise English translation (3-6 words)
+- "mnemonic": a short vivid sentence (1-2 sentences max) that makes the reading stick
 
-Rules:
-- Prefer simple, high-frequency words over obscure ones
+Rules for the mnemonic:
+- Break the reading into syllables and anchor each one to an English sound
+- CAST SYSTEM: A set of recurring characters whose names start with specific Japanese sounds. When a syllable in the reading exactly matches a cast member's sound, naturally include that character in the scene — do NOT explain the connection, just use them
+- For syllables with no cast match: use a real English word that starts with the same sounds as the romaji (e.g. ぶん → "boon", すい → "suit", どう → "dough"). The English word must genuinely start with those sounds — do not use loose approximations
+- The scene should also hint at or reinforce the word's meaning
+- Never explain the mnemonic system or mention "cast" or "sound-alike" — just tell the story
+
+Cast reference (hiragana sound → character name: description):
+${CAST_REFERENCE}
+
+Rules for vocab:
+- Prefer simple, high-frequency words
 - The word MUST contain the given kanji character
 - Readings must be accurate hiragana (no romaji)
-- For N5/N4 kanji, prefer words learnable at beginner level
+- For N5/N4 kanji, prefer beginner-level words
 
 Respond with ONLY valid JSON — an object where each key is the kanji character and the value is an array of 3 word objects. No markdown, no explanation.
 
 Example format:
 {
-  "一": [
-    {"word": "一つ", "reading": "ひとつ", "meaning": "one thing"},
-    {"word": "一日", "reading": "いちにち", "meaning": "one day"},
-    {"word": "一人", "reading": "ひとり", "meaning": "one person, alone"}
+  "感": [
+    {
+      "word": "感情",
+      "reading": "かんじょう",
+      "meaning": "emotion, feeling",
+      "mnemonic": "Khan kicked down Joe's door trembling with emotion — his sword had been stolen."
+    }
   ]
 }
 
@@ -100,7 +130,7 @@ function callOllama(prompt) {
       model: OLLAMA_MODEL,
       prompt,
       stream: false,
-      options: {temperature: 0.3, num_predict: 4096},
+      options: {temperature: 0.4, num_predict: 6000},
     });
 
     const req = require('http').request(
@@ -135,7 +165,7 @@ function callGemini(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       contents: [{parts: [{text: prompt}]}],
-      generationConfig: {temperature: 0.3, maxOutputTokens: 4096},
+      generationConfig: {temperature: 0.4, maxOutputTokens: 6000},
     });
     const model = 'gemini-2.5-flash';
     const req = https.request(
@@ -174,9 +204,7 @@ function callModel(prompt) {
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 function extractJson(text) {
-  // Strip markdown fences
   const stripped = text.replace(/^```(?:json)?\s*/im, '').replace(/\s*```\s*$/m, '').trim();
-  // Find outermost { ... }
   const start = stripped.indexOf('{');
   const end   = stripped.lastIndexOf('}');
   if (start === -1 || end === -1) throw new Error(`No JSON object found in: ${text.slice(0, 200)}`);
@@ -190,7 +218,6 @@ async function processBatch(batch, retries = 3) {
       const text = await callModel(prompt);
       const result = extractJson(text);
 
-      // Validate: each kanji should have an array of word objects
       for (const k of batch) {
         const entries = result[k.character];
         if (!Array.isArray(entries) || entries.length === 0) {
@@ -206,7 +233,6 @@ async function processBatch(batch, retries = 3) {
       return result;
     } catch (e) {
       if (attempt < retries) {
-        // Gemini rate limit: parse retry delay from message
         const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
         const waitMs = retryMatch ? Math.ceil(parseFloat(retryMatch[1])) * 1000 + 1000 : (USE_LOCAL ? 2000 : 35000);
         process.stdout.write(`\n  Retrying (${attempt + 1}/${retries}): ${e.message.slice(0, 80)}... waiting ${Math.round(waitMs/1000)}s`);
