@@ -3,9 +3,14 @@ import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {ReviewStackParamList} from '../../types/navigation';
 import {useProgressQuery} from '../../queries/useProgressQuery';
+import {useVocabProgressQuery} from '../../queries/useVocabProgressQuery';
 import {useKanjiData} from '../../hooks/useKanjiData';
 import {useReviewStore} from '../../stores/useReviewStore';
 import {isDue} from '../../engine/srs/scheduler';
+import {ReviewItem} from '../../types/review';
+import vocabData from '../../data/vocab.json';
+
+const allVocab = vocabData as Record<string, {word: string; reading: string; meaning: string}[]>;
 
 type Props = {
   navigation: StackNavigationProp<ReviewStackParamList, 'ReviewHome'>;
@@ -14,22 +19,54 @@ type Props = {
 export default function ReviewHomeScreen({navigation}: Props) {
   const allKanji = useKanjiData();
   const {data: progress, isLoading} = useProgressQuery();
+  const {data: vocabProgress, isLoading: vocabLoading} = useVocabProgressQuery();
   const startSession = useReviewStore(s => s.startSession);
-
-  const dueProgress = useMemo(
-    () => (progress ?? []).filter(isDue),
-    [progress],
-  );
 
   const kanjiById = useMemo(
     () => Object.fromEntries(allKanji.map(k => [k.id, k])),
     [allKanji],
   );
 
-  const dueKanji = useMemo(
-    () => dueProgress.map(p => kanjiById[p.kanjiId]).filter(Boolean),
-    [dueProgress, kanjiById],
+  const dueKanjiItems = useMemo<ReviewItem[]>(() => {
+    return (progress ?? [])
+      .filter(isDue)
+      .map(p => kanjiById[p.kanjiId])
+      .filter(Boolean)
+      .map(k => ({kind: 'kanji' as const, kanji: k}));
+  }, [progress, kanjiById]);
+
+  const enrolledKanjiIds = useMemo(
+    () => new Set((progress ?? []).map(p => p.kanjiId)),
+    [progress],
   );
+
+  const dueVocabItems = useMemo<ReviewItem[]>(() => {
+    type VocabItem = {kind: 'vocab'; vocab: {word: string; reading: string; meaning: string}; kanjiId: string; questionType: 'meaning' | 'reading'};
+    const allKanjiKnown = (word: string) =>
+      [...word].filter(c => c >= '\u4e00' && c <= '\u9fff').every(c => enrolledKanjiIds.has(c));
+    const items: VocabItem[] = [];
+    for (const p of (vocabProgress ?? [])) {
+      if (new Date(p.nextReview) > new Date()) continue;
+      const words = allVocab[p.kanjiId] ?? [];
+      const entry = words.find(v => v.word === p.vocabWord);
+      if (!entry || !allKanjiKnown(entry.word)) continue;
+      items.push({kind: 'vocab', vocab: entry, kanjiId: p.kanjiId, questionType: 'meaning'});
+      items.push({kind: 'vocab', vocab: entry, kanjiId: p.kanjiId, questionType: 'reading'});
+    }
+    return items;
+  }, [vocabProgress, enrolledKanjiIds]);
+
+  // Interleave kanji and vocab so sessions feel varied
+  const allDueItems = useMemo<ReviewItem[]>(() => {
+    const result: ReviewItem[] = [];
+    const k = [...dueKanjiItems];
+    const v = [...dueVocabItems];
+    while (k.length > 0 || v.length > 0) {
+      if (k.length > 0) result.push(k.shift()!);
+      if (v.length > 0) result.push(v.shift()!);
+    }
+    return result;
+  }, [dueKanjiItems, dueVocabItems]);
 
   const weakKanji = useMemo(() => {
     return (progress ?? [])
@@ -39,38 +76,50 @@ export default function ReviewHomeScreen({navigation}: Props) {
   }, [progress, kanjiById]);
 
   function handleStart() {
-    if (dueKanji.length === 0) return;
-    startSession(dueKanji);
+    if (allDueItems.length === 0) return;
+    startSession(allDueItems);
     navigation.navigate('ReviewSession', {});
   }
 
   function handlePracticeWeak() {
     if (weakKanji.length === 0) return;
-    startSession(weakKanji);
+    startSession(weakKanji.map(k => ({kind: 'kanji' as const, kanji: k})));
     navigation.navigate('ReviewSession', {practiceMode: true});
   }
 
   const nextReview = useMemo(() => {
-    if (dueKanji.length > 0) return null;
-    const sorted = [...(progress ?? [])].sort(
-      (a, b) => new Date(a.nextReview).getTime() - new Date(b.nextReview).getTime(),
-    );
-    return sorted[0]?.nextReview ?? null;
-  }, [progress, dueKanji]);
+    if (allDueItems.length > 0) return null;
+    const kanjiDates = (progress ?? []).map(p => new Date(p.nextReview).getTime());
+    const vocabDates = (vocabProgress ?? []).map(p => new Date(p.nextReview).getTime());
+    const all = [...kanjiDates, ...vocabDates].sort((a, b) => a - b);
+    return all[0] ? new Date(all[0]) : null;
+  }, [progress, vocabProgress, allDueItems]);
+
+  const isLoadingAny = isLoading || vocabLoading;
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Reviews</Text>
 
       <View style={styles.card}>
-        <Text style={styles.dueCount}>{dueKanji.length}</Text>
+        <Text style={styles.dueCount}>{allDueItems.length}</Text>
         <Text style={styles.dueLabel}>items due</Text>
+        {allDueItems.length > 0 && (
+          <View style={styles.breakdown}>
+            {dueKanjiItems.length > 0 && (
+              <Text style={styles.breakdownText}>{dueKanjiItems.length} kanji</Text>
+            )}
+            {dueVocabItems.length > 0 && (
+              <Text style={[styles.breakdownText, styles.vocabBreakdown]}>{dueVocabItems.length} vocab</Text>
+            )}
+          </View>
+        )}
       </View>
 
-      {dueKanji.length === 0 && nextReview && (
+      {allDueItems.length === 0 && nextReview && (
         <Text style={styles.nextReview}>
           Next review:{' '}
-          {new Date(nextReview).toLocaleTimeString([], {
+          {nextReview.toLocaleTimeString([], {
             hour: '2-digit',
             minute: '2-digit',
           })}
@@ -78,11 +127,11 @@ export default function ReviewHomeScreen({navigation}: Props) {
       )}
 
       <TouchableOpacity
-        style={[styles.startBtn, dueKanji.length === 0 && styles.startBtnDisabled]}
+        style={[styles.startBtn, allDueItems.length === 0 && styles.startBtnDisabled]}
         onPress={handleStart}
-        disabled={dueKanji.length === 0 || isLoading}>
+        disabled={allDueItems.length === 0 || isLoadingAny}>
         <Text style={styles.startText}>
-          {isLoading ? 'Loading...' : dueKanji.length === 0 ? 'Nothing due' : 'Start Reviews'}
+          {isLoadingAny ? 'Loading...' : allDueItems.length === 0 ? 'Nothing due' : 'Start Reviews'}
         </Text>
       </TouchableOpacity>
 
@@ -108,6 +157,9 @@ const styles = StyleSheet.create({
   },
   dueCount: {fontSize: 72, color: '#e94560', fontWeight: 'bold'},
   dueLabel: {color: '#aaa', fontSize: 16},
+  breakdown: {flexDirection: 'row', gap: 12, marginTop: 8},
+  breakdownText: {color: '#888', fontSize: 13},
+  vocabBreakdown: {color: '#9b59b6'},
   nextReview: {color: '#888', marginBottom: 24},
   startBtn: {
     backgroundColor: '#e94560',

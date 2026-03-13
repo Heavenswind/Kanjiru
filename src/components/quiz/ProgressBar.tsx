@@ -19,7 +19,7 @@ export default function ProgressBar({current, total}: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: {flexDirection: 'row', alignItems: 'center', gap: 10},
+  container: {flex: 1, flexDirection: 'row', alignItems: 'center', gap: 10},
   track: {flex: 1, height: 6, backgroundColor: '#333', borderRadius: 3},
   fill: {height: 6, backgroundColor: '#e94560', borderRadius: 3},
   label: {color: '#aaa', fontSize: 12, minWidth: 40, textAlign: 'right'},

@@ -16,7 +16,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const SWIPE_THRESHOLD = SCREEN_WIDTH * 0.35;
 
 export interface SwipeableCardRef {
-  swipeOut: (direction: 'left' | 'right') => void;
+  swipeOut: (direction: 'left' | 'right', onDone?: () => void) => void;
   reset: () => void;
 }
 
@@ -25,19 +25,32 @@ interface Props {
   onSwipeLeft?: () => void;
   onSwipeRight?: () => void;
   enabled?: boolean;
+  reduceMotion?: boolean;
 }
 
 const SwipeableCard = forwardRef<SwipeableCardRef, Props>(
-  ({ children, onSwipeLeft, onSwipeRight, enabled = true }, ref) => {
+  ({ children, onSwipeLeft, onSwipeRight, enabled = true, reduceMotion = false }, ref) => {
     const translateX = useSharedValue(0);
 
     useImperativeHandle(ref, () => ({
-      swipeOut: (direction) => {
+      swipeOut: (direction, onDone) => {
         const target = direction === 'left' ? -SCREEN_WIDTH * 1.5 : SCREEN_WIDTH * 1.5;
-        translateX.value = withTiming(target, { duration: 300 });
+        if (reduceMotion) {
+          if (onDone) runOnJS(onDone)();
+        } else {
+          translateX.value = withTiming(target, {duration: 300}, finished => {
+            if (finished && onDone) runOnJS(onDone)();
+          });
+        }
       },
+      // Called after content has updated — fly in from right
       reset: () => {
-        translateX.value = withSpring(0);
+        if (reduceMotion) {
+          translateX.value = 0;
+        } else {
+          translateX.value = SCREEN_WIDTH;
+          translateX.value = withSpring(0, {damping: 20, stiffness: 200});
+        }
       },
     }));
 
@@ -48,13 +61,13 @@ const SwipeableCard = forwardRef<SwipeableCardRef, Props>(
       })
       .onEnd(e => {
         if (e.translationX < -SWIPE_THRESHOLD) {
-          translateX.value = withTiming(-SCREEN_WIDTH * 1.5, { duration: 300 });
+          translateX.value = reduceMotion ? -SCREEN_WIDTH * 1.5 : withTiming(-SCREEN_WIDTH * 1.5, { duration: 300 });
           if (onSwipeLeft) runOnJS(onSwipeLeft)();
         } else if (e.translationX > SWIPE_THRESHOLD) {
-          translateX.value = withTiming(SCREEN_WIDTH * 1.5, { duration: 300 });
+          translateX.value = reduceMotion ? SCREEN_WIDTH * 1.5 : withTiming(SCREEN_WIDTH * 1.5, { duration: 300 });
           if (onSwipeRight) runOnJS(onSwipeRight)();
         } else {
-          translateX.value = withSpring(0);
+          translateX.value = reduceMotion ? 0 : withSpring(0);
         }
       });
 

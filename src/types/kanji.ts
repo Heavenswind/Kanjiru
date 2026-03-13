@@ -9,6 +9,20 @@ export interface KanjiEntry {
   radicals: string[];
 }
 
+export interface VocabProgress {
+  id: string;
+  userId: string;
+  vocabWord: string;
+  kanjiId: string;
+  srsLevel: number;
+  repetitions: number;
+  easeFactor: number;
+  intervalDays: number;
+  nextReview: Date;
+  lastReview: Date | null;
+  learnedAt: Date | null;
+}
+
 export interface KanjiProgress {
   id: string;
   userId: string;

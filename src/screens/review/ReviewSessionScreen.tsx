@@ -12,7 +12,9 @@ import { RouteProp } from '@react-navigation/native';
 import { ReviewStackParamList } from '../../types/navigation';
 import { useReviewStore } from '../../stores/useReviewStore';
 import { useGradeCard } from '../../queries/useGradeCard';
+import { useGradeVocabCard } from '../../queries/useGradeVocabCard';
 import { useProgressQuery } from '../../queries/useProgressQuery';
+import { useVocabProgressQuery } from '../../queries/useVocabProgressQuery';
 import { useSessionLog } from '../../queries/useSessionLog';
 import { generateChoices } from '../../engine/srs/distractors';
 import { useKanjiData } from '../../hooks/useKanjiData';
@@ -21,6 +23,9 @@ import ChoiceButton from '../../components/quiz/ChoiceButton';
 import ProgressBar from '../../components/quiz/ProgressBar';
 import { QuestionType } from '../../types/review';
 import { useSettingsStore } from '../../stores/useSettingsStore';
+import vocabData from '../../data/vocab.json';
+
+const allVocab = vocabData as Record<string, { word: string; reading: string; meaning: string }[]>;
 
 type Props = {
   navigation: StackNavigationProp<ReviewStackParamList, 'ReviewSession'>;
@@ -29,12 +34,36 @@ type Props = {
 
 type AnswerState = 'idle' | 'correct' | 'wrong';
 
+const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function deriveQuestionType(
+  item: NonNullable<ReturnType<typeof useReviewStore.getState>['queue'][number]>,
+  index: number,
+): QuestionType {
+  if (item.kind === 'vocab') return item.questionType;
+  const cycle = index % 3;
+  if (cycle === 0) return 'meaning';
+  if (cycle === 1) return item.kanji.readings_on.length > 0 ? 'onyomi' : 'meaning';
+  return item.kanji.readings_kun.length > 0 ? 'kunyomi' : 'meaning';
+}
+
 export default function ReviewSessionScreen({ navigation, route }: Props) {
   const practiceMode = route.params?.practiceMode ?? false;
   const insets = useSafeAreaInsets();
   const allKanji = useKanjiData();
   const { data: progress } = useProgressQuery();
+  const { data: vocabProgress } = useVocabProgressQuery();
   const { mutate: gradeCard } = useGradeCard();
+  const { mutate: gradeVocabCard } = useGradeVocabCard();
   const { mutate: logSession } = useSessionLog();
   const {
     queue,
@@ -52,47 +81,80 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
   const [answerState, setAnswerState] = useState<AnswerState>('idle');
   const [selectedChoice, setSelectedChoice] = useState<string | null>(null);
   const [questionType, setQuestionType] = useState<QuestionType>('meaning');
+  // displayedIndex is the single source of truth for what the card renders.
+  // It only advances inside the swipe-out callback so the card is already
+  // off-screen before any state changes, eliminating mid-render flicker.
+  const [displayedIndex, setDisplayedIndex] = useState(0);
 
   const autoAdvanceOnCorrect = useSettingsStore(s => s.autoAdvanceOnCorrect);
+  const reduceMotion = useSettingsStore(s => s.reduceMotion);
 
-  const current = queue[currentIndex];
+  // Session-done check is based on store's currentIndex (source of truth for
+  // SRS progress), not displayedIndex.
   const isSessionDone = currentIndex >= queue.length;
 
-  // Auto-advance on correct (when setting is enabled)
+  // All card rendering is driven by displayedIndex.
+  const displayedItem = queue[displayedIndex];
+  const isVocab = displayedItem?.kind === 'vocab';
+
+  // Helper: reset card state for a given queue index. Called in one
+  // synchronous block so React batches everything into a single render.
+  function loadCard(index: number, q: typeof queue) {
+    const item = q[index];
+    if (!item) return;
+    setQuestionType(deriveQuestionType(item, index));
+    setAnswerState('idle');
+    setSelectedChoice(null);
+  }
+
+  // Auto-advance on correct
   useEffect(() => {
     if (answerState !== 'correct' || !autoAdvanceOnCorrect) return;
-    const t = setTimeout(() => handleNext(), 1000);
+    const t = setTimeout(() => handleNext(), reduceMotion ? 0 : 1000);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [answerState, autoAdvanceOnCorrect]);
 
-  // Cycle: meaning → onyomi → kunyomi, skipping if no readings available
-  useEffect(() => {
-    if (!current) return;
-    const cycle = currentIndex % 3;
-    if (cycle === 0) {
-      setQuestionType('meaning');
-    } else if (cycle === 1) {
-      setQuestionType(current.readings_on.length > 0 ? 'onyomi' : 'meaning');
-    } else {
-      setQuestionType(current.readings_kun.length > 0 ? 'kunyomi' : 'meaning');
-    }
-    setAnswerState('idle');
-    setSelectedChoice(null);
-    cardRef.current?.reset();
-  }, [currentIndex, current]);
-
+  // Build choices — depends on displayedItem, not current store index
   const { correctAnswer, choices } = useMemo(() => {
-    if (!current) return { correctAnswer: '', choices: [] };
-    const pool = allKanji.filter(k => k.jlptLevel === current.jlptLevel);
-    return generateChoices(current, pool, questionType);
-  }, [current, questionType, allKanji]);
+    if (!displayedItem) return { correctAnswer: '', choices: [] };
+
+    if (displayedItem.kind === 'vocab') {
+      if (displayedItem.questionType === 'reading') {
+        const correct = displayedItem.vocab.reading;
+        const allReadings = Object.values(allVocab)
+          .flat()
+          .map(v => v.reading)
+          .filter(r => r !== correct);
+        const distractors = shuffle([...new Set(allReadings)]).slice(0, 3);
+        while (distractors.length < 3) distractors.push(`(unknown ${distractors.length})`);
+        return { correctAnswer: correct, choices: shuffle([correct, ...distractors]) };
+      }
+      const correct = cap(displayedItem.vocab.meaning);
+      const allMeanings = Object.values(allVocab)
+        .flat()
+        .map(v => cap(v.meaning))
+        .filter(m => m !== correct);
+      const distractors = shuffle([...new Set(allMeanings)]).slice(0, 3);
+      while (distractors.length < 3) distractors.push(`(unknown ${distractors.length})`);
+      return { correctAnswer: correct, choices: shuffle([correct, ...distractors]) };
+    }
+
+    const pool = allKanji.filter(k => k.jlptLevel === displayedItem.kanji.jlptLevel);
+    return generateChoices(displayedItem.kanji, pool, questionType);
+  }, [displayedItem, questionType, allKanji]);
 
   const progressByKanji = useMemo(() => {
     const map: Record<string, any> = {};
     (progress ?? []).forEach(p => { map[p.kanjiId] = p; });
     return map;
   }, [progress]);
+
+  const vocabProgressByWord = useMemo(() => {
+    const map: Record<string, any> = {};
+    (vocabProgress ?? []).forEach(p => { map[p.vocabWord] = p; });
+    return map;
+  }, [vocabProgress]);
 
   function handleChoice(choice: string) {
     if (answerState !== 'idle') return;
@@ -101,46 +163,73 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
     setAnswerState(correct ? 'correct' : 'wrong');
     answerCurrent(correct, questionType);
 
-    // Grade via SRS (skip in practice mode)
-    if (current && !practiceMode) {
-      gradeCard({
-        kanjiId: current.id,
-        jlptLevel: current.jlptLevel,
-        grade: correct ? 4 : 1,
-        existing: progressByKanji[current.id],
-      });
+    if (!practiceMode) {
+      if (displayedItem?.kind === 'kanji') {
+        gradeCard({
+          kanjiId: displayedItem.kanji.id,
+          jlptLevel: displayedItem.kanji.jlptLevel,
+          grade: correct ? 4 : 1,
+          existing: progressByKanji[displayedItem.kanji.id],
+        });
+      } else if (displayedItem?.kind === 'vocab') {
+        gradeVocabCard({
+          vocabWord: displayedItem.vocab.word,
+          kanjiId: displayedItem.kanjiId,
+          grade: correct ? 4 : 1,
+          existing: vocabProgressByWord[displayedItem.vocab.word],
+        });
+      }
     }
   }
 
   function handleNext() {
-    cardRef.current?.swipeOut('right');
-    setTimeout(() => {
-      if (currentIndex + 1 >= queue.length && deferred.length === 0) {
+    const proceed = () => {
+      const nextIdx = currentIndex + 1;
+      if (nextIdx >= queue.length && deferred.length === 0) {
         finishSession();
-      } else {
-        advance();
+        return;
       }
-    }, 300);
+      advance();
+      // Read queue from store *after* advance() so deferred items are included
+      const newQueue = useReviewStore.getState().queue;
+      setDisplayedIndex(nextIdx);
+      loadCard(nextIdx, newQueue);
+      cardRef.current?.reset();
+    };
+    cardRef.current?.swipeOut('right', proceed);
   }
 
   function handleEndSession() {
     Alert.alert('End Session', 'End the session and see your results?', [
-      {text: 'Cancel', style: 'cancel'},
-      {text: 'End', style: 'destructive', onPress: finishSession},
+      { text: 'Cancel', style: 'cancel' },
+      { text: 'End', style: 'destructive', onPress: finishSession },
     ]);
   }
 
   function handleDefer(animateCard = true) {
     deferCurrent();
-    if (animateCard) cardRef.current?.swipeOut('left');
-    setTimeout(() => advance(), 300);
+    const proceed = () => {
+      const nextIdx = currentIndex + 1;
+      advance();
+      const newQueue = useReviewStore.getState().queue;
+      setDisplayedIndex(nextIdx);
+      loadCard(nextIdx, newQueue);
+      cardRef.current?.reset();
+    };
+    if (animateCard) {
+      cardRef.current?.swipeOut('left', proceed);
+    } else {
+      proceed();
+    }
   }
 
   function finishSession() {
     const allAnswers = Object.entries(answers);
     const correct = allAnswers.filter(([, a]) => a.some(x => x.correct)).length;
     const incorrect = allAnswers.filter(([, a]) => a.every(x => !x.correct)).length;
-    const kanjiWrong = allAnswers.filter(([, a]) => a.some(x => !x.correct)).map(([id]) => id);
+    const kanjiWrong = allAnswers
+      .filter(([id, a]) => !id.startsWith('vocab:') && a.some(x => !x.correct))
+      .map(([id]) => id);
 
     logSession({
       startedAt: sessionStartedAt ?? new Date(),
@@ -154,7 +243,7 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
       correct,
       incorrect,
       deferred: deferred.length,
-      kanjiReviewed: Object.keys(answers),
+      kanjiReviewed: Object.keys(answers).filter(id => !id.startsWith('vocab:')),
       kanjiWrong,
     });
     resetSession();
@@ -183,38 +272,47 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
         ref={cardRef}
         onSwipeLeft={() => handleDefer(false)}
         onSwipeRight={() => handleDefer(false)}
-        enabled={answerState === 'idle'}>
-        <View style={styles.card}>
+        enabled={answerState === 'idle'}
+        reduceMotion={reduceMotion}>
+        <View style={[styles.card, isVocab && styles.vocabCard]}>
           {answerState === 'correct' && (
             <Text style={styles.checkmark}>✓</Text>
           )}
-          <Text style={styles.kanji}>{current?.character}</Text>
-          {current && (
-            <Text style={[
-              styles.hint,
-              questionType === 'meaning' && current.readings_on[0]
-                ? { color: '#4a90d9' }
-                : questionType === 'meaning'
-                  ? { color: '#9b59b6' }
-                  : null,
-            ]}>
-              {questionType === 'meaning'
-                ? current.readings_on[0] ?? current.readings_kun[0] ?? ''
-                : current.meanings[0]}
-            </Text>
-          )}
-          <Text style={[
-            styles.questionType,
-            questionType === 'onyomi' ? { color: '#4a90d9' } : questionType === 'kunyomi' ? { color: '#9b59b6' } : null,
-          ]}>
-            {questionType === 'meaning'
-              ? 'Meaning'
-              : questionType === 'onyomi'
-                ? 'On\'yomi  音読み'
-                : 'Kun\'yomi  訓読み'}
-          </Text>
+
+          {displayedItem?.kind === 'kanji' ? (
+            <>
+              <Text style={styles.kanji}>{displayedItem.kanji.character}</Text>
+              <Text style={styles.hint}>
+                {questionType === 'meaning'
+                  ? displayedItem.kanji.readings_on[0] ?? displayedItem.kanji.readings_kun[0] ?? ''
+                  : displayedItem.kanji.meanings[0]}
+              </Text>
+            </>
+          ) : displayedItem?.kind === 'vocab' ? (
+            <>
+              <Text style={styles.vocabWord}>{displayedItem.vocab.word}</Text>
+              {displayedItem.questionType === 'reading' && (
+                <Text style={[styles.vocabMeaningHint, answerState === 'idle' && { opacity: 0 }]}>
+                  {cap(displayedItem.vocab.meaning)}
+                </Text>
+              )}
+            </>
+          ) : null}
         </View>
       </SwipeableCard>
+
+      {/* Question prompt */}
+      <Text style={[
+        styles.prompt,
+        questionType === 'onyomi' ? { color: '#4a90d9' } :
+          questionType === 'kunyomi' ? { color: '#9b59b6' } :
+            questionType === 'reading' ? { color: '#4a90d9' } : null,
+      ]}>
+        {questionType === 'meaning' ? 'Meaning 意味' :
+          questionType === 'onyomi' ? "On'yomi  音読み" :
+            questionType === 'kunyomi' ? "Kun'yomi  訓読み" :
+              'Reading  読み方'}
+      </Text>
 
       {/* Choices */}
       <View style={styles.choices}>
@@ -236,7 +334,7 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
         })}
       </View>
 
-      {/* Next button — shown on wrong, or on correct when auto-advance is off */}
+      {/* Next button */}
       {answerState !== 'idle' && (answerState === 'wrong' || !autoAdvanceOnCorrect) && (
         <TouchableOpacity style={styles.nextBtn} onPress={handleNext}>
           <Text style={styles.nextText}>
@@ -271,9 +369,17 @@ const styles = StyleSheet.create({
     minHeight: 200,
     justifyContent: 'center',
   },
+  vocabCard: {
+    borderColor: '#4a3a6e',
+    borderWidth: 1,
+  },
   questionType: { color: '#e94560', fontSize: 13, fontWeight: 'bold', letterSpacing: 1, marginTop: 12, textTransform: 'uppercase' },
   kanji: { fontSize: 96, color: '#fff' },
   hint: { color: '#666', marginTop: 12, fontSize: 16 },
+  vocabWord: { fontSize: 72, color: '#fff', fontWeight: '300' },
+  vocabReading: { color: '#9b59b6', fontSize: 18, marginTop: 8 },
+  vocabBadge: { color: '#9b59b6', fontSize: 11, fontWeight: 'bold', letterSpacing: 1, textTransform: 'uppercase', marginTop: 12 },
+  vocabMeaningHint: { color: '#888', fontSize: 14, marginTop: 10, fontStyle: 'italic' },
   choices: { gap: 2 },
   nextBtn: {
     backgroundColor: '#e94560',
@@ -284,4 +390,5 @@ const styles = StyleSheet.create({
   },
   nextText: { color: '#fff', fontWeight: 'bold', fontSize: 15 },
   checkmark: { position: 'absolute', top: 12, right: 16, fontSize: 20, color: '#4caf50', fontWeight: 'bold' },
+  prompt: { color: '#e94560', fontSize: 12, fontWeight: 'bold', letterSpacing: 1, textTransform: 'uppercase', textAlign: 'center', marginBottom: 8 },
 });

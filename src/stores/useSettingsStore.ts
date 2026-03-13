@@ -19,12 +19,15 @@ interface SettingsState {
   strokeSpeed: number; // multiplier: 0.5 = fast, 1 = normal, 2 = slow
   // Review
   autoAdvanceOnCorrect: boolean; // auto-move to next card after correct answer
+  // Accessibility
+  reduceMotion: boolean; // disable all animations
 
   setProgressiveUnlock: (v: boolean) => void;
   setLessonsPerSession: (v: number) => void;
   setAutoShowReadings: (v: boolean) => void;
   setStrokeSpeed: (v: number) => void;
   setAutoAdvanceOnCorrect: (v: boolean) => void;
+  setReduceMotion: (v: boolean) => void;
 }
 
 export const useSettingsStore = create<SettingsState>()(
@@ -35,12 +38,14 @@ export const useSettingsStore = create<SettingsState>()(
       autoShowReadings: false,
       strokeSpeed: 1,
       autoAdvanceOnCorrect: false,
+      reduceMotion: false,
 
       setProgressiveUnlock: v => set({progressiveUnlock: v}),
       setLessonsPerSession: v => set({lessonsPerSession: v}),
       setAutoShowReadings: v => set({autoShowReadings: v}),
       setStrokeSpeed: v => set({strokeSpeed: v}),
       setAutoAdvanceOnCorrect: v => set({autoAdvanceOnCorrect: v}),
+      setReduceMotion: v => set({reduceMotion: v}),
     }),
     {
       name: 'settings',

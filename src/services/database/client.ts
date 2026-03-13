@@ -29,5 +29,27 @@ export async function runMigrations() {
   await sqlite.execute(
     'CREATE INDEX IF NOT EXISTS user_next_review_idx ON kanji_progress (user_id, next_review);',
   );
+  await sqlite.execute(`
+    CREATE TABLE IF NOT EXISTS vocab_progress (
+      id TEXT PRIMARY KEY NOT NULL,
+      user_id TEXT NOT NULL,
+      vocab_word TEXT NOT NULL,
+      kanji_id TEXT NOT NULL,
+      srs_level INTEGER NOT NULL DEFAULT 0,
+      repetitions INTEGER NOT NULL DEFAULT 0,
+      ease_factor REAL NOT NULL DEFAULT 2.5,
+      interval_days INTEGER NOT NULL DEFAULT 0,
+      next_review INTEGER NOT NULL,
+      last_review INTEGER,
+      learned_at INTEGER,
+      updated_at INTEGER NOT NULL
+    );
+  `);
+  await sqlite.execute(
+    'CREATE UNIQUE INDEX IF NOT EXISTS user_vocab_idx ON vocab_progress (user_id, vocab_word);',
+  );
+  await sqlite.execute(
+    'CREATE INDEX IF NOT EXISTS user_vocab_next_review_idx ON vocab_progress (user_id, next_review);',
+  );
   console.log('[DB] runMigrations done');
 }

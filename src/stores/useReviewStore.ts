@@ -1,6 +1,6 @@
 import {create} from 'zustand';
 import {KanjiEntry} from '../types/kanji';
-import {QuestionType} from '../types/review';
+import {QuestionType, ReviewItem, reviewItemId} from '../types/review';
 
 interface AnswerRecord {
   correct: boolean;
@@ -8,13 +8,15 @@ interface AnswerRecord {
 }
 
 interface ReviewState {
-  queue: KanjiEntry[];
+  queue: ReviewItem[];
   currentIndex: number;
-  deferred: KanjiEntry[];
+  deferred: ReviewItem[];
   answers: Record<string, AnswerRecord[]>;
   sessionStartedAt: Date | null;
 
-  startSession: (kanji: KanjiEntry[]) => void;
+  startSession: (items: ReviewItem[]) => void;
+  /** Legacy helper — wraps KanjiEntry[] into ReviewItem[] */
+  startKanjiSession: (kanji: KanjiEntry[]) => void;
   answerCurrent: (correct: boolean, questionType: QuestionType) => void;
   deferCurrent: () => void;
   advance: () => void;
@@ -28,9 +30,18 @@ export const useReviewStore = create<ReviewState>(set => ({
   answers: {},
   sessionStartedAt: null,
 
-  startSession: (kanji) =>
+  startSession: (items) =>
     set({
-      queue: kanji,
+      queue: items,
+      currentIndex: 0,
+      deferred: [],
+      answers: {},
+      sessionStartedAt: new Date(),
+    }),
+
+  startKanjiSession: (kanji) =>
+    set({
+      queue: kanji.map(k => ({kind: 'kanji' as const, kanji: k})),
       currentIndex: 0,
       deferred: [],
       answers: {},
@@ -41,11 +52,12 @@ export const useReviewStore = create<ReviewState>(set => ({
     set(state => {
       const current = state.queue[state.currentIndex];
       if (!current) return state;
-      const prev = state.answers[current.id] ?? [];
+      const id = reviewItemId(current);
+      const prev = state.answers[id] ?? [];
       return {
         answers: {
           ...state.answers,
-          [current.id]: [...prev, {correct, questionType}],
+          [id]: [...prev, {correct, questionType}],
         },
       };
     }),
@@ -60,7 +72,6 @@ export const useReviewStore = create<ReviewState>(set => ({
   advance: () =>
     set(state => {
       const next = state.currentIndex + 1;
-      // If we've gone through all original cards, append deferred
       if (next >= state.queue.length && state.deferred.length > 0) {
         return {
           queue: [...state.queue, ...state.deferred],

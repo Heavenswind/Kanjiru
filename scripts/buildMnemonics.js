@@ -87,7 +87,12 @@ function buildPrompt(batch) {
 
 For each kanji produce up to three mnemonics:
 
-1. "meaning" — a vivid 1-2 sentence visual story using the kanji's shape or radical components to remember its meaning. Make it strange or funny — emotional scenes stick better.
+1. "meaning" — a vivid 1-2 sentence story that uses the kanji's named radicals as characters or props to arrive at the meaning.
+   STRICT RULES:
+   - You MUST use ONLY the radical names provided in the "radicals" column. Do not invent other components or reference kanji characters not listed.
+   - The radical names ARE the building blocks — treat them as nouns/characters in your scene.
+   - The final scene must naturally lead to the kanji's meaning. Don't state the meaning directly.
+   - Make it strange, funny, or dramatic — emotional scenes stick better.
 
 2. "onyomi" — a 1-2 sentence scene that anchors the on-yomi reading sound. Omit if on-yomi is "—".
    Rules:
@@ -105,17 +110,17 @@ ${CAST_REFERENCE}
 
 Respond with ONLY valid JSON — an object where each key is the kanji character and the value is an object with "meaning", and optionally "onyomi" / "kunyomi". No markdown, no explanation.
 
-Example:
+Example (radicals: Sun, Temple → meaning: Time):
 {
-  "感": {
-    "meaning": "A heart (心) picking up signals from the world — it feels everything around it.",
-    "onyomi": "Khan rode into the village and everyone felt a wave of emotion — awe, fear, and something they couldn't name.",
-    "kunyomi": "Kanzuru — 'can zoo' — you can feel the whole zoo of emotions at once."
+  "時": {
+    "meaning": "The Sun moves across the sky, casting shadows on the Temple steps — monks track time by watching where the light falls.",
+    "onyomi": "Jiro checks his watch obsessively, always worried about time.",
+    "kunyomi": "Toki — 'toe-key' — you stub your toe on the temple keystone every time you're late."
   },
-  "山": {
-    "meaning": "Three peaks rising from flat ground — it draws itself: a mountain.",
-    "onyomi": "Sosa hit the ball so hard it flew over the mountain.",
-    "kunyomi": "Yama — 'yam' — a giant yam-shaped mountain blocking the road."
+  "力": {
+    "meaning": "A single stroke flexed at the joint — pure muscular Power, nothing else.",
+    "onyomi": "Ryu lifts a boulder overhead, veins bulging — sheer strength.",
+    "kunyomi": "Chikara — 'chic car' — only someone with real strength can push that chic car up the hill."
   }
 }
 
