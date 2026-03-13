@@ -470,11 +470,6 @@
     "onyomi": "Shin worked tirelessly, his heart filled with compassion for his patients.",
     "kunyomi": "Kokoro — 'co core' — the core of your being, your heart."
   },
-  "方": {
-    "meaning": "A direction (direction) points towards a goal — it's a specific way to go.",
-    "onyomi": "Homer accidentally drove in the wrong direction, causing a hilarious accident.",
-    "kunyomi": "Kata — 'caught ya' — you've gone in the wrong direction!"
-  },
   "牛": {
     "meaning": "A cow (cow) stands strong and sturdy — it's a large, powerful animal.",
     "onyomi": "Tai moved slowly but powerfully, like a massive bull.",
@@ -1244,5 +1239,10 @@
     "meaning": "A big drop of water is plump and full – a sense of abundance and richness.",
     "onyomi": "Tai – Tai the rugby player lumbered across the field.",
     "kunyomi": "Futo – 'foo-toe' – it felt plump and full."
+  },
+  "方": {
+    "meaning": "A lone banner, caught in the wind, always seems to point in a single, unwavering Direction.",
+    "onyomi": "Homer, with his usual clumsiness, points in the wrong direction, leading everyone astray.",
+    "kunyomi": "A catamaran sails swiftly across the water, always heading in a particular direction."
   }
 }

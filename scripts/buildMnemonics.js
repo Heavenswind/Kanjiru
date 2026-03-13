@@ -33,6 +33,7 @@ const https = require('https');
 
 const KANJI_JSON = path.join(__dirname, '../src/data/kanji.json');
 const CAST_JSON = path.join(__dirname, './mnemonicCast.json');
+const RADICAL_KANJI_JSON = path.join(__dirname, './radicalKanji.json');
 const OUT_FILE = path.join(__dirname, '../src/data/mnemonics.json');
 const BATCH_SIZE = 10;
 
@@ -62,6 +63,15 @@ if (!USE_LOCAL && !GEMINI_KEY) {
   process.exit(1);
 }
 
+// ─── Radical → kanji symbol map ─────────────────────────────────────────────
+
+const RADICAL_KANJI = JSON.parse(fs.readFileSync(RADICAL_KANJI_JSON));
+
+// Format radicals as "Name (漢字)" when a kanji exists, else just "Name"
+function formatRadical(name) {
+  return RADICAL_KANJI[name] ? `${name} (${RADICAL_KANJI[name]})` : name;
+}
+
 // ─── Cast system ────────────────────────────────────────────────────────────
 
 const castData = JSON.parse(fs.readFileSync(CAST_JSON));
@@ -80,7 +90,8 @@ function buildPrompt(batch) {
   const lines = batch.map(k => {
     const on = k.readings_on.slice(0, 2).join(', ') || '—';
     const kun = k.readings_kun.slice(0, 2).map(r => r.replace(/[.-].*/, '')).filter(Boolean).join(', ') || '—';
-    return `${k.character} | ${k.meanings[0]} | on: ${on} | kun: ${kun} | radicals: ${k.radicals.slice(0, 3).join(', ') || '—'}`;
+    const rads = k.radicals.slice(0, 3).map(formatRadical).join(', ') || '—';
+    return `${k.character} | ${k.meanings[0]} | on: ${on} | kun: ${kun} | radicals: ${rads}`;
   }).join('\n');
 
   return `You are a Japanese kanji teacher creating memory aids for English speakers.
@@ -91,6 +102,7 @@ For each kanji produce up to three mnemonics:
    STRICT RULES:
    - You MUST use ONLY the radical names provided in the "radicals" column. Do not invent other components or reference kanji characters not listed.
    - The radical names ARE the building blocks — treat them as nouns/characters in your scene.
+   - When a radical has a kanji symbol shown in parentheses (e.g. "Sun (日)"), include the symbol inline in your sentence, like: "The Sun (日) beats down...". This helps learners connect radicals to the kanji they already know.
    - The final scene must naturally lead to the kanji's meaning. Don't state the meaning directly.
    - Make it strange, funny, or dramatic — emotional scenes stick better.
 
@@ -110,10 +122,10 @@ ${CAST_REFERENCE}
 
 Respond with ONLY valid JSON — an object where each key is the kanji character and the value is an object with "meaning", and optionally "onyomi" / "kunyomi". No markdown, no explanation.
 
-Example (radicals: Sun, Temple → meaning: Time):
+Example (radicals: Sun (日), Temple (寺) → meaning: Time):
 {
   "時": {
-    "meaning": "The Sun moves across the sky, casting shadows on the Temple steps — monks track time by watching where the light falls.",
+    "meaning": "The Sun (日) moves across the sky, casting shadows on the Temple (寺) steps — monks track time by watching where the light falls.",
     "onyomi": "Jiro checks his watch obsessively, always worried about time.",
     "kunyomi": "Toki — 'toe-key' — you stub your toe on the temple keystone every time you're late."
   },

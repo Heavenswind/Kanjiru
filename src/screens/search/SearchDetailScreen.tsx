@@ -8,6 +8,9 @@ import {useProgressQuery} from '../../queries/useProgressQuery';
 import {formatReading} from '../../utils/kanjiUtils';
 import StrokeOrderDiagram from '../../components/kanji/StrokeOrderDiagram';
 import strokeData from '../../data/strokes.json';
+import radicalKanjiData from '../../data/radicalKanji.json';
+
+const radicalKanji = radicalKanjiData as Record<string, string>;
 
 type Props = {
   route: RouteProp<SearchStackParamList, 'SearchDetail'>;
@@ -77,11 +80,15 @@ export default function SearchDetailScreen({route}: Props) {
       {kanji.radicals.length > 0 && (
         <Section title="Radicals">
           <View style={styles.readingRow}>
-            {kanji.radicals.map((r, i) => (
-              <View key={i} style={styles.radicalPill}>
-                <Text style={styles.radicalText}>{r}</Text>
-              </View>
-            ))}
+            {kanji.radicals.map((r, i) => {
+              const symbol = radicalKanji[r];
+              return (
+                <View key={i} style={styles.radicalPill}>
+                  {symbol && <Text style={styles.radicalSymbol}>{symbol}</Text>}
+                  <Text style={styles.radicalText}>{r}</Text>
+                </View>
+              );
+            })}
           </View>
         </Section>
       )}
@@ -124,8 +131,11 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 6,
+    alignItems: 'center',
+    minWidth: 52,
   },
-  radicalText: {color: '#aaa'},
+  radicalSymbol: {color: '#fff', fontSize: 20, fontWeight: 'bold'},
+  radicalText: {color: '#aaa', fontSize: 11, marginTop: 2},
   backBtn: {marginBottom: 16},
   backText: {color: '#e94560', fontSize: 15, fontWeight: '600'},
 });
