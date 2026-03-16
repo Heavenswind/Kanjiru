@@ -186,8 +186,9 @@ The meaning must emerge from the scene itself — the reader should feel it, not
 - Strange, vivid, or funny scenes stick better than plain descriptions
 
 ═══ OUTPUT FORMAT ═══
-Respond with ONLY valid JSON. Each key is the kanji character, value has a single "story" field.
-No markdown fences, no explanation, no extra fields.
+Respond with ONLY valid JSON. Each key is the kanji character, value is an object with EXACTLY one field: "story".
+No markdown fences, no explanation, no IPA, no extra fields, no commentary.
+Each value must look like: {"story": "..."} — nothing else inside.
 
 ═══ CAST REFERENCE ═══
 ${CAST_REFERENCE}
@@ -201,7 +202,7 @@ ${IPA_REFERENCE}
     "story": "An **itch** crawls across the Ground — a single line scratched into the dirt by one fingernail, and that lone mark is enough to divide everything on one side from everything on the other."
   },
   "七": {
-    "story": "She pulled the **sheath** off an ancient blade — out fell exactly this many coins, no more, scattered across the floor in a perfect arc."
+    "story": "She yanked the **sheath** off the samurai's blade and flung it across the courtyard — it spun end over end and clattered against the stone wall with a hollow crack."
   },
   "休": {
     "story": "The leader drives the group for hours until **Kyu** finally slumps against the Tree (木) and won't budge — nobody protests, and for the first time all day, the whole group collapses into stillness."
@@ -316,6 +317,8 @@ async function processBatch(batch, retries = 3) {
         if (!entry || typeof entry.story !== 'string' || entry.story.trim() === '') {
           throw new Error(`Missing or invalid story for ${k.character}`);
         }
+        // Strip any extra fields the model added (IPA leakage, explanations, etc.)
+        result[k.character] = { story: entry.story };
       }
 
       return result;
