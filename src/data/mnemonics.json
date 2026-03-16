@@ -1,1248 +1,396 @@
 {
   "一": {
-    "meaning": "A single stroke represents the concept of 'one' — it's the simplest beginning.",
-    "onyomi": "Yusuf needed just one brushstroke to capture the essence of the desert sunset.",
-    "kunyomi": "Ichi — 'itch' — that one little itch drove him crazy."
+    "meaning": "A single Ground line represents the beginning, the foundation upon which everything is built.",
+    "onyomi": "Ichiro meticulously lays the first brick, starting a new construction project.",
+    "kunyomi": "Hito — 'hee-toe' — a single toe points the way forward."
   },
   "二": {
-    "meaning": "Two horizontal lines represent the duality of 'two' — a pair, a contrast.",
-    "onyomi": "Sho caught two perfect waves, one after the other, in a row.",
-    "kunyomi": "Rita — 'Re-ta' — two ta-da moments in one show."
+    "meaning": "Two Grounds stacked together symbolize duality, a pair, a contrasting force.",
+    "onyomi": "Ni, the twins, mirror each other’s every move, a perfect pair.",
+    "kunyomi": "Futa — 'foo-tah' — two feet shuffle across the floor."
   },
   "九": {
-    "meaning": "A loop around a 'woman' radical — nine months to bring a new life into the world.",
-    "onyomi": "Kyu was late to class again, rushing in with a frantic look.",
-    "kunyomi": "Koko — 'co-co' — a small child's cooing sound."
+    "meaning": "Nine Ground lines form a complex, layered structure, representing completeness and finality.",
+    "onyomi": "Kyu, the student, is late to class for the ninth time, a pattern of repetition.",
+    "kunyomi": "Kokono — 'ko-ko-no' — nine coconuts tumble from the tree."
   },
   "七": {
-    "meaning": "A 'ten' with a 'gate' — seven days to open the gate to a new week.",
-    "onyomi": "Shula demanded seven days of intense training to prepare the team.",
-    "kunyomi": "Nana — 'Na-na' — a child's playful chanting."
+    "meaning": "Seven lines twist and intertwine, a complex and unpredictable journey.",
+    "onyomi": "Shichi, the wind, swirls erratically, changing direction every moment.",
+    "kunyomi": "Nana — 'nah-nah' — a child sings a simple, repetitive tune."
   },
   "人": {
-    "meaning": "A walking person, clearly showing a human figure — it’s the most basic depiction of a person.",
-    "onyomi": "Khan led his army of people across the vast desert.",
-    "kunyomi": "Hito — 'He toe' — he pointed his toe to show the way."
+    "meaning": "A Person stands upright, a figure of humanity, full of potential and complexity.",
+    "onyomi": "Jin, the performer, takes a bow after a stunning performance.",
+    "kunyomi": "Hito — 'hee-toe' — a single person walks down the street."
   },
   "入": {
-    "meaning": "A 'person' stepping through a 'gate' — the action of entering a place.",
-    "onyomi": "Rio entered the bustling marketplace, eager to explore.",
-    "kunyomi": "Iri — 'Ee-ree' - 'Eee, ree!' he shouted as he ran in."
+    "meaning": "A Person enters a doorway, signifying passage, acceptance, or beginning.",
+    "onyomi": "Nyu, the traveler, steps through the gate of a new city.",
+    "kunyomi": "I — 'ee' — a single step into a room."
   },
   "八": {
-    "meaning": "Eight droplets of water forming a circular pattern — like the eight points of a compass.",
-    "onyomi": "Homer crashed his car, scattering eight droplets of water across the road.",
-    "kunyomi": "Ya — 'yah' — a surprised exclamation."
+    "meaning": "Eight Fins dance in a swirling pattern, representing abundance and growth in the ocean.",
+    "onyomi": "Hachi, the octopus, extends all eight arms to grab a tasty treat.",
+    "kunyomi": "Ya — 'yah' — a wave crashes onto the shore."
   },
   "十": {
-    "meaning": "A simple cross, representing the number 'ten' — a full count.",
-    "onyomi": "Joe used his lockpicks to open ten doors in the warehouse.",
-    "kunyomi": "Too — 'too' — he had too much to carry."
+    "meaning": "A Cross forms the shape of Ten, symbolizing completion, culmination, and a full cycle.",
+    "onyomi": "Juu, the leader, surveys his kingdom from a high tower.",
+    "kunyomi": "Too — 'too' — ten toes wiggle in the sand."
   },
   "三": {
-    "meaning": "A 'ground' with two strokes above — three distinct elements combined.",
-    "onyomi": "Sosa hit three home runs in a single game.",
-    "kunyomi": "Mi — 'me' — he wanted to be like the great heroes."
+    "meaning": "A Ground line above Two signifies a trinity, a group of three, a combined force.",
+    "onyomi": "Zoo, the trio, harmonizes their voices in a beautiful song.",
+    "kunyomi": "Mi — 'mee' — three mice scurry across the floor."
   },
   "上": {
-    "meaning": "A 'toe' above the 'ground' — representing something being higher or above.",
-    "onyomi": "Kofi built the house on the upper level.",
-    "kunyomi": "Ue — 'oo-eh' - 'oo-eh!' the balloon rose up."
+    "meaning": "A Toe above a Ground line indicates elevation, ascent, or something being above.",
+    "onyomi": "Jyou, the climber, reaches the summit of the mountain.",
+    "kunyomi": "Ue — 'oo-eh' — a bird flies above the trees."
   },
   "下": {
-    "meaning": "A person tripped and fell downwards — they're under something.",
-    "onyomi": "Carlos quickly descended the stairs to greet his guests.",
-    "kunyomi": "Shita — 'she ate' — she ate something that fell down."
+    "meaning": "Eve, tripping on a stray Toe, stumbles down from the elevated Ground — a descent.",
+    "onyomi": "Kaoru carefully descends the stairs, checking each step.",
+    "kunyomi": "Shita — 'she taught' — she taught me how to descend safely."
   },
   "大": {
-    "meaning": "A giant tree (木) stands tall, completely overshadowing a smaller tree — it’s big.",
-    "onyomi": "Tova’s farm was the biggest in the county.",
-    "kunyomi": "Ooya — 'oh yeah' — Oh yeah, that’s a big one!"
+    "meaning": "Carlos, overwhelmed by the sheer size of the Big building, proclaims it truly Large.",
+    "onyomi": "Tai struggles to carry a huge box, overwhelmed by its size.",
+    "kunyomi": "Oki — 'oh key' — he lost the key to the big door."
   },
   "女": {
-    "meaning": "A woman (亅) stands proudly beside a cloth (巾) — she’s dressed elegantly.",
-    "onyomi": "Selma’s daughter, Jyo, was a beautiful dancer.",
-    "kunyomi": "Onna — 'own nah' — ‘Own nah, I’m a woman!’"
+    "meaning": "Selma, a proud Woman, stands firm, refusing to be moved.",
+    "onyomi": "Jyo stares intently, a female performer on stage.",
+    "kunyomi": "Onna — 'own-ah' — she owns the best bakery in town."
   },
   "山": {
-    "meaning": "Three mountains (三) rise dramatically from the earth (土) — it's a mountain.",
-    "onyomi": "Sosa hit the ball so hard it flew over the mountain.",
-    "kunyomi": "Yama — 'yam' — a giant yam-shaped mountain blocking the road."
+    "meaning": "Sho, a laid-back surfer, admires the majestic Mountain from the shore.",
+    "onyomi": "Senna raced through the mountain pass, a blur of speed.",
+    "kunyomi": "Yama — 'yah ma' — you ma'am, watch out for the mountain lion!"
   },
   "川": {
-    "meaning": "Water (氵) flows between two grassy banks (艹) — it’s a river.",
-    "onyomi": "Senna raced across the bridge over the river.",
-    "kunyomi": "Kawa — 'car wa' — the car was washed away in the river."
+    "meaning": "Kofi, the carpenter, builds a tiny raft to float down the River.",
+    "onyomi": "Sen swims across the river with powerful strokes.",
+    "kunyomi": "Kawa — 'ka-wah' — a warm wave washes over the riverbank."
   },
   "土": {
-    "meaning": "A mound of earth (土) is carefully placed, forming a solid base — it’s soil.",
-    "onyomi": "Tay carefully inspected the soil for imperfections.",
-    "kunyomi": "Tsuchi — 'too cheese' — ‘Too cheesy for the garden, it needs more soil!’"
+    "meaning": "Tova, the farmer, digs deep into the Dirt to plant her seeds.",
+    "onyomi": "Do struggles to move a heavy stone, covered in earth.",
+    "kunyomi": "Tsuchi — 'too-chee' — too much dirt gets on his shoes."
   },
   "千": {
-    "meaning": "A thousand (千) sheets of paper (丨) are neatly stacked high — it’s a thousand.",
-    "onyomi": "Senna aimed for a thousand laps around the track.",
-    "kunyomi": "Chi — 'cheese' — a thousand slices of cheese!"
+    "meaning": "Kin, the goldsmith, meticulously counts out a Thousand tiny gold flakes.",
+    "onyomi": "Senna drove a thousand laps around the track.",
+    "kunyomi": "Chi — 'chee' — he chipped away at the clay."
   },
   "子": {
-    "meaning": "A small child (小) clings to their parent (子) — it’s a child.",
-    "onyomi": "Kay examined the child's fingerprints for clues.",
-    "kunyomi": "Ko — 'cone' — a child eating a cone."
+    "meaning": "Kiki, the Belgian girl, playfully hides a little Child behind a bush.",
+    "onyomi": "Shi, the doctor, carefully examines a young patient.",
+    "kunyomi": "Ko — 'koh' — he's a little kid."
   },
   "小": {
-    "meaning": "A small mouth (小) opens wide in surprise — it's small.",
-    "onyomi": "Sho took a small bite of the pineapple.",
-    "kunyomi": "Chii — 'cheesey' — this is a cheesey small snack."
+    "meaning": "Fuad, the merchant, displays a Small trinket, hoping to entice a buyer.",
+    "onyomi": "Shoo steps delicately, a tiny dancer on stage.",
+    "kunyomi": "Chii — 'chee' — a tiny chirp."
   },
   "中": {
-    "meaning": "A field (田) is enclosed within walls (回) — it’s in the middle.",
-    "onyomi": "Kofi built a house in the middle of the forest.",
-    "kunyomi": "Naka — 'nuke' — ‘Let’s go to the middle of the park.’"
+    "meaning": "Homer, after an accident, finds himself trapped in the Middle of the room.",
+    "onyomi": "Chu, the chef, expertly mixes ingredients in the middle of his kitchen.",
+    "kunyomi": "Naka — 'nah-kah' — he's in the middle of a nap."
   },
   "五": {
-    "meaning": "Five fingers splayed out – it’s a hand counting.",
-    "onyomi": "Kofi used five planks of wood to build a new fence.",
-    "kunyomi": "Go — 'glow' — the firelight gave off a warm glow."
+    "meaning": "Five tiny Five spirits danced around a bonfire, celebrating their collective number.",
+    "onyomi": "Goro the geisha meticulously counts five cherry blossoms in a vase.",
+    "kunyomi": "Itsu — 'eets' — you eat five cookies."
   },
   "六": {
-    "meaning": "Six fish swimming in a pond – a school of fish.",
-    "onyomi": "Sosa hit six home runs in a single game.",
-    "kunyomi": "Mu — 'mew' — a cat meows six times."
+    "meaning": "A Lid covered a pool, but six Fins darted out from beneath, eager for a swim.",
+    "onyomi": "Roku the robber carefully counts six diamonds before escaping.",
+    "kunyomi": "Mu — 'moo' — a cow moos six times before settling down."
   },
   "円": {
-    "meaning": "A lid (蓋) placed on a head (日) – a circular seal.",
-    "onyomi": "The yen (円) is the currency of Japan.",
-    "kunyomi": "Maru — 'marooned' — the ship was marooned in a circular bay."
+    "meaning": "A Lid balanced perfectly on a Head, creating a perfect Circle.",
+    "onyomi": "Enzo the explorer charts a circular route through the jungle.",
+    "kunyomi": "Maru — 'mar' — a boat circles around the harbor."
   },
   "天": {
-    "meaning": "A roof (宀) covering the heavens (日) – the sky above.",
-    "onyomi": "Tova looked up at the sky and felt a connection to the heavens.",
-    "kunyomi": "Amatsu — 'amass' — the rain amassed into a vast, grey sky."
+    "meaning": "A lone Heaven figure gazed down, contemplating the vastness of the cosmos.",
+    "onyomi": "Ten-year-old Tova practices calligraphy, depicting the vastness of the heavens.",
+    "kunyomi": "Amatsu — 'ah-mah-tsoo' — an ancient legend tells of a messenger from the heavens."
   },
   "日": {
-    "meaning": "The sun (日) shining brightly – it's a day!",
-    "onyomi": "Nichiido, Japan's national holiday, celebrates the sun.",
-    "kunyomi": "Hi — 'high' — the sun was high in the sky."
+    "meaning": "The Sun shone brightly, marking the beginning of a new Day.",
+    "onyomi": "Nico the novelist begins writing a new story each day.",
+    "kunyomi": "Hi — 'high' — the sun is high in the sky."
   },
   "月": {
-    "meaning": "The moon (月) illuminating the night sky – a lunar glow.",
-    "onyomi": "Gatsu – the August moon hangs heavy in the sky.",
-    "kunyomi": "Tsuki — 'tuck' — she tucked herself into bed under the moonlight."
+    "meaning": "The Moon hung in the night sky, illuminating a peaceful Month.",
+    "onyomi": "Getsu the gardener tends to his moon-shaped garden.",
+    "kunyomi": "Tsuki — 'tsu-key' — the moon's light guides you through the night."
   },
   "木": {
-    "meaning": "A tree (木) standing tall and proud – it's a forest.",
-    "onyomi": "Boku used wood to build a small boat.",
-    "kunyomi": "Ki — 'key' — the key to the forest was a single, old tree."
+    "meaning": "A single Tree stood tall and proud, its roots firmly planted in the earth.",
+    "onyomi": "Boku the boxer trains relentlessly, striking like a tree trunk.",
+    "kunyomi": "Ki — 'key' — the key is hidden beneath the tree."
   },
   "水": {
-    "meaning": "Water (水) flowing freely – a river’s gentle current.",
-    "onyomi": "The suit (水) was soaked from the rain.",
-    "kunyomi": "Mizu — 'me zoo' — a zoo full of animals drinking water."
+    "meaning": "Water flowed steadily downhill, carving a path through the rocks.",
+    "onyomi": "Sui the swimmer effortlessly glides through the water.",
+    "kunyomi": "Mizu — 'meez' — a glass of water quenches your thirst."
   },
   "火": {
-    "meaning": "Fire (火) burning brightly – a warm, cozy hearth.",
-    "onyomi": "Ka-boom! The fireworks lit up the night sky.",
-    "kunyomi": "Hi — 'high' — the flames reached high into the sky."
+    "meaning": "A raging Fire consumed the forest, leaving behind a trail of ash.",
+    "onyomi": "Kaori the chef skillfully manages the fire beneath her wok.",
+    "kunyomi": "Hi — 'he' — the fire is too hot."
   },
   "出": {
-    "meaning": "A mountain (出) emerging from the ground – a rise in the landscape.",
-    "onyomi": "Shutsu – the shop’s exit was blocked by boxes.",
-    "kunyomi": "De — 'dew' — the dew collected on the mountain slopes."
+    "meaning": "A lone figure emerged from a Mountain pass, disappearing into the valley below.",
+    "onyomi": "Shutsu the student cautiously exits the classroom.",
+    "kunyomi": "De — 'dee' — you decide to exit the building."
   },
   "右": {
-    "meaning": "A narwhal's horn points to the right, indicating direction – it shows the way to the right.",
-    "onyomi": "Yusuf, pointing right, said, 'This way!'",
-    "kunyomi": "Migi - 'my ghee' - I made a delicious spread with ghee on the right side of the table."
+    "meaning": "A Narwhal, confused by the direction, opens its Mouth and points towards a distant shore — it's the Right way to go.",
+    "onyomi": "Yusuf sketches a map, marking the Right direction with a flourish.",
+    "kunyomi": "Migi — 'me gee' — you see a mischievous cat sneaking off to the right."
   },
   "四": {
-    "meaning": "Four legs support a mouth – a creature standing proudly.",
-    "onyomi": "し",
-    "kunyomi": "Yo - 'yoyo' - The yoyo fell down four times."
+    "meaning": "Four Legs stomp across the floor of the Mouth, creating a rhythmic beat.",
+    "onyomi": "Sho carves a surfboard, meticulously shaping it into a perfect four-point star.",
+    "kunyomi": "Yoru — 'yore' — you see four shadows stretching long on the floor."
   },
   "左": {
-    "meaning": "A narwhal's horn points to the left, indicating direction – it shows the way to the left.",
-    "onyomi": "しゃ",
-    "kunyomi": "Hidari - 'hi dairy' - The dairy farm is on the left side of the road."
+    "meaning": "A Narwhal swims left, bumping into a half-built Construction, forcing it to turn.",
+    "onyomi": "Sasa scores a home run, sliding left into third base.",
+    "kunyomi": "Hidari — 'hee-dah-ree' — you notice the left-hand side of the building is damaged."
   },
   "本": {
-    "meaning": "A book resting on a table — a classic source of knowledge.",
-    "onyomi": "ほん",
-    "kunyomi": "Moto - 'moat' - The castle’s moat protected the book of ancient secrets."
+    "meaning": "A Book rests on a sturdy wooden stool, a symbol of knowledge and wisdom.",
+    "onyomi": "Homer meticulously organizes a library, stacking books neatly.",
+    "kunyomi": "Moto — 'moh-toh' — you find the original manuscript in the dusty archives."
   },
   "白": {
-    "meaning": "A white cloth covering something – it's pure and clean.",
-    "onyomi": "はく",
-    "kunyomi": "Shiro - 'she rowed' - She rowed the boat with a white sail."
+    "meaning": "A single White feather drifts down, illuminating the dark corner of a room.",
+    "onyomi": "Byakuya, a stoic samurai, wears white armor.",
+    "kunyomi": "Shiro — 'she-roh' — you see a white bird perched on a branch."
   },
   "万": {
-    "meaning": "A leaf covering a sword – it represents an abundance of power and potential.",
-    "onyomi": "まん",
-    "kunyomi": "Yorozu - 'your zoo' -  Your zoo has ten thousand different animals."
+    "meaning": "A single Leaf falls, scattering like a thousand Swords across the ground.",
+    "onyomi": "Ban, a powerful warlord, commands a vast army.",
+    "kunyomi": "Yorozu — 'yor-oh-zoo' — you have a thousand different flavors of ice cream."
   },
   "今": {
-    "meaning": "A mouth surrounded by a frame — it marks the present moment.",
-    "onyomi": "こん",
-    "kunyomi": "Ima - 'eye ma' - I saw my mom just now."
+    "meaning": "The Now moment is a fleeting glimpse of a hand reaching out, grasping at time.",
+    "onyomi": "Kyo carefully prepares a tea ceremony, focusing on the present moment.",
+    "kunyomi": "Ima — 'ee-mah' — you feel the warmth of the sun on your face right now."
   },
   "午": {
-    "meaning": "The sun slides across the sky at noon — it signifies midday.",
-    "onyomi": "ご",
-    "kunyomi": "Uma - 'oo ma' - The horse (uma) grazed at noon."
+    "meaning": "A Slide down a grassy hill leads directly to a sun-baked Dry patch of earth at noon.",
+    "onyomi": "Go, the train departs precisely at noon.",
+    "kunyomi": "Uma — 'oo-mah' — you see a horse grazing peacefully in the pasture."
   },
   "友": {
-    "meaning": "A narwhal’s horn resting on a stool – a sign of companionship and support.",
-    "onyomi": "ゆう",
-    "kunyomi": "Tomo - 'toe mo' -  Toe mo, I’ll always be your friend."
+    "meaning": "A Narwhal swims alongside a wooden Stool, creating a bond of unlikely friendship.",
+    "onyomi": "Yusuf shares a laugh with his friend over a cup of tea.",
+    "kunyomi": "Tomo — 'toh-moh' — you’re always together with your best friend."
   },
   "父": {
-    "meaning": "A father’s face is warm and comforting - he provides and protects.",
-    "onyomi": "ふ",
-    "kunyomi": "Chichi - 'cheese cheese' - My dad loves cheese cheese!"
+    "meaning": "A Father stands strong, a symbol of protection and guidance.",
+    "onyomi": "Fuad carefully inspects his wares, haggling with a smile.",
+    "kunyomi": "Chichi — 'chee-chee' — you remember your father's kind voice."
   },
   "北": {
-    "meaning": "Imagine a spoon (spoon radical) gently scooping up the northern wind, guiding it across the land.",
-    "onyomi": "Homer tripped over a rock, shouting 'Hoku!' as he fell.",
-    "kunyomi": "Kita – 'keeta' – a little kid who’s always pointing north."
+    "meaning": "A Fingers carefully points the Spoon towards the distant horizon — indicating the direction of North.",
+    "onyomi": "Homer gets hopelessly lost, shouting 'North! North!'",
+    "kunyomi": "Kita — 'key-tah' — you kick a key into the snow and lose it in the north."
   },
   "半": {
-    "meaning": "A triceratops (triceratops radical) is split in half, representing just one side of a whole.",
-    "onyomi": "Hans meticulously measured half a sheet of paper.",
-    "kunyomi": "Naka - 'nacka' - a nack of half a cookie."
+    "meaning": "A Triceratops only eats half of its food, leaving the other half for the Dry desert winds to carry away.",
+    "onyomi": "Hans meticulously divides a blueprint in half, ensuring perfect symmetry.",
+    "kunyomi": "Naka — 'nah-kah' — you take a nap and only wake up halfway through."
   },
   "外": {
-    "meaning": "The evening (evening radical) light shines on a single toe (toe radical), marking the boundary of the known world.",
-    "onyomi": "Gai, the guide, led them outside the city walls.",
-    "kunyomi": "Soto - 'so-toe' - a toe sticking out of the door."
+    "meaning": "As Evening descends, a single Toe steps out of the doorway, venturing into the unknown.",
+    "onyomi": "Gai feels a breeze on his face as he steps outside.",
+    "kunyomi": "Soto — 'soh-toh' — you see something out of the window."
   },
   "母": {
-    "meaning": "A drop (drop radical) of sunlight (sun radical) falls onto the earth, nourishing the mother figure.",
-    "onyomi": "Bo, the police officer, said 'Bo!' to a child running into the street.",
-    "kunyomi": "Haha – 'hah-ha' – a mother laughing at her child's antics."
+    "meaning": "The Sun warms the Drop of tears on a mother’s cheek, a testament to her endless love.",
+    "onyomi": "Bo sighs with contentment, remembering his mother.",
+    "kunyomi": "Haha — 'hah-hah' — a baby laughs at their mother."
   },
   "休": {
-    "meaning": "A leader (leader radical) rests beneath the shade of a tree (tree radical), finally taking a break.",
-    "onyomi": "Kyu, the student, was late to class again.",
-    "kunyomi": "Yasu - 'yah-soo' - a yasu (easy) day of rest."
+    "meaning": "The Leader leans against the Tree, finally able to rest after a long day’s work.",
+    "onyomi": "Kyu finds a quiet spot to rest and recuperate.",
+    "kunyomi": "Yasu — 'yah-soo' — you easily relax into a comfortable chair."
   },
   "先": {
-    "meaning": "A slide (slide radical) leads to a patch of dirt (dirt radical), marking the path ahead.",
-    "onyomi": "Senna raced ahead, taking the lead.",
-    "kunyomi": "Saki - 'sah-kee' - a saki (before) meal."
+    "meaning": "A Slide leads down to the Dirt, marking the path for those who come before.",
+    "onyomi": "Senna accelerates, taking the lead on the racetrack.",
+    "kunyomi": "Saki — 'sah-kee' — you quickly grab the first slice of cake."
   },
   "名": {
-    "meaning": "The evening (evening radical) light illuminates a mouth (mouth radical) as a name is spoken.",
-    "onyomi": "Mei, the artist, signed her painting.",
-    "kunyomi": "Na – 'nah' – a short, simple name."
+    "meaning": "The Evening shadows dance around the Mouth, whispering a legendary tale.",
+    "onyomi": "Mei announces the winner of the competition.",
+    "kunyomi": "Nama — 'nah-mah' — you name a new puppy."
   },
   "年": {
-    "meaning": "A gun (gun radical) points to a cow (cow radical), marking the passage of time and the cycles of nature.",
-    "onyomi": "Nen, the farmer, measured the growth of his crops over the year.",
-    "kunyomi": "Toshi - 'toe-shee' - a toshi (year) of growth."
+    "meaning": "A Gun points to the Cow grazing in the field, marking the passage of another Year.",
+    "onyomi": "Nen marks the anniversary with a solemn reflection.",
+    "kunyomi": "Toshi — 'toh-shee' — you wash your clothes every year."
   },
   "気": {
-    "meaning": "A treasure (treasure radical) radiates energy (energy radical), creating a palpable atmosphere.",
-    "onyomi": "Ki, the tea master, sensed the mood of the room.",
-    "kunyomi": "Iki - 'ee-kee' - a feeling of Iki (energy)."
+    "meaning": "The Energy of the Treasure shines brightly, illuminating the room with its vibrant aura.",
+    "onyomi": "Ki fills the air with a palpable tension.",
+    "kunyomi": "Iki — 'ee-kee' — you quickly inhale the fresh air."
   },
   "百": {
-    "meaning": "A leaf (leaf radical) is illuminated by the sun (sun radical), representing a single unit within a hundred.",
-    "onyomi": "Hyaku, the carpenter, measured a hundred boards.",
-    "kunyomi": "Momo – 'moh-moh' - a Momo (peach) that cost a hundred coins."
+    "meaning": "A Leaf floats down from the Sun, representing a hundred blessings.",
+    "onyomi": "Hyaku counts the grains of rice one by one.",
+    "kunyomi": "Momo — 'moh-moh' — you pick a hundred peaches from the tree."
   },
   "男": {
-    "meaning": "A person (Rice Paddy) is exerting great power (Power) – a strong man!",
-    "onyomi": "Dandan, the Ghanaian carpenter, built a man-sized chair with incredible strength.",
-    "kunyomi": "Otoko – 'oh toe' – a man's toe stubbing against something."
+    "meaning": "A farmer plants Rice in the paddy, needing immense Power to cultivate the land and provide for his family.",
+    "onyomi": "Dan, the construction worker, flexes his muscles, demonstrating incredible strength.",
+    "kunyomi": "Otoko — 'oh-toe-koh' — you notice a strong man's footprints in the soft earth."
   },
   "見": {
-    "meaning": "A person (eye) is observing something intently — they see everything!",
-    "onyomi": "Kay, the Canadian detective, used her keen eyesight to spot the clue.",
-    "kunyomi": "Mi – 'me' – look closely, you'll see it."
+    "meaning": "Eve, the botanist, carefully 'See's a rare flower blooming, her gaze intense and unwavering.",
+    "onyomi": "Kenji, the photographer, adjusts his lens, trying to capture the perfect view.",
+    "kunyomi": "Mi — 'me' — you blink your eyes to see better."
   },
   "車": {
-    "meaning": "A person (person) pushing a cart (cart) — a vehicle!",
-    "onyomi": "Sho, the surfer, drove his car to the beach for a perfect wave.",
-    "kunyomi": "Kuruma – 'coo-roo-mah' – like a car rolling smoothly."
+    "meaning": "Carlos, the street vendor, pushes his cart - a simple Car - through the bustling market, dodging pedestrians.",
+    "onyomi": "Showa, the race car driver, speeds around the track.",
+    "kunyomi": "Kuruma — 'koo-roo-mah' — you notice the car's wheels turning."
   },
   "毎": {
-    "meaning": "A gun (gun) peeking through a window (window) — every single time!",
-    "onyomi": "Mai, the Thai chef, prepared a dish every day for her customers.",
-    "kunyomi": "Goto – 'go toe' – every toe on your foot."
+    "meaning": "Homer, always clumsy, accidentally shoots a Window with a Gun while trying to hang a picture – it’s a 'Every'day occurrence.",
+    "onyomi": "Mai, the dancer, practices her routine every day.",
+    "kunyomi": "Goto — 'go-toe' — you step onto a patch of ground every day."
   },
   "行": {
-    "meaning": "A person (person) walking forward (go) — going somewhere!",
-    "onyomi": "Kofi, the carpenter, went to the market to buy wood.",
-    "kunyomi": "I – 'ee' – a quick trip."
+    "meaning": "Kyo, the tea master, gracefully 'Go'es through the ritual, each movement precise and deliberate.",
+    "onyomi": "Kofi, the carpenter, uses his hands to guide the wood as he goes.",
+    "kunyomi": "I — 'ee' — you start to walk."
   },
   "西": {
-    "meaning": "A tree (tree) marking the western direction (walk) — the west!",
-    "onyomi": "Sai, the fortune teller, predicted the sun would set in the west.",
-    "kunyomi": "Nishi – 'knee she' – like walking west with a sore knee."
+    "meaning": "Sho, the surfer, rides the waves toward the 'West', searching for the perfect break.",
+    "onyomi": "Sai, the fortune teller, points West, predicting a journey.",
+    "kunyomi": "Nishi — 'nee-shee' — you turn to the west and see the setting sun."
   },
   "何": {
-    "meaning": "A leader (leader) with a ring in his lip (lip ring) – what is he saying?",
-    "onyomi": "Ka, the Mexican street vendor, shouted, \"What do you want?\"",
-    "kunyomi": "Nani – 'nah knee' – what is on your knee?"
+    "meaning": "Hans, the engineer, meticulously checks the manual, questioning 'What' is the correct procedure for this complex assembly.",
+    "onyomi": "Ka, the street vendor, calls out his wares.",
+    "kunyomi": "Nani — 'nah-nee' — you ask, 'What is that?'"
   },
   "来": {
-    "meaning": "Grain (grain) growing from the ground (ground) — something is coming!",
-    "onyomi": "Tai, the Samoan rugby player, came crashing onto the field.",
-    "kunyomi": "Ki – 'key' – a key coming to unlock something."
+    "meaning": "Rio, the backpacker, arrives with a flourish, announcing her 'Come'ing to a new city.",
+    "onyomi": "Tai, the rugby player, charges forward.",
+    "kunyomi": "Kita — 'kee-tah' — you arrive at your destination."
   },
   "学": {
-    "meaning": "A Viking (Viking) teaching a child (child) — learning!",
-    "onyomi": "Gaku, the tea ceremony master, taught the students the art of calligraphy.",
-    "kunyomi": "Mana – 'mah nah' – like gaining knowledge."
+    "meaning": "Kyu, the late student, frantically 'Study's notes, hoping to catch up on the lesson.",
+    "onyomi": "Gaku, the professor, lectures with authority.",
+    "kunyomi": "Mana — 'mah-nah' — you learn a new fact."
   },
   "金": {
-    "meaning": "A bar of gold (gold) — precious metal!",
-    "onyomi": "Kin, the Vietnamese goldsmith, meticulously crafted a golden bracelet.",
-    "kunyomi": "Kane – 'kah-nay' – like the sound of coins."
+    "meaning": "Kin, the goldsmith, carefully shapes a piece of Gold, creating a beautiful and valuable work of art.",
+    "onyomi": "Kin, the Vietnamese goldsmith, polishes a gold ring.",
+    "kunyomi": "Kane — 'kah-nay' — you hear the sound of a ringing bell."
   },
   "雨": {
-    "meaning": "A sad Eve weeps in a garden, each tear a raindrop falling from the sky.",
-    "onyomi": "う",
-    "kunyomi": "あめ"
+    "meaning": "A single Rain drop falls from the sky, splattering onto the ground, creating a puddle — a sudden shower.",
+    "onyomi": "Ugo rushes outside, shielding himself from the rain.",
+    "kunyomi": "Ame — 'ah-meh' — you always remember to bring an umbrella."
   },
   "国": {
-    "meaning": "Carlos, the street vendor, declares himself king (王) of his tiny food stall, a nation of delicious tacos.",
-    "onyomi": "こく",
-    "kunyomi": "くに"
+    "meaning": "The King stands before his people, proclaiming his rule over the land – a sovereign Country.",
+    "onyomi": "Koko surveys his vast empire with a proud smile.",
+    "kunyomi": "Kuni — 'koo-nee' — you're known in the country."
   },
   "東": {
-    "meaning": "Tova, the Swedish farmer, watches the sun (日) rise over the trees (木), marking the start of a new day in the east.",
-    "onyomi": "とう",
-    "kunyomi": "ひがし"
+    "meaning": "A lone Tree stands silhouetted against the rising Sun, marking the direction of the East.",
+    "onyomi": "Tova surveys her fields, watching the sunrise in the east.",
+    "kunyomi": "Higashi — 'hee-gah-shee' — the sun shines high."
   },
   "長": {
-    "meaning": "Cho, the Thai chef, carefully arranges a long (長) line of chili peppers, preparing for a fiery dish.",
-    "onyomi": "ちょう",
-    "kunyomi": "なが"
+    "meaning": "A Long branch extends from the tree, symbolizing growth and duration.",
+    "onyomi": "Cho carefully measures the length of the bamboo stalk.",
+    "kunyomi": "Naga — 'nah-gah' — a long, winding path."
   },
   "前": {
-    "meaning": "Kyo, the tea master, pauses before (前) the tea ceremony, ensuring everything is perfectly aligned.",
-    "onyomi": "ぜん",
-    "kunyomi": "まえ"
+    "meaning": "Horns jut out from the ground, a marker before a vast, open Ground, signaling what lies ahead.",
+    "onyomi": "Kyo bows formally, standing before the tea master.",
+    "kunyomi": "Mae — 'mah-eh' — you're always in front."
   },
   "南": {
-    "meaning": "Tai, the Samoan rugby player, stands tall (南), a giant silhouette against the southern horizon.",
-    "onyomi": "なん",
-    "kunyomi": "みなみ"
+    "meaning": "A Cross guides the way, pointing towards the Head of a vast land, marking the direction of the South.",
+    "onyomi": "Nana sets off to the south, searching for a new adventure.",
+    "kunyomi": "Minami — 'mee-nah-mee' — a warm southern breeze."
   },
   "後": {
-    "meaning": "Homer, the clumsy dad, trips and falls behind (後), leaving a trail of chaos in his wake.",
-    "onyomi": "ご",
-    "kunyomi": "のち"
+    "meaning": "Loiterers linger, dropping Poop while a Winter storm brews behind them – the end of something.",
+    "onyomi": "Kofi considers what lies behind him, a trail of memories.",
+    "kunyomi": "Nochi — 'noh-chee' — a late night chill."
   },
   "食": {
-    "meaning": "Kin, the Vietnamese goldsmith, carefully examines a gold nugget, imagining the delicious meal (食) it could buy.",
-    "onyomi": "しょく",
-    "kunyomi": "く"
+    "meaning": "A hungry person Eat's with gusto, devouring a feast.",
+    "onyomi": "Jiro eagerly anticipates his next meal.",
+    "kunyomi": "Ku — 'koo' — you're hungry."
   },
   "校": {
-    "meaning": "Kyo, the tea ceremony master, inspects the school (校) building, ensuring every detail is flawless.",
-    "onyomi": "こう"
+    "meaning": "A Tree shelters a Lid, protecting the knowledge passed down from the Father – a place of learning.",
+    "onyomi": "Kyo meticulously organizes the textbooks for the school.",
+    "kunyomi": "—"
   },
   "時": {
-    "meaning": "Shin, the Korean doctor, checks the clock (時), knowing his shift ends soon.",
-    "onyomi": "じ",
-    "kunyomi": "とき"
+    "meaning": "The Sun casts a long shadow across the Temple, marking the passage of Time.",
+    "onyomi": "Jiro checks his watch obsessively, always worried about time.",
+    "kunyomi": "Toki — 'toe-key' — you stub your toe on the temple keystone every time."
   },
   "高": {
-    "meaning": "A chef (口) carefully adjusts the height (lid) of a stack of mustaches — it's tall!",
-    "onyomi": "Kofi built a towering stack of wooden planks, reaching high into the sky.",
-    "kunyomi": "Taka — 'taco' — a tall stack of tacos wobbling precariously."
+    "meaning": "The Lid carefully covered the Mustache’s mouth, silencing his complaints about the view from the top of the hill – a majestic, elevated height.",
+    "onyomi": "Kofi, the carpenter, built a tower so high it seemed to touch the sky.",
+    "kunyomi": "Taka – 'toe-kah' – you feel a sudden, tall ache in your toes after climbing a steep hill."
   },
   "間": {
-    "meaning": "A gate (門) hides the sun (日) - it represents a space, an interval.",
-    "onyomi": "Khan surveyed the space between the two gates, calculating his next move.",
-    "kunyomi": "Aida — 'a deer' — a deer paused in the space between the trees."
+    "meaning": "The Sun peeked through the Gate, marking the precise Interval between dawn and daybreak.",
+    "onyomi": "Kan, the warlord, measured the distance between his troops with meticulous precision.",
+    "kunyomi": "Aida – 'eye-dah' – the space between two eyes is a significant interval."
   },
   "話": {
-    "meaning": "Someone (口) tells a story (言) - it’s a tale!",
-    "onyomi": "わ",
-    "kunyomi": "Hanashi — 'honey she' — she whispered a sweet story to him."
+    "meaning": "Saying something to the Tongue brought forth a lively Tale, full of gossip and laughter.",
+    "onyomi": "Waka – 'wah-kah' – Yolanda’s opera performance was full of dramatic storytelling.",
+    "kunyomi": "Hanashi – 'hah-nah-shee' – a quick, playful 'ha-ha' is a simple tale."
   },
   "電": {
-    "meaning": "Rain (雨) falls onto a rice paddy (田), powering an umbrella (傘) with electricity!",
-    "onyomi": "でん"
+    "meaning": "Rain fell onto the Rice Paddy, and someone held up an Umbrella to collect the energy – a spark of electricity.",
+    "onyomi": "—"
   },
   "聞": {
-    "meaning": "A gate (門) blocks your ear (耳) - you have to listen closely to hear!",
-    "onyomi": "Shin listened intently, trying to discern the patient’s every word.",
-    "kunyomi": "Ki — 'key' — a key to unlocking the sounds of the world."
+    "meaning": "To truly Hear, one must open the Gate and focus on the sound entering the Ear.",
+    "onyomi": "Bun, the surfer, listened carefully to the ocean’s rumble before catching a wave.",
+    "kunyomi": "Ki – 'key' – the key to understanding is to listen carefully."
   },
   "語": {
-    "meaning": "Someone (口) speaks five (五) words — it's a word!",
-    "onyomi": "ご"
+    "meaning": "Saying a Word to the Five mouths created a story that was shared and retold.",
+    "onyomi": "Go – 'go' – Sosa hits a home run, shouting words of victory to the crowd.",
+    "kunyomi": "Kata – 'kah-tah' – a few simple words can be a concise and important statement."
   },
   "読": {
-    "meaning": "Someone (口) sells (売) a book — it’s a reading!",
-    "onyomi": "どく",
-    "kunyomi": "Yo — 'yoyo' — a yo-yo reading stories as it descends."
+    "meaning": "To Read, one must sell their attention to the sun's message on the page.",
+    "onyomi": "Doku – 'doe-koo' – Kyo meticulously reads the ancient scrolls, searching for hidden meaning.",
+    "kunyomi": "Yo – 'yo' – a quick 'yo!' of understanding when you read something new."
   },
   "生": {
-    "meaning": "Life (ling) sprouts from the earth — it's alive!",
-    "onyomi": "Selma stubbornly insisted on planting a new tree to celebrate life.",
-    "kunyomi": "I — 'eye' — a single, bright eye full of life."
+    "meaning": "A single Life began, a tiny spark of vitality and growth.",
+    "onyomi": "Sei – 'say' – Selma firmly believes in the sanctity of life.",
+    "kunyomi": "I – 'ee' – a single, quiet 'ee' of wonder at the miracle of life."
   },
   "書": {
-    "meaning": "A brush (筆) paints the sun (日) — it’s writing!",
-    "onyomi": "しょ"
-  },
-  "力": {
-    "meaning": "Power (人) is exerted, making a strong effort — it's strength!",
-    "onyomi": "Shula inspired his team to exert every ounce of their power.",
-    "kunyomi": "Chikara — 'chica' — a chica with incredible strength."
-  },
-  "口": {
-    "meaning": "A wide, gaping mouth, ready to swallow anything that comes its way — a hungry maw.",
-    "onyomi": "Kofi, the carpenter, used his mouth to measure the width of a plank of wood.",
-    "kunyomi": "Kuchi — 'koo-chee' — like saying 'coochy coochy' while pointing at a baby's mouth."
-  },
-  "工": {
-    "meaning": "A worker carefully constructing a bridge, piece by piece, with precision and skill.",
-    "onyomi": "Kofi, the carpenter, used his skills to build a magnificent bridge.",
-    "kunyomi": "—"
-  },
-  "夕": {
-    "meaning": "The sun (日) setting below the horizon (一) — it's the end of the day.",
-    "onyomi": "Selma watched Sosa hit a home run, and the setting sun cast a beautiful orange glow.",
-    "kunyomi": "Yū — 'you' — like saying 'you're home' as the sun sets."
-  },
-  "手": {
-    "meaning": "A hand reaching out, grasping for something—it's a hand.",
-    "onyomi": "Shula pointed a hand at the rugby players, directing them with authority.",
-    "kunyomi": "Te — 'tay' — like Tay, the architect, meticulously drawing with his hand."
-  },
-  "文": {
-    "meaning": "Someone writing a letter (言) on a cloth (巾) — it’s writing.",
-    "onyomi": "The Dominican baseball player Sosa signed autographs for all the fans.",
-    "kunyomi": "Fumi — 'foo-mee' — like a formal, handwritten 'foo-mee' letter."
-  },
-  "犬": {
-    "meaning": "A dog (犬) running after a rabbit (卯), its ears flapping in the wind — it's a dog.",
-    "onyomi": "Kenny, the plumber, used a dog to sniff out a leak in the pipes.",
-    "kunyomi": "Inu — 'ee-noo' — like saying 'ee-noo' to a playful puppy."
-  },
-  "正": {
-    "meaning": "A stop sign (止) placed on the ground (土) — it's correct.",
-    "onyomi": "Kyo, the tea master, insisted on the correct way to prepare the tea.",
-    "kunyomi": "Tada — 'ta-da' — like saying 'ta-da!' when revealing the correct answer."
-  },
-  "田": {
-    "meaning": "A field (田) enclosed by walls — it’s a rice field.",
-    "onyomi": "—",
-    "kunyomi": "Ta — 'tah' — like saying 'tah-dah!' when showing off a bountiful rice harvest."
-  },
-  "目": {
-    "meaning": "An eye (目) peeking out from a door (戶) — it’s an eye.",
-    "onyomi": "The museum's exhibits were so fascinating, everyone's eyes were glued to them.",
-    "kunyomi": "Me — 'may' — like saying 'may I see?' when looking at something beautiful."
-  },
-  "立": {
-    "meaning": "Someone standing (人) on a mountain (山) — it's standing up.",
-    "onyomi": "Tay, the architect, stood up to present his designs to the client.",
-    "kunyomi": "Ta — 'tah' — like Tay, the architect, standing proudly by his creation."
-  },
-  "元": {
-    "meaning": "A plant's root (origin) firmly anchors it to the earth — it's where everything begins.",
-    "onyomi": "Kofi used his bare hands to build a foundation for his new home, a solid beginning.",
-    "kunyomi": "Moto — 'mo toe' — a single toe pushing into the muddy ground."
-  },
-  "公": {
-    "meaning": "A fish (fin) swims freely in the public square (private) — it's a matter of public concern.",
-    "onyomi": "Kofi announced his carpentry workshop was open to the public.",
-    "kunyomi": "Ooyake — 'oh yeah!' — a huge crowd gathering in the public square."
-  },
-  "切": {
-    "meaning": "A sword (sword) slices through seven layers of fabric — it's a clean, decisive cut.",
-    "onyomi": "Kay used her sharp instincts to cut through the false leads in the case.",
-    "kunyomi": "Ki — 'key' — a sharp key cutting through a thick rope."
-  },
-  "少": {
-    "meaning": "A small slide (slide) has few people on it — it's a small number.",
-    "onyomi": "Sho enjoyed a leisurely surf session, a small crowd out on the waves.",
-    "kunyomi": "Suko — 'sue co' — a few coins scattered on the ground."
-  },
-  "心": {
-    "meaning": "A heart (heart) aches with sadness and joy — it feels everything intensely.",
-    "onyomi": "Shin worked tirelessly, his heart filled with compassion for his patients.",
-    "kunyomi": "Kokoro — 'co core' — the core of your being, your heart."
-  },
-  "方": {
-    "meaning": "A direction (direction) points towards a goal — it's a specific way to go.",
-    "onyomi": "Homer accidentally drove in the wrong direction, causing a hilarious accident.",
-    "kunyomi": "Kata — 'caught ya' — you've gone in the wrong direction!"
-  },
-  "牛": {
-    "meaning": "A cow (cow) stands strong and sturdy — it's a large, powerful animal.",
-    "onyomi": "Tai moved slowly but powerfully, like a massive bull.",
-    "kunyomi": "Ushi — 'oo she' — a big cow saying 'oh she!'."
-  },
-  "止": {
-    "meaning": "A stop sign (stop) abruptly halts traffic — it brings things to a standstill.",
-    "onyomi": "Sheila had to stop the sheep from wandering onto the road.",
-    "kunyomi": "To — 'toe' — a sudden stop, toe-to-toe with danger."
-  },
-  "兄": {
-    "meaning": "An elder brother (legs) walks confidently, leading the way — he is a protector.",
-    "onyomi": "Kyo, the tea master, led his student with elegant precision.",
-    "kunyomi": "Ani — 'ah knee' — a big brother kneeling to help you."
-  },
-  "冬": {
-    "meaning": "Two (two) winter nights (winter) are long and dark — it's a season of cold and darkness.",
-    "onyomi": "Tova prepared for the long winter ahead, storing food for the family.",
-    "kunyomi": "Fuyu — 'foo way' — a long, dark road in the winter."
-  },
-  "古": {
-    "meaning": "A crumbling, ancient temple (Old) slowly returning to the earth — it’s old and weathered.",
-    "onyomi": "Kofi used old wood to build a beautiful, antique chair.",
-    "kunyomi": "Furu — 'fur' — like a fuzzy, old blanket."
-  },
-  "台": {
-    "meaning": "A private mouth (口) speaks from a raised platform (台) — a stage for announcements.",
-    "onyomi": "Tova placed a bowl of fruit on a table.",
-    "kunyomi": "Utena — 'you tenna' — you’re tenna (crazy) to put that on a pedestal!"
-  },
-  "広": {
-    "meaning": "A large canopy (广) provides shade over a private area — a wide, protected space.",
-    "onyomi": "Kofi’s carpentry workshop was so spacious.",
-    "kunyomi": "Hiro — 'he row' — he rowed his boat across the wide river."
-  },
-  "用": {
-    "meaning": "A task (用) is carefully considered and put to use — it’s practical and applied.",
-    "onyomi": "Yolanda used her voice to enchant the audience.",
-    "kunyomi": "Mochi — 'mo-chee' — a delicious, sweet rice cake."
-  },
-  "世": {
-    "meaning": "The whole world (日) is a vast, interconnected generation (世) — a cycle of life.",
-    "onyomi": "Selma was a cornerstone of her generation.",
-    "kunyomi": "Yo — 'yo-yo' — a toy passed down through generations."
-  },
-  "主": {
-    "meaning": "A master (主) holds dominion over a group of people — a leader.",
-    "onyomi": "Shula demanded respect from her rugby team.",
-    "kunyomi": "Nushi — 'noo-shee' — the nushi (lord) of the village."
-  },
-  "代": {
-    "meaning": "A leader (代) performs a formal ceremony — a representative of a time or group.",
-    "onyomi": "Tay meticulously redrew the architectural plans for the next generation.",
-    "kunyomi": "Kawa — 'ka-wa' — a river flows through the ages."
-  },
-  "写": {
-    "meaning": "A forehead (示) is bent over the ground (写) to copy something carefully — a detailed reproduction.",
-    "onyomi": "Kay investigated the crime scene, meticulously writing down every detail.",
-    "kunyomi": "Utsu — 'oo-tsu' — it’s easy to copy a painting."
-  },
-  "去": {
-    "meaning": "Dirt (土) is swept away from a private area (去) — to leave or depart.",
-    "onyomi": "Kyo left the tea ceremony early.",
-    "kunyomi": "Sa — 'sa-ah' — he went away."
-  },
-  "字": {
-    "meaning": "A child (子) learns a character (字) under a roof (宀)— a lesson in writing.",
-    "onyomi": "Ji meticulously copied the ancient Chinese characters.",
-    "kunyomi": "Aza — 'a-za-na' — the character’s name."
-  },
-  "早": {
-    "meaning": "A sun (日) crosses (叉) the path, signaling it's early morning — the day is beginning!",
-    "onyomi": "Sosa hit a home run so fast, it felt like it happened early.",
-    "kunyomi": "Haya — 'Hi, ya!' — a cheerful greeting for the early morning."
-  },
-  "町": {
-    "meaning": "A rice paddy (田) lined with a street (口) – a bustling town!",
-    "onyomi": "Cho stirred his soup, creating a town-sized aroma.",
-    "kunyomi": "Machi — 'matchy' — the town's mascot is a friendly matchbox."
-  },
-  "花": {
-    "meaning": "A leader (人) carries a spoon (⺽) full of flowers (艹) – presenting a beautiful bouquet!",
-    "onyomi": "Ka, like Carlos, was selling flowers at the market.",
-    "kunyomi": "Hana — 'Hannah' — Hannah brought a beautiful flower to the party."
-  },
-  "赤": {
-    "meaning": "A flash of red (⺤) suddenly appears – a vibrant, shocking red!",
-    "onyomi": "Selma’s face turned red (seki) when she saw the price tag.",
-    "kunyomi": "Aka — 'Ah, cake!' — a delicious red velvet cake."
-  },
-  "足": {
-    "meaning": "A foot (龰) firmly planted on the ground – a solid, stable leg.",
-    "onyomi": "The athlete’s sok (足) helped him run faster.",
-    "kunyomi": "Ashi — 'ashy' — a dusty foot from walking in the desert."
-  },
-  "不": {
-    "meaning": "A negation (‘) covers the heart (丨) – something is not right.",
-    "onyomi": "Bo felt a 'bu' (不) of unease when he saw the strange package.",
-    "kunyomi": "—"
-  },
-  "仕": {
-    "meaning": "A samurai (士) is leading (⺢) – serving or attending to a lord.",
-    "onyomi": "Sheila’s sh (仕) of craftsmanship was evident in her work.",
-    "kunyomi": "Tsuka — 'tusk' — a samurai’s tusk-like sword."
-  },
-  "会": {
-    "meaning": "Two people (人, 人) meet (会) – a gathering or encounter.",
-    "onyomi": "Kai, the sailor, hoped to have a meeting (kai) with his family.",
-    "kunyomi": "A — 'Ah!' — a sudden realization at a meeting."
-  },
-  "同": {
-    "meaning": "A mustache (髭) planted firmly in the ground (土) – being the same.",
-    "onyomi": "Tova decided to grow a mustache (同) to look like her grandfather.",
-    "kunyomi": "Ona — 'oh no!' — a sudden realization that things are the same."
-  },
-  "多": {
-    "meaning": "Evening (夕) over the ground (土) – a multitude, many things.",
-    "onyomi": "Tova had 'ta' (多) vegetables to harvest.",
-    "kunyomi": "Ooo — 'Ooo!' — a surprised reaction to a large quantity."
-  },
-  "考": {
-    "meaning": "A beggar (口) slumped over a coffin (喪) – he's carefully considering his life choices, realizing he needs a new plan.",
-    "onyomi": "Kofi, the carpenter, considered how best to build the new house, carefully planning each step.",
-    "kunyomi": "Kanga — 'can go' — he can think about going somewhere new."
-  },
-  "肉": {
-    "meaning": "Imagine a fierce lion (豸) devouring a juicy piece of meat (月) – that’s meat!",
-    "onyomi": "にく",
-    "kunyomi": "Shishi — 'she she' — she's eating meat!"
-  },
-  "自": {
-    "meaning": "A single person (子) standing alone (囗) – it represents oneself.",
-    "onyomi": "じ",
-    "kunyomi": "Mizuka — 'my zoo, ka' — it’s my own, unique self."
-  },
-  "色": {
-    "meaning": "A splash of color (秝) spreading across a cloth (巾) – it’s the vibrant hues of color.",
-    "onyomi": "しょく",
-    "kunyomi": "Iro — 'eye row' — a row of colorful eyes staring back at you."
-  },
-  "体": {
-    "meaning": "A leader (人) holding a scroll (書) – it's the physical manifestation of knowledge and the body.",
-    "onyomi": "たい",
-    "kunyomi": "Karada — 'car-ah-da' — it's the body, a vehicle for life."
-  },
-  "作": {
-    "meaning": "A leader (人) uses a key (圭) to unlock something – it's the act of creation.",
-    "onyomi": "さく",
-    "kunyomi": "Tsuku — 'too cool' — it's a cool creation!"
-  },
-  "図": {
-    "meaning": "A mouth (口) searching for treasure (宝) – a map to find something valuable.",
-    "onyomi": "ず",
-    "kunyomi": "E — 'eh' — a map showing the way."
-  },
-  "売": {
-    "meaning": "A samurai (士) is sweating as he stands on legs (丿) – he’s selling something at a hectic pace.",
-    "onyomi": "ばい",
-    "kunyomi": "U — 'uh' — he’s selling it for a low price."
-  },
-  "弟": {
-    "meaning": "A young boy (弟) has horns (角) on his bow (广) – it’s a younger brother.",
-    "onyomi": "てい",
-    "kunyomi": "Otouto — 'oh toe-toe' — it’s my little brother’s toe."
-  },
-  "社": {
-    "meaning": "A spirit (古) settles into the dirt (土) – it's a sacred place, a company’s origin.",
-    "onyomi": "しゃ",
-    "kunyomi": "Yasira — 'yah see-rah' — it’s a sacred place."
-  },
-  "言": {
-    "meaning": "A mouth (口) shouting a message to the world — it's saying something!",
-    "onyomi": "げん — Gen, the Ghanaian carpenter, was giving a speech about his new workshop.",
-    "kunyomi": "こと — 'coat' — a coat of words, carefully spoken."
-  },
-  "走": {
-    "meaning": "A person (亻) running quickly — they’re sprinting!",
-    "onyomi": "そう — Sosa sprinted around the bases after hitting a home run.",
-    "kunyomi": "はし — 'hash' — a quick, messy dash across the finish line."
-  },
-  "近": {
-    "meaning": "A scooter (車) is dangerously close to an axe (人) — they're getting too near!",
-    "onyomi": "きん — Kin, the goldsmith, examined the jewelry with a keen eye.",
-    "kunyomi": "ちか — 'chica' — a chica's favorite place is nearby."
-  },
-  "空": {
-    "meaning": "A roof (宀) supported by two legs (丿 & 𠄌) — a construction (空) of air.",
-    "onyomi": "くう — Homer accidentally floated away after filling a hot air balloon.",
-    "kunyomi": "そら — 'soar' — a bird soars through the empty sky."
-  },
-  "青": {
-    "meaning": "A blue (青) bird perched on a branch — it's a beautiful, blue scene.",
-    "onyomi": "せい — Selma insisted the blueberries were the best in Greece.",
-    "kunyomi": "あお — 'awe' — you feel awe when you see the blue ocean."
-  },
-  "音": {
-    "meaning": "A sun (日) shining over a stand (丨) — it creates a beautiful sound!",
-    "onyomi": "おん — On, the opera singer, started her performance with a single, resonant note.",
-    "kunyomi": "おと — 'otto' — Otto the otter loves the sound of splashing water."
-  },
-  "地": {
-    "meaning": "Dirt (土) and an alligator (田) — it’s the ground beneath your feet!",
-    "onyomi": "ち — The children played in the dirt near the river.",
-    "kunyomi": "—"
-  },
-  "安": {
-    "meaning": "A roof (宀) over a woman (女) — she’s safe and relaxed.",
-    "onyomi": "あん — The audience felt a sense of calm during the concert.",
-    "kunyomi": "やす — 'yes' — a sigh of relief, yes, it’s peaceful."
-  },
-  "有": {
-    "meaning": "A narwhal (有) swims under a full moon (月) — it possesses magic!",
-    "onyomi": "ゆう — Yusuf used the moonlight to paint a mystical scene.",
-    "kunyomi": "あ — 'ah' — a moment of understanding, 'ah, I have it!'"
-  },
-  "死": {
-    "meaning": "A yakuza (尸) holds a spoon (勺) — a morbid, final meal.",
-    "onyomi": "し — Shin quietly mourned the passing of his patient.",
-    "kunyomi": "し — 'she' — she finally passed away peacefully."
-  },
-  "京": {
-    "meaning": "Imagine a tea ceremony (口) under a protective lid (宀) – it's the elegant capital (京) of a land.",
-    "onyomi": "Kyo meticulously arranged the tea set, ensuring every detail was perfect.",
-    "kunyomi": "Miyako - 'my a-ko' - My little city, where I feel at home."
-  },
-  "夜": {
-    "meaning": "The lid (宀) closes over the winter (冫) sky, signaling the arrival of night (夜).",
-    "onyomi": "Yolanda’s opera performance began as night fell, captivating the entire audience.",
-    "kunyomi": "Yoru - 'yo-ru' - You roar with laughter under the night sky."
-  },
-  "妹": {
-    "meaning": "A young woman (女) bursts out of a gate (戸) – she’s your younger sister (妹).",
-    "onyomi": "まい - A mai-tai cocktail arrived just in time for the party.",
-    "kunyomi": "Imouto - 'i-mo-to' - I'm a little toe, smaller than my sister's."
-  },
-  "姉": {
-    "meaning": "A woman (女) stands proudly within a city (氏) - she’s the elder sister (姉).",
-    "onyomi": "Sheila surveyed the sheep farm, a tough and independent woman.",
-    "kunyomi": "Ane - 'a-ne' - A nice net, perfect for catching fish."
-  },
-  "店": {
-    "meaning": "A canopy (宀) shelters a fortune (点) – it’s a store (店) offering lucky charms.",
-    "onyomi": "Ten - A ten-dollar bill fluttered down from the sky.",
-    "kunyomi": "Mise - 'mi-se' - My see, a place where I can see everything."
-  },
-  "明": {
-    "meaning": "The sun (日) shines brightly over the moon (月) - it's a bright (明) day.",
-    "onyomi": "Mei - Sosa's home run was a brilliant moment of glory.",
-    "kunyomi": "Aka - 'a-ka' - A cake, a sweet and bright treat."
-  },
-  "歩": {
-    "meaning": "Stop (止) for a moment, then take a small step (步) - it’s the action of walking (歩).",
-    "onyomi": "Ho - Kofi hopped over the fallen log, continuing his walk.",
-    "kunyomi": "Aru - 'a-ru' - A route, a path to follow."
-  },
-  "画": {
-    "meaning": "A leaf (叶) is drawn (画) with a brushstroke – it’s a beautiful artistic creation (画).",
-    "onyomi": "Gaku - Kay examined the evidence, meticulously analyzing every detail.",
-    "kunyomi": "Ega - 'e-ga' - A giggle, a burst of laughter on paper."
-  },
-  "知": {
-    "meaning": "An arrow (矢) flies towards the mouth (口) – it’s the moment of understanding (知).",
-    "onyomi": "Chi - Shin listened intently to the patient’s concerns.",
-    "kunyomi": "Shi - 'shi' - She sees, understanding dawning in her eyes."
-  },
-  "室": {
-    "meaning": "A roof (宀) covers the ground (止) and private space (尸) – it's a room (室).",
-    "onyomi": "Shitsu - Tay meticulously checked the blueprints for the room.",
-    "kunyomi": "Muro - 'mu-ro' - My row, a quiet, private space."
-  },
-  "思": {
-    "meaning": "A heart (心) picking up signals from the world — it feels everything around it.",
-    "onyomi": "Khan rode into the village and everyone felt a wave of emotion — awe, fear, and something they couldn't name.",
-    "kunyomi": "Omoeru — 'oh, more!' — you feel more and more feelings as you think."
-  },
-  "海": {
-    "meaning": "A massive tsunami (wave) crashes through a window — it’s the sea!",
-    "onyomi": "Kai sailed his ship into the open sea, ready for adventure.",
-    "kunyomi": "Umi — 'oo my!' — you see the vast ocean and exclaim."
-  },
-  "茶": {
-    "meaning": "Flowers (beautiful) arranged on a hat (ceremony) for an angel — it’s a tea ceremony!",
-    "onyomi": "Cho prepared a special tea for his guests, showcasing his skill.",
-    "kunyomi": "—"
-  },
-  "以": {
-    "meaning": "A lion (strength) drops a person (helplessness) — you must act by means of something else.",
-    "onyomi": "I am using a new tool to complete this task.",
-    "kunyomi": "Mott — 'more!' — you need more than just your hands to get the job done."
-  },
-  "夏": {
-    "meaning": "A leaf (green) wilts under the intense summer heat, causing an eye (tears) to water.",
-    "onyomi": "Sosa enjoyed a summer day playing baseball in the sun.",
-    "kunyomi": "Natsu — 'nuts!' — summer is totally crazy!"
-  },
-  "家": {
-    "meaning": "A roof (shelter) protects a pig (animal) inside a house — it's a home!",
-    "onyomi": "Kay investigated the strange noises coming from the house.",
-    "kunyomi": "Ie — 'eye!' — looking at a house makes you feel safe."
-  },
-  "紙": {
-    "meaning": "Thread (connection) binds a clan (family) together on paper — it’s writing!",
-    "onyomi": "Shin wrote a prescription on a piece of paper for his patient.",
-    "kunyomi": "Kami — 'came!' — the paper came to life with words."
-  },
-  "通": {
-    "meaning": "A scooter (speed) zips past Mama (family) on a task (journey) — it’s a thoroughfare.",
-    "onyomi": "Tova approved the new route through the fields.",
-    "kunyomi": "Too — 'too!' — it’s too much traffic to handle."
-  },
-  "強": {
-    "meaning": "A bow (respect) is offered to a private (military) to show strength against an insect (weakness).",
-    "onyomi": "Kyo demonstrated his strength in the tea ceremony.",
-    "kunyomi": "Tsuyo — 'tie yo!' — tie up the weakness!"
-  },
-  "教": {
-    "meaning": "A teacher (authority) shows winter (coldness) to students, imparting knowledge.",
-    "onyomi": "Kyo gave a lecture on the importance of tradition.",
-    "kunyomi": "Oshi — 'oh, she!' — she is teaching."
-  },
-  "理": {
-    "meaning": "A king (王) surveying his village (里) realizes that logic governs all his decisions.",
-    "onyomi": "Kofi used his logic to build a sturdy house.",
-    "kunyomi": "Kotowari - 'coat worry' - worrying about your coat is a silly thing to do."
-  },
-  "週": {
-    "meaning": "A scooter (車) circles the circumference (週) of a town once a week.",
-    "onyomi": "Shula organized a weekly training camp for her rugby team.",
-    "kunyomi": "—"
-  },
-  "魚": {
-    "meaning": "A fish (魚) swims through the water, a tiny splash (水) marking its passage.",
-    "onyomi": "Senna’s fish-shaped racing helmet was a lucky charm.",
-    "kunyomi": "Uo - 'you owe' - a fish owes you a swim."
-  },
-  "鳥": {
-    "meaning": "A bird (鳥) perches on a branch, its silhouette against the sky.",
-    "onyomi": "Cho's cooking show featured a bird-shaped pastry.",
-    "kunyomi": "Tori - 'toe-y' - a bird’s foot is toe-y."
-  },
-  "黒": {
-    "meaning": "A dark (黑) stain spreads across a white surface.",
-    "onyomi": "Carlos sold black shirts at his stand.",
-    "kunyomi": "Kuro - 'cure low' - curing a low mood with a black coffee."
-  },
-  "住": {
-    "meaning": "A leader (住) oversees the construction of a new house.",
-    "onyomi": "Jō fixed the leaky faucet.",
-    "kunyomi": "Su - 'Sue' - Sue lives here."
-  },
-  "医": {
-    "meaning": "A doctor (医) carefully examines a patient, aiming an arrow of healing.",
-    "onyomi": "Eve studied medicine to become a botanist.",
-    "kunyomi": "I - 'eye' - a doctor looks into your eye."
-  },
-  "究": {
-    "meaning": "Digging a hole (穴) to find the ninth (九) treasure.",
-    "onyomi": "Kyu spent all night researching his project.",
-    "kunyomi": "Kiwa - 'key war' - a key is used in a war for a treasure."
-  },
-  "者": {
-    "meaning": "A person (子) is seen beneath the blazing sun (日).",
-    "onyomi": "Sheila hired a new worker.",
-    "kunyomi": "Mono - 'moan' - a person can moan."
-  },
-  "研": {
-    "meaning": "A stone (石) is polished (研) with a lantern (灯).",
-    "onyomi": "Kay carefully researched the suspect’s background.",
-    "kunyomi": "To - 'toe' - polishing a stone feels like rubbing your toe."
-  },
-  "場": {
-    "meaning": "A dirt (土) path is easy (易) to navigate – it's a place, a location.",
-    "onyomi": "Joe, the locksmith, set up shop in a new location, eager to start his business.",
-    "kunyomi": "Ba — 'bah!' — a pleasant place to relax."
-  },
-  "朝": {
-    "meaning": "The sun (日) rises over the moon (月) – it's morning!",
-    "onyomi": "Sho caught a massive wave at dawn, the sun glinting off the water.",
-    "kunyomi": "Asa — 'Ah, so!' — a beautiful morning, so peaceful."
-  },
-  "答": {
-    "meaning": "Bamboo (竹) is neatly arranged inside a suit (衣) – a proper answer.",
-    "onyomi": "Tova carefully presented her answer, a solution to the farmer's problem.",
-    "kunyomi": "Kota — 'co-ta!' — a quick, clever response."
-  },
-  "買": {
-    "meaning": "Cast a net (罒) to catch shellfish (貝) — you’re buying something!",
-    "onyomi": "Bai, the baker, bought flour in bulk to make his famous bread.",
-    "kunyomi": "Ka — 'ka-ching!' — the sound of buying something."
-  },
-  "道": {
-    "meaning": "A scooter (車) breaks down on the neck (巾) of a road — it's a path, a way.",
-    "onyomi": "Tova rode her scooter down the long, winding road.",
-    "kunyomi": "Michi — 'me-shee!' — a winding path through the forest."
-  },
-  "楽": {
-    "meaning": "An ice (冫) sculpture of a tree (木) – it's music, something delightful.",
-    "onyomi": "Gaku, the music teacher, played a lively tune on his guitar.",
-    "kunyomi": "Tano — 'ta-no!' — such a fun and relaxing experience."
-  },
-  "事": {
-    "meaning": "A brush (聿) paints a mouth (口) with a cross (十字) – a matter, an event.",
-    "onyomi": "Ji, the grandfather, told a story about a significant event in his life.",
-    "kunyomi": "Koto — 'co-toe!' — something important to discuss."
-  },
-  "使": {
-    "meaning": "A leader ( 亻) uses the ground (土) to record history (史) – to use, to employ.",
-    "onyomi": "Shin, the doctor, used his skills to help the patient.",
-    "kunyomi": "Tsuka — 'too-ska!' — to make use of something."
-  },
-  "始": {
-    "meaning": "A woman (女) starts a machine (機械) – a beginning.",
-    "onyomi": "Shin started the engine of his car.",
-    "kunyomi": "Haji — 'ha-jee!' — a fresh start."
-  },
-  "服": {
-    "meaning": "A moon (月) is stamped ( 押) onto a stool ( 几) — clothing.",
-    "onyomi": "Fuku, the tailor, meticulously crafted a beautiful dress.",
-    "kunyomi": "—"
-  },
-  "物": {
-    "meaning": "A cow (牛) flaps its wings (羽) to carry a precious item – it's a thing!",
-    "onyomi": "Bo, the police officer, investigated the strange object found near the docks.",
-    "kunyomi": "Mono — 'moe' — feeling moved by something beautiful."
-  },
-  "屋": {
-    "meaning": "A flag (幡) stuck on the ground (土) marks a private (宀) space – it's a roof over your head.",
-    "onyomi": "Oku – a small, cozy shop nestled in the mountains.",
-    "kunyomi": "Ya — 'yah' — a surprised exclamation looking up at a roof."
-  },
-  "度": {
-    "meaning": "A yurt (广) sits on a stool (°) – it measures the degree of comfort.",
-    "onyomi": "Do – Sosa’s home run was measured in degrees of arc.",
-    "kunyomi": "Tabi — 'tabby' — a patterned cloth used to measure fabric."
-  },
-  "待": {
-    "meaning": "A loiterer (人) stands before a temple (寺) patiently waiting.",
-    "onyomi": "Tai – Tai, the Samoan rugby player, waited patiently for the referee's whistle.",
-    "kunyomi": "Ma — 'ma' — a single, short moment of anticipation."
-  },
-  "持": {
-    "meaning": "Fingers (手) carefully hold up a temple (寺) – it’s a gesture of reverence.",
-    "onyomi": "Ji – Ji, the grandfather, held the calligraphy brush with steady hands.",
-    "kunyomi": "Mo — 'mo' — a gentle movement of holding something close."
-  },
-  "界": {
-    "meaning": "A rice paddy (田) is jammed in (界) – it defines a boundary of the world.",
-    "onyomi": "Kai – Kai, the sailor, explored a new world beyond the horizon.",
-    "kunyomi": "—"
-  },
-  "発": {
-    "meaning": "A tent (广) illuminated by a lantern (火) signifies a sudden departure.",
-    "onyomi": "Hatsu – Sosa’s home run was a sudden burst of energy.",
-    "kunyomi": "Ta — 'ta' — a sudden outburst or beginning."
-  },
-  "送": {
-    "meaning": "A scooter (身) blasts its horn (角) as it escorts someone heavenward (广).",
-    "onyomi": "Sosa – Sosa, the baseball player, sent a heartfelt message to his family.",
-    "kunyomi": "Oku — 'oh cool' — a feeling of sending something off."
-  },
-  "重": {
-    "meaning": "A heavy (重) weight sits on a stool (°) – it feels heavy.",
-    "onyomi": "Juu – The package felt heavy, weighing a lot.",
-    "kunyomi": "Omo — 'oh my' — a feeling of something being heavy."
-  },
-  "起": {
-    "meaning": "Someone (人) runs (彳) towards themselves (子) – it's a rousing movement.",
-    "onyomi": "Kyo – Kyo, the tea master, gently roused his students.",
-    "kunyomi": "O — 'oh' — a sudden awakening or start."
-  },
-  "院": {
-    "meaning": "A building (高) with a roof (宀) and a history (人) — it's an institution, a place of legacy.",
-    "onyomi": "Kofi built a new hospital, an institution for the community.",
-    "kunyomi": "In — 'inn' — like a cozy inn with a long history."
-  },
-  "終": {
-    "meaning": "A thread (糸) is wound around a winter scene (冬), signaling the end.",
-    "onyomi": "Shula blew the final whistle, signaling the end of the rugby match.",
-    "kunyomi": "O — 'oh' — like a sigh of relief at the end of a long day."
-  },
-  "習": {
-    "meaning": "Feathers (羽) falling onto a white (白) page — it’s the process of learning and absorbing.",
-    "onyomi": "Shura practiced gymnastics, learning a new routine.",
-    "kunyomi": "Narau — 'narrow' — a narrow path to follow when learning a new skill."
-  },
-  "転": {
-    "meaning": "A car (車) spins through a cloud (雲) — a sudden, unexpected turn.",
-    "onyomi": "Tova watched the tractor spin in the field.",
-    "kunyomi": "Koro — 'core' — like a core tumbling around."
-  },
-  "運": {
-    "meaning": "A scooter (車) carries a forehead (暊) – a heavy burden.",
-    "onyomi": "Yusuf carried the sculpture, a heavy burden of artistic responsibility.",
-    "kunyomi": "Hako — 'ha-ko' — like someone carefully carrying a box."
-  },
-  "開": {
-    "meaning": "A gate (門) lit by a lantern (火) — opening up to new possibilities.",
-    "onyomi": "Kai sailed into the harbor, opening up new trade routes.",
-    "kunyomi": "Hirau — 'high-row' — like raising the gate to a high row of plants."
-  },
-  "集": {
-    "meaning": "A turkey (鳥) perches on a tree (木) — a gathering of birds.",
-    "onyomi": "Sho gathered his surfing buddies for a beach party.",
-    "kunyomi": "Atsu — 'a-zoo' — like a collection of animals in a zoo."
-  },
-  "飲": {
-    "meaning": "Eating (食) without a lack (欠) — a satisfying drink.",
-    "onyomi": "Sheila enjoyed a drink after a long day on the farm.",
-    "kunyomi": "No."
-  },
-  "業": {
-    "meaning": "Spikes (業) of a sheep (羊) and fins (鰭) – the work of a skilled artisan.",
-    "onyomi": "Kyo meticulously crafted a tea ceremony, a true embodiment of his craft.",
-    "kunyomi": "Waza — 'whizz-ah' — like a dazzling display of skill."
-  },
-  "漢": {
-    "meaning": "A tsunami ( tsunami) washes over China (国) — the essence of the Chinese language.",
-    "onyomi": "No.",
-    "kunyomi": "No."
-  },
-  "歌": {
-    "meaning": "A mouth (口) singing a song with a ring (亅) in its ear — it’s a musical performance!",
-    "onyomi": "Carlos sang a song so loud, it echoed through the market.",
-    "kunyomi": "Uta — 'oo-ta' — a giant, blooming flower singing a sweet tune."
-  },
-  "親": {
-    "meaning": "A tree (木) being carefully observed (見) — a parent watches over their child.",
-    "onyomi": "Shin examined the patient carefully, a true parent to his suffering.",
-    "kunyomi": "Oya — 'oh-yah' — a big, old oak tree protecting a small child."
-  },
-  "病": {
-    "meaning": "A dynamite stick (火) stuck to a sick person (病) — a sudden and dangerous illness.",
-    "onyomi": "びょう — 'beyond' — beyond all hope, the patient's condition worsened.",
-    "kunyomi": "Ya — 'yah' — a sudden 'yah!' of pain from the sick person."
-  },
-  "別": {
-    "meaning": "A mouth (口) facing a sword (刀) — a painful separation.",
-    "onyomi": "べつ — 'bets' — bets were placed on whether the separation would last.",
-    "kunyomi": "Waka — 'wah-kah' — a sudden 'wah!' of sadness as they parted ways."
-  },
-  "注": {
-    "meaning": "A tsunami (氵) being controlled by a master (主) — carefully pouring something.",
-    "onyomi": "ちゅう — 'choose' — choose carefully how you pour the precious liquid.",
-    "kunyomi": "Soso — 'so-so' — the water flowed so slowly, it was just so-so."
-  },
-  "洋": {
-    "meaning": "A tsunami (氵) surrounded by sheep (羊) — the vastness of the ocean.",
-    "onyomi": "Yolanda’s dramatic opera performance made the whole audience feel lost at sea.",
-    "kunyomi": "—"
-  },
-  "特": {
-    "meaning": "A cow (牛) standing in a temple (寺) — something special and sacred.",
-    "onyomi": "とく — 'tock' — the clock tocked, marking a special moment.",
-    "kunyomi": "—"
-  },
-  "意": {
-    "meaning": "A sound (耳) echoing in the heart (心) — a thought or idea.",
-    "onyomi": "い — 'eye' — the eye of the beholder perceives the idea differently.",
-    "kunyomi": "—"
-  },
-  "味": {
-    "meaning": "A mouth (口) shooting out like a jet (弋) — the sensation of flavor.",
-    "onyomi": "み — 'my' — the taste of my favorite dish is unforgettable.",
-    "kunyomi": "Aji — 'ah-jee' — a sudden 'ah-jee!' of deliciousness."
-  },
-  "勉": {
-    "meaning": "An excuse (免) combined with power (力) — putting in the effort.",
-    "onyomi": "べん — 'bend' — bend your back and work hard!",
-    "kunyomi": "Tsuto — 'too-toh' — too much effort, too much stress."
-  },
-  "旅": {
-    "meaning": "A direction (direction radical) points towards a gun (weapon radical), signifying a journey with a purpose – a trip.",
-    "onyomi": "Rio excitedly announced his next trip, 'ryo-go!'",
-    "kunyomi": "Tabi - 'tabby' - a tabby cat enjoys a long trip in a basket."
-  },
-  "員": {
-    "meaning": "A mouth (mouth radical) is surrounded by shellfish (shellfish radical) – it's a group of employees!",
-    "onyomi": "In, in! The team members are arriving for the meeting.",
-    "kunyomi": "—"
-  },
-  "動": {
-    "meaning": "A heavy weight (heavy radical) is moved by power (power radical) – it’s a movement.",
-    "onyomi": "Tova watched the machinery, 'dou-bly impressive!'",
-    "kunyomi": "Ugō - 'you go' - you go and move that heavy thing!"
-  },
-  "悪": {
-    "meaning": "Asia (Asia radical) is consumed by a heart (heart radical) — it’s a bad feeling, a sense of wrongness.",
-    "onyomi": "Aku – 'a cue' - Sosa got a cue that something bad was about to happen.",
-    "kunyomi": "Warū - 'wa-roo' - A rude 'wa-roo!' echoes as a bad thing happens."
-  },
-  "族": {
-    "meaning": "A direction (direction radical) points towards a gun (weapon radical), then an arrow (arrow radical) is fired — it’s a tribe, a group of people on a mission.",
-    "onyomi": "Zoku - 'zook' - The zook of people marched together.",
-    "kunyomi": "—"
-  },
-  "着": {
-    "meaning": "Horns (horns radical) are placed upon a king (king radical) who is sliding down (slide radical) — it’s the action of putting something on.",
-    "onyomi": "Kay arrived at the crime scene and quickly 'chak-ed' the situation.",
-    "kunyomi": "Ki - 'key' - A key is used to 'ki' something into place."
-  },
-  "野": {
-    "meaning": "A village (village radical) is before (beforehand radical) the horizon — it’s a wild, open plain.",
-    "onyomi": "Sho surveyed the landscape, 'ya-man!'",
-    "kunyomi": "No - 'know' - Know the land, know the plains."
-  },
-  "風": {
-    "meaning": "A table (table radical) is blown across by a slide (slide radical) and an insect (insect radical) — it's the wind.",
-    "onyomi": "Homer felt the 'fuu' of the breeze.",
-    "kunyomi": "Kaze - 'case' - A breeze makes a case of leaves fly around."
-  },
-  "新": {
-    "meaning": "A stand (stand radical) is next to a tree (tree radical) and chopped down by an axe (axe radical) – it’s something new.",
-    "onyomi": "Shin noticed the 'shin' green leaves on the tree.",
-    "kunyomi": "Atara - 'a tear' - A tear of joy at something new."
-  },
-  "問": {
-    "meaning": "A gate (gate radical) opens to reveal a mouth (mouth radical) – a question is asked.",
-    "onyomi": "Mon - 'moon' - The moon illuminated the question mark.",
-    "kunyomi": "To - 'toe' - To ask a question, toe the line."
-  },
-  "銀": {
-    "meaning": "A miner (金) digs deep, unearthing a shimmering vein of silver (root) - a valuable discovery.",
-    "onyomi": "Rio discovered a vein of silver while backpacking through the Andes.",
-    "kunyomi": "Shirogane - 'shiro ga ne' - the silver is shining!"
-  },
-  "題": {
-    "meaning": "The sun (日) shines down on a perfectly drawn (正) geoduck (貝), highlighting the subject of the artwork.",
-    "onyomi": "Kofi wrote a title on the carpentry project he was building.",
-    "kunyomi": "—"
-  },
-  "館": {
-    "meaning": "A bear (纟) is feasting on food in a grand building (宀) - a lavish estate.",
-    "onyomi": "Khan’s palace was the grandest hall in the entire empire.",
-    "kunyomi": "Yakata - 'ya ka ta' - a grand place for a feast."
-  },
-  "駅": {
-    "meaning": "A horse (馬) waits patiently at a station (亍) – ready to carry travelers.",
-    "onyomi": "Sheila rode her horse to the train station.",
-    "kunyomi": "—"
-  },
-  "料": {
-    "meaning": "A ladle (勺) of rice (米) is carefully measured – representing a fee or payment.",
-    "onyomi": "—",
-    "kunyomi": "—"
-  },
-  "映": {
-    "meaning": "The sun (日) reflects in a still pond (中心) - a mirrored image.",
-    "onyomi": "Kay reflected on the case, seeing a clear image of the suspect’s guilt.",
-    "kunyomi": "Utsu - 'oo-tsu' - the image utsu-s across the water."
-  },
-  "私": {
-    "meaning": "Grain (禾) is carefully guarded (私) - a personal possession.",
-    "onyomi": "Sheila guarded her grain store with fierce determination.",
-    "kunyomi": "Watakushi - 'wa ta ku shi' - this is my personal property."
-  },
-  "帰": {
-    "meaning": "A wolverine (帰) rushes back home (forehead) – a hurried return.",
-    "onyomi": "Kyu rushed home from school.",
-    "kunyomi": "Kae - 'ka-e' - I'm going home."
-  },
-  "春": {
-    "meaning": "Spring (日) arrives, bringing warmth and sunshine (春) – a season of renewal.",
-    "onyomi": "Sosa celebrated spring with a home run.",
-    "kunyomi": "Haru - 'ha-ru' - it's spring!"
-  },
-  "昼": {
-    "meaning": "Shrimp (夕) basks in the sunlight (日) across the ground (土) – the bright midday sun.",
-    "onyomi": "Joe worked all day long.",
-    "kunyomi": "Hiru - 'hee-ru' - it's lunchtime."
-  },
-  "秋": {
-    "meaning": "A field of grain (禾) ablaze with fire (火) — the harvest season arrives in a fiery spectacle.",
-    "onyomi": "Shula rallied the team, shouting, 'Let's go! This is our season!'",
-    "kunyomi": "Aki — 'ah key' — a key to unlock the beauty of autumn."
-  },
-  "計": {
-    "meaning": "Carlos, always fast-talking, used a saying (言) to cross out (才) a rival's plan.",
-    "onyomi": "Kay meticulously analyzed the crime scene, finding a crucial detail.",
-    "kunyomi": "Haka — 'ha ka' — a quick calculation to solve the problem."
-  },
-  "建": {
-    "meaning": "A yoga instructor (人) uses a brush (聿) to draw the blueprint for a new building.",
-    "onyomi": "Kenny tried to fix the plumbing, but made the building even worse.",
-    "kunyomi": "Tachi — 'ta chi' — a stand to build something upon."
-  },
-  "英": {
-    "meaning": "Eve, the botanist, found flowers (英) blooming right in the center (一) of the garden.",
-    "onyomi": "Eigo — 'eh ee go' - like an English show",
-    "kunyomi": "Hanabusa — 'ha na bu sa' - like a flower's scent"
-  },
-  "飯": {
-    "meaning": "Fuad, the merchant, eagerly eats (食) something that is the opposite (反) of delicious.",
-    "onyomi": "Hans followed the manual to prepare the rations perfectly.",
-    "kunyomi": "Meshi — 'meh shi' — a quick meal to satisfy hunger."
-  },
-  "曜": {
-    "meaning": "Yolanda, the opera singer, weeps (日) under a Wolverine's (犬) fierce gaze (羊).",
-    "onyomi": "Yō — 'yo' — a beautiful day to be had",
-    "kunyomi": "—"
-  },
-  "品": {
-    "meaning": "Products (品) are arranged in a beautiful (品) pattern.",
-    "onyomi": "Hin — 'hin' — a fine collection",
-    "kunyomi": "Shina — 'shi na' — a fine thread"
-  },
-  "急": {
-    "meaning": "Kyu, the late student, escaped from prison (急) and ran with a Wolverine’s (犬) speed.",
-    "onyomi": "Kyuu — 'kyu' — hurry, hurry!",
-    "kunyomi": "Iso — 'ee so' — a quick dash"
-  },
-  "真": {
-    "meaning": "A Pope (真) stands firm on the ground (土) with fins (爪) to keep from being swept away.",
-    "onyomi": "Shin — 'shin' — a gentle doctor’s keen observation.",
-    "kunyomi": "Ma — 'ma' — a true measure"
-  },
-  "堂": {
-    "meaning": "A Viking (丁) shouts from the mouth (口) inside a dirty (土) public hall.",
-    "onyomi": "Tō — 'toe' — a toe tapping dance",
-    "kunyomi": "—"
-  },
-  "試": {
-    "meaning": "A ceremonial construction is put to the test – a new building is being evaluated for its strength and stability.",
-    "onyomi": "Sheila tested the strength of the new construction, shouting, 'Shite!' as she pushed against it.",
-    "kunyomi": "Kokoro – 'co-core' – you can feel the core of the test in your heart."
-  },
-  "借": {
-    "meaning": "A leader from long ago is indebted to someone – a heavy burden of owing.",
-    "onyomi": "しゃく – Sho borrowed Kofi’s carpentry tools to build a new surfboard.",
-    "kunyomi": "Ka – Carlos borrowed a few tools from the hardware store."
-  },
-  "験": {
-    "meaning": "A horse is hunted by a giant squid – a strange and unsettling verification of its existence.",
-    "onyomi": "Kenny accidentally triggered the verification system, yelling 'Ken!' in surprise.",
-    "kunyomi": "Akashi – 'a-cash' – you know it's true when you see the cash."
-  },
-  "質": {
-    "meaning": "An axe is used to chip away at a shellfish – analyzing the substance to find its essence.",
-    "onyomi": "Shura scrutinized the quality of the gymnastics equipment with a sharp eye.",
-    "kunyomi": "Tachi – 'ta-chee' – you can feel the substance standing tall."
-  },
-  "貸": {
-    "meaning": "A substitute is lending a shell – a temporary and helpful arrangement.",
-    "onyomi": "Tai lent his surfboard to Sho for the afternoon.",
-    "kunyomi": "Ka – Carlos lent his hammer to a neighbor."
-  },
-  "才": {
-    "meaning": "A slide allows a genius to descend – a swift and elegant display of brilliance.",
-    "onyomi": "Sai divined that a genius would arrive.",
-    "kunyomi": "—"
-  },
-  "王": {
-    "meaning": "A king stands tall – a symbol of power and authority.",
-    "onyomi": "Ouw – The king ordered the construction of a new palace.",
-    "kunyomi": "—"
-  },
-  "石": {
-    "meaning": "A stone is shaped and polished – a testament to its enduring nature.",
-    "onyomi": "Seki – Sosa’s home run sailed over the stone wall.",
-    "kunyomi": "Ishi – 'ee-shee' – it’s just a simple stone."
-  },
-  "内": {
-    "meaning": "A person's head is turned inwards – focusing on the inner world and introspection.",
-    "onyomi": "Dai – Tova used a large bucket to carry water inside.",
-    "kunyomi": "Uchi – 'oo-chee' – it’s right inside the house."
-  },
-  "太": {
-    "meaning": "A big drop of water is plump and full – a sense of abundance and richness.",
-    "onyomi": "Tai – Tai the rugby player lumbered across the field.",
-    "kunyomi": "Futo – 'foo-toe' – it felt plump and full."
+    "meaning": "Using a Brush to capture the Sun's light creates a written message.",
+    "onyomi": "Sho – 'show' – Sosa showed off his calligraphy skills to the admiring crowd.",
+    "kunyomi": "Ka – 'kah' – a quick, simple 'ka' to indicate something is written."
   }
 }
