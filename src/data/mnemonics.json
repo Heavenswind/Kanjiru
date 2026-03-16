@@ -1,239 +1,303 @@
 {
   "一": {
-    "story": "On the Ground, **each** solitary stone was perfectly placed, a single mark in the vast, flat expanse."
-  },
-  "二": {
-    "story": "**Ji** carefully painted the kanji Two (二) twice on the ancient scroll, ensuring both identical strokes were perfectly aligned. He always made sure to create pairs."
-  },
-  "九": {
-    "story": "**Kyu** scribbled the kanji Nine (九) repeatedly on his notebook, trying to remember the answer to the math problem. He had to calculate the total number of items, which was exactly nine."
+    "story": "An **itch** crawls across the Ground — a single line scratched into the dirt by one fingernail, and that lone mark is enough to divide everything on one side from everything on the other.",
+    "on_yomi": [
+      "ichi",
+      "itsu"
+    ],
+    "kun_yomi": [
+      "hito"
+    ],
+    "ipa": [
+      "/iːtʃ/",
+      "/iːts/",
+      "/hiːtoʊ/"
+    ]
   },
   "七": {
-    "story": "The old **sheet** of parchment had the ancient symbol Seven (七) etched into its corner, a sacred mark representing exactly seven days of creation."
-  },
-  "人": {
-    "story": "The old **gin** bottle, shaped like a Person (人) with outstretched arms, stood alone on the shelf. It seemed to embody a solitary individual."
-  },
-  "入": {
-    "story": "**Ju** watched as **Eve** carefully traced the kanji Enter (入) above the old doorway. Once the symbol was complete, they knew it was time to step inside."
-  },
-  "八": {
-    "story": "A strange creature with eight glowing Fins emerged from the submarine's **hatch**, making a loud \"yah!\" sound."
-  },
-  "十": {
-    "story": "A giant **Juice** box, shaped like a perfect Cross (十), had a tiny red **toe** print on it. He'd counted exactly ten of them, all lined up."
-  },
-  "三": {
-    "story": "On the dusty Ground, **Zoe** carefully draws Two (二) parallel lines in the dirt. She adds a third, making a perfect set of **sand** lines, causing **me** to count them."
-  },
-  "上": {
-    "story": "**Joe** stands on one Toe, stretching his arm as high as he can. **Sho** gives him a boost, lifting him completely off the Ground to reach something far above."
-  },
-  "下": {
-    "story": "**Carlos** digs a trench in the Ground, making sure it passes right under the garden **gate**. He wants the path to be far below the usual walking level."
-  },
-  "大": {
-    "story": "**Tai**, a massive figure, stretches his arms out wide like the Big (大) kanji, demonstrating how much fabric they would need to **dye** for his new, very large shirt."
-  },
-  "女": {
-    "story": "**Mei**, posing like the Woman (女) kanji with her arms down, carefully kneads the soft **dough** for bread. She's a **Neo**-traditional baker, bringing old methods to a new generation of women."
-  },
-  "山": {
-    "story": "**Senna** drives his race car up a steep incline, tires kicking up **sand**. The path winds around the towering peaks, making it feel like he's climbing a massive mountain range."
-  },
-  "川": {
-    "story": "**Senna** races his car along the winding banks of the River (川), its currents mimicking the fast-flowing stream he's trying to outpace."
-  },
-  "土": {
-    "story": "The baker kneads the soft **dough** with his **toe** in the Dirt, making a mess. He's using the rich soil from the garden to add a unique flavor to his bread."
-  },
-  "千": {
-    "story": "**Senna** speeds past a **cheetah** statue, which is oddly adorned with exactly a Thousand (千) tiny checkered flags, each one fluttering in the wind. The sheer number of flags creates an overwhelming sight."
-  },
-  "子": {
-    "story": "**Sheila** and **Sue** are trying to calm down a very energetic Child (子) who keeps running off. **Cora** peeks over the fence, wondering if they'll ever get the little one to behave."
-  },
-  "小": {
-    "story": "**Sho** carefully places a tiny **chip** of wood on the ground, admiring how perfectly formed it is. **Cora** leans in to get a closer look, barely able to see the minuscule speck."
-  },
-  "中": {
-    "story": "A giant **Nacho** chip has fallen, trapping a tiny person right in the Middle (中) of its cheesy goodness. All they can do is **chew** their way out, hoping they don't say \"Ouch\" too many times on the crunchy bits."
-  },
-  "五": {
-    "story": "A group of exactly Five (五) hungry adventurers shouts \"Let's **go**!\" as they eagerly prepare to dig into their well-deserved **eats**."
-  },
-  "六": {
-    "story": "Underneath a heavy Lid, a monstrous creature with six sharp Fins thrashes. It lets out a terrifying \"**Moo**!\" that makes everyone realize this **rogue** beast will surely **reek** havoc if it escapes."
-  },
-  "円": {
-    "story": "A strange Lid covers a Head (首) that is perfectly smooth and round like a **marble**. There seems to be no **end** to its perfectly curved surface."
-  },
-  "天": {
-    "story": "**Ten** thousand angels begin to **amass** in the glorious Heaven (天), their voices rising in a magnificent chorus of \"**Amen**!\""
-  },
-  "日": {
-    "story": "As the Sun (日) began to peek over the horizon, **Hina** rose early to start kneading dough for her bread. With the first rays of light, her happy morning had begun, marking the start of a new one."
-  },
-  "月": {
-    "story": "The Moon (月) cycles through the sky, passing through invisible **gates** in the heavens. Each full transit marks the passage of another period of time."
-  },
-  "木": {
-    "story": "**Kiki** giggles as she climbs the sturdy Tree (木), its branches swaying gently in the breeze. She loves spending time in this towering plant."
-  },
-  "水": {
-    "story": "The clear Water (水) in the river flows with a gentle sound, like a soft whisper of \"**suey**\" as it rushes over stones. It's essential for all living things."
-  },
-  "火": {
-    "story": "**Carlos** quickly flips tortillas over the roaring Fire (火), the flames dancing wildly. The heat from the cooking element is intense."
-  },
-  "出": {
-    "story": "At the end of the **day**, hikers begin to descend the Mountain (山), eager to leave the high peaks behind. They make their way down and away from the summit."
-  },
-  "右": {
-    "story": "**Yusuf** carefully paints a Narwhal, making sure its large Mouth (口) is positioned perfectly on the canvas. He always places the main subject on this side of the frame."
-  },
-  "四": {
-    "story": "**Sheila** uses her Mouth (口) to count the number of Legs on the table. She verifies there are exactly this many, no more, no less."
-  },
-  "左": {
-    "story": "A clumsy Narwhal tries to help with a Construction (工) project, constantly bumping into things. **Sasha**, watching the chaos, throws her hands up and points dramatically to the side, indicating where the Narwhal should move."
-  },
-  "本": {
-    "story": "To truly **hone** your craft, you must return to the Book (本), for within its pages lies the **motto** that contains the very foundation of all knowledge."
-  },
-  "白": {
-    "story": "**Haku** appeared from the mist, leaving behind a perfectly pristine White (白) canvas, completely untouched by color. Everything was then covered in a pure, unblemished shade."
-  },
-  "万": {
-    "story": "A lone **man** used a sharp Sword (刀) to meticulously slice a single Leaf into so many tiny fragments, he couldn't possibly count them all, reaching an immense, uncountable number."
-  },
-  "今": {
-    "story": "**Kin** meticulously polishes the gold right at this very moment, focusing entirely on the task at hand, knowing there's no better time than Now (今) to perfect her craft."
-  },
-  "午": {
-    "story": "The farmer watched the clothes Slide down the line to Dry (干) in the sun, knowing they would be ready to **go** by the time the sun was directly overhead."
-  },
-  "友": {
-    "story": "**Yusuf** invited the Narwhal to sit on a tiny Stool beside him, a strange but comfortable arrangement for two unlikely companions who had become very close."
-  },
-  "父": {
-    "story": "**Fuad**, always haggling over prices, still manages to provide for everyone, embodying the steadfast spirit of a loving Father (父) who cares deeply for his family."
-  },
-  "北": {
-    "story": "With frozen Fingers, a desperate man tries to use a Spoon to pry open a locked box in the snow. It's a **hoax**, he realizes, as the sun barely peeks over the horizon, confirming he's been led to the frigid pole."
-  },
-  "半": {
-    "story": "A colossal Triceratops tries to balance on a clothesline, but the line, used to Dry (干) clothes, snaps under its weight. **Hans** sighs, seeing his neatly hung shirts now split into two pieces."
-  },
-  "外": {
-    "story": "As the Evening (夕) sky darkens, a **guy** steps out, stubbing his Toe on the porch. He mutters *sotto voce* about the poor lighting, preferring to be in the fresh air."
-  },
-  "母": {
-    "story": "The Sun (日) shines brightly as a single Drop (落) of sweat rolls down her brow. \"Come on, little **Bo**,\" she coos, gently rocking the baby in her arms."
+    "story": "Seven fireflies blink in unison, illuminating the path through the bamboo forest – a magical guide for the lost traveler.",
+    "on_yomi": [
+      "shichi"
+    ],
+    "kun_yomi": [
+      "nana"
+    ],
+    "ipa": [
+      "/ʃiːtʃ/",
+      "/nɑːnɑː/"
+    ]
   },
   "休": {
-    "story": "The Leader pushes the group for hours until **Kyu** finally slumps against the Tree (木) and refuses to move — nobody argues, and for the first time all day, everyone rests."
-  },
-  "先": {
-    "story": "**Senna**, with her powerful Legs, slides down a steep Dirt hill, always striving to be ahead of everyone else."
-  },
-  "名": {
-    "story": "As Evening (夕) falls, **Mei** opens her Mouth (口) to introduce herself, ensuring everyone knows who she is."
-  },
-  "年": {
-    "story": "Every time the Gun is fired, the Cow (牛) in the **den** startles, marking another cycle of seasons."
-  },
-  "気": {
-    "story": "**Kiki** dances around a glowing Treasure (宝), full of vibrant Energy (力). Her infectious joy seems to fill the air with an invisible, lively force."
-  },
-  "百": {
-    "story": "The Sun (日) shines down on a single Leaf. Suddenly, a chef appears and starts making **momo** dumplings, quickly producing an enormous quantity that covers the entire ground."
-  },
-  "男": {
-    "story": "A powerful **Don** stands in the Rice Paddy (田), exerting his immense Power (力) over the land. His strong, masculine presence is undeniable."
-  },
-  "見": {
-    "story": "**Kenny** squints through the fog, trying his best to discern the faint outline of something in the distance. He strains his eyes to truly perceive it."
-  },
-  "車": {
-    "story": "The mighty **shah** arrives in his grand, ornate carriage, its spinning wheels kicking up dust as it speeds through the desert. It's a magnificent mode of transport."
-  },
-  "毎": {
-    "story": "**Mai** peeks through the Window, and a menacing Gun is pointed right back at her. This unsettling encounter repeats itself, day after day."
-  },
-  "行": {
-    "story": "**Kofi** straps on his backpack and steps onto the path, heading off towards the distant mountains. He is beginning his journey."
-  },
-  "西": {
-    "story": "**Selma** stands stubbornly, pointing her finger towards the setting sun, insisting that's the only direction they should travel. She is fixated on that specific cardinal direction."
-  },
-  "何": {
-    "story": "**Carlos**, a fast-talking street vendor, tried to sell his wares to a stern Leader (長) with a glinting Lip Ring. The Leader just pointed vaguely at the assortment, leaving **Carlos** to ponder, what could he possibly be interested in?"
-  },
-  "来": {
-    "story": "A massive figure like **Tai** slowly moves across the Ground, carrying a heavy sack of Rice (米). He drops it with a thud by the chicken **coop**, announcing that he has arrived at his destination."
-  },
-  "学": {
-    "story": "A fierce Viking, despite his rough exterior, gently teaches a small Child (子) how to read ancient runes. The child would **gawk** in wonder, absorbing every word of wisdom, hoping to gain powerful **mana** from the texts."
-  },
-  "金": {
-    "story": "**Kin**, the meticulous goldsmith, carefully scrutinizes the raw ore. He knows that with the right process, this material will yield a gleaming, precious metal that everyone desires."
-  },
-  "雨": {
-    "story": "Everyone looks up, shielding their faces, and lets out an \"**ooh**\" as the sky darkens and cold, wet droplets begin to fall from the clouds."
-  },
-  "国": {
-    "story": "The King (王) stands within his vast borders, which resemble a large Mouth (口) speaking for its people. A single Drop (落) of **coco** falls from his cup as he surveys his entire nation."
-  },
-  "東": {
-    "story": "**Tova**, the no-nonsense farmer, always knows the direction of the first light. She watches as the Sun (日) begins to peek over the horizon, illuminating the top of a lone Tree (木), marking the start of a new day."
-  },
-  "長": {
-    "story": "**Cho**, the passionate chef, uses a very long spatula, stretching her arm to reach across her gigantic wok. She always prefers kitchen tools that have a substantial reach."
-  },
-  "前": {
-    "story": "A creature with **Horns** stands on the **Ground**, meditating in a state of **zen** under the **Moon (月)**. A glinting **Knife (刀)** is stuck into the earth, pointing directly at what's right in front of them."
-  },
-  "南": {
-    "story": "A parched **Head (首)**, adorned with **Horns**, lies on a **Cross (十)** in the utterly **Dry (干)** desert. There is **none** left to drink, only the endless, scorching horizon in that direction."
-  },
-  "後": {
-    "story": "**Kofi** shivers, forced to **Loiter** in the bitter **Winter (冬)**. He steps in some **Poop**, but doesn't notice until much later, when the smell wafts up from right behind him."
-  },
-  "食": {
-    "story": "In the chicken **coop**, a hungry farmer watches the chickens peck at their grains, wishing he had something equally simple to consume."
-  },
-  "校": {
-    "story": "**Kofi**, with his **Father (父)**, sits under a great **Tree (木)**. His father lifts a **Lid** from a box, revealing a daunting test that will determine his future."
-  },
-  "時": {
-    "story": "**Ji** meticulously sweeps the grounds of the **Temple (寺)** as the **Sun (日)** slowly arcs across the sky, marking the passage of each moment."
-  },
-  "高": {
-    "story": "**Kofi** tries to reach a jar with a tightly sealed **Lid** on a shelf. He opens his **Mouth (口)** in frustration, his **Mustache** twitching as he stretches, unable to grasp the object because it's too far up."
-  },
-  "間": {
-    "story": "**Khan** stands before a grand **Gate (門)**, waiting for the brief **Sun (日)** break in the clouds. He knows he only has a short window to pass through before the storm returns."
-  },
-  "話": {
-    "story": "A person begins to Say (言) something, their Tongue (舌) wagging as they spin a **wa**ll of words, weaving a long, intricate narrative for all to hear."
+    "story": "A Brazilian **Kyu**do instructor insists on a day of complete rest after a grueling training session.  He argues that true strength comes not just from practice, but from allowing the body and mind to replenish, like a tree needing time to grow."
   },
   "電": {
-    "story": "As the Rain (雨) violently lashes down on the Rice Paddy (田), an Umbrella standing alone in the field is hit by a bolt, causing the whole **den** to surge with a crackling, blue force."
+    "story": "A surge of electricity ripped through the arcade, plunging the neon lights into darkness – a chaotic cascade of sparks and shadows, a **den** of flickering screens and forgotten dreams.",
+    "on-yomi": "/den/",
+    "kun-yomi": null
+  },
+  "万": {
+    "story": "**Man**y stars glittered across the inky sky, each one a tiny speck in an endless expanse. A single grain of sand on a **ban**k of dunes, lost in the vastness of the universe, yet beautiful in its own right."
+  },
+  "二": {
+    "story": "The old woman meticulously folds two origami cranes, placing them carefully on the altar – a silent prayer for peace and longevity.",
+    "on_yomi": [
+      "ni",
+      "ji"
+    ],
+    "kun_yomi": [
+      "futa"
+    ],
+    "ipa": [
+      "/niː/",
+      "/dʒi/",
+      "/fuːtɑː/"
+    ]
+  },
+  "九": {
+    "story": "Nine shadows dance across the moonlit courtyard, each a silent observer of the ancient ritual unfolding beneath the stars.",
+    "on_yomi": [
+      "kyuu",
+      "ku"
+    ],
+    "kun_yomi": [],
+    "ipa": [
+      "/njuː/",
+      "/kuː/"
+    ]
+  },
+  "人": {
+    "story": "**Dane** stares intensely at the screen, his fingers flying across the keyboard – a digital avatar mirroring his own determination. He’s racing to complete another level, a relentless pursuit that defines his existence. Every click, every strategic maneuver, is fueled by an unwavering commitment to victory. He is a person driven by an insatiable hunger for accomplishment."
+  },
+  "入": {
+    "story": "**Ju**, an Italian gamer with fiery determination, dives headfirst into a new virtual world, her avatar a whirlwind of action and skill. She’s not just playing; she’s conquering, pushing boundaries, and refusing to surrender.  Meanwhile, **Eve**, a curious English botanist, wanders into a hidden garden, drawn by the promise of rare and exotic blooms. The scent of jasmine hangs heavy in the air, and she feels a sense of wonder wash over her."
+  },
+  "八": {
+    "story": "The flickering neon sign of the **hat** shop cast long shadows across the rain-slicked street. Inside, a single figure meticulously arranged eight porcelain dolls on a shelf, each with a painted smile and vacant eyes. The air smelled of dust and forgotten dreams."
+  },
+  "十": {
+    "story": "**June** meticulously counts out ten shimmering coins, placing each one carefully into a worn leather pouch. She’s preparing for a journey, a quest that demands precision and unwavering resolve.  Beside her, a young boy stares wide-eyed, mesmerized by the simple ritual, the promise of adventure hanging in the air."
+  },
+  "三": {
+    "story": "The farmer carefully measured out **mice** for the trap — three of them, just enough to lure the fox, but not enough to alert the entire village."
+  },
+  "上": {
+    "story": "**Joe**, the locksmith, climbed the mountain, his tools clinking, searching for the lock that held the heavens in place."
+  },
+  "下": {
+    "story": "**Carlos**, the street vendor, crouched low, hawking his wares from beneath the awning, his voice a rapid-fire barrage of offers."
+  },
+  "大": {
+    "story": "**Tai**, the rugby player, stood like a mountain, his shadow swallowing the entire marketplace, a gentle giant amidst the bustling crowd."
+  },
+  "女": {
+    "story": "**Jenna**, a quiet woman with eyes that held the weight of ancient forests, traced the lines of a faded map.  Each crease whispered of a journey, a forgotten promise. She sought not gold, but the echo of a legend – a hidden spring said to bloom with impossible flowers."
+  },
+  "山": {
+    "story": "**Senna**, a fearless Brazilian racing driver, stared up at the towering mountain range.  The air thinned, the rocks grew sharp, and the challenge felt exhilarating.  He wasn't searching for a peak, but a secret – a weathered shrine nestled amongst the crags."
+  },
+  "川": {
+    "story": "**Senna** navigated the rushing river in a narrow, handcrafted boat.  The current tugged and twisted, a relentless force testing his skill. He wasn't after the water's bounty, but the reflection of a lost star in its depths."
+  },
+  "土": {
+    "story": "**Doe**, a solitary prospector, knelt, sifting through the rich soil with calloused hands. The earth held its secrets close, a silent promise of riches or ruin.  He wasn't digging for gold, but for the memory of a song buried long ago."
+  },
+  "千": {
+    "story": "A **Senna** (Brazilian racing driver) hurtles around the track, her focus absolute, but a single, fleeting glance reveals a vast, shimmering **Sen** (a collection of thousands of tiny stars) reflected in her visor— a thousand hopes and dreams, all riding on this race."
+  },
+  "子": {
+    "story": "**Sheila** (Australian sheep farmer) watched her flock graze, the setting sun turning their wool to gold.  Each little **Sue** (a gentle, caring kindergarten teacher) in her class was a treasure, a tiny spark of potential, and she held them all close to her heart."
+  },
+  "小": {
+    "story": "**Sho** (laid-back surfer) paddled out to catch a wave, the ocean stretching before him, vast and blue. He spotted a **Show** (a traveling circus) in the distance, a flash of color against the horizon, a reminder of the simple joys in life."
+  },
+  "中": {
+    "story": "**Tchu** (a skilled Vietnamese chef) carefully arranged the ingredients on the plate, a delicate balance of flavors and textures. The dish was meant to evoke the feeling of being **through** a misty forest, where every step reveals a new wonder."
+  },
+  "五": {
+    "story": "A **go** cart rattles down the dirt track, kicking up dust that settles in a perfect, uneven number – five clumps clinging to the windscreen, a stubborn reminder of the chase."
+  },
+  "六": {
+    "story": "The baker pulls **rock** candy from the cooling rack, arranging it carefully in six rows, each one a sugary testament to a morning spent perfecting the recipe."
+  },
+  "円": {
+    "story": "She traced a perfect **end** to the line of chalk on the pavement, a simple circle marking the boundary of her world, a small rebellion against the rigid squareness of the city."
+  },
+  "天": {
+    "story": "The **ten**uous thread of hope snapped as the storm clouds gathered, obscuring the sky and swallowing the last vestiges of light, a cruel reminder of the power held above."
+  },
+  "日": {
+    "story": "**Niche** boutiques lined the streets, each showcasing a single, perfect item.  A **jits** of effort went into arranging them, each display a miniature work of art. The day felt special, like a perfectly curated experience."
+  },
+  "月": {
+    "story": "The **gets** of the festival were filled with shimmering lanterns. The **gats** of the night seemed to stretch on forever, a velvet curtain studded with distant stars."
+  },
+  "木": {
+    "story": "**Boku** felt the rough bark of the ancient tree beneath his hand.  The **mok** of the forest echoed with the songs of unseen birds, a symphony of the wild. **Kiki** skipped ahead, her laughter bouncing off the leaves, while **Cora** peered suspiciously from behind a thick trunk."
+  },
+  "水": {
+    "story": "**Sue** gently traced the patterns in the rippling water. The **mizu** of the stream tasted clean and cool, a welcome refreshment on a hot day.  A tiny frog, glistening with moisture, leaped from a lily pad."
+  },
+  "火": {
+    "story": "**Carlos**, the Mexican street vendor, darts through the marketplace, his cart overflowing with sizzling treats. He moves so fast, a trail of fragrant smoke follows him, like a miniature wildfire. Meanwhile, **Hina**, the cheerful Pakistani baker, kneads dough with a quiet strength, the warmth of her oven radiating a gentle, comforting heat."
+  },
+  "出": {
+    "story": "**Sue**, a meticulous librarian, carefully shelves books, ensuring each one finds its place. Then, **Sue** notices a flicker of movement – an unexpected **den**izen, a small mouse, scurries out from behind a stack, disrupting the order of the quiet space."
+  },
+  "右": {
+    "story": "**Ulysses**, a mysterious traveler, points to the **right**, urging his companions onward. He moves with a quiet purpose, his eyes fixed on a distant horizon. Simultaneously, **Yusuf**, the brooding Turkish artist, meticulously blends colors on his palette, capturing the subtle shift of light as the sun dips below the horizon."
+  },
+  "四": {
+    "story": "**Sheila**, the tough Australian farmer, counts the sheep – exactly **four** of them wandered off from the flock. She whistles sharply, herding them back with a practiced ease. Then, she glances around, seeing **Yo**, a jovial Japanese chef, skillfully flips okonomiyaki on a hot griddle, the savory aroma filling the air."
+  },
+  "左": {
+    "story": "**Sasha**, the restless Ukrainian dancer, pivoted sharply to the **left**, her movements a blur of defiance against the rigid ballroom. A single, almost imperceptible shift, and the entire choreography fractured, revealing the underlying tension."
+  },
+  "本": {
+    "story": "**Hone** the skills, sharpen the mind, and find the knowledge within the pages of a **hon**ored book. The scent of aged paper and leather filled the room, a comforting aroma of countless stories waiting to be rediscovered."
+  },
+  "白": {
+    "story": "**Haku**, the silent mountain monk, materialized from the swirling snow, his robes a blinding **white** against the grey landscape.  He observed, a quiet sentinel, his presence radiating a serenity that calmed the storm within."
+  },
+  "今": {
+    "story": "**Kin** carefully examined the ancient scroll, his brow furrowed. The moment felt crucial, a point of no return.  '**Now**,' he murmured, tracing a faded character with his finger. 'The ritual must begin.'"
+  },
+  "午": {
+    "story": "**Go** was the signal. The blacksmith slammed his hammer, the sound echoing across the valley. It was **noon**, and the hunt would begin, a desperate gamble against the encroaching darkness."
+  },
+  "友": {
+    "story": "**Yusuf**, hunched over his easel, barely registered the knock at the door. It was a familiar face, a cherished **friend**, seeking solace and inspiration in the artist's solitary world."
+  },
+  "父": {
+    "story": "**Fuad** adjusted his turban, a flicker of sadness in his eyes.  He remembered his **father**, a strong and silent presence who had taught him the value of hard work and unwavering honesty.  He felt the weight of that legacy pressing down on him."
+  },
+  "北": {
+    "story": "**Hawk** eyes scanned the horizon, unwavering as the wind.  He’d spent his life charting the frozen expanse of the North, a solitary figure against a canvas of ice and snow."
+  },
+  "半": {
+    "story": "**Hans** meticulously checked the blueprints, his brow furrowed in concentration. The bridge design was precise, requiring a perfect balance, a literal half of what was needed to span the chasm."
+  },
+  "外": {
+    "story": "The **gait** of the wolf was a shadow against the setting sun, hinting at something wild and untamed beyond the city walls. He longed for the Outside, a place free from the rigid structures of his life."
+  },
+  "母": {
+    "story": "**Bow**ed low in reverence, he remembered his mother, her gentle hands and warm smile a comforting memory. She was the foundation of his world, the source of his strength."
+  },
+  "先": {
+    "story": "**Senna**'s race car roared ahead, taking the lead at the very start. Her determination was palpable, a silent promise that she would push forward, always striving to be first, a leader in every sense."
+  },
+  "名": {
+    "story": "Her **Mei**doh (名刀) was legendary, a sword forged with skill and bearing a name whispered with reverence throughout the land – a symbol of her legacy."
+  },
+  "年": {
+    "story": "Each **nen** (year) brought new challenges and lessons, etched onto her face like rings on an ancient tree, marking the passage of time and the growth of wisdom."
+  },
+  "気": {
+    "story": "A jolt of **Kiki's** laughter bursts from the console as the energy readings spike—the spirit of the system is clearly delighted. It's a strange, almost mischievous feeling, like a tiny, bubbly imp is messing with the controls."
+  },
+  "百": {
+    "story": "The ancient scrolls spoke of a treasure, a hoard of **Hyaku** coins, guarded by a celestial dragon.  But when the adventurers found the chamber, it was empty—save for a single, mocking echo."
+  },
+  "男": {
+    "story": "The grizzled **Dan** was known throughout the frontier—a man of few words and even fewer smiles.  He carried a rifle and a quiet determination, a silent promise to protect what little remained."
+  },
+  "見": {
+    "story": "**Kenny’s** exasperated sigh echoed in the cavern as he stared at the shimmering wall—he couldn’t *see* a way through, no matter how hard he squinted. It was a maddening, impenetrable mystery."
+  },
+  "車": {
+    "story": "**Shaun**, a gruff Scottish mechanic, meticulously rebuilds a vintage car, each bolt tightened with a practiced hand. He insists the engine needs to 'sing' before he lets it go, a testament to his unwavering dedication to the craft.",
+    "on_yomi": "しゃ → /ʃɑː/",
+    "kun_yomi": "くるま"
+  },
+  "毎": {
+    "story": "**Mai** bursts into a room, a whirlwind of silk and laughter, her feet barely touching the ground as she dances. Every step is a celebration, every movement a burst of joy that fills the space around her.",
+    "on_yomi": "まい → /mɑːɪ/",
+    "kun_yomi": "ごと"
+  },
+  "行": {
+    "story": "**Kofi**, a Ghanaian carpenter with hands calloused from years of shaping wood, carefully measures a beam, his brow furrowed in concentration. He's building a bridge, a path forward for his community.",
+    "on_yomi": "ぎょう → /ɡjoʊ/",
+    "kun_yomi": "い"
+  },
+  "西": {
+    "story": "**Selma**, a Greek grandmother with a voice that could command an army, fiercely defends her garden, chasing away birds and lecturing the neighborhood children on the importance of respecting nature.",
+    "on_yomi": "せい → /seɪ/",
+    "kun_yomi": "にし"
+  },
+  "何": {
+    "story": "**Carlos** weaves through the crowded marketplace, his voice a rapid-fire sales pitch. “What do you need? Fresh mangoes? Spicy peppers? I got it all, amigo! The best prices in the whole city! What are you waiting for?!” He doesn’t stop moving, a whirlwind of energy and merchandise."
+  },
+  "来": {
+    "story": "**Tai** lumbered toward the training grounds, the earth trembling slightly with each step. “Come,” he grunted, his voice a low rumble. “We spar. Now.” The other warriors scattered, knowing a single touch from Tai could send them flying."
+  },
+  "学": {
+    "story": "**Gaku** hunched over a dusty tome, his brow furrowed in concentration. He was determined to learn every nuance of the ancient script. “Study,” he muttered to himself, tracing the characters with his finger, a flicker of ambition in his eyes."
+  },
+  "金": {
+    "story": "**Kin** delicately examined a newly forged bracelet, his hands steady and precise. Each tiny detail had to be perfect. “Gold,” he murmured, his voice barely audible, “must be handled with respect.”"
+  },
+  "雨": {
+    "story": "**You** sprint through the downpour, the rain plastering your hair to your face. Each drop feels like a tiny hammer blow, a relentless rhythm against your skin. The world blurs into streaks of grey and silver, a watery canvas reflecting the storm's fury."
+  },
+  "国": {
+    "story": "**Coke** bottles litter the roadside, a testament to a forgotten celebration. The rusted metal glints under the harsh sun, a jarring contrast to the ancient stone walls of the crumbling fortress that guards the borders of this forgotten **country**."
+  },
+  "東": {
+    "story": "**Tova** adjusted her thick woolen scarf against the biting wind, her gaze fixed on the horizon. The first rays of dawn painted the sky in hues of pale orange and rose, a promise of the long day ahead on the farm, a day of relentless toil and quiet satisfaction."
+  },
+  "長": {
+    "story": "**Cho** slammed a wok onto the burner, the flames leaping up in a fiery dance. The aroma of lemongrass and chili filled the air, a vibrant symphony of scents that promised a delicious and satisfying meal for the hungry crowds gathered outside his bustling street kitchen. The line was **long**."
+  },
+  "前": {
+    "story": "The **Zenith** of her frustration arrived with the news – a single, sharp line drawn across her meticulously planned schedule, marking the end of one project and the looming start of another. It felt like standing directly *in front* of an impossible task."
+  },
+  "南": {
+    "story": "The caravan pushed south, following the ancient riverbed. **Nan**a, a weathered tracker, pointed towards the horizon, her voice raspy with dust and years. 'Beyond those dunes,' she croaked, 'lies a hidden oasis.' It was a promise of respite, a direction, a future *south* of their current suffering."
+  },
+  "後": {
+    "story": "**Kofi**, the carpenter, paused, wiping sweat from his brow. He’d built this house with his own hands, every beam and nail a testament to his skill. He looked back at the finished product, a sense of quiet satisfaction settling over him.  The *aftermath* of his labor was beautiful, a testament to his dedication."
+  },
+  "食": {
+    "story": "The aroma of roasting meat filled the air, a fragrant **shock** to the senses.  Elena, remembering her grandmother's recipes, began preparing the meal.  Each step was deliberate, a ritual of nourishment and connection. It was the simple act of *eating* that brought them together, a shared moment of warmth and comfort."
+  },
+  "校": {
+    "story": "**Kofi**, the warm Ghanaian carpenter, meticulously measured the classroom’s dimensions, ensuring every desk and chair was perfectly aligned for the upcoming **exam**. He hummed a gentle tune, his hands moving with practiced grace, each piece of wood yielding to his skill."
+  },
+  "時": {
+    "story": "**Ji**, the wiry old Chinese grandfather, carefully polished his calligraphy brush, lost in the contemplation of **time**. The strokes flowed from his hand, each one a meditation on the fleeting nature of existence, a silent record of moments passed."
+  },
+  "高": {
+    "story": "**Kofi**, the warm Ghanaian carpenter, gazed up at the **tall** peaks of the mountains, his heart filled with a quiet reverence. The sheer scale of the landscape dwarfed him, reminding him of the vastness of the world and the smallness of his place within it."
+  },
+  "間": {
+    "story": "**Khan**, the commanding Mongolian warlord, surveyed the vast **interval** between his advancing army and the distant fortress. He signaled his riders, the dust swirling around them like a tangible representation of the impending conflict."
+  },
+  "話": {
+    "story": "Bruno, the stocky Italian baker, dusted a floury tale across the counter, a story whispered between the rising dough and the crackling oven—a legend of a lost recipe, guarded by a mischievous sprite.",
+    "on-yomi": "/wɑː/",
+    "kun-yomi": null
   },
   "聞": {
-    "story": "**Bruno** and **Monica** stand by the Gate (門), their Ears (耳) perked up. They strain to **Kiki**'s faint giggle from beyond the wall, trying to make out what she's saying."
+    "story": "Monica, the sharp Colombian woman, listened intently as the old fisherman recounted his story—each word a precious pearl, strung together to form a narrative of storms and resilience.",
+    "on-yomi": {
+      "Bruno": "/ɡoʊ/",
+      "Monica": "/ɡoʊ/"
+    },
+    "kun-yomi": {
+      "Kiki": null
+    }
   },
   "語": {
-    "story": "The wise man begins to Say (言) profound truths, and from his Mouth (口) come Five (五) perfect utterances, each one a clear **goal** in a sentence, building the very fabric of discourse."
+    "story": "A single word, a carefully chosen phrase, tumbled from his lips – a whisper of a forgotten god, a promise etched in the ancient stones, a **go**d's decree.",
+    "on-yomi": "/ɡoʊ/",
+    "kun-yomi": null
   },
   "読": {
-    "story": "The vendor tries to Say (言) something to help **dock** his deal, but the customer is too busy looking at the item to Sell (売). She just keeps saying \"**yo**\" as she deciphers the tiny print on the label."
+    "story": "**Duke** meticulously copied the ancient scrolls, each stroke a testament to his dedication. He then carefully bound them, creating a tome that would preserve the knowledge for generations to come, a silent promise whispered through the ink."
   },
   "生": {
-    "story": "**Selma** and **Sho** watch as **Eve** carefully tends to the tiny sprout, nurturing the very essence of Life (生). With each passing day, it continues to grow and flourish."
+    "story": "**Selma** fiercely protected the fledgling sapling, shielding it from the harsh winds and relentless sun. She saw in it a reflection of her own resilience, a testament to the enduring power of **life**, a promise of renewal against all odds."
   },
   "書": {
-    "story": "As the Sun (日) rises, **Carlos** dips his Brush (掃) into ink, ready to **show** the world his thoughts on paper. He meticulously forms each character on the scroll."
+    "story": "**Carlos** scrawled a vibrant mural across the crumbling wall, his brush dancing with a frenetic energy. The words flowed from him, a chaotic tapestry of stories and dreams, a testament to the raw, untamed spirit of the city."
   }
 }
