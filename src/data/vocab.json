@@ -4,119 +4,1579 @@
       "word": "一日",
       "reading": "いちにち",
       "meaning": "One Day",
-      "story": "**Eve** spent the **knee** day looking for a single, perfect flower, hoping to make it last forever."
+      "story": "**Kyu** woke up late, realizing he'd slept through an entire Day - he had to rush to class, hoping he hadn't missed anything important."
     },
     {
-      "word": "一度",
-      "reading": "いちど",
-      "meaning": "Once, One Time",
-      "story": "**Eve** saw **do**zens of identical flowers, but only one had a single dewdrop glistening on its petal."
+      "word": "最初",
+      "reading": "さいしょ",
+      "meaning": "First, Beginning",
+      "story": "**Sai** carefully examined the ancient scroll, marking the First line with reverence - this was the start of a new journey."
     },
     {
-      "word": "一人",
-      "reading": "ひとり",
-      "meaning": "One Person",
-      "story": "**He** stood alone, a single **tree** on a vast, empty plain, contemplating his solitude."
+      "word": "一本",
+      "reading": "いっぽん",
+      "meaning": "One Stick",
+      "story": "**Kofi** carved a single Stick from a fallen branch, intending to build a birdhouse for the tiny chicks he'd seen in the forest."
     }
   ],
   "二": [
     {
-      "word": "二つ",
-      "reading": "ふたつ",
-      "meaning": "Two Things",
-      "story": "**Fuad** haggled over the price of the **ta**bles, insisting he only needed **tsu** (two) of them, not a whole set."
-    },
-    {
       "word": "二人",
       "reading": "ふたり",
       "meaning": "Two People",
-      "story": "**Fuad** and **Rio** were the only two people left in the market, both trying to sell their last wares."
+      "story": "**Kiki** and **Kofi** shared a single plate of pastries, Two People laughing and enjoying a quiet afternoon in the park."
     },
     {
-      "word": "二日",
-      "reading": "ふつか",
-      "meaning": "Second Day",
-      "story": "**Fuad** spent **tsu** days trying to sell his goods, but **Carlos** was too busy to even look."
+      "word": "二度",
+      "reading": "にど",
+      "meaning": "Second Time",
+      "story": "**Kay** replayed the security footage a Second Time, searching for any clue that the thief had left behind."
+    },
+    {
+      "word": "二階",
+      "reading": "にかい",
+      "meaning": "Second Floor",
+      "story": "**Kyu** stumbled up the Second Floor stairs, tripping over a loose rug and scattering his textbooks everywhere."
     }
   ],
   "九": [
     {
-      "word": "九つ",
-      "reading": "ここのつ",
-      "meaning": "Nine Things",
-      "story": "**Cora** peered over the fence, counting nine little **co**ws in **no** particular order, all munching on **tsu**lips."
-    },
-    {
       "word": "九月",
       "reading": "くがつ",
       "meaning": "September",
-      "story": "**Coop** was the name of the new **gut**ter system installed in the ninth month, just before the autumn rains."
+      "story": "**Kofi** remembered the festival in September, a riot of color and music that always brought a smile to his face."
     },
     {
-      "word": "九時",
-      "reading": "くじ",
-      "meaning": "Nine O'clock",
-      "story": "**Coop** closed his shop promptly at nine, just as **Ji** arrived for his evening tea."
+      "word": "第九",
+      "reading": "きゅうだ",
+      "meaning": "Ninth",
+      "story": "**Kyo** pointed to the Ninth piece on the chessboard, explaining his strategy with a quiet confidence."
+    },
+    {
+      "word": "九分",
+      "reading": "きゅうぶん",
+      "meaning": "Nine Tenths",
+      "story": "**Shin** finished Nine Tenths of his patient's paperwork, the last few lines requiring a particularly careful hand."
     }
   ],
   "七": [
     {
-      "word": "七つ",
-      "reading": "ななつ",
-      "meaning": "Seven Things",
-      "story": "**Nana** carefully arranged the seven **tsu**lips in her vase, each one a different vibrant color."
-    },
-    {
       "word": "七日",
-      "reading": "なのか",
+      "reading": "ななひ",
       "meaning": "Seventh Day",
-      "story": "**Nana** spent **no** less than seven days trying to convince **Carlos** to buy her lucky charm."
+      "story": "**Tova** woke up on the Seventh Day, ready to start a new week of hard work on her farm."
     },
     {
-      "word": "七時",
-      "reading": "しちじ",
-      "meaning": "Seven O'clock",
-      "story": "**Sheila** finished her chores by seven, just as **Ji** was preparing his evening meal, the last task of her day."
+      "word": "第七",
+      "reading": "だいた",
+      "meaning": "Seventh",
+      "story": "**Ritz** pointed to the Seventh musician in the orchestra, scolding him for a slight misstep in the performance."
+    },
+    {
+      "word": "七面",
+      "reading": "ななめん",
+      "meaning": "Seven Sides",
+      "story": "**Kin** carefully examined the gemstone, noting its Seven Sides and the way the light refracted within its depths."
     }
   ],
   "人": [
     {
-      "word": "人口",
-      "reading": "じんこう",
-      "meaning": "Population",
-      "story": "Every **gin**-soaked night, **Kofi** counts the Mouths lining up at his bar - more Persons through the door every week, the whole neighborhood packed in."
-    },
-    {
       "word": "人気",
       "reading": "にんき",
       "meaning": "Popularity, Fame",
-      "story": "A **knee**-deep crowd surrounds **Kiki**, laughing at everything she says - this Person has an Energy nobody can resist."
+      "story": "**Kiki**’s laughter echoed through the marketplace as **Carlos** watched her, recognizing the infectious Popularity she possessed."
     },
     {
-      "word": "外人",
-      "reading": "がいじん",
-      "meaning": "Foreigner",
-      "story": "**Kai**, the salty sailor, often felt like an outsider, a foreign person among the landlubbers, especially after a **gin** and tonic."
+      "word": "人物",
+      "reading": "じんぶつ",
+      "meaning": "Person, Figure",
+      "story": "**Kay** studied the Photograph of the suspect, a mysterious Person whose identity remained elusive."
+    },
+    {
+      "word": "人権",
+      "reading": "じんけん",
+      "meaning": "Human Rights",
+      "story": "**Selma** stood firm, defending the Human Rights of the protestors, her voice ringing with conviction."
     }
   ],
   "入": [
     {
+      "word": "入学",
+      "reading": "にゅうがく",
+      "meaning": "Enrollment",
+      "story": "**Kyu** felt a mix of excitement and nervousness as he prepared for his Enrollment into university."
+    },
+    {
       "word": "入口",
       "reading": "いりぐち",
       "meaning": "Entrance",
-      "story": "**Eve** and **Rio** found the **goo**d, old **chi**ldhood entrance to the secret garden, hidden behind overgrown bushes."
+      "story": "**Kofi** checked the Entrance to the building, ensuring it was properly secured before locking up for the night."
     },
     {
-      "word": "入学",
-      "reading": "にゅうがく",
-      "meaning": "School Enrollment",
-      "story": "**New** students were eager to enter the grand academy, and **Gak** was the first to sign up for enrollment."
+      "word": "入院",
+      "reading": "にんゆう",
+      "meaning": "Hospitalization",
+      "story": "**Shin** worried about his friend’s Hospitalization, hoping he would recover quickly and return home."
+    }
+  ],
+  "八": [
+    {
+      "word": "明白",
+      "reading": "はくめい",
+      "meaning": "Obvious, Clear",
+      "story": "**Haku**, the silent monk, points to the Eight stacked stones - there's no doubt, no question, the path is clear."
     },
     {
-      "word": "入る",
-      "reading": "はいる",
-      "meaning": "To Enter",
-      "story": "**Ha**! **Eve** exclaimed, watching the cat **Rue**sh to enter the small box, disappearing inside."
+      "word": "会社",
+      "reading": "かいしゃ",
+      "meaning": "Company, Firm",
+      "story": "**Kai**, the salty sailor, signed a contract with the Eight-legged octopus - a bizarre agreement to navigate the seven seas, of course."
+    },
+    {
+      "word": "畑",
+      "reading": "はたけ",
+      "meaning": "Field, Farm",
+      "story": "**Hina**, the cheerful girl, carefully plants Eight seedlings in the Field, hoping for a bountiful harvest of sweet bread."
+    }
+  ],
+  "十": [
+    {
+      "word": "十分",
+      "reading": "じゅうぶん",
+      "meaning": "Enough, Sufficient",
+      "story": "**Joe**, the locksmith, used Ten bolts to secure the vault, ensuring there was Enough space for all the treasure."
+    },
+    {
+      "word": "指示",
+      "reading": "しじょう",
+      "meaning": "Instruction, Direction",
+      "story": "**Kay**, the detective, followed the Ten steps outlined in the Instruction manual, determined to solve the mystery."
+    },
+    {
+      "word": "成人",
+      "reading": "せいじん",
+      "meaning": "Adult, Maturity",
+      "story": "At Ten years old, **Ryoko**, the herbalist, was deemed a 成人 and began her apprenticeship, learning the ancient secrets."
+    }
+  ],
+  "三": [
+    {
+      "word": "三角",
+      "reading": "さんかく",
+      "meaning": "Triangle, Triangular",
+      "story": "**Bruno**, the baker, carefully arranged Three loaves of bread in a Triangle, creating a stunning display in his window."
+    },
+    {
+      "word": "三人",
+      "reading": "さんにん",
+      "meaning": "Three People",
+      "story": "**Monica**, the neighborhood leader, organized Three Persons to clean up the park, restoring it to its former glory."
+    },
+    {
+      "word": "散歩",
+      "reading": "さんぽ",
+      "meaning": "Walk, Stroll",
+      "story": "**Mariana** and her dog took a leisurely 散歩 through the park, enjoying the sunshine and the scent of blooming flowers."
+    }
+  ],
+  "上": [
+    {
+      "word": "上司",
+      "reading": "じょうし",
+      "meaning": "Boss, Supervisor",
+      "story": "**Chuck**, the truck driver, nervously awaited his 上司's review of his driving record, hoping for a positive assessment."
+    },
+    {
+      "word": "上昇",
+      "reading": "じょうしょう",
+      "meaning": "Rise, Increase",
+      "story": "**Yoan**, the banker, watched the stock market chart with anticipation, hoping to witness a significant 上昇 in his investments."
+    },
+    {
+      "word": "向上",
+      "reading": "こうじょう",
+      "meaning": "Improvement, Advancement",
+      "story": "**Ritz**, the conductor, demanded constant 向上 from his orchestra, pushing them to achieve a higher level of performance."
+    }
+  ],
+  "下": [
+    {
+      "word": "下着",
+      "reading": "したぎ",
+      "meaning": "Underwear, Lingerie",
+      "story": "**Sheila**, the farmer, realized she’d forgotten her 下着 while mending the fence, a moment of awkwardness in the vast field."
+    },
+    {
+      "word": "下手",
+      "reading": "したて",
+      "meaning": "Poor at, Inept",
+      "story": "**Kenny**, the plumber, declared his skills were 下手 as the pipes burst again, showering the kitchen in soapy water."
+    },
+    {
+      "word": "下痢",
+      "reading": "しゃばり",
+      "meaning": "Diarrhea, Dysentery",
+      "story": "**Don B**, the barber, felt a rumble in his stomach and realized he had 下痢 after eating too many spicy peppers."
+    }
+  ],
+  "大": [
+    {
+      "word": "大人",
+      "reading": "おとな",
+      "meaning": "Adult, Grown-up",
+      "story": "**Shin**, the doctor, explained to the child that being an 大人 meant taking responsibility for their actions."
+    },
+    {
+      "word": "大丈夫",
+      "reading": "だいじょうぶ",
+      "meaning": "Okay, Alright",
+      "story": "**Mai**, the dancer, reassured her nervous partner that everything was 大丈夫 before they stepped onto the stage."
+    },
+    {
+      "word": "大学",
+      "reading": "だいがく",
+      "meaning": "University, College",
+      "story": "**Ryuu**, the musician, dreamed of attending the prestigious 大学, hoping to study under the world's best composers."
+    }
+  ],
+  "女": [
+    {
+      "word": "少女",
+      "reading": "しょうじょ",
+      "meaning": "Young Girl",
+      "story": "**Sho** watched from the hillside as a Young Girl, her hair blowing in the wind, chased butterflies through the field of wildflowers."
+    },
+    {
+      "word": "女性",
+      "reading": "じょせい",
+      "meaning": "Woman, Female",
+      "story": "**Selma** adjusted her shawl, a stern Woman observing the bustling marketplace, her gaze sharp and unwavering."
+    },
+    {
+      "word": "女子",
+      "reading": "じょし",
+      "meaning": "Girl, Female",
+      "story": "The Girls, giggling and breathless, raced across the playground, their laughter echoing in the afternoon sun."
+    }
+  ],
+  "山": [
+    {
+      "word": "山川",
+      "reading": "さんせん",
+      "meaning": "Mountain Stream",
+      "story": "**Rio** hiked through the thick forest, following the Mountain Stream as it tumbled down the steep slope, a hidden path revealed."
+    },
+    {
+      "word": "山中",
+      "reading": "さんちゅう",
+      "meaning": "Mountain Interior",
+      "story": "**Haku**, the silent monk, disappeared into the Mountain Interior, swallowed by the mist and ancient trees."
+    },
+    {
+      "word": "登山",
+      "reading": "とざん",
+      "meaning": "Mountain Climbing",
+      "story": "**Tai** began his Mountain Climbing adventure, the air thin and the view breathtaking, a challenge he was ready to face."
+    }
+  ],
+  "川": [
+    {
+      "word": "川床",
+      "reading": "かわゆか",
+      "meaning": "River Terrace",
+      "story": "**Bruno** set up tables on the River Terrace, the scent of freshly baked bread mingling with the cool, flowing water."
+    },
+    {
+      "word": "川上",
+      "reading": "かわかみ",
+      "meaning": "River Head",
+      "story": "**Shin** found a quiet spot at the River Head, the gentle sound of the water soothing his weary soul."
+    },
+    {
+      "word": "川岸",
+      "reading": "かわぎし",
+      "meaning": "Riverbank",
+      "story": "**Kai**, the old sailor, sat on the Riverbank, watching the water flow, remembering his long voyages at sea."
+    }
+  ],
+  "土": [
+    {
+      "word": "土器",
+      "reading": "どき",
+      "meaning": "Pottery, Ceramics",
+      "story": "**Kin**, the meticulous goldsmith, carefully examined the ancient Pottery, admiring the intricate designs etched into the clay."
+    },
+    {
+      "word": "土壌",
+      "reading": "どじょう",
+      "meaning": "Soil, Earth",
+      "story": "**Tay**, the architect, tested the Soil, ensuring the foundation of his building would be strong and stable."
+    },
+    {
+      "word": "土手",
+      "reading": "とで",
+      "meaning": "Earthen Embankment",
+      "story": "**Bo**, the police officer, patrolled the Earthen Embankment, keeping a watchful eye on the peaceful countryside."
+    }
+  ],
+  "千": [
+    {
+      "word": "千円",
+      "reading": "せんえん",
+      "meaning": "One Thousand Yen",
+      "story": "**Yoan**, the banker, carefully counted the Thousand Yen bills, his eyes gleaming with satisfaction."
+    },
+    {
+      "word": "千鳥",
+      "reading": "ちどり",
+      "meaning": "Plover, Killdeer",
+      "story": "**Sai**, the fortune teller, watched a flock of birds, a Thousand of them, circle overhead, a sign of good luck."
+    },
+    {
+      "word": "千日",
+      "reading": "せんにち",
+      "meaning": "A Thousand Days",
+      "story": "**Ryoko**, the herbalist, dedicated a Thousand Days to studying the ancient healing arts, her knowledge growing with each passing sunrise."
+    }
+  ],
+  "子": [
+    {
+      "word": "子供",
+      "reading": "こども",
+      "meaning": "Child, Children",
+      "story": "**Monica** smiled as she watched the Children playing in the park, their laughter filling the air with joy."
+    },
+    {
+      "word": "子犬",
+      "reading": "こいぬ",
+      "meaning": "Puppy, Dog",
+      "story": "**Kiki** laughed as the Puppy bounded through the garden, chasing butterflies with boundless energy."
+    },
+    {
+      "word": "親子",
+      "reading": "おやこ",
+      "meaning": "Parent and Child",
+      "story": "**Monica** watched the Parent and Child walking hand-in-hand, a picture of love and happiness."
+    }
+  ],
+  "小": [
+    {
+      "word": "少年",
+      "reading": "しょうねん",
+      "meaning": "Young Boy",
+      "story": "**Sho** wiped the salt spray from his face, watching a Young Boy struggle to paddle his surfboard into the crashing waves."
+    },
+    {
+      "word": "小心",
+      "reading": "しょうしん",
+      "meaning": "Careful, Cautious",
+      "story": "**Sheila** warned **Kyu** with a Careful glance, “Be mindful of the sheep, they’re easily startled.”"
+    },
+    {
+      "word": "小鳥",
+      "reading": "しょうちょう",
+      "meaning": "Small Bird",
+      "story": "**Homer** tripped over a Small Bird’s nest, sending feathers flying and a flurry of panicked chirps into the air."
+    }
+  ],
+  "中": [
+    {
+      "word": "中午",
+      "reading": "ちゅうご",
+      "meaning": "Noon",
+      "story": "The heat at **Cho**'s kitchen peaked at Noon, forcing him to pause his frantic chopping and wipe the sweat from his brow."
+    },
+    {
+      "word": "仲間",
+      "reading": "なかま",
+      "meaning": "Friend, Companion",
+      "story": "**Kenny** was overjoyed to find a Companion, someone to help him fix the leaky pipes, even if he made things worse."
+    },
+    {
+      "word": "中空",
+      "reading": "ちゅうくう",
+      "meaning": "Hollow Interior",
+      "story": "**Hans** meticulously examined the sculpture's Hollow Interior, ensuring every measurement matched the original blueprints."
+    }
+  ],
+  "五": [
+    {
+      "word": "五分",
+      "reading": "ごふん",
+      "meaning": "Five Minutes",
+      "story": "**Yoan** impatiently checked his luxury watch, muttering, “Five Minutes late! Absolutely unacceptable!”"
+    },
+    {
+      "word": "五月",
+      "reading": "ごがつ",
+      "meaning": "May",
+      "story": "**Mai** danced through the blossoms of May, scattering petals as she twirled, a vision of springtime joy."
+    },
+    {
+      "word": "五角",
+      "reading": "ごかく",
+      "meaning": "Pentagonal",
+      "story": "**Tay** frowned at the Pentagon building's design, meticulously re-drawing the plans to ensure perfect symmetry."
+    }
+  ],
+  "六": [
+    {
+      "word": "第六",
+      "reading": "だいろく",
+      "meaning": "Sixth",
+      "story": "**Ritz** pointed his baton at the Sixth violinist, his face contorted in frustration at a single missed note."
+    },
+    {
+      "word": "六月",
+      "reading": "ろくがつ",
+      "meaning": "June",
+      "story": "**Rio** arrived in June, the sun warm on her skin as she stepped off the plane, ready for her next adventure."
+    },
+    {
+      "word": "左右",
+      "reading": "さゆう",
+      "meaning": "Left and Right",
+      "story": "**Ju** furiously mashed buttons, her eyes darting Left and Right across the screen as she chased the 100% completion."
+    }
+  ],
+  "円": [
+    {
+      "word": "円形",
+      "reading": "えんけい",
+      "meaning": "Circular Shape",
+      "story": "**Bruno** dusted the Circular Shape of the pizza, a perfect golden crust ready to be devoured."
+    },
+    {
+      "word": "円満",
+      "reading": "えんまん",
+      "meaning": "Harmonious, Friendly",
+      "story": "**Monica** mediated the argument between the neighbors, restoring a Harmonious atmosphere to the street."
+    },
+    {
+      "word": "円高",
+      "reading": "えんこう",
+      "meaning": "Strong Yen",
+      "story": "**Yoan** sighed at the Strong Yen, lamenting the impact on his luxury watch collection."
+    }
+  ],
+  "天": [
+    {
+      "word": "天気",
+      "reading": "てんき",
+      "meaning": "Weather",
+      "story": "**Sho** checked the Weather forecast, hoping for sunny skies for his surfing lesson."
+    },
+    {
+      "word": "天使",
+      "reading": "てんし",
+      "meaning": "Angel",
+      "story": "**Kiki** smiled, imagining a benevolent Angel watching over her as she performed on stage."
+    },
+    {
+      "word": "天然",
+      "reading": "てんねん",
+      "meaning": "Natural, Pure",
+      "story": "**Mai** laughed at her own blunder, dismissing it as a Natural, innocent mistake."
+    }
+  ],
+  "日": [
+    {
+      "word": "日付",
+      "reading": "ひじつ",
+      "meaning": "Date",
+      "story": "**Kyu** checked his calendar, frustrated - the Date of the festival had arrived, and he was still late, rushing to catch up."
+    },
+    {
+      "word": "日曜日",
+      "reading": "にちようび",
+      "meaning": "Sunday",
+      "story": "**Homer** tripped over a sprinkler, soaking himself – it was Sunday, and he'd forgotten about watering the garden."
+    },
+    {
+      "word": "日常",
+      "reading": "にちじょう",
+      "meaning": "Daily Life",
+      "story": "The aroma of fresh bread filled the air, a familiar comfort in the Daily Life of the quiet village."
+    }
+  ],
+  "月": [
+    {
+      "word": "月曜日",
+      "reading": "げつようび",
+      "meaning": "Monday",
+      "story": "**Kofi** groaned, remembering it was Monday – time to face another week of building with his bare hands."
+    },
+    {
+      "word": "月経",
+      "reading": "げっけい",
+      "meaning": "Menstruation",
+      "story": "**Selma** sighed, remembering her own monthly cycle, and handed her granddaughter a comforting cup of tea."
+    },
+    {
+      "word": "月光",
+      "reading": "げっこう",
+      "meaning": "Moonlight",
+      "story": "The Moonlight bathed the mountains in silver, as **Haku** silently meditated, a lone figure in the stillness."
+    }
+  ],
+  "木": [
+    {
+      "word": "木曜日",
+      "reading": "もくようび",
+      "meaning": "Thursday",
+      "story": "**Sho** caught a perfect wave, celebrating it was Thursday, and he could almost taste the weekend."
+    },
+    {
+      "word": "木材",
+      "reading": "もくざい",
+      "meaning": "Timber, Wood",
+      "story": "**Kofi** carefully measured the Timber, planning to build a beautiful rocking chair for his granddaughter."
+    },
+    {
+      "word": "木彫",
+      "reading": "もくちょう",
+      "meaning": "Wood Carving",
+      "story": "**Kin** meticulously carved a tiny dragon into the wood, his hands steady with years of practice."
+    }
+  ],
+  "水": [
+    {
+      "word": "水曜日",
+      "reading": "すいようび",
+      "meaning": "Wednesday",
+      "story": "**Shin** finished his night shift, relieved it was Wednesday, and he could almost see the weekend."
+    },
+    {
+      "word": "水泳",
+      "reading": "すいえい",
+      "meaning": "Swimming",
+      "story": "**Sho** dove into the ocean, enjoying the cool Water and the feeling of weightlessness as he swam."
+    },
+    {
+      "word": "水筒",
+      "reading": "すいとう",
+      "meaning": "Water Bottle",
+      "story": "**Rio** filled his Water Bottle, ready for another day of backpacking through the vibrant, unfamiliar city."
+    }
+  ],
+  "火": [
+    {
+      "word": "火曜日",
+      "reading": "かようび",
+      "meaning": "Tuesday",
+      "story": "**Chuck** slammed on his brakes, muttering about it being Tuesday, and the endless miles of highway ahead."
+    },
+    {
+      "word": "火事",
+      "reading": "かじ",
+      "meaning": "Fire, Blaze",
+      "story": "The smell of smoke filled the air, a terrifying Fire erupting from the old warehouse."
+    },
+    {
+      "word": "火力",
+      "reading": "かりょく",
+      "meaning": "Firepower",
+      "story": "**Shula** watched the rugby team train, impressed by their raw Firepower and determination."
+    }
+  ],
+  "出": [
+    {
+      "word": "出発",
+      "reading": "しゅっぱつ",
+      "meaning": "Departure",
+      "story": "**Rio** waved goodbye, the Departure a bittersweet moment as she began her journey to a new country."
+    },
+    {
+      "word": "出口",
+      "reading": "でぐち",
+      "meaning": "Exit",
+      "story": "**Homer** frantically searched for the Exit, lost in the crowded concert venue."
+    },
+    {
+      "word": "支出",
+      "reading": "しゅっち",
+      "meaning": "Expense, Expenditure",
+      "story": "**Kofi** reviewed his accounts, carefully tracking his Expenses and planning for the future."
+    }
+  ],
+  "右": [
+    {
+      "word": "右側",
+      "reading": "みぎがわ",
+      "meaning": "Right Side",
+      "story": "**Kyu** tripped, sending a cascade of papers flying - he scrambled to gather them from the Right Side of his desk, muttering about being late."
+    },
+    {
+      "word": "右翼",
+      "reading": "みぎよく",
+      "meaning": "Right Wing",
+      "story": "**Sosa** gestured emphatically, pointing to the Right Wing of the stadium, urging the crowd to cheer louder for his team."
+    },
+    {
+      "word": "右回り",
+      "reading": "みぎまわり",
+      "meaning": "Right Turn",
+      "story": "**Rio** consulted the map, frowning, as **Kofi** insisted on taking a Right Turn, convinced it was a shortcut to the beach."
+    }
+  ],
+  "四": [
+    {
+      "word": "四角",
+      "reading": "しかく",
+      "meaning": "Square, Rectangle",
+      "story": "**Hans** meticulously measured each side of the Four-sided frame, ensuring it was perfectly aligned with the blueprints."
+    },
+    {
+      "word": "四月",
+      "reading": "しがつ",
+      "meaning": "April",
+      "story": "**Hina** planted cherry blossom seeds in April, hoping for a vibrant display of pink flowers next spring."
+    },
+    {
+      "word": "四方",
+      "reading": "しほう",
+      "meaning": "Every Direction",
+      "story": "**Monica** scanned the Four Directions, her sharp eyes missing nothing as she patrolled the neighborhood, always watchful."
+    }
+  ],
+  "左": [
+    {
+      "word": "左手",
+      "reading": "さしゅ",
+      "meaning": "Left Hand",
+      "story": "**Kenny** fumbled with the wrench, dropping it with a clang - he tried to catch it with his Left Hand, but only managed to knock over a bucket of paint."
+    },
+    {
+      "word": "左側",
+      "reading": "さしゅ",
+      "meaning": "Left Side",
+      "story": "**Sho** pointed to the Left Side of the surfboard, explaining to the beginner how to adjust their weight for better balance."
+    },
+    {
+      "word": "左翼",
+      "reading": "さしゅ",
+      "meaning": "Left Wing",
+      "story": "**Chuck** leaned against the truck, listening to the political debate on the radio, nodding in agreement with the speaker’s Left Wing views."
+    }
+  ],
+  "本": [
+    {
+      "word": "本棚",
+      "reading": "ほんだな",
+      "meaning": "Bookshelf",
+      "story": "**Mei** carefully arranged her collection of novels on the Bookshelf, alphabetizing them by author with meticulous precision."
+    },
+    {
+      "word": "本気",
+      "reading": "ほんき",
+      "meaning": "Serious, Earnest",
+      "story": "**Ray** started playing his saxophone with a serious expression, putting his whole Heart into the performance, finally feeling the music."
+    },
+    {
+      "word": "日本語",
+      "reading": "にほんご",
+      "meaning": "Japanese Language",
+      "story": "**Eve** diligently studied the Japanese Language textbook, determined to master the intricacies of the writing system."
+    }
+  ],
+  "白": [
+    {
+      "word": "白紙",
+      "reading": "はくし",
+      "meaning": "Blank Paper",
+      "story": "**Tay** presented a Blank Paper to the client, inviting him to sketch his ideas for the new building design."
+    },
+    {
+      "word": "白菜",
+      "reading": "はくさい",
+      "meaning": "Chinese Cabbage",
+      "story": "**Cho** chopped the Chinese Cabbage with practiced ease, preparing the ingredients for his signature hot and sour soup."
+    },
+    {
+      "word": "白鳥",
+      "reading": "はくちょう",
+      "meaning": "Swan",
+      "story": "**Mariana** gasped as a graceful Swan glided across the lake, its white feathers shimmering in the sunlight."
+    }
+  ],
+  "万": [
+    {
+      "word": "万歳",
+      "reading": "ばんざい",
+      "meaning": "Hurrah!",
+      "story": "**Sosa** jumped up and down, shouting “Hurrah!” as his team scored the winning goal, celebrating with the ecstatic crowd."
+    },
+    {
+      "word": "万が一",
+      "reading": "まんいち",
+      "meaning": "In Case",
+      "story": "**Shin** added a safety net, just in case, because In Case something went wrong, he’d be prepared."
+    },
+    {
+      "word": "万年",
+      "reading": "ばんねん",
+      "meaning": "Perpetual",
+      "story": "**Don** admired the Perpetual calendar, marveling at its ability to track the passage of time for countless years."
+    }
+  ],
+  "今": [
+    {
+      "word": "今度",
+      "reading": "こんど",
+      "meaning": "Next Time",
+      "story": "**Kyu** rushes into the classroom, apologizing for being late – he’ll be here Next Time, he swears, after he finishes helping **Homer** fix his broken scooter."
+    },
+    {
+      "word": "今夜",
+      "reading": "こんや",
+      "meaning": "Tonight",
+      "story": "**Yusuf**, lost in thought, paints furiously Tonight, capturing the city’s glow as **Sasha** dances beneath the neon lights."
+    },
+    {
+      "word": "今",
+      "reading": "いま",
+      "meaning": "Now",
+      "story": "**Ray** raises his baton, signaling the band to begin - the music swells, filling the smoky bar, and the audience realizes, this is Now."
+    }
+  ],
+  "午": [
+    {
+      "word": "午後",
+      "reading": "ごご",
+      "meaning": "Afternoon",
+      "story": "**Tai** slowly, deliberately, begins his afternoon training, the sun beating down as he prepares for the next competition."
+    },
+    {
+      "word": "午食",
+      "reading": "ごしょく",
+      "meaning": "Lunch",
+      "story": "**Don B** is already setting up his lunch spread, the smell of freshly cut grass and grilling meat filling the air, a perfect Afternoon meal."
+    },
+    {
+      "word": "午後",
+      "reading": "ごご",
+      "meaning": "Afternoon",
+      "story": "**Ryoko** gathers herbs in the Afternoon, the sun warming her face, as she prepares a healing tonic for the village."
+    }
+  ],
+  "友": [
+    {
+      "word": "友情",
+      "reading": "ゆうきょう",
+      "meaning": "Friendship",
+      "story": "**Kofi** and **Ju** share a knowing smile, their Friendship forged through countless late-night gaming sessions and shared victories."
+    },
+    {
+      "word": "友好",
+      "reading": "ゆうこう",
+      "meaning": "Friendly Relations",
+      "story": "The two nations sign a treaty, a symbol of their Friendly Relations, as **Senna** watches from the sidelines, hoping for peace."
+    },
+    {
+      "word": "友人",
+      "reading": "ゆうじん",
+      "meaning": "Friend",
+      "story": "**Mai** introduces her new Friend, **Bruno**, who immediately covers everyone in flour while attempting to bake a cake."
+    }
+  ],
+  "父": [
+    {
+      "word": "父親",
+      "reading": "ちちおや",
+      "meaning": "Father",
+      "story": "**Henry** meticulously reviews the blueprints, his Father’s legacy of precision and attention to detail guiding his every move."
+    },
+    {
+      "word": "父",
+      "reading": "ちち",
+      "meaning": "Dad",
+      "story": "**Kaku** grumbles about his Dad's fishing skills, but secretly admires his perseverance as he casts his line into the turquoise sea."
+    },
+    {
+      "word": "父",
+      "reading": "ちち",
+      "meaning": "Father",
+      "story": "**Shura** remembers her Father’s lessons in discipline and focus, pushing her to train harder, her eyes filled with determination."
+    }
+  ],
+  "北": [
+    {
+      "word": "北部",
+      "reading": "ほくぶ",
+      "meaning": "Northern Part",
+      "story": "**Mariana** points towards the North, eager to explore the rugged terrain and hidden waterfalls of the Northern Part of the island."
+    },
+    {
+      "word": "北極",
+      "reading": "ほっきょく",
+      "meaning": "North Pole",
+      "story": "**Bo** shivers, imagining the icy expanse of the North Pole, far from his cozy bicycle patrol route."
+    },
+    {
+      "word": "北",
+      "reading": "きた",
+      "meaning": "North",
+      "story": "**Rio** consults her compass, setting a course North, hoping to find a hidden beach rumored to be untouched by tourists."
+    }
+  ],
+  "半": [
+    {
+      "word": "半分",
+      "reading": "はんぶん",
+      "meaning": "Half",
+      "story": "**Monica** offers Half of her cake to **Monica**, who happily accepts, their laughter echoing through the bustling market."
+    },
+    {
+      "word": "半信半疑",
+      "reading": "はんしんはんぎ",
+      "meaning": "Skeptical",
+      "story": "**Monica** looks at the map, Half-skeptical, unsure if the treasure is real, but determined to find out."
+    },
+    {
+      "word": "半",
+      "reading": "はん",
+      "meaning": "Half",
+      "story": "**Monica** divides the pie into two halves, ensuring a fair share for everyone at the picnic."
+    }
+  ],
+  "外": [
+    {
+      "word": "外人",
+      "reading": "がいじん",
+      "meaning": "Foreigner, Outsider",
+      "story": "**Kofi** adjusts his hat, feeling the curious stares as he walks down the street - he’s an Outsider in this new place, a stranger in a strange land."
+    },
+    {
+      "word": "外交",
+      "reading": "がいこう",
+      "meaning": "Diplomacy, Foreign Affairs",
+      "story": "**Sosa** slammed his bat, sending the ball soaring, a clear signal of his Foreign policy - no compromises, just home runs."
+    },
+    {
+      "word": "外出",
+      "reading": "がいしゅつ",
+      "meaning": "Going Out, Excursion",
+      "story": "**Sheila** bundled up for an Excursion, the wind whipping her hair as she headed out to check on her sheep, hoping for a break from the farm."
+    }
+  ],
+  "母": [
+    {
+      "word": "母語",
+      "reading": "ぼご",
+      "meaning": "Native Language",
+      "story": "**Kiki** struggled to pronounce the new words, realizing she needed to learn her Native language to truly connect with her heritage."
+    },
+    {
+      "word": "母心",
+      "reading": "ぼしん",
+      "meaning": "Maternal Instinct",
+      "story": "**Selma** worried about her grandson, packing him extra socks and a thermos of soup, a clear display of Maternal Instinct."
+    },
+    {
+      "word": "母国",
+      "reading": "ぼこく",
+      "meaning": "Native Country",
+      "story": "**Rio** gazed at the photograph of his childhood home, longing for his Native Country and the familiar smells of his mother’s cooking."
+    }
+  ],
+  "休": [
+    {
+      "word": "休息",
+      "reading": "きゅうそく",
+      "meaning": "Rest, Respite",
+      "story": "**Kyu** collapsed onto the bench, desperately needing a Respite from the endless studying, a moment of quiet to recharge."
+    },
+    {
+      "word": "休止",
+      "reading": "きゅうし",
+      "meaning": "Pause, Suspension",
+      "story": "**Ritz** signaled a Pause in the music, frustrated by the orchestra’s sloppy playing, demanding a moment to correct their mistakes."
+    },
+    {
+      "word": "休暇",
+      "reading": "きゅうか",
+      "meaning": "Vacation, Holiday",
+      "story": "**Mariana** booked a Vacation to a tropical island, dreaming of sun-drenched beaches and a much-needed escape from the city."
+    }
+  ],
+  "先": [
+    {
+      "word": "先端",
+      "reading": "せんたん",
+      "meaning": "Tip, Forefront",
+      "story": "**Senna** gripped the steering wheel, her car’s Front edge slicing through the air as she pushed for the lead in the race."
+    },
+    {
+      "word": "先輩",
+      "reading": "せんぱい",
+      "meaning": "Senior, Upperclassman",
+      "story": "**Kyu** nervously approached his Senior, hoping to learn from his experience and avoid making the same mistakes."
+    },
+    {
+      "word": "先週",
+      "reading": "せんしゅう",
+      "meaning": "Last Week",
+      "story": "**Hina** remembered Last Week’s baking competition, the sweet smell of bread still lingering in her memory."
+    }
+  ],
+  "名": [
+    {
+      "word": "名詞",
+      "reading": "めいし",
+      "meaning": "Noun",
+      "story": "**Mei** corrected her classmate’s grammar, pointing out that 'happiness' is a Noun, not an adjective."
+    },
+    {
+      "word": "名声",
+      "reading": "めいせい",
+      "meaning": "Fame, Reputation",
+      "story": "**Sosa** basked in the Fame of his latest home run, the crowd chanting his name with wild enthusiasm."
+    },
+    {
+      "word": "名前",
+      "reading": "なまえ",
+      "meaning": "Name",
+      "story": "**Cora** leaned over the fence, whispering a Name to the neighbor's dog, hoping to coax it closer."
+    }
+  ],
+  "年": [
+    {
+      "word": "年齢",
+      "reading": "ねんれい",
+      "meaning": "Age",
+      "story": "**Don** squinted at his driver's license, realizing his Age was catching up to him, a sobering thought."
+    },
+    {
+      "word": "年末",
+      "reading": "ねんまつ",
+      "meaning": "Year-End",
+      "story": "**Sheila** started planning her Year-End party, wanting to celebrate with friends and family before the new year began."
+    },
+    {
+      "word": "年功",
+      "reading": "ねんこう",
+      "meaning": "Seniority, Tenure",
+      "story": "**Ritz** appreciated the respect afforded by his Seniority, a reward for years of dedication and hard work."
+    }
+  ],
+  "気": [
+    {
+      "word": "気分",
+      "reading": "きぶん",
+      "meaning": "Feeling, Mood",
+      "story": "**Kyu** felt a sudden chill as **Homer** tripped over a pile of leaves, sending a flurry of autumn colors swirling - his mood shifted instantly from serene to annoyed."
+    },
+    {
+      "word": "電気",
+      "reading": "でんき",
+      "meaning": "Electricity",
+      "story": "A **den** of sparks erupted from the old wiring as **Kenny** attempted to fix the lights, plunging the entire house into darkness - the Electric current was too much for him."
+    },
+    {
+      "word": "気が狂う",
+      "reading": "きがくるう",
+      "meaning": "To Go Crazy",
+      "story": "**Sho** stared at the crashing waves, the salty spray stinging his face, as **Kyu** argued about the perfect board wax - he felt his mind was going Crazy."
+    }
+  ],
+  "百": [
+    {
+      "word": "評判",
+      "reading": "ひょうばん",
+      "meaning": "Reputation, Fame",
+      "story": "The **Haku** monk's reputation spread like wildfire after he helped **Tai** lift a fallen tree - a hundred People came to seek his wisdom."
+    },
+    {
+      "word": "百人",
+      "reading": "ひゃくにん",
+      "meaning": "Hundred People",
+      "story": "**Shula** gathered a hundred Persons for a team-building exercise, yelling encouragement as they attempted to move a giant boulder - it was a Hundred People against a mountain."
+    },
+    {
+      "word": "百合",
+      "reading": "ひゃくり",
+      "meaning": "Lily Flower",
+      "story": "**Eve** carefully arranged a bouquet of Lily Flowers, their fragrance filling the air - a hundred petals, a symbol of purity and grace."
+    }
+  ],
+  "男": [
+    {
+      "word": "男性",
+      "reading": "だんせい",
+      "meaning": "Male Person",
+      "story": "A Male Person in a sharp suit rushed past **Carlos**, clutching a briefcase - clearly late for an important meeting."
+    },
+    {
+      "word": "男の子",
+      "reading": "おとこのこ",
+      "meaning": "Boy, Male Child",
+      "story": "**Hina** giggled as the Boy chased pigeons across the plaza, his laughter echoing through the square - a Male Child full of boundless energy."
+    },
+    {
+      "word": "男装",
+      "reading": "だんそう",
+      "meaning": "Masquerade (as a man)",
+      "story": "**Monica** watched the street performer’s Male Disguise with a skeptical eye, knowing he was just trying to earn a few extra coins."
+    }
+  ],
+  "見": [
+    {
+      "word": "見学",
+      "reading": "けんがく",
+      "meaning": "Sightseeing, Visit",
+      "story": "**Ryoko** led a group on a Sightseeing tour of the herbal garden, pointing out the medicinal properties of each plant - a chance to learn and appreciate nature."
+    },
+    {
+      "word": "見出し",
+      "reading": "みだし",
+      "meaning": "Headline, Heading",
+      "story": "**Mei** corrected the typo in the Headline of the school newspaper, ensuring every detail was perfect - a sharp eye for accuracy."
+    },
+    {
+      "word": "見舞い",
+      "reading": "みまい",
+      "meaning": "Get Well Visit",
+      "story": "**Mariana** brought a Get Well Visit to **Shin**, offering a comforting smile and a small gift – a gesture of friendship and support."
+    }
+  ],
+  "車": [
+    {
+      "word": "車輪",
+      "reading": "しゃりん",
+      "meaning": "Wheel",
+      "story": "**Tay** meticulously sketched the design of the Wheel, ensuring its perfect symmetry and functionality - a testament to his precision."
+    },
+    {
+      "word": "車窓",
+      "reading": "しゃまど",
+      "meaning": "Car Window",
+      "story": "**Rio** gazed out the Car Window, watching the landscape blur past - a fleeting moment of peace on his journey."
+    },
+    {
+      "word": "自動車",
+      "reading": "じどうしゃ",
+      "meaning": "Automobile, Car",
+      "story": "**Don** watched the Automobile speed away, a blur of color against the backdrop of the city - a symbol of modern transportation."
+    }
+  ],
+  "毎": [
+    {
+      "word": "毎月",
+      "reading": "まいつき",
+      "meaning": "Monthly",
+      "story": "**Ray** reminded her to pay the rent Monthly, ensuring the bills were always up to date - a responsible approach to finances."
+    },
+    {
+      "word": "毎朝",
+      "reading": "まいあさ",
+      "meaning": "Every Morning",
+      "story": "**Mai** woke up Every Morning to the sound of birdsong, feeling refreshed and ready for the day - a peaceful start to her routine."
+    },
+    {
+      "word": "毎度",
+      "reading": "まいつき",
+      "meaning": "Every Time (polite)",
+      "story": "**Carlos** greeted his customers with a polite '毎度', showing his appreciation for their continued business - a gesture of respect and courtesy."
+    }
+  ],
+  "行": [
+    {
+      "word": "進行",
+      "reading": "しんこう",
+      "meaning": "Progress, Advance",
+      "story": "**Shin**, meticulously checking the patient's chart, notes the slow but steady Progress of the recovery – a small step forward each day."
+    },
+    {
+      "word": "旅行",
+      "reading": "りょこう",
+      "meaning": "Travel, Trip",
+      "story": "**Ryoko** carefully measures out the herbs, preparing a remedy for weary travelers returning from their Trip, a fragrant balm for aching limbs."
+    },
+    {
+      "word": "行為",
+      "reading": "こうい",
+      "meaning": "Action, Behavior",
+      "story": "**Kofi**, exasperated, points to the spilled paint, declaring the children's Behavior a serious Action requiring immediate cleanup."
+    }
+  ],
+  "西": [
+    {
+      "word": "西洋",
+      "reading": "せいよう",
+      "meaning": "Western (World)",
+      "story": "**Yoan**, admiring the intricate design of the antique clock, explains it's a masterpiece of Western craftsmanship, a relic of a bygone era."
+    },
+    {
+      "word": "西瓜",
+      "reading": "すいか",
+      "meaning": "Watermelon",
+      "story": "**Tai** slowly moves through the market, his massive frame dwarfing the stalls, searching for a juicy Watermelon to cool him down."
+    },
+    {
+      "word": "西部",
+      "reading": "せいぶ",
+      "meaning": "West (Region)",
+      "story": "**Henry**, meticulously reviewing the geological survey, confirms the presence of valuable minerals in the Western region, marking it for future exploration."
+    }
+  ],
+  "何": [
+    {
+      "word": "何時",
+      "reading": "なんじ",
+      "meaning": "What Time",
+      "story": "**Yoan**, obsessively checking his luxury watch, demands to know What Time the meeting will start, tapping his foot impatiently."
+    },
+    {
+      "word": "何故",
+      "reading": "なぜ",
+      "meaning": "Why",
+      "story": "**Selma**, shaking her head, demands to know Why her grandson hasn't called, her voice rising with concern."
+    },
+    {
+      "word": "何人",
+      "reading": "なんにん",
+      "meaning": "How Many People",
+      "story": "**Monica**, counting the heads at the table, asks How Many People are coming for dinner, already planning the elaborate spread."
+    }
+  ],
+  "来": [
+    {
+      "word": "到来",
+      "reading": "とうらい",
+      "meaning": "Arrival, Coming",
+      "story": "**Haku**, appearing silently from the mist, signals the Arrival of the monsoon season, a sudden shift in the mountain air."
+    },
+    {
+      "word": "未来",
+      "reading": "みらい",
+      "meaning": "Future",
+      "story": "**Henry**, meticulously reviewing spreadsheets, contemplates the Future of his investments, a complex web of numbers and projections."
+    },
+    {
+      "word": "来年",
+      "reading": "らいねん",
+      "meaning": "Next Year",
+      "story": "**Mariana**, planning her next adventure, excitedly discusses her travel plans for Next Year, a new continent to explore."
+    }
+  ],
+  "学": [
+    {
+      "word": "学者",
+      "reading": "がくしゃ",
+      "meaning": "Scholar, Academic",
+      "story": "**Kay**, meticulously examining the ancient manuscript, consults with the Scholar, seeking clarification on a cryptic passage."
+    },
+    {
+      "word": "学校",
+      "reading": "がっこう",
+      "meaning": "School",
+      "story": "**Kyu**, rushing late for class, sprints past the School, a blur of hurried footsteps and apologies."
+    },
+    {
+      "word": "学問",
+      "reading": "がくもん",
+      "meaning": "Learning, Study",
+      "story": "**Kyo**, patiently guiding the apprentice, emphasizes the importance of discipline and dedication in the pursuit of Learning."
+    }
+  ],
+  "金": [
+    {
+      "word": "金色",
+      "reading": "きんいろ",
+      "meaning": "Golden (Color)",
+      "story": "**Kin**, admiring the sunset, remarks on the Golden hue painting the sky, a breathtaking display of natural beauty."
+    },
+    {
+      "word": "金属",
+      "reading": "きんぞく",
+      "meaning": "Metal",
+      "story": "**Don**, meticulously examining the ore sample, identifies traces of valuable Metal, a potential source of great wealth."
+    },
+    {
+      "word": "金銭",
+      "reading": "きんぜん",
+      "meaning": "Money, Funds",
+      "story": "**Yoan**, carefully counting his Gold, meticulously tracks his expenses, a master of financial precision."
+    }
+  ],
+  "雨": [
+    {
+      "word": "雨具",
+      "reading": "あまぐ",
+      "meaning": "Rain Gear",
+      "story": "**Eve** shivered, pulling her **den** jacket tighter as the Rain lashed down; she needed a good Rain Gear to keep dry."
+    },
+    {
+      "word": "雨水",
+      "reading": "あまみず",
+      "meaning": "Rain Water",
+      "story": "The thirsty plants drank deeply from the Rain Water collected in the barrel; **Eve** smiled, knowing they would thrive."
+    },
+    {
+      "word": "雨上がり",
+      "reading": "あめあがり",
+      "meaning": "After Rain",
+      "story": "After Rain, a **coop** of children splashed in puddles, their laughter echoing through the park."
+    }
+  ],
+  "国": [
+    {
+      "word": "国語",
+      "reading": "こくご",
+      "meaning": "National Language",
+      "story": "**Kyo** patiently corrected **Kyu**’s pronunciation of the National Language, explaining the subtle nuances of each character."
+    },
+    {
+      "word": "国民",
+      "reading": "こくみん",
+      "meaning": "National Citizen",
+      "story": "The National Citizen proudly waved the flag, cheering for their team at the international competition."
+    },
+    {
+      "word": "国境",
+      "reading": "こっきょう",
+      "meaning": "National Border",
+      "story": "**Kai** stared across the National Border, the waves crashing against the shore, a silent promise of adventure."
+    }
+  ],
+  "東": [
+    {
+      "word": "東側",
+      "reading": "とうがわ",
+      "meaning": "East Side",
+      "story": "**Tova** surveyed the East Side of the farm, the rising sun painting the fields in golden light."
+    },
+    {
+      "word": "東京",
+      "reading": "とうきょう",
+      "meaning": "Tokyo",
+      "story": "**Rio** stepped off the train in Tokyo, the neon lights of the bustling city blurring past her."
+    },
+    {
+      "word": "東洋",
+      "reading": "とうよう",
+      "meaning": "Orient",
+      "story": "**Yoan** studied a map of the Orient, dreaming of exploring ancient temples and bustling markets."
+    }
+  ],
+  "長": [
+    {
+      "word": "長袖",
+      "reading": "ちょうそで",
+      "meaning": "Long Sleeves",
+      "story": "**Sheila** preferred Long Sleeves to protect her arms from the harsh sun while tending her sheep."
+    },
+    {
+      "word": "長距離",
+      "reading": "ちょうきょり",
+      "meaning": "Long Distance",
+      "story": "**Tai** prepared for the Long Distance race, stretching his massive legs and focusing on the finish line."
+    },
+    {
+      "word": "長所",
+      "reading": "ちょうしょ",
+      "meaning": "Advantages",
+      "story": "**Kay** carefully listed the Advantages of the new suspect’s alibi, her eyes sharp and observant."
+    }
+  ],
+  "前": [
+    {
+      "word": "前髪",
+      "reading": "まえがみ",
+      "meaning": "Front Hair",
+      "story": "**Monica** impatiently brushed her Front Hair out of her eyes, ready to confront the neighborhood gossip."
+    },
+    {
+      "word": "前払い",
+      "reading": "まえはらい",
+      "meaning": "Advance Payment",
+      "story": "**Fuad** demanded an Advance Payment for the goods, his eyes gleaming with shrewd calculation."
+    },
+    {
+      "word": "前進",
+      "reading": "ぜんしん",
+      "meaning": "Advance, Progress",
+      "story": "**Shula** urged the team to make a Frontward push, their determination visible in every stride."
+    }
+  ],
+  "南": [
+    {
+      "word": "南国",
+      "reading": "なんごく",
+      "meaning": "Southern Country",
+      "story": "**Rio** dreamed of visiting a Southern Country, imagining lush landscapes and exotic fruits."
+    },
+    {
+      "word": "南 aswell",
+      "reading": "みなみ",
+      "meaning": "South",
+      "story": "**Kofi** pointed South, indicating the direction of the hidden waterfall, a secret known only to a few."
+    },
+    {
+      "word": "南側",
+      "reading": "みなみがわ",
+      "meaning": "South Side",
+      "story": "**Tova** checked the South Side of the barn, ensuring all the animals were safely inside for the night."
+    }
+  ],
+  "後": [
+    {
+      "word": "後ろ",
+      "reading": "うしろ",
+      "meaning": "Behind, Rear",
+      "story": "**Sheila** watched the flock of sheep disappear over the hill, their woolly bodies fading into the **coop** behind her - she knew exactly where they were, and how to get them back."
+    },
+    {
+      "word": "後悔",
+      "reading": "こうかい",
+      "meaning": "Regret, Repentance",
+      "story": "**Sosa** slammed his bat down after striking out, a wave of **gin** washing over him - he felt the heavy weight of Regret for letting his team down."
+    },
+    {
+      "word": "以後",
+      "reading": "いか",
+      "meaning": "Afterward, Henceforth",
+      "story": "**Eve** carefully labeled the plant, noting, 'After this, water every three days' - a precise plan for the future, carefully laid out."
+    }
+  ],
+  "食": [
+    {
+      "word": "食事",
+      "reading": "しょくじ",
+      "meaning": "Meal, Dining",
+      "story": "**Cho** tossed a handful of spices into the wok, the aroma of the Meal filling the bustling street kitchen - a symphony of flavors, ready to be devoured."
+    },
+    {
+      "word": "食料",
+      "reading": "しょくりょう",
+      "meaning": "Food Supplies",
+      "story": "**Ryoko** inspected the dried herbs, ensuring there were enough Food Supplies to last through the harsh winter - a vital resource for the mountain village."
+    },
+    {
+      "word": "食事",
+      "reading": "じき",
+      "meaning": "Meal, Dining",
+      "story": "**Ju** paused her game, a notification blinking on the screen - it was time for Meal, and she couldn't ignore her mother's insistent message."
+    }
+  ],
+  "校": [
+    {
+      "word": "学校",
+      "reading": "がっこう",
+      "meaning": "School, Academy",
+      "story": "**Kyu** sprinted late to class, dodging students and tripping over backpacks - he was always late to School, much to his teacher's dismay."
+    },
+    {
+      "word": "校長",
+      "reading": "こうちょう",
+      "meaning": "Principal, Headmaster",
+      "story": "**Ray** noticed the Principal standing near the stage, his posture stiff and formal - a figure of authority, overseeing the school's annual concert."
+    },
+    {
+      "word": "校庭",
+      "reading": "こうてい",
+      "meaning": "Schoolyard, Playground",
+      "story": "**Tai** lumbered across the Schoolyard, his massive feet shaking the ground - a gentle giant, despite his size."
+    }
+  ],
+  "時": [
+    {
+      "word": "時間",
+      "reading": "じかん",
+      "meaning": "Time, Hour",
+      "story": "**Yoan** obsessively checked his watch, ensuring he was precisely on **time** for his meeting - every second was precious, every minute accounted for."
+    },
+    {
+      "word": "時計",
+      "reading": "とけい",
+      "meaning": "Clock, Watch",
+      "story": "**Don B** glanced at the Clock hanging above his barber chair, a grin spreading across his face - another customer finished, time for lunch!"
+    },
+    {
+      "word": "時々",
+      "reading": "ときどき",
+      "meaning": "Sometimes, Occasionally",
+      "story": "**Monica** would visit the local bakery, Time to Time, to sample the latest creations - a sweet indulgence, a moment of pleasure."
+    }
+  ],
+  "高": [
+    {
+      "word": "高い",
+      "reading": "たかい",
+      "meaning": "High, Tall",
+      "story": "**Haku** stood on the mountain peak, the view stretching out below him - a Tall, majestic panorama of the world."
+    },
+    {
+      "word": "高校",
+      "reading": "こうこう",
+      "meaning": "High School",
+      "story": "**Kenny** nervously adjusted his tie, heading to High School for his first day - a new chapter, a fresh start."
+    },
+    {
+      "word": "高原",
+      "reading": "こうげん",
+      "meaning": "Highland, Plateau",
+      "story": "**Shin** hiked across the Highland, the air thin and crisp - a challenging climb, a rewarding view."
+    }
+  ],
+  "間": [
+    {
+      "word": "間",
+      "reading": "ま",
+      "meaning": "Interval, Space",
+      "story": "**Henry** measured the space between the two trees, carefully planning the placement of the new garden - a precise calculation, a meticulous design."
+    },
+    {
+      "word": "間隔",
+      "reading": "かんかく",
+      "meaning": "Interval, Distance",
+      "story": "**Henry** checked the Interval between the raindrops, a smile spreading across his face - the rain was easing, a welcome relief."
+    },
+    {
+      "word": "間取り",
+      "reading": "まどり",
+      "meaning": "Floor Plan, Layout",
+      "story": "**Henry** studied the Floor Plan, tracing the lines with his finger - a detailed blueprint, a vision brought to life."
+    }
+  ],
+  "話": [
+    {
+      "word": "話す",
+      "reading": "はなす",
+      "meaning": "To Speak, Talk",
+      "story": "**Kofi** leans in, his hands covered in sawdust, and begins to **den**-ounce the shoddy workmanship of the new carpenter, a torrent of words pouring from his mouth."
+    },
+    {
+      "word": "物語",
+      "reading": "ものがたり",
+      "meaning": "Story, Tale",
+      "story": "**Haku**, the silent monk, gestures for **Eve** to sit, then begins to weave a long, winding Tale of a lost kingdom, his voice barely a whisper."
+    },
+    {
+      "word": "場所",
+      "reading": "ばしょ",
+      "meaning": "Place, Location",
+      "story": "**Chuck**, the truck driver, slams on his brakes, muttering about the lack of a designated **gin**-soaked rest stop at this desolate Place."
+    }
+  ],
+  "電": [
+    {
+      "word": "電車",
+      "reading": "でんしゃ",
+      "meaning": "Electric Train",
+      "story": "**Yoan**, checking his luxury watch, sighs impatiently as the **den**-like train rattles along the tracks, delaying his arrival at the important meeting."
+    },
+    {
+      "word": "電気",
+      "reading": "でんき",
+      "meaning": "Electricity",
+      "story": "**Kenny**, the plumber, sparks fly as he attempts to fix the faulty wiring, plunging the entire house into total darkness - a true Electric disaster."
+    },
+    {
+      "word": "電話",
+      "reading": "でんわ",
+      "meaning": "Telephone",
+      "story": "**Monica**, the neighborhood matriarch, barks into the Telephone, demanding to know why the electricity bill is so high, her voice sharp and unwavering."
+    }
+  ],
+  "聞": [
+    {
+      "word": "聞く",
+      "reading": "きく",
+      "meaning": "To Listen, Hear",
+      "story": "**Ray**, the jazz musician, closes his eyes, listening intently as **Ji** tells a story about his childhood, the mournful saxophone echoing his words."
+    },
+    {
+      "word": "聞き",
+      "reading": "きき",
+      "meaning": "Hearing, Listening",
+      "story": "**Kiki**, the Belgian girl, with her Hearing so sharp, catches every word of the argument between **Hans** and the engineer, giggling at the absurdity."
+    },
+    {
+      "word": "説明",
+      "reading": "せつめい",
+      "meaning": "Explanation",
+      "story": "**Henry**, the actuary, meticulously reviews the Explanation of the new insurance policy, adjusting his glasses and muttering about the lack of clarity."
+    }
+  ],
+  "語": [
+    {
+      "word": "語る",
+      "reading": "かたる",
+      "meaning": "To Tell, Speak",
+      "story": "**Tai**, the rugby player, struggles to articulate his feelings, finally managing to **gin**-gerly utter a few words of gratitude to his coach."
+    },
+    {
+      "word": "著名",
+      "reading": "ちょめい",
+      "meaning": "Famous, Renowned",
+      "story": "**Sosa**, the baseball player, basks in the cheers of the crowd, a **den** of adulation surrounding the Famous athlete."
+    },
+    {
+      "word": "語学",
+      "reading": "ごかく",
+      "meaning": "Language, Linguistics",
+      "story": "**Kyu**, the student, frantically studies his **gin**-gerly compiled notes, hoping to pass the Language exam and finally graduate."
+    }
+  ],
+  "読": [
+    {
+      "word": "読む",
+      "reading": "よむ",
+      "meaning": "To Read",
+      "story": "**Mariana**, with her dog at her side, sits on a park bench, happily **den**-ing herself a few moments of peace as she reads a worn paperback."
+    },
+    {
+      "word": "読書",
+      "reading": "どくしょ",
+      "meaning": "Reading, Book",
+      "story": "**Shin**, the doctor, finds solace in Reading during his long night shifts, escaping the stress of the hospital with a captivating novel."
+    },
+    {
+      "word": "読解",
+      "reading": "どっかい",
+      "meaning": "Reading Comprehension",
+      "story": "**Kyu**, the student, struggles with the Reading Comprehension section of the test, feeling utterly overwhelmed by the complex text."
+    }
+  ],
+  "生": [
+    {
+      "word": "生活",
+      "reading": "せいかつ",
+      "meaning": "Life, Living",
+      "story": "**Monica**, the neighborhood matriarch, surveys her meticulously ordered garden, a testament to her disciplined Life and unwavering standards."
+    },
+    {
+      "word": "生物",
+      "reading": "せいぶつ",
+      "meaning": "Living Thing, Organism",
+      "story": "**Eve**, the botanist, examines a rare specimen under a microscope, marveling at the intricate details of this Living Thing."
+    },
+    {
+      "word": "先生",
+      "reading": "せんせい",
+      "meaning": "Teacher, Professor",
+      "story": "**Kiki**, the Belgian girl, bows respectfully to her **gin**-erally kind Teacher, eager to learn more about the world."
+    }
+  ],
+  "書": [
+    {
+      "word": "教科書",
+      "reading": "きょうかしょ",
+      "meaning": "Textbook",
+      "story": "**Kyo** carefully corrects a smudge of ink on the pages, the textbook heavy in his hands - each stroke a testament to years of study."
+    },
+    {
+      "word": "教科",
+      "reading": "きょうか",
+      "meaning": "Textbook",
+      "story": "**Kyo** meticulously examines the textbook, adjusting the alignment of the characters - the precision of the page reflected in his own calm demeanor."
+    },
+    {
+      "word": "書庫",
+      "reading": "しょこ",
+      "meaning": "Archive, Repository",
+      "story": "Dust motes dance in the single shaft of light illuminating **Ji** as he pulls a scroll from the 書庫, the scent of ancient paper filling the air."
     }
   ]
 }
