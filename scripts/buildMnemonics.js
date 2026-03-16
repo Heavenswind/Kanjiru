@@ -106,6 +106,39 @@ const IPA_REFERENCE = Object.entries(IPA)
   .join('\n');
 
 // ─── Per-kanji context builder ──────────────────────────────────────────────
+
+function buildReadingHint(r) {
+  const ipaStr = IPA[r] || '?';
+  const cast = CAST[r];
+  if (cast) {
+    return `${r} → ${ipaStr} → use cast character **${cast.name}** (${cast.description})`;
+  }
+  return `${r} → ${ipaStr} → pick English word whose start matches these phonemes`;
+}
+
+function buildKanjiContext(k) {
+  const onReadings = k.readings_on.slice(0, 2);
+  const kunReadings = k.readings_kun.slice(0, 2)
+    .map(r => r.replace(/[.-].*/, '')).filter(Boolean);
+  const rads = k.radicals.slice(0, 4).map(formatRadical).join(', ') || '—';
+
+  const series = KANJI_TO_SERIES[k.character];
+  const phoneticHint = series
+    ? series.map(s => `phonetic component ${s.comp} signals reading ${s.reading} → ${buildReadingHint(s.reading)}`).join('; ')
+    : null;
+
+  const lines = [
+    `character: ${k.character}`,
+    `meaning: ${k.meanings[0]}`,
+    `radicals: ${rads}`,
+    `on-yomi: ${onReadings.map(buildReadingHint).join(' | ') || '—'}`,
+    `kun-yomi: ${kunReadings.map(buildReadingHint).join(' | ') || '—'}`,
+  ];
+  if (phoneticHint) lines.push(`phonetic hint: ${phoneticHint}`);
+
+  return lines.join('\n');
+}
+
 // ─── Prompt ────────────────────────────────────────────────────────────────
 
 function buildPrompt(batch) {
