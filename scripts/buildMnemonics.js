@@ -43,10 +43,11 @@ const RADICAL_KANJI_JSON = path.join(__dirname, './radicalKanji.json');
 const PHONETIC_JSON      = path.join(__dirname, './phoneticComponents.json');
 const IPA_JSON           = path.join(__dirname, './romajiIPA.json');
 const OUT_FILE           = path.join(__dirname, '../src/data/mnemonics.json');
-const BATCH_SIZE         = 8;
 
 const args = process.argv.slice(2);
 const USE_LOCAL = args.includes('--local');
+
+const BATCH_SIZE         = USE_LOCAL ? 4 : 8;
 const REGEN     = args.includes('--regen');
 const modelArg  = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
 const levelArg  = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
@@ -227,6 +228,7 @@ function callOllama(prompt) {
       model: OLLAMA_MODEL,
       prompt,
       stream: false,
+      format: 'json',
       options: { temperature: 0.7, num_predict: 8000 },
     });
     const req = require('http').request(
