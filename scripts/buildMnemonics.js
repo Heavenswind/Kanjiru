@@ -149,31 +149,42 @@ function buildPrompt(batch) {
 For each kanji write ONE unified "story" — a single vivid scene (2-3 sentences max) that weaves together:
 1. The kanji's RADICALS as physical objects or characters in the scene
 2. A SOUND ANCHOR for the on-yomi reading (and kun-yomi if it fits naturally without cluttering)
-3. The kanji's MEANING as the natural conclusion — never state the meaning word directly
+3. The kanji's MEANING as the natural conclusion — implied by the scene, never spoken aloud
 
 ═══ SOUND ANCHOR RULES ═══
 
 A. CAST CHARACTER — use when on/kun reading exactly matches a cast entry's sound:
-   - The kanji context will say "CAST: Name" — use that character naturally in the scene
+   - The kanji context will say "CAST: Name" — use ONLY that character, no others
    - Bold their name: **Kyu**, **Kofi**, **Ji**
-   - EXACT match only — never approximate or use a cast character for a similar-sounding reading
+   - EXACT match only — NEVER use a cast character whose sound doesn't match the reading being anchored
+   - Check the cast list carefully before choosing — wrong cast = wrong memory
 
 B. ENGLISH SOUND-ALIKE — use when no cast match exists:
    - The kanji context gives you the IPA of the reading
    - Find a common English word whose FIRST phonemes exactly match that IPA
-   - Bold the word: **den**, **coop**, **coat**
-   - STRICT phoneme match — /kuː/ = "coop/cool/coup", NOT "queue" (which is /kjuː/)
+   - Bold the word: **den**, **hatch**, **sand**
+   - STRICT phoneme match — /kuː/ = "coop/cool/coup", NOT "queue" (/kjuː/)
    - Use the word naturally in the scene — never explain the sound connection
+   - Every story MUST have at least one bold anchor — no exceptions
 
 C. Bold format: exactly one bold element per anchored reading. No other bold text in the story.
 
-D. Kun-yomi: only anchor it if it's distinct from on-yomi AND fits naturally in the same scene. Skip if it clutters.
+D. Kun-yomi: only anchor it if it's distinct from on-yomi AND fits naturally. Skip if it clutters.
+
+═══ STRICT PROHIBITIONS ═══
+✗ NEVER write the kanji's meaning word in the story (e.g. for 火 never write "fire" or "flame")
+✗ NEVER write the reading in romaji or hiragana in the story
+✗ NEVER write "X (漢字)" to label the meaning inline — e.g. never "Fire (火)", "Person (人)", "Rest (休)"
+✗ NEVER invent cast characters not in the cast list
+✗ NEVER leave a story without a bold anchor
+
+The meaning must emerge from the scene itself — the reader should feel it, not read it.
 
 ═══ RADICAL RULES ═══
-- Use ONLY the radical names given — do not invent components
-- When a radical shows a kanji symbol e.g. "Sun (日)", include it inline: "The Sun (日)..."
-- Treat radicals as physical objects or beings in the scene
-- Strange, funny, or dramatic scenes stick better than plain descriptions
+- Use ONLY the radical names given in the kanji context — do not invent components
+- When a radical IS a kanji (e.g. "Sun (日)"), name it naturally: "The Sun (日)..." — this is the radical label, not the meaning reveal
+- Treat radicals as physical props or scenery in the scene
+- Strange, vivid, or funny scenes stick better than plain descriptions
 
 ═══ OUTPUT FORMAT ═══
 Respond with ONLY valid JSON. Each key is the kanji character, value has a single "story" field.
@@ -188,13 +199,16 @@ ${IPA_REFERENCE}
 ═══ EXAMPLES ═══
 {
   "休": {
-    "story": "The Leader pushes the group for hours until **Kyu** finally slumps against the Tree (木) and refuses to move — nobody argues, and for the first time all day, everyone rests."
+    "story": "The leader drives the group for hours until **Kyu** finally slumps against the Tree (木) and won't budge — nobody protests, and for the first time all day, the whole group collapses into stillness."
   },
   "電": {
-    "story": "Rain hammers the Rice Paddy (田) so hard the Umbrella standing in the field gets struck — the whole **den** lights up, every outlet in the area crackling with electricity."
+    "story": "Rain hammers the Rice Paddy (田) so hard the Umbrella planted in the field gets struck — the whole **den** surges with crackling blue light, every wire in the building humming."
   },
-  "明": {
-    "story": "**Mei** stays up past midnight with only the Moon (月) for company — but her desk lamp blazes so bright the Sun (日) itself seems to rise early, flooding everything with light."
+  "七": {
+    "story": "She counts out exactly **sheet** by **sheet** until she has the right number — her careful hands make no mistake, and the pile is perfect."
+  },
+  "万": {
+    "story": "A lone wanderer slices a single Leaf with the Sword (刀) — and it keeps splitting, again and again, until the fragments are beyond counting, piling up like sand across the whole plain."
   }
 }
 
