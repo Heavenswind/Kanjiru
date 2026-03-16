@@ -37,20 +37,20 @@ const https = require('https');
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
-const KANJI_JSON         = path.join(__dirname, '../src/data/kanji.json');
-const CAST_JSON          = path.join(__dirname, './mnemonicCast.json');
+const KANJI_JSON = path.join(__dirname, '../src/data/kanji.json');
+const CAST_JSON = path.join(__dirname, './mnemonicCast.json');
 const RADICAL_KANJI_JSON = path.join(__dirname, './radicalKanji.json');
-const PHONETIC_JSON      = path.join(__dirname, './phoneticComponents.json');
-const IPA_JSON           = path.join(__dirname, './romajiIPA.json');
-const OUT_FILE           = path.join(__dirname, '../src/data/mnemonics.json');
+const PHONETIC_JSON = path.join(__dirname, './phoneticComponents.json');
+const IPA_JSON = path.join(__dirname, './romajiIPA.json');
+const OUT_FILE = path.join(__dirname, '../src/data/mnemonics.json');
 
 const args = process.argv.slice(2);
 const USE_LOCAL = args.includes('--local');
 
-const BATCH_SIZE         = USE_LOCAL ? 4 : 8;
-const REGEN     = args.includes('--regen');
-const modelArg  = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
-const levelArg  = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
+const BATCH_SIZE = USE_LOCAL ? 4 : 8;
+const REGEN = args.includes('--regen');
+const modelArg = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
+const levelArg = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
 
 const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--'))
   ? modelArg : 'gemma3:12b';
@@ -74,9 +74,9 @@ if (!USE_LOCAL && !GEMINI_KEY) {
 // ─── Load reference data ────────────────────────────────────────────────────
 
 const RADICAL_KANJI = JSON.parse(fs.readFileSync(RADICAL_KANJI_JSON));
-const castData      = JSON.parse(fs.readFileSync(CAST_JSON));
-const PHONETIC      = JSON.parse(fs.readFileSync(PHONETIC_JSON));
-const IPA           = JSON.parse(fs.readFileSync(IPA_JSON)).mora;
+const castData = JSON.parse(fs.readFileSync(CAST_JSON));
+const PHONETIC = JSON.parse(fs.readFileSync(PHONETIC_JSON));
+const IPA = JSON.parse(fs.readFileSync(IPA_JSON)).mora;
 
 // Cast map: hiragana sound → { name, description }
 const CAST = {};
@@ -106,40 +106,6 @@ const IPA_REFERENCE = Object.entries(IPA)
   .join('\n');
 
 // ─── Per-kanji context builder ──────────────────────────────────────────────
-
-function buildKanjiContext(k) {
-  const onReadings  = k.readings_on.slice(0, 2);
-  const kunReadings = k.readings_kun.slice(0, 2)
-    .map(r => r.replace(/[.-].*/, '')).filter(Boolean);
-  const rads = k.radicals.slice(0, 4).map(formatRadical).join(', ') || '—';
-
-  const onHints = onReadings.map(r => {
-    if (CAST[r]) return `${r} → CAST: **${CAST[r].name}** (${CAST[r].description})`;
-    return `${r} → IPA: ${IPA[r] || '?'} — pick English word starting with these phonemes`;
-  });
-
-  const kunHints = kunReadings.map(r => {
-    if (CAST[r]) return `${r} → CAST: **${CAST[r].name}** (${CAST[r].description})`;
-    return `${r} → IPA: ${IPA[r] || '?'} — pick English word starting with these phonemes`;
-  });
-
-  const series = KANJI_TO_SERIES[k.character];
-  const phoneticHint = series
-    ? series.map(s => `contains phonetic component ${s.comp} → reliably signals ${s.reading} → use ${s.castName}`).join('; ')
-    : null;
-
-  const lines = [
-    `character: ${k.character}`,
-    `meaning: ${k.meanings[0]}`,
-    `radicals: ${rads}`,
-    `on-yomi: ${onHints.join(' | ') || '—'}`,
-    `kun-yomi: ${kunHints.join(' | ') || '—'}`,
-  ];
-  if (phoneticHint) lines.push(`phonetic hint: ${phoneticHint}`);
-
-  return lines.join('\n');
-}
-
 // ─── Prompt ────────────────────────────────────────────────────────────────
 
 function buildPrompt(batch) {
@@ -154,23 +120,22 @@ For each kanji write ONE unified "story" — a single vivid scene (2-3 sentences
 
 ═══ SOUND ANCHOR RULES ═══
 
-A. CAST CHARACTER — use when on/kun reading exactly matches a cast entry's sound:
-   - The kanji context will say "CAST: Name" — use ONLY that character, no others
+Every reading comes with its IPA and — when available — a pre-approved cast character whose name starts with those exact phonemes. Use the IPA to select your anchor:
+
+A. If the kanji context shows "use cast character Name":
+   - That character's name already matches the IPA — use them in the scene
    - Bold their name: **Kyu**, **Kofi**, **Ji**
-   - EXACT match only — NEVER use a cast character whose sound doesn't match the reading being anchored
-   - Check the cast list carefully before choosing — wrong cast = wrong memory
 
-B. ENGLISH SOUND-ALIKE — use when no cast match exists:
-   - The kanji context gives you the IPA of the reading
-   - Find a common English word whose FIRST phonemes exactly match that IPA
-   - Bold the word: **den**, **hatch**, **sand**
-   - STRICT phoneme match — /kuː/ = "coop/cool/coup", NOT "queue" (/kjuː/)
-   - Use the word naturally in the scene — never explain the sound connection
-   - Every story MUST have at least one bold anchor — no exceptions
+B. If no cast character is given:
+   - Use the IPA to find a common English word whose FIRST phonemes exactly match
+   - Bold the word: **den**, **hatch**, **sand**, **each**
+   - STRICT phoneme match — /kuː/ = "coop/cool/coup" NOT "queue" (/kjuː/), /niː/ = "knee/need" NOT "Ji" (/dʒiː/)
 
-C. Bold format: exactly one bold element per anchored reading. No other bold text in the story.
+C. Every story MUST have at least one bold anchor — no exceptions.
 
-D. Kun-yomi: only anchor it if it's distinct from on-yomi AND fits naturally. Skip if it clutters.
+D. Bold format: exactly one bold element per anchored reading. No other bold text in the story.
+
+E. Kun-yomi: only anchor it if it's distinct from on-yomi AND fits naturally. Skip if it clutters.
 
 ═══ STRICT PROHIBITIONS ═══
 ✗ NEVER write the kanji's meaning word in the story (e.g. for 火 never write "fire" or "flame")
