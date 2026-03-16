@@ -41,3 +41,26 @@ export function buildNewProgress(
     learnedAt: new Date(),
   };
 }
+
+// For kanji the user marks as already known — enroll at a high SRS level
+// so they appear in reviews ~3 weeks out rather than immediately.
+export function buildKnownProgress(
+  userId: string,
+  kanjiId: string,
+  jlptLevel: number,
+): Omit<KanjiProgress, 'id'> {
+  const nextReview = new Date();
+  nextReview.setDate(nextReview.getDate() + 21);
+  return {
+    userId,
+    kanjiId,
+    jlptLevel,
+    srsLevel: 5,
+    repetitions: 5,
+    easeFactor: 2.5,
+    intervalDays: 21,
+    nextReview,
+    lastReview: null,
+    learnedAt: new Date(),
+  };
+}

@@ -14,7 +14,7 @@ import {LearnStackParamList} from '../../types/navigation';
 import {useKanjiGrouped} from '../../hooks/useKanjiData';
 import {useProgressQuery} from '../../queries/useProgressQuery';
 import {useAuthStore} from '../../stores/useAuthStore';
-import {buildNewProgress} from '../../engine/srs/scheduler';
+import {buildNewProgress, buildKnownProgress} from '../../engine/srs/scheduler';
 import {upsertProgressBatch as upsertLocalBatch, upsertVocabProgressBatch} from '../../services/database/queries';
 import {upsertProgress as upsertRemote, upsertVocabProgress as upsertVocabRemote} from '../../services/supabase/progress';
 import {useQueryClient} from '@tanstack/react-query';
@@ -84,14 +84,20 @@ export default function LearnSessionScreen({navigation, route}: Props) {
   const current = batch[index];
   const isLast = index === batch.length - 1;
 
-  const handleSkip = useCallback(() => {
+  const handleSkip = useCallback(async () => {
+    const skipped = batch[index];
+    if (skipped && session) {
+      const p = { id: uuid(), ...buildKnownProgress(session.user.id, skipped.id, jlptLevel) };
+      upsertLocalBatch([p]).catch(() => {});
+      upsertRemote(p).catch(() => {});
+      queryClient.invalidateQueries({queryKey: [PROGRESS_QUERY_KEY]});
+    }
     setBatch(b => {
       const next = b.filter((_, i) => i !== index);
-      // If we removed the last item, step index back
       if (index >= next.length) setIndex(Math.max(0, next.length - 1));
       return next;
     });
-  }, [index]);
+  }, [index, batch, session, jlptLevel, queryClient]);
 
   const vocab = useVocabForKanji(current?.character ?? '');
   const mnemonic = useMnemonicForKanji(current?.character ?? '');
@@ -237,18 +243,6 @@ export default function LearnSessionScreen({navigation, route}: Props) {
           <MnemonicText text={mnemonic.meaning} style={styles.mnemonicText} />
         ) : null}
 
-        {/* Radicals */}
-        {current.radicals.some(r => radicalKanji[r]) && (
-          <View style={styles.radicalRow}>
-            {current.radicals.filter(r => radicalKanji[r]).map((r, i) => (
-              <View key={i} style={styles.radicalPill}>
-                <Text style={styles.radicalSymbol}>{radicalKanji[r]}</Text>
-                <Text style={styles.radicalName}>{r}</Text>
-              </View>
-            ))}
-          </View>
-        )}
-
         {/* Tap to reveal readings */}
         {!showDetails ? (
           <TouchableOpacity style={styles.revealBtn} onPress={() => setShowDetails(true)}>
@@ -291,6 +285,21 @@ export default function LearnSessionScreen({navigation, route}: Props) {
               <Text style={styles.altMeanings}>
                 Also: {current.meanings.slice(1).join(', ')}
               </Text>
+            )}
+
+            {/* Radicals */}
+            {current.radicals.some(r => radicalKanji[r]) && (
+              <View style={styles.readingSection}>
+                <Text style={styles.readingLabel}>Radicals</Text>
+                <View style={styles.radicalRow}>
+                  {current.radicals.filter(r => radicalKanji[r]).map((r, i) => (
+                    <View key={i} style={styles.radicalPill}>
+                      <Text style={styles.radicalSymbol}>{radicalKanji[r]}</Text>
+                      <Text style={styles.radicalName}>{r}</Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
             )}
 
             {/* Vocab examples */}
@@ -344,7 +353,7 @@ const styles = StyleSheet.create({
   levelBadge: {color: '#e94560', fontWeight: 'bold', fontSize: 13, marginTop: 4},
   meaning: {fontSize: 28, color: '#fff', fontWeight: 'bold', textAlign: 'center', marginBottom: 8},
   mnemonicText: {color: '#aaa', fontSize: 14, textAlign: 'center', fontStyle: 'italic', marginBottom: 20, lineHeight: 20, paddingHorizontal: 8},
-  radicalRow: {flexDirection: 'row', flexWrap: 'wrap', gap: 8, justifyContent: 'center', marginBottom: 20},
+  radicalRow: {flexDirection: 'row', flexWrap: 'wrap', gap: 8},
   radicalPill: {
     backgroundColor: '#1e3a5f',
     borderRadius: 8,

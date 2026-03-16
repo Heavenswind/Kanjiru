@@ -1,5 +1,4 @@
 {
-  "Ground": "地",
   "Two": "二",
   "Nine": "九",
   "Seven": "七",
@@ -33,7 +32,6 @@
   "Evening": "夕",
   "Drop": "落",
   "Leader": "長",
-  "Gun": "弓",
   "Cow": "牛",
   "Energy": "力",
   "Treasure": "宝",
@@ -41,7 +39,6 @@
   "Power": "力",
   "See": "見",
   "Car": "車",
-  "Window": "窓",
   "Go": "行",
   "West": "西",
   "Rice": "米",

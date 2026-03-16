@@ -26,8 +26,8 @@ const OVERRIDES = {
   'Eat': '食',     // 食 = eat/food
   'Book': '本',    // 本 = book/origin
   'Origin': '元',  // 元 = beginning/origin (the actual component shape)
-  'Window': '窓',  // OK already
-  'Gun': '弓',     // 弓 = bow (the weapon, misnamed as gun by WK sometimes)
+  'Window': null,  // 窓 is wrong — "Window" is a WK stroke component nickname
+  'Gun': null,     // 弓 = bow, not gun — "Gun" is a WK stroke component nickname
   'Life': '生',    // 生 = life/birth
   'Writing': '文', // 文 = writing/text
   'Stop': '止',    // 止 = stop OK
@@ -43,6 +43,7 @@ const OVERRIDES = {
   'Tent': null,    // 帳 (notebook) is wrong
   'Spear': null,   // 葉 (leaf) is wrong
   'Turkey': null,  // 土 (soil) is wrong
+  'Ground': null,  // 地 is wrong — "Ground" is WK name for the 一 stroke component
 };
 
 const radicals = new Set();
