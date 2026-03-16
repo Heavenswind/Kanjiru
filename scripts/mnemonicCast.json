@@ -83,8 +83,8 @@
     },
     {
       "sound": "よう",
-      "name": "Yolanda",
-      "description": "A dramatic Spanish opera singer who weeps on stage"
+      "name": "Yoan",
+      "description": "A Bulgarian banker obsessed with luxury watches, always checking the time"
     },
     {
       "sound": "じょう",
@@ -175,6 +175,96 @@
       "sound": "ひ",
       "name": "Hina",
       "description": "A cheerful Pakistani girl who bakes bread every morning"
+    },
+    {
+      "sound": "はく",
+      "name": "Haku",
+      "description": "A silent Japanese mountain monk who appears and vanishes like mist"
+    },
+    {
+      "sound": "かく",
+      "name": "Kaku",
+      "description": "A sharp-tongued Okinawan fisherman who argues with everyone"
+    },
+    {
+      "sound": "さ",
+      "name": "Sasha",
+      "description": "A restless Ukrainian dancer who can't sit still"
+    },
+    {
+      "sound": "ぶん",
+      "name": "Bruno",
+      "description": "A stocky Italian baker who dusts everything in flour"
+    },
+    {
+      "sound": "もん",
+      "name": "Monica",
+      "description": "A sharp Colombian woman who runs the whole neighborhood"
+    },
+    {
+      "sound": "りゅう",
+      "name": "Ryu",
+      "description": "A stoic Japanese martial artist who trains alone at dawn"
+    },
+    {
+      "sound": "れい",
+      "name": "Ray",
+      "description": "A slick American jazz musician who plays in smoky bars"
+    },
+    {
+      "sound": "どう",
+      "name": "Dora",
+      "description": "A no-nonsense Dominican aunt who always has an opinion"
+    },
+    {
+      "sound": "ない",
+      "name": "Nadia",
+      "description": "A cool Russian chess player who thinks three moves ahead"
+    },
+    {
+      "sound": "まい",
+      "name": "Mai",
+      "description": "A cheerful Vietnamese girl who dances everywhere she goes"
+    },
+    {
+      "sound": "めい",
+      "name": "Mei",
+      "description": "A sharp Chinese schoolgirl who corrects everyone's mistakes"
+    },
+    {
+      "sound": "ちょく",
+      "name": "Chuck",
+      "description": "A blunt American truck driver who takes no detours"
+    },
+    {
+      "sound": "りつ",
+      "name": "Ritz",
+      "description": "A fussy Austrian conductor who snaps his baton at every mistake"
+    },
+    {
+      "sound": "りょく",
+      "name": "Ryoko",
+      "description": "A stern Japanese herbalist who works in silence"
+    },
+    {
+      "sound": "へん",
+      "name": "Henry",
+      "description": "A Canadian actuary who loves his whisky and hides spreadsheets behind his glass"
+    },
+    {
+      "sound": "まり",
+      "name": "Mariana",
+      "description": "A world-traveling Brazilian who takes her dog everywhere and never checks a map"
+    },
+    {
+      "sound": "どん",
+      "name": "Don B",
+      "description": "A Colombian barber who only cuts hair near trendy restaurants so he can eat after"
+    },
+    {
+      "sound": "じゅ",
+      "name": "Ju",
+      "description": "An Italian gamer who never quits until she hits 100% completion"
     }
   ]
 }

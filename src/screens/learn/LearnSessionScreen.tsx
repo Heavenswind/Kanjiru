@@ -14,7 +14,7 @@ import {LearnStackParamList} from '../../types/navigation';
 import {useKanjiGrouped} from '../../hooks/useKanjiData';
 import {useProgressQuery} from '../../queries/useProgressQuery';
 import {useAuthStore} from '../../stores/useAuthStore';
-import {buildNewProgress} from '../../engine/srs/scheduler';
+import {buildNewProgress, buildKnownProgress} from '../../engine/srs/scheduler';
 import {upsertProgressBatch as upsertLocalBatch, upsertVocabProgressBatch} from '../../services/database/queries';
 import {upsertProgress as upsertRemote, upsertVocabProgress as upsertVocabRemote} from '../../services/supabase/progress';
 import {useQueryClient} from '@tanstack/react-query';
@@ -23,7 +23,10 @@ import {formatReading, uuid} from '../../utils/kanjiUtils';
 import {useSettingsStore} from '../../stores/useSettingsStore';
 import {useVocabForKanji} from '../../hooks/useVocabData';
 import {useMnemonicForKanji} from '../../hooks/useMnemonicsData';
+import radicalKanjiData from '../../data/radicalKanji.json';
 import type {KanjiEntry, VocabProgress} from '../../types/kanji';
+
+const radicalKanji = radicalKanjiData as Record<string, string>;
 
 // Splits text into spans so CJK characters aren't rendered in italic (Android italic fonts lack CJK glyphs → □)
 function MnemonicText({text, style}: {text: string; style: any}) {
@@ -81,14 +84,20 @@ export default function LearnSessionScreen({navigation, route}: Props) {
   const current = batch[index];
   const isLast = index === batch.length - 1;
 
-  const handleSkip = useCallback(() => {
+  const handleSkip = useCallback(async () => {
+    const skipped = batch[index];
+    if (skipped && session) {
+      const p = { id: uuid(), ...buildKnownProgress(session.user.id, skipped.id, jlptLevel) };
+      upsertLocalBatch([p]).catch(() => {});
+      upsertRemote(p).catch(() => {});
+      queryClient.invalidateQueries({queryKey: [PROGRESS_QUERY_KEY]});
+    }
     setBatch(b => {
       const next = b.filter((_, i) => i !== index);
-      // If we removed the last item, step index back
       if (index >= next.length) setIndex(Math.max(0, next.length - 1));
       return next;
     });
-  }, [index]);
+  }, [index, batch, session, jlptLevel, queryClient]);
 
   const vocab = useVocabForKanji(current?.character ?? '');
   const mnemonic = useMnemonicForKanji(current?.character ?? '');
@@ -278,6 +287,21 @@ export default function LearnSessionScreen({navigation, route}: Props) {
               </Text>
             )}
 
+            {/* Radicals */}
+            {current.radicals.some(r => radicalKanji[r]) && (
+              <View style={styles.readingSection}>
+                <Text style={styles.readingLabel}>Radicals</Text>
+                <View style={styles.radicalRow}>
+                  {current.radicals.filter(r => radicalKanji[r]).map((r, i) => (
+                    <View key={i} style={styles.radicalPill}>
+                      <Text style={styles.radicalSymbol}>{radicalKanji[r]}</Text>
+                      <Text style={styles.radicalName}>{r}</Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            )}
+
             {/* Vocab examples */}
             {vocab.length > 0 && (
               <View style={styles.vocabSection}>
@@ -329,6 +353,17 @@ const styles = StyleSheet.create({
   levelBadge: {color: '#e94560', fontWeight: 'bold', fontSize: 13, marginTop: 4},
   meaning: {fontSize: 28, color: '#fff', fontWeight: 'bold', textAlign: 'center', marginBottom: 8},
   mnemonicText: {color: '#aaa', fontSize: 14, textAlign: 'center', fontStyle: 'italic', marginBottom: 20, lineHeight: 20, paddingHorizontal: 8},
+  radicalRow: {flexDirection: 'row', flexWrap: 'wrap', gap: 8},
+  radicalPill: {
+    backgroundColor: '#1e3a5f',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    alignItems: 'center',
+    minWidth: 52,
+  },
+  radicalSymbol: {color: '#fff', fontSize: 20, fontWeight: 'bold'},
+  radicalName: {color: '#aaa', fontSize: 11, marginTop: 2},
   revealBtn: {
     borderWidth: 1,
     borderColor: '#444',

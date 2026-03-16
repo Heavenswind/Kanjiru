@@ -3,8 +3,11 @@
  * Saves progress to src/data/vocab.json incrementally — safe to re-run.
  *
  * Each kanji gets 3 example words: word, reading (hiragana), meaning (English),
- * and a mnemonic that anchors the reading using the cast system or romaji-grounded
- * sound-alikes.
+ * and a unified "story" mnemonic that weaves together:
+ *   - The word's reading anchored mora-by-mora via cast character (exact match only)
+ *     or bold English sound-alike (IPA-matched)
+ *   - The kanji meanings in the word as visual backdrop
+ *   - The word's meaning as the natural punchline
  *
  * Usage:
  *
@@ -18,6 +21,9 @@
  *   # Process only one JLPT level:
  *   node scripts/buildVocabData.js --local --level 5
  *   JLPT_LEVEL=5 GEMINI_API_KEY=AIza... node scripts/buildVocabData.js
+ *
+ *   # Wipe existing and regenerate:
+ *   node scripts/buildVocabData.js --local --regen
  */
 
 const fs = require('fs');
@@ -26,20 +32,20 @@ const https = require('https');
 
 // ─── Config ────────────────────────────────────────────────────────────────
 
-const KANJI_JSON = path.join(__dirname, '../src/data/kanji.json');
-const CAST_JSON = path.join(__dirname, './mnemonicCast.json');
-const OUT_FILE = path.join(__dirname, '../src/data/vocab.json');
-const BATCH_SIZE = 7; // reduced from 10 — mnemonic field makes responses longer
+const KANJI_JSON  = path.join(__dirname, '../src/data/kanji.json');
+const CAST_JSON   = path.join(__dirname, './mnemonicCast.json');
+const IPA_JSON    = path.join(__dirname, './romajiIPA.json');
+const OUT_FILE    = path.join(__dirname, '../src/data/vocab.json');
+const BATCH_SIZE  = 6;
 
-// Parse CLI args
 const args = process.argv.slice(2);
 const USE_LOCAL = args.includes('--local');
-const modelArg = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
-const levelArg = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
+const REGEN     = args.includes('--regen');
+const modelArg  = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
+const levelArg  = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
 
 const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--'))
-  ? modelArg
-  : 'gemma3:12b';
+  ? modelArg : 'gemma3:12b';
 const DELAY_MS = USE_LOCAL ? 0 : 13000;
 
 // Load .env for Gemini key
@@ -57,68 +63,106 @@ if (!USE_LOCAL && !GEMINI_KEY) {
   process.exit(1);
 }
 
-// ─── Cast system ────────────────────────────────────────────────────────────
+// ─── Load reference data ────────────────────────────────────────────────────
 
-const castData = JSON.parse(fs.readFileSync(CAST_JSON));
-// Map: hiragana sound → { name, description }
+const castData  = JSON.parse(fs.readFileSync(CAST_JSON));
+const IPA       = JSON.parse(fs.readFileSync(IPA_JSON)).mora;
+const kanjiData = JSON.parse(fs.readFileSync(KANJI_JSON));
+
 const CAST = {};
-for (const entry of castData.cast) {
-  CAST[entry.sound] = { name: entry.name, description: entry.description };
-}
+for (const e of castData.cast) CAST[e.sound] = { name: e.name, description: e.description };
 
-// Build the cast reference block injected into every prompt
+const KANJI_MEANINGS = {};
+for (const k of kanjiData) KANJI_MEANINGS[k.character] = k.meanings[0];
+
 const CAST_REFERENCE = castData.cast
-  .map(e => `  ${e.sound} → ${e.name}: ${e.description}`)
+  .map(e => `  ${e.sound} -> ${e.name}: ${e.description}`)
+  .join('\n');
+
+const IPA_REFERENCE = Object.entries(IPA)
+  .map(([mora, ipa]) => `  ${mora} = ${ipa}`)
   .join('\n');
 
 // ─── Prompt ────────────────────────────────────────────────────────────────
 
 function buildPrompt(batch) {
   const lines = batch.map(k => {
-    const on = k.readings_on.slice(0, 2).join(', ') || '—';
-    const kun = k.readings_kun.slice(0, 2).map(r => r.replace(/[.-].*/, '')).filter(Boolean).join(', ') || '—';
+    const on  = k.readings_on.slice(0, 2).join(', ') || '-';
+    const kun = k.readings_kun.slice(0, 2).map(r => r.replace(/[.-].*/,'')).filter(Boolean).join(', ') || '-';
     return `${k.character} | ${k.meanings[0]} | on: ${on} | kun: ${kun}`;
   }).join('\n');
 
   return `You are a Japanese language teacher creating vocabulary study cards for English speakers.
 
-For each kanji, provide exactly 3 common vocabulary words. Each word needs:
+For each kanji, provide exactly 3 common vocabulary words. Each word object needs:
 - "word": the Japanese word (kanji + kana as normally written)
 - "reading": the full hiragana reading
-- "meaning": a concise English translation (3-6 words)
-- "mnemonic": a short vivid sentence (1-2 sentences max) that makes the reading stick
+- "meaning": a concise English translation (capitalize each word, 2-5 words, e.g. "Electric Train", "One Day")
+- "story": a single vivid scene (1-2 sentences) that anchors the reading AND implies the meaning
 
-Rules for the mnemonic:
-- Break the reading into syllables and anchor each one to an English sound
-- CAST SYSTEM: A set of recurring characters whose names start with specific Japanese sounds. When a syllable in the reading exactly matches a cast member's sound, naturally include that character in the scene — do NOT explain the connection, just use them
-- For syllables with no cast match: use a real English word that starts with the same sounds as the romaji (e.g. ぶん → "boon", すい → "suit", どう → "dough"). The English word must genuinely start with those sounds — do not use loose approximations
-- The scene should also hint at or reinforce the word's meaning
-- Never explain the mnemonic system or mention "cast" or "sound-alike" — just tell the story
+STORY RULES:
 
-Cast reference (hiragana sound → character name: description):
-${CAST_REFERENCE}
+Anchor the word's reading mora-by-mora using the rules below, working through each mora in order:
 
-Rules for vocab:
-- Prefer simple, high-frequency words
+A. CAST CHARACTER - use when a mora in the reading exactly matches a cast entry's sound:
+   - Drop the character naturally into the scene - bold their name: **Kyu**, **Kofi**, **Ji**
+   - EXACT mora match only - never approximate
+
+B. ENGLISH SOUND-ALIKE - use when no cast match exists for a mora:
+   - Consult the IPA table for the mora's exact phonemes
+   - Find a common English word whose FIRST phonemes exactly match that IPA
+   - Bold it: **den**, **coop**, **gin**
+   - STRICT phoneme match: /kuu/ = "coop/cool/coup", NOT "queue" (which is /kjuu/)
+
+C. Bold format: one bold element per anchored mora. No other bold text in the story.
+D. The word's meaning is the scene's natural conclusion - never state it directly.
+E. Use the kanji meanings in the word as visual props or imagery in the scene.
+F. Never explain the sound system - just tell the story naturally.
+
+VOCAB RULES:
 - The word MUST contain the given kanji character
 - Readings must be accurate hiragana (no romaji)
-- For N5/N4 kanji, prefer beginner-level words
+- Prefer high-frequency, real words - no obscure vocabulary
+- For N5/N4 kanji prefer beginner-level words
+- Capitalize each word in the meaning field
 
-Respond with ONLY valid JSON — an object where each key is the kanji character and the value is an array of 3 word objects. No markdown, no explanation.
+OUTPUT FORMAT:
+Respond with ONLY valid JSON. Each key is the kanji character, value is an array of exactly 3 word objects.
+No markdown fences, no explanation.
 
-Example format:
+CAST REFERENCE:
+${CAST_REFERENCE}
+
+IPA REFERENCE (internal use only - never appear in story output):
+${IPA_REFERENCE}
+
+EXAMPLES:
 {
-  "感": [
+  "人": [
     {
-      "word": "感情",
-      "reading": "かんじょう",
-      "meaning": "emotion, feeling",
-      "mnemonic": "Khan kicked down Joe's door trembling with emotion — his sword had been stolen."
+      "word": "人口",
+      "reading": "じんこう",
+      "meaning": "Population",
+      "story": "Every **gin**-soaked night, **Kofi** counts the Mouths lining up at his bar - more Persons through the door every week, the whole neighborhood packed in."
+    },
+    {
+      "word": "人気",
+      "reading": "にんき",
+      "meaning": "Popularity, Fame",
+      "story": "A **knee**-deep crowd surrounds **Kiki**, laughing at everything she says - this Person has an Energy nobody can resist."
+    }
+  ],
+  "空": [
+    {
+      "word": "空港",
+      "reading": "くうこう",
+      "meaning": "Airport",
+      "story": "The **coop** on the roof explodes open just as **Kofi** arrives - birds everywhere, total chaos - turns out he built the terminal right on their nesting ground."
     }
   ]
 }
 
-Kanji (character | primary meaning | on-yomi | kun-yomi):
+KANJI TO PROCESS:
 ${lines}`;
 }
 
@@ -130,15 +174,11 @@ function callOllama(prompt) {
       model: OLLAMA_MODEL,
       prompt,
       stream: false,
-      options: { temperature: 0.4, num_predict: 6000 },
+      options: { temperature: 0.5, num_predict: 8000 },
     });
-
     const req = require('http').request(
       {
-        hostname: 'localhost',
-        port: 11434,
-        path: '/api/generate',
-        method: 'POST',
+        hostname: 'localhost', port: 11434, path: '/api/generate', method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
       },
       res => {
@@ -165,7 +205,7 @@ function callGemini(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.4, maxOutputTokens: 6000 },
+      generationConfig: { temperature: 0.5, maxOutputTokens: 8000 },
     });
     const model = 'gemini-2.5-flash';
     const req = https.request(
@@ -224,7 +264,7 @@ async function processBatch(batch, retries = 3) {
           throw new Error(`Missing or empty entries for ${k.character}`);
         }
         for (const e of entries) {
-          if (!e.word || !e.reading || !e.meaning) {
+          if (!e.word || !e.reading || !e.meaning || !e.story) {
             throw new Error(`Malformed entry for ${k.character}: ${JSON.stringify(e)}`);
           }
         }
@@ -234,7 +274,9 @@ async function processBatch(batch, retries = 3) {
     } catch (e) {
       if (attempt < retries) {
         const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
-        const waitMs = retryMatch ? Math.ceil(parseFloat(retryMatch[1])) * 1000 + 1000 : (USE_LOCAL ? 2000 : 35000);
+        const waitMs = retryMatch
+          ? Math.ceil(parseFloat(retryMatch[1])) * 1000 + 1000
+          : (USE_LOCAL ? 2000 : 35000);
         process.stdout.write(`\n  Retrying (${attempt + 1}/${retries}): ${e.message.slice(0, 80)}... waiting ${Math.round(waitMs / 1000)}s`);
         await sleep(waitMs);
       } else {
@@ -249,12 +291,22 @@ async function processBatch(batch, retries = 3) {
 async function main() {
   const allKanji = JSON.parse(fs.readFileSync(KANJI_JSON));
 
-  const levelFilter = levelArg ? parseInt(levelArg) : (process.env.JLPT_LEVEL ? parseInt(process.env.JLPT_LEVEL) : null);
+  const levelFilter = levelArg
+    ? parseInt(levelArg)
+    : (process.env.JLPT_LEVEL ? parseInt(process.env.JLPT_LEVEL) : null);
   const kanji = levelFilter ? allKanji.filter(k => k.jlptLevel === levelFilter) : allKanji;
 
   let existing = {};
-  if (fs.existsSync(OUT_FILE)) {
+  if (!REGEN && fs.existsSync(OUT_FILE)) {
     existing = JSON.parse(fs.readFileSync(OUT_FILE));
+    let migrated = 0;
+    for (const [char, entries] of Object.entries(existing)) {
+      if (Array.isArray(entries) && entries.some(e => !e.story)) {
+        delete existing[char];
+        migrated++;
+      }
+    }
+    if (migrated > 0) console.log(`Dropped ${migrated} old-format entries (will regenerate)`);
   }
 
   const todo = kanji.filter(k => !existing[k.character]);
@@ -262,11 +314,9 @@ async function main() {
   console.log(`Mode: ${mode}`);
   console.log(`Total: ${kanji.length} | Done: ${kanji.length - todo.length} | Remaining: ${todo.length}`);
   if (levelFilter) console.log(`Filtering to JLPT N${levelFilter}`);
+  if (REGEN) console.log('--regen flag: starting fresh');
 
-  if (todo.length === 0) {
-    console.log('All done!');
-    return;
-  }
+  if (todo.length === 0) { console.log('All done!'); return; }
 
   const startTime = Date.now();
   let done = 0;
@@ -274,10 +324,8 @@ async function main() {
   for (let i = 0; i < todo.length; i += BATCH_SIZE) {
     const batch = todo.slice(i, i + BATCH_SIZE);
     const elapsed = Math.round((Date.now() - startTime) / 1000);
-    const eta = done > 0
-      ? Math.round((elapsed / done) * (todo.length - done))
-      : '?';
-    process.stdout.write(`\r[${elapsed}s elapsed, ~${eta}s left] Processing ${i + 1}–${Math.min(i + BATCH_SIZE, todo.length)} / ${todo.length}...  `);
+    const eta = done > 0 ? Math.round((elapsed / done) * (todo.length - done)) : '?';
+    process.stdout.write(`\r[${elapsed}s elapsed, ~${eta}s left] Processing ${i + 1}-${Math.min(i + BATCH_SIZE, todo.length)} / ${todo.length}...  `);
 
     try {
       const results = await processBatch(batch);
@@ -289,9 +337,7 @@ async function main() {
       fs.writeFileSync(OUT_FILE, JSON.stringify(existing, null, 2));
     }
 
-    if (DELAY_MS > 0 && i + BATCH_SIZE < todo.length) {
-      await sleep(DELAY_MS);
-    }
+    if (DELAY_MS > 0 && i + BATCH_SIZE < todo.length) await sleep(DELAY_MS);
   }
 
   const totalSec = Math.round((Date.now() - startTime) / 1000);
