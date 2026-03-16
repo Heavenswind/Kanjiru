@@ -198,17 +198,20 @@ ${IPA_REFERENCE}
 
 ═══ EXAMPLES ═══
 {
+  "一": {
+    "story": "An **itch** crawls across the Ground — a single line scratched into the dirt by one fingernail, and that lone mark is enough to divide everything on one side from everything on the other."
+  },
+  "七": {
+    "story": "She pulled the **sheath** off an ancient blade — out fell exactly this many coins, no more, scattered across the floor in a perfect arc."
+  },
   "休": {
     "story": "The leader drives the group for hours until **Kyu** finally slumps against the Tree (木) and won't budge — nobody protests, and for the first time all day, the whole group collapses into stillness."
   },
   "電": {
     "story": "Rain hammers the Rice Paddy (田) so hard the Umbrella planted in the field gets struck — the whole **den** surges with crackling blue light, every wire in the building humming."
   },
-  "七": {
-    "story": "She counts out exactly **sheet** by **sheet** until she has the right number — her careful hands make no mistake, and the pile is perfect."
-  },
   "万": {
-    "story": "A lone wanderer slices a single Leaf with the Sword (刀) — and it keeps splitting, again and again, until the fragments are beyond counting, piling up like sand across the whole plain."
+    "story": "A lone **man** slices a Leaf with his Sword (刀) — and it keeps splitting, again and again, until the fragments pile up like dunes across the entire plain, beyond any hope of counting."
   }
 }
 
