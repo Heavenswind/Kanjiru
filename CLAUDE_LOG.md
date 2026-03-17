@@ -11,6 +11,13 @@
 
 **Also added:** Full single-mora coverage — every basic mora (あ-ん + voiced) now has a cast character with a short 1-2 syllable name (Na, Do, Ku, Gi, etc.)
 
+### Rewrote buildVocabData.js (same approach as buildMnemonics)
+- One kanji at a time, no batching
+- Cast lookup deterministic in code — per mora, injected into prompt as explicit instructions
+- Mora splitter handles compound kana, ー, っ
+- Returns JSON array, saves after every kanji
+- Built buildVocabIPA.js to map full hiragana readings → IPA strings
+
 ### Wired mnemonicCast.json into buildMnemonics.js
 - Cast lookup by reading sound key — deterministic, no model guessing
 - If cast entry exists: prompt says "Bold **Name** (description) — their name starts with /ipa/"

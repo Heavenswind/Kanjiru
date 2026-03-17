@@ -22,5 +22,29 @@
     ],
     "reason": "The story implies the meaning by describing 'finishes the sixth bend, then delivers one final blow', making a total of seven actions.",
     "source": "llm"
+  },
+  "木": {
+    "story": "**Box**y lumberjacks carefully stacked fallen **bo**ards to build a sturdy shelter from the rain, using the thick branches as supports. The forest floor was littered with the remnants of their work, a silent testament to their industry. A lone, towering form stood watch over them, its limbs reaching towards the sky.",
+    "issues": [
+      "WRONG_CAST:bo(ぼ)≠[ぼく,もく,き,こ]"
+    ],
+    "reason": "WRONG_CAST:bo(ぼ)≠[ぼく,もく,き,こ]",
+    "source": "preflight"
+  },
+  "来": {
+    "story": "A **ray** of sunlight warmed the earth, revealing a field of freshly harvested rice, beckoning travelers toward a welcoming village. They eagerly stepped forward, drawn by the promise of shelter and sustenance from the fertile ground. Soon, the entire community gathered to greet the newcomers, their faces alight with joy.",
+    "issues": [
+      "WRONG_CAST:ray(れい)≠[らい,たい,く,きた,きた,き,き,き,こ]"
+    ],
+    "reason": "WRONG_CAST:ray(れい)≠[らい,たい,く,きた,きた,き,き,き,こ]",
+    "source": "preflight"
+  },
+  "読": {
+    "story": "**Do**ctors shouted as they tried to sell a scroll, desperately hoping someone would decipher the ancient script etched upon it. The scroll's message, once understood, would reveal a crucial secret about the kingdom's past. Finally, a scholar painstakingly traced the characters, bringing the hidden knowledge to light.",
+    "issues": [
+      "WRONG_CAST:Do(ど)≠[どく,とく,とう,よ]"
+    ],
+    "reason": "WRONG_CAST:Do(ど)≠[どく,とく,とう,よ]",
+    "source": "preflight"
   }
 }
