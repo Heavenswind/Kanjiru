@@ -1,0 +1,26 @@
+{
+  "二": {
+    "story": "**Nia** and **Ji** are arguing over which of the **futon**'s two horizontal cushions belongs to whom, each claiming one as their own.",
+    "issues": [
+      "MEANING_LEAK"
+    ],
+    "reason": "Story explicitly states 'two horizontal cushions', which is the kanji's meaning.",
+    "source": "llm"
+  },
+  "九": {
+    "story": "The constantly late student, **Kyu**, finally arrives, but he's so exhausted he just curls up like a twisted hook on the classroom floor, joining the eight other students already present.",
+    "issues": [
+      "MEANING_LEAK"
+    ],
+    "reason": "The story implies the meaning by stating 'joining the eight other students already present', making the total nine.",
+    "source": "llm"
+  },
+  "七": {
+    "story": "A blacksmith hammers a metal **sheet**, making a series of sharp, angular bends. He finishes the sixth bend, then delivers one final, powerful blow, perfecting the shape into a downward stroke crossed by a horizontal one.",
+    "issues": [
+      "MEANING_LEAK"
+    ],
+    "reason": "The story implies the meaning by describing 'finishes the sixth bend, then delivers one final blow', making a total of seven actions.",
+    "source": "llm"
+  }
+}

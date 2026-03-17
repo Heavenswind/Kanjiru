@@ -4,267 +4,620 @@
     {
       "sound": "こう",
       "name": "Kofi",
-      "description": "A warm Ghanaian carpenter who builds things with his bare hands"
+      "description": "A warm Ghanaian carpenter who builds things with his bare hands",
+      "ipa": "/koʊ/"
     },
     {
       "sound": "しょう",
       "name": "Sho",
-      "description": "A laid-back surfer from California, always in board shorts"
+      "description": "A laid-back surfer from California, always in board shorts",
+      "ipa": "/ʃoʊ/"
     },
     {
       "sound": "し",
       "name": "Sheila",
-      "description": "A tough Australian woman who runs a sheep farm"
+      "description": "A tough Australian woman who runs a sheep farm",
+      "ipa": "/ʃiː/"
     },
     {
       "sound": "そう",
       "name": "Sosa",
-      "description": "A flashy Dominican baseball player who hits home runs"
+      "description": "A flashy Dominican baseball player who hits home runs",
+      "ipa": "/soʊ/"
     },
     {
       "sound": "き",
       "name": "Kiki",
-      "description": "A bubbly Belgian girl who laughs at everything"
+      "description": "A bubbly Belgian girl who laughs at everything",
+      "ipa": "/kiː/"
     },
     {
       "sound": "かん",
       "name": "Khan",
-      "description": "A commanding Mongolian warlord on horseback"
+      "description": "A commanding Mongolian warlord on horseback",
+      "ipa": "/kɑːn/"
     },
     {
       "sound": "とう",
       "name": "Tova",
-      "description": "A no-nonsense Swedish farmer who wakes at 4am"
+      "description": "A no-nonsense Swedish farmer who wakes at 4am",
+      "ipa": "/toʊ/"
     },
     {
       "sound": "きょう",
       "name": "Kyo",
-      "description": "A precise, elegant tea ceremony master"
+      "description": "A precise, elegant tea ceremony master",
+      "ipa": "/kjoʊ/"
     },
     {
       "sound": "か",
       "name": "Carlos",
-      "description": "A fast-talking Mexican street vendor who never stops moving"
+      "description": "A fast-talking Mexican street vendor who never stops moving",
+      "ipa": "/kɑː/"
     },
     {
       "sound": "せい",
       "name": "Selma",
-      "description": "A stubborn Greek grandmother who never takes no for an answer"
+      "description": "A stubborn Greek grandmother who never takes no for an answer",
+      "ipa": "/seɪ/"
     },
     {
       "sound": "けん",
       "name": "Kenny",
-      "description": "A bumbling British plumber who always makes things worse"
+      "description": "A bumbling British plumber who always makes things worse",
+      "ipa": "/ken/"
     },
     {
       "sound": "ちょう",
       "name": "Cho",
-      "description": "A passionate Thai chef who runs a chaotic street kitchen"
+      "description": "A passionate Thai chef who runs a chaotic street kitchen",
+      "ipa": "/tʃoʊ/"
     },
     {
       "sound": "けい",
       "name": "Kay",
-      "description": "A sharp Canadian detective who never loses a case"
+      "description": "A sharp Canadian detective who never loses a case",
+      "ipa": "/keɪ/"
     },
     {
       "sound": "しん",
       "name": "Shin",
-      "description": "A gentle Korean doctor who works night shifts"
+      "description": "A gentle Korean doctor who works night shifts",
+      "ipa": "/ʃɪn/"
     },
     {
       "sound": "しゅう",
       "name": "Shula",
-      "description": "A fierce South African rugby coach"
+      "description": "A fierce South African rugby coach",
+      "ipa": "/ʃuː/"
     },
     {
       "sound": "ほう",
       "name": "Homer",
-      "description": "A clumsy American dad who always causes accidents"
+      "description": "A clumsy American dad who always causes accidents",
+      "ipa": "/hoʊ/"
     },
     {
       "sound": "よう",
       "name": "Yoan",
-      "description": "A Bulgarian banker obsessed with luxury watches, always checking the time"
+      "description": "A Bulgarian banker obsessed with luxury watches, always checking the time",
+      "ipa": "/joʊ/"
     },
     {
       "sound": "じょう",
       "name": "Joe",
-      "description": "A friendly American locksmith who fixes everything"
+      "description": "A friendly American locksmith who fixes everything",
+      "ipa": "/dʒoʊ/"
     },
     {
       "sound": "せん",
       "name": "Senna",
-      "description": "A fearless Brazilian racing driver"
+      "description": "A fearless Brazilian racing driver",
+      "ipa": "/sen/"
     },
     {
       "sound": "りょう",
       "name": "Rio",
-      "description": "A Brazilian backpacker always arriving somewhere new"
+      "description": "A Brazilian backpacker always arriving somewhere new",
+      "ipa": "/rjoʊ/"
     },
     {
       "sound": "ぼう",
       "name": "Bo",
-      "description": "A chubby British police officer who patrols on a bicycle"
+      "description": "A chubby British police officer who patrols on a bicycle",
+      "ipa": "/boʊ/"
     },
     {
       "sound": "さい",
       "name": "Sai",
-      "description": "A Thai fortune teller surrounded by candles"
+      "description": "A Thai fortune teller surrounded by candles",
+      "ipa": "/sɑːɪ/"
     },
     {
       "sound": "かい",
       "name": "Kai",
-      "description": "A salty German sailor who's been at sea too long"
+      "description": "A salty German sailor who's been at sea too long",
+      "ipa": "/kɑːɪ/"
     },
     {
       "sound": "てい",
       "name": "Tay",
-      "description": "A perfectionist Scottish architect who re-draws everything"
+      "description": "A perfectionist Scottish architect who re-draws everything",
+      "ipa": "/teɪ/"
     },
     {
       "sound": "い",
       "name": "Eve",
-      "description": "A curious English botanist always wandering into gardens"
+      "description": "A curious English botanist always wandering into gardens",
+      "ipa": "/iː/"
     },
     {
       "sound": "きゅう",
       "name": "Kyu",
-      "description": "A Japanese student always late to class"
+      "description": "A Japanese student always late to class",
+      "ipa": "/kjuː/"
     },
     {
       "sound": "ゆう",
       "name": "Yusuf",
-      "description": "A brooding Turkish artist who paints only at night"
+      "description": "A brooding Turkish artist who paints only at night",
+      "ipa": "/juː/"
     },
     {
       "sound": "ふ",
       "name": "Fuad",
-      "description": "A Lebanese merchant who haggles over every price"
+      "description": "A Lebanese merchant who haggles over every price",
+      "ipa": "/fuː/"
     },
     {
       "sound": "じ",
       "name": "Ji",
-      "description": "A wiry old Chinese grandfather covered in ink stains"
+      "description": "A wiry old Chinese grandfather covered in ink stains",
+      "ipa": "/dʒiː/"
     },
     {
       "sound": "しゅ",
       "name": "Shura",
-      "description": "A fierce Russian gymnast with ice in her eyes"
+      "description": "A fierce Russian gymnast with ice in her eyes",
+      "ipa": "/ʃuː/"
     },
     {
       "sound": "こ",
       "name": "Cora",
-      "description": "A nosy Irish neighbor who knows everyone's business"
+      "description": "A nosy Irish neighbor who knows everyone's business",
+      "ipa": "/koʊ/"
     },
     {
       "sound": "たい",
       "name": "Tai",
-      "description": "A massive Samoan rugby player who moves slowly but hits hard"
+      "description": "A massive Samoan rugby player who moves slowly but hits hard",
+      "ipa": "/tɑːɪ/"
     },
     {
       "sound": "きん",
       "name": "Kin",
-      "description": "A meticulous Vietnamese goldsmith"
+      "description": "A meticulous Vietnamese goldsmith",
+      "ipa": "/kiːn/"
     },
     {
       "sound": "はん",
       "name": "Hans",
-      "description": "A stiff German engineer who follows every manual exactly"
+      "description": "A stiff German engineer who follows every manual exactly",
+      "ipa": "/hɑːn/"
     },
     {
       "sound": "ひ",
       "name": "Hina",
-      "description": "A cheerful Pakistani girl who bakes bread every morning"
+      "description": "A cheerful Pakistani girl who bakes bread every morning",
+      "ipa": "/hiː/"
     },
     {
       "sound": "はく",
       "name": "Haku",
-      "description": "A silent Japanese mountain monk who appears and vanishes like mist"
+      "description": "A silent Japanese mountain monk who appears and vanishes like mist",
+      "ipa": "/hɑːku/"
     },
     {
       "sound": "かく",
       "name": "Kaku",
-      "description": "A sharp-tongued Okinawan fisherman who argues with everyone"
+      "description": "A sharp-tongued Okinawan fisherman who argues with everyone",
+      "ipa": "/kɑːku/"
     },
     {
       "sound": "さ",
       "name": "Sasha",
-      "description": "A restless Ukrainian dancer who can't sit still"
+      "description": "A restless Ukrainian dancer who can't sit still",
+      "ipa": "/sɑː/"
     },
     {
       "sound": "ぶん",
       "name": "Bruno",
-      "description": "A stocky Italian baker who dusts everything in flour"
+      "description": "A stocky Italian baker who dusts everything in flour",
+      "ipa": "/buːn/"
     },
     {
       "sound": "もん",
       "name": "Monica",
-      "description": "A sharp Colombian woman who runs the whole neighborhood"
+      "description": "A sharp Colombian woman who runs the whole neighborhood",
+      "ipa": "/moʊn/"
     },
     {
       "sound": "りゅう",
       "name": "Ryu",
-      "description": "A stoic Japanese martial artist who trains alone at dawn"
+      "description": "A stoic Japanese martial artist who trains alone at dawn",
+      "ipa": "/rjuː/"
     },
     {
       "sound": "れい",
       "name": "Ray",
-      "description": "A slick American jazz musician who plays in smoky bars"
+      "description": "A slick American jazz musician who plays in smoky bars",
+      "ipa": "/reɪ/"
     },
     {
       "sound": "どう",
       "name": "Dora",
-      "description": "A no-nonsense Dominican aunt who always has an opinion"
+      "description": "A no-nonsense Dominican aunt who always has an opinion",
+      "ipa": "/doʊ/"
     },
     {
       "sound": "ない",
       "name": "Nadia",
-      "description": "A cool Russian chess player who thinks three moves ahead"
+      "description": "A cool Russian chess player who thinks three moves ahead",
+      "ipa": "/nɑːɪ/"
     },
     {
       "sound": "まい",
       "name": "Mai",
-      "description": "A cheerful Vietnamese girl who dances everywhere she goes"
+      "description": "A cheerful Vietnamese girl who dances everywhere she goes",
+      "ipa": "/mɑːɪ/"
     },
     {
       "sound": "めい",
       "name": "Mei",
-      "description": "A sharp Chinese schoolgirl who corrects everyone's mistakes"
+      "description": "A sharp Chinese schoolgirl who corrects everyone's mistakes",
+      "ipa": "/meɪ/"
     },
     {
       "sound": "ちょく",
       "name": "Chuck",
-      "description": "A blunt American truck driver who takes no detours"
+      "description": "A blunt American truck driver who takes no detours",
+      "ipa": "/tʃoʊku/"
     },
     {
       "sound": "りつ",
       "name": "Ritz",
-      "description": "A fussy Austrian conductor who snaps his baton at every mistake"
+      "description": "A fussy Austrian conductor who snaps his baton at every mistake",
+      "ipa": "/riːts/"
     },
     {
       "sound": "りょく",
       "name": "Ryoko",
-      "description": "A stern Japanese herbalist who works in silence"
+      "description": "A stern Japanese herbalist who works in silence",
+      "ipa": "/rjoʊku/"
     },
     {
       "sound": "へん",
       "name": "Henry",
-      "description": "A Canadian actuary who loves his whisky and hides spreadsheets behind his glass"
+      "description": "A Canadian actuary who loves his whisky and hides spreadsheets behind his glass",
+      "ipa": "/hen/"
     },
     {
       "sound": "まり",
       "name": "Mariana",
-      "description": "A world-traveling Brazilian who takes her dog everywhere and never checks a map"
+      "description": "A world-traveling Brazilian who takes her dog everywhere and never checks a map",
+      "ipa": "/mɑːriː/"
     },
     {
       "sound": "どん",
       "name": "Don B",
-      "description": "A Colombian barber who only cuts hair near trendy restaurants so he can eat after"
+      "description": "A Colombian barber who only cuts hair near trendy restaurants so he can eat after",
+      "ipa": "/doʊn/"
     },
     {
       "sound": "じゅ",
       "name": "Ju",
-      "description": "An Italian gamer who never quits until she hits 100% completion"
+      "description": "An Italian gamer who never quits until she hits 100% completion",
+      "ipa": "/dʒuː/"
+    },
+    {
+      "sound": "あ",
+      "name": "Ah",
+      "description": "A wide-eyed Ghanaian boy who reacts to everything with open amazement",
+      "ipa": "/ɑː/"
+    },
+    {
+      "sound": "う",
+      "name": "Oo",
+      "description": "A sulky Finnish kid who answers every question with a grunt",
+      "ipa": "/uː/"
+    },
+    {
+      "sound": "え",
+      "name": "Ay",
+      "description": "A cheerful Jamaican postman who greets everyone on the street",
+      "ipa": "/eɪ/"
+    },
+    {
+      "sound": "お",
+      "name": "Oba",
+      "description": "A dignified Nigerian elder who sits at the head of every table",
+      "ipa": "/oʊ/"
+    },
+    {
+      "sound": "す",
+      "name": "Su",
+      "description": "A swift Taiwanese delivery rider who never misses a drop",
+      "ipa": "/suː/"
+    },
+    {
+      "sound": "せ",
+      "name": "Sef",
+      "description": "A self-assured Egyptian barber who never second-guesses a cut",
+      "ipa": "/seɪ/"
+    },
+    {
+      "sound": "そ",
+      "name": "So",
+      "description": "A stoic Kenyan long-distance runner who never changes pace",
+      "ipa": "/soʊ/"
+    },
+    {
+      "sound": "た",
+      "name": "Ta",
+      "description": "A compact Thai boxer who strikes without warning",
+      "ipa": "/tɑː/"
+    },
+    {
+      "sound": "ち",
+      "name": "Chi",
+      "description": "A cheerful Igbo girl who always has chalk on her hands",
+      "ipa": "/tʃiː/"
+    },
+    {
+      "sound": "つ",
+      "name": "Tsu",
+      "description": "A wiry Japanese fisherman who casts his net in one clean throw",
+      "ipa": "/tsuː/"
+    },
+    {
+      "sound": "て",
+      "name": "Tey",
+      "description": "A precise Senegalese tailor who measures twice and cuts once",
+      "ipa": "/teɪ/"
+    },
+    {
+      "sound": "と",
+      "name": "To",
+      "description": "A stocky Tongan farmer who always carries a shovel",
+      "ipa": "/toʊ/"
+    },
+    {
+      "sound": "に",
+      "name": "Nia",
+      "description": "A nimble Kenyan track runner who never stops moving",
+      "ipa": "/niː/"
+    },
+    {
+      "sound": "ぬ",
+      "name": "Nu",
+      "description": "A new Burmese monk still learning the rules",
+      "ipa": "/nuː/"
+    },
+    {
+      "sound": "ね",
+      "name": "Neh",
+      "description": "A skeptical Canadian who ends every sentence with a question",
+      "ipa": "/neɪ/"
+    },
+    {
+      "sound": "な",
+      "name": "Na",
+      "description": "A warm Japanese innkeeper who always has a pot of tea ready",
+      "ipa": "/nɑː/"
+    },
+    {
+      "sound": "の",
+      "name": "No",
+      "description": "A stubborn Norwegian fisherman who refuses every offer",
+      "ipa": "/noʊ/"
+    },
+    {
+      "sound": "は",
+      "name": "Ha",
+      "description": "A hard-nosed Moroccan merchant who drives a hard bargain",
+      "ipa": "/hɑː/"
+    },
+    {
+      "sound": "ま",
+      "name": "Ma",
+      "description": "A commanding Taiwanese matriarch who runs the whole block",
+      "ipa": "/mɑː/"
+    },
+    {
+      "sound": "み",
+      "name": "Mi",
+      "description": "A tiny Bolivian girl who climbs everything in sight",
+      "ipa": "/miː/"
+    },
+    {
+      "sound": "む",
+      "name": "Mu",
+      "description": "A brooding Malian philosopher who stares into the distance",
+      "ipa": "/muː/"
+    },
+    {
+      "sound": "め",
+      "name": "Meh",
+      "description": "A bored Swiss teenager unimpressed by everything",
+      "ipa": "/meɪ/"
+    },
+    {
+      "sound": "も",
+      "name": "Mo",
+      "description": "A laid-back Jamaican fisherman who moves at his own pace",
+      "ipa": "/moʊ/"
+    },
+    {
+      "sound": "や",
+      "name": "Ya",
+      "description": "An enthusiastic Azerbaijani shepherd who yells at his flock",
+      "ipa": "/jɑː/"
+    },
+    {
+      "sound": "ゆ",
+      "name": "Yu",
+      "description": "A graceful Chinese figure skater who glides without effort",
+      "ipa": "/juː/"
+    },
+    {
+      "sound": "よ",
+      "name": "Yo",
+      "description": "A serene Indian yoga teacher who speaks only in riddles",
+      "ipa": "/joʊ/"
+    },
+    {
+      "sound": "ら",
+      "name": "Ra",
+      "description": "A passionate Spanish tennis player who never gives up a point",
+      "ipa": "/rɑː/"
+    },
+    {
+      "sound": "り",
+      "name": "Ri",
+      "description": "A meticulous Filipino seamstress who notices every loose thread",
+      "ipa": "/riː/"
+    },
+    {
+      "sound": "る",
+      "name": "Ru",
+      "description": "A reckless Australian surfer who paddles into every wave",
+      "ipa": "/ruː/"
+    },
+    {
+      "sound": "れ",
+      "name": "Reh",
+      "description": "A ragged Moroccan street musician who plays for whoever stops",
+      "ipa": "/reɪ/"
+    },
+    {
+      "sound": "ろ",
+      "name": "Ro",
+      "description": "A rowdy Portuguese grandmother who sings at full volume",
+      "ipa": "/roʊ/"
+    },
+    {
+      "sound": "わ",
+      "name": "Wa",
+      "description": "A wandering Ethiopian storyteller who carries only a walking stick",
+      "ipa": "/wɑː/"
+    },
+    {
+      "sound": "が",
+      "name": "Ga",
+      "description": "A gruff Chinese mountain guide who never smiles but never gets lost",
+      "ipa": "/ɡɑː/"
+    },
+    {
+      "sound": "ぎ",
+      "name": "Gi",
+      "description": "A giddy Korean street food vendor who gives everyone extra",
+      "ipa": "/ɡiː/"
+    },
+    {
+      "sound": "ぐ",
+      "name": "Gu",
+      "description": "A gruff Mongolian blacksmith who only speaks when necessary",
+      "ipa": "/ɡuː/"
+    },
+    {
+      "sound": "げ",
+      "name": "Geh",
+      "description": "A loud Neapolitan woman who gestures with both hands when she talks",
+      "ipa": "/ɡeɪ/"
+    },
+    {
+      "sound": "ご",
+      "name": "Go",
+      "description": "A giant Fijian bouncer who stands perfectly still",
+      "ipa": "/ɡoʊ/"
+    },
+    {
+      "sound": "ざ",
+      "name": "Za",
+      "description": "A razor-sharp Algerian lawyer who wins every argument",
+      "ipa": "/zɑː/"
+    },
+    {
+      "sound": "ず",
+      "name": "Zu",
+      "description": "A zany Congolese drummer who plays in bursts of chaos",
+      "ipa": "/zuː/"
+    },
+    {
+      "sound": "ぜ",
+      "name": "Zeh",
+      "description": "A zealous French debate student who argues every point",
+      "ipa": "/zeɪ/"
+    },
+    {
+      "sound": "ぞ",
+      "name": "Zo",
+      "description": "A brooding Congolese sculptor who carves only at night",
+      "ipa": "/zoʊ/"
+    },
+    {
+      "sound": "だ",
+      "name": "Da",
+      "description": "A loud Russian father who announces everything he does",
+      "ipa": "/dɑː/"
+    },
+    {
+      "sound": "で",
+      "name": "Deh",
+      "description": "A Danish nurse who delivers bad news with a smile",
+      "ipa": "/deɪ/"
+    },
+    {
+      "sound": "ど",
+      "name": "Do",
+      "description": "A dogged Ukrainian marathon runner who never looks up",
+      "ipa": "/doʊ/"
+    },
+    {
+      "sound": "ば",
+      "name": "Ba",
+      "description": "A barrel-chested Uzbek wrestler who laughs when he loses",
+      "ipa": "/bɑː/"
+    },
+    {
+      "sound": "び",
+      "name": "Bi",
+      "description": "A beady-eyed Peruvian street artist who sees everything",
+      "ipa": "/biː/"
+    },
+    {
+      "sound": "ぶ",
+      "name": "Bu",
+      "description": "A booming Cameroonian blacksmith who shakes the whole street",
+      "ipa": "/buː/"
+    },
+    {
+      "sound": "べ",
+      "name": "Beh",
+      "description": "A belligerent Belgian football fan who argues every call",
+      "ipa": "/beɪ/"
+    },
+    {
+      "sound": "ぼ",
+      "name": "Bo",
+      "description": "A bored Russian librarian who reads the same page every day",
+      "ipa": "/boʊ/"
+    },
+    {
+      "sound": "く",
+      "name": "Ku",
+      "description": "A cool-headed Senegalese chef who works in total silence",
+      "ipa": "/kuː/"
     }
   ]
 }

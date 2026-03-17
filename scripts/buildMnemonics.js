@@ -1,62 +1,42 @@
 /**
- * Generates mnemonics for all kanji.
- * Saves progress to src/data/mnemonics.json incrementally — safe to re-run.
+ * Generates mnemonic stories for all kanji.
+ * Saves incrementally to src/data/mnemonics.json — safe to re-run.
  *
- * Each kanji gets a single unified "story" field — one scene that weaves together:
- *   - The kanji's radicals as visual props/characters
- *   - The on-yomi reading anchored via cast character (exact match only) or bold English sound-alike
- *   - The kun-yomi reading anchored the same way if it adds value without cluttering
- *   - The kanji meaning as the natural punchline — never stated directly
- *
- * Sound anchoring rules:
- *   - Cast character: ONLY if their sound exactly matches the on/kun reading
- *   - Sound-alike: English word whose starting phonemes exactly match the reading's IPA
- *   - The anchor is bolded in the output: **Kyu** or **coop**
- *   - IPA is used internally for precision — never appears in output
+ * Each story anchors the on-yomi reading using its IPA, and weaves in the
+ * kanji's radicals as scene props. The meaning is never stated — it emerges.
  *
  * Usage:
- *
- *   # Ollama (local, recommended for 4070):
  *   node scripts/buildMnemonics.js --local
  *   node scripts/buildMnemonics.js --local --model qwen2.5:14b
- *
- *   # Gemini free tier:
  *   GEMINI_API_KEY=AIza... node scripts/buildMnemonics.js
- *
- *   # Process only one JLPT level:
  *   node scripts/buildMnemonics.js --local --level 5
- *   JLPT_LEVEL=5 GEMINI_API_KEY=AIza... node scripts/buildMnemonics.js
- *
- *   # Wipe existing and regenerate:
  *   node scripts/buildMnemonics.js --local --regen
+ *   node scripts/buildMnemonics.js --local --regen-flagged
  */
 
 const fs = require('fs');
 const path = require('path');
+const http = require('http');
 const https = require('https');
 
-// ─── Config ────────────────────────────────────────────────────────────────
+// ─── Config ──────────────────────────────────────────────────────────────────
 
-const KANJI_JSON = path.join(__dirname, '../src/data/kanji.json');
-const CAST_JSON = path.join(__dirname, './mnemonicCast.json');
-const RADICAL_KANJI_JSON = path.join(__dirname, './radicalKanji.json');
-const PHONETIC_JSON = path.join(__dirname, './phoneticComponents.json');
-const IPA_JSON = path.join(__dirname, './romajiIPA.json');
-const OUT_FILE = path.join(__dirname, '../src/data/mnemonics.json');
+const KANJI_JSON   = path.join(__dirname, '../src/data/kanji.json');
+const IPA_JSON     = path.join(__dirname, './romajiIPA.json');
+const CAST_JSON    = path.join(__dirname, './mnemonicCast.json');
+const OUT_FILE     = path.join(__dirname, '../src/data/mnemonics.json');
+const FLAGGED_FILE = path.join(__dirname, './mnemonics_flagged.json');
 
 const args = process.argv.slice(2);
 const USE_LOCAL = args.includes('--local');
-
-const BATCH_SIZE = USE_LOCAL ? 4 : 8;
 const REGEN = args.includes('--regen');
+const REGEN_FLAGGED = args.includes('--regen-flagged');
 const modelArg = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
 const levelArg = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
-
-const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--'))
-  ? modelArg : 'gemma3:12b';
+const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--')) ? modelArg : 'gemma3:12b';
 const DELAY_MS = USE_LOCAL ? 0 : 13000;
 
-// Load .env for Gemini key
+// Load .env
 const envPath = path.join(__dirname, '../.env');
 if (fs.existsSync(envPath)) {
   fs.readFileSync(envPath, 'utf8').split('\n').forEach(line => {
@@ -67,191 +47,73 @@ if (fs.existsSync(envPath)) {
 
 const GEMINI_KEY = process.env.GEMINI_API_KEY;
 if (!USE_LOCAL && !GEMINI_KEY) {
-  console.error('No GEMINI_API_KEY found. Use --local for Ollama or set GEMINI_API_KEY.');
+  console.error('No GEMINI_API_KEY. Use --local or set GEMINI_API_KEY.');
   process.exit(1);
 }
 
-// ─── Load reference data ────────────────────────────────────────────────────
+// ─── Load data ───────────────────────────────────────────────────────────────
 
-const RADICAL_KANJI = JSON.parse(fs.readFileSync(RADICAL_KANJI_JSON));
-const castData = JSON.parse(fs.readFileSync(CAST_JSON));
-const PHONETIC = JSON.parse(fs.readFileSync(PHONETIC_JSON));
-const IPA = JSON.parse(fs.readFileSync(IPA_JSON)).mora;
+const IPA  = JSON.parse(fs.readFileSync(IPA_JSON)).mora;
+const CAST = Object.fromEntries(
+  JSON.parse(fs.readFileSync(CAST_JSON)).cast.map(e => [e.sound, e])
+);
 
-// Cast map: hiragana sound → { name, description }
-const CAST = {};
-for (const e of castData.cast) CAST[e.sound] = { name: e.name, description: e.description };
+// ─── Prompt ──────────────────────────────────────────────────────────────────
 
-// Reverse phonetic map: kanji character → series info
-const KANJI_TO_SERIES = {};
-for (const [comp, data] of Object.entries(PHONETIC)) {
-  for (const c of data.kanji) {
-    if (!KANJI_TO_SERIES[c]) KANJI_TO_SERIES[c] = [];
-    KANJI_TO_SERIES[c].push({ comp, reading: data.reading, castName: data.castName });
-  }
+function buildPrompt(k) {
+  const reading  = k.readings_on[0] ?? k.readings_kun[0]?.replace(/[.-].*/, '');
+  const ipa      = IPA[reading] ?? '?';
+  const cast     = CAST[reading];
+  const radicals = k.radicals.slice(0, 4).join(', ') || '—';
+  const meaning  = k.meanings[0];
+
+  const anchorInstruction = cast
+    ? `Bold the name **${cast.name}** (${cast.description}) — their name starts with ${ipa}, which matches this reading exactly.`
+    : `Bold an English word whose first sounds match ${ipa}. Do NOT use any character name.`;
+
+  return `Write a single mnemonic story (2-3 sentences) for this Japanese kanji.
+
+Kanji: ${k.character}
+Meaning: ${meaning}
+Radicals: ${radicals}
+Reading: ${reading} (${ipa})
+
+Rules:
+1. Sound anchor: ${anchorInstruction}
+2. Use the radicals as physical objects or characters in the scene.
+3. NEVER write the meaning "${meaning}" or any synonym. It must emerge from the scene.
+4. Vivid and concrete. 2-3 sentences max.
+
+Respond with ONLY the story. No labels, no explanation.`;
 }
 
-// ─── Formatting helpers ─────────────────────────────────────────────────────
-
-function formatRadical(name) {
-  return RADICAL_KANJI[name] ? `${name} (${RADICAL_KANJI[name]})` : name;
-}
-
-const CAST_REFERENCE = castData.cast
-  .map(e => `  ${e.sound} → ${e.name}: ${e.description}`)
-  .join('\n');
-
-const IPA_REFERENCE = Object.entries(IPA)
-  .map(([mora, ipa]) => `  ${mora} = ${ipa}`)
-  .join('\n');
-
-// ─── Per-kanji context builder ──────────────────────────────────────────────
-
-function buildReadingHint(r) {
-  const ipaStr = IPA[r] || '?';
-  const cast = CAST[r];
-  if (cast) {
-    return `${r} → ${ipaStr} → use cast character **${cast.name}** (${cast.description})`;
-  }
-  return `${r} → ${ipaStr} → pick English word whose start matches these phonemes`;
-}
-
-function buildKanjiContext(k) {
-  const onReadings = k.readings_on.slice(0, 2);
-  const kunReadings = k.readings_kun.slice(0, 2)
-    .map(r => r.replace(/[.-].*/, '')).filter(Boolean);
-  const rads = k.radicals.slice(0, 4).map(formatRadical).join(', ') || '—';
-
-  const series = KANJI_TO_SERIES[k.character];
-  const phoneticHint = series
-    ? series.map(s => `phonetic component ${s.comp} signals reading ${s.reading} → ${buildReadingHint(s.reading)}`).join('; ')
-    : null;
-
-  const lines = [
-    `character: ${k.character}`,
-    `meaning: ${k.meanings[0]}`,
-    `radicals: ${rads}`,
-    `on-yomi: ${onReadings.map(buildReadingHint).join(' | ') || '—'}`,
-    `kun-yomi: ${kunReadings.map(buildReadingHint).join(' | ') || '—'}`,
-  ];
-  if (phoneticHint) lines.push(`phonetic hint: ${phoneticHint}`);
-
-  return lines.join('\n');
-}
-
-// ─── Prompt ────────────────────────────────────────────────────────────────
-
-function buildPrompt(batch) {
-  const kanjiBlocks = batch.map(k => buildKanjiContext(k)).join('\n\n');
-
-  return `You are a Japanese kanji teacher creating memory stories for English speakers.
-
-For each kanji write ONE unified "story" — a single vivid scene (2-3 sentences max) that weaves together:
-1. The kanji's RADICALS as physical objects or characters in the scene
-2. A SOUND ANCHOR for the on-yomi reading (and kun-yomi if it fits naturally without cluttering)
-3. The kanji's MEANING as the natural conclusion — implied by the scene, never spoken aloud
-
-═══ SOUND ANCHOR RULES ═══
-
-Every reading comes with its IPA and — when available — a pre-approved cast character whose name starts with those exact phonemes. Use the IPA to select your anchor:
-
-A. If the kanji context shows "use cast character Name":
-   - That character's name already matches the IPA — use them in the scene
-   - Bold their name: **Kyu**, **Kofi**, **Ji**
-
-B. If no cast character is given:
-   - Use the IPA to find a common English word whose FIRST phonemes exactly match
-   - Bold the word: **den**, **hatch**, **sand**, **each**
-   - STRICT phoneme match — /kuː/ = "coop/cool/coup" NOT "queue" (/kjuː/), /niː/ = "knee/need" NOT "Ji" (/dʒiː/)
-
-C. Every story MUST have at least one bold anchor — no exceptions.
-
-D. Bold format: exactly one bold element per anchored reading. No other bold text in the story.
-
-E. Kun-yomi: only anchor it if it's distinct from on-yomi AND fits naturally. Skip if it clutters.
-
-═══ STRICT PROHIBITIONS ═══
-✗ NEVER write the kanji's meaning word in the story (e.g. for 火 never write "fire" or "flame")
-✗ NEVER write the reading in romaji or hiragana in the story
-✗ NEVER write "X (漢字)" to label the meaning inline — e.g. never "Fire (火)", "Person (人)", "Rest (休)"
-✗ NEVER invent cast characters not in the cast list
-✗ NEVER leave a story without a bold anchor
-
-The meaning must emerge from the scene itself — the reader should feel it, not read it.
-
-═══ RADICAL RULES ═══
-- Use ONLY the radical names given in the kanji context — do not invent components
-- When a radical IS a kanji (e.g. "Sun (日)"), name it naturally: "The Sun (日)..." — this is the radical label, not the meaning reveal
-- Treat radicals as physical props or scenery in the scene
-- Strange, vivid, or funny scenes stick better than plain descriptions
-
-═══ OUTPUT FORMAT ═══
-Respond with ONLY valid JSON. Each key is the kanji character, value is an object with EXACTLY one field: "story".
-No markdown fences, no explanation, no IPA, no extra fields, no commentary.
-Each value must look like: {"story": "..."} — nothing else inside.
-
-═══ CAST REFERENCE ═══
-${CAST_REFERENCE}
-
-═══ IPA REFERENCE (internal use only — never appear in story output) ═══
-${IPA_REFERENCE}
-
-═══ EXAMPLES ═══
-{
-  "一": {
-    "story": "An **itch** crawls across the Ground — a single line scratched into the dirt by one fingernail, and that lone mark is enough to divide everything on one side from everything on the other."
-  },
-  "七": {
-    "story": "She yanked the **sheath** off the samurai's blade and flung it across the courtyard — it spun end over end and clattered against the stone wall with a hollow crack."
-  },
-  "休": {
-    "story": "The leader drives the group for hours until **Kyu** finally slumps against the Tree (木) and won't budge — nobody protests, and for the first time all day, the whole group collapses into stillness."
-  },
-  "電": {
-    "story": "Rain hammers the Rice Paddy (田) so hard the Umbrella planted in the field gets struck — the whole **den** surges with crackling blue light, every wire in the building humming."
-  },
-  "万": {
-    "story": "A lone **man** slices a Leaf with his Sword (刀) — and it keeps splitting, again and again, until the fragments pile up like dunes across the entire plain, beyond any hope of counting."
-  }
-}
-
-═══ KANJI TO PROCESS ═══
-${kanjiBlocks}`;
-}
-
-// ─── API callers ────────────────────────────────────────────────────────────
+// ─── API ─────────────────────────────────────────────────────────────────────
 
 function callOllama(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
-      model: OLLAMA_MODEL,
-      prompt,
-      stream: false,
-      format: 'json',
-      options: { temperature: 0.7, num_predict: 8000 },
+      model: OLLAMA_MODEL, prompt, stream: false,
+      options: { temperature: 0.7, num_predict: 300 },
     });
-    const req = require('http').request(
+    const req = http.request(
       {
         hostname: 'localhost', port: 11434, path: '/api/generate', method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }
       },
       res => {
         let data = '';
-        res.on('data', chunk => (data += chunk));
+        res.on('data', c => (data += c));
         res.on('end', () => {
           try {
             const parsed = JSON.parse(data);
             if (parsed.error) return reject(new Error(parsed.error));
-            resolve(parsed.response);
-          } catch (e) {
-            reject(new Error(`Ollama parse error: ${e.message}\nRaw: ${data.slice(0, 300)}`));
-          }
+            resolve(parsed.response.trim());
+          } catch (e) { reject(new Error(`Ollama parse error: ${e.message}`)); }
         });
-      },
+      }
     );
-    req.on('error', e => reject(new Error(`Ollama connection error: ${e.message}\nIs Ollama running? Try: ollama serve`)));
-    req.write(body);
-    req.end();
+    req.on('error', e => reject(new Error(`Ollama error: ${e.message} — is Ollama running?`)));
+    req.write(body); req.end();
   });
 }
 
@@ -259,76 +121,51 @@ function callGemini(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.7, maxOutputTokens: 8000 },
+      generationConfig: { temperature: 0.7, maxOutputTokens: 300 },
     });
-    const model = 'gemini-2.5-flash';
     const req = https.request(
       {
         hostname: 'generativelanguage.googleapis.com',
-        path: `/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`,
+        path: `/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }
       },
       res => {
         let data = '';
-        res.on('data', chunk => (data += chunk));
+        res.on('data', c => (data += c));
         res.on('end', () => {
           try {
             const parsed = JSON.parse(data);
             if (parsed.error) return reject(new Error(parsed.error.message));
-            resolve(parsed.candidates[0].content.parts[0].text);
-          } catch (e) {
-            reject(new Error(`Gemini parse error: ${e.message}\nRaw: ${data.slice(0, 300)}`));
-          }
+            resolve(parsed.candidates[0].content.parts[0].text.trim());
+          } catch (e) { reject(new Error(`Gemini parse error: ${e.message}`)); }
         });
-      },
+      }
     );
     req.on('error', reject);
-    req.write(body);
-    req.end();
+    req.write(body); req.end();
   });
 }
 
-function callModel(prompt) {
-  return USE_LOCAL ? callOllama(prompt) : callGemini(prompt);
-}
-
-// ─── Batch processor ────────────────────────────────────────────────────────
-
+function callModel(prompt) { return USE_LOCAL ? callOllama(prompt) : callGemini(prompt); }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-function extractJson(text) {
-  const stripped = text.replace(/^```(?:json)?\s*/im, '').replace(/\s*```\s*$/m, '').trim();
-  const start = stripped.indexOf('{');
-  const end = stripped.lastIndexOf('}');
-  if (start === -1 || end === -1) throw new Error(`No JSON object found in: ${text.slice(0, 200)}`);
-  return JSON.parse(stripped.slice(start, end + 1));
-}
+// ─── Process one kanji ───────────────────────────────────────────────────────
 
-async function processBatch(batch, retries = 3) {
-  const prompt = buildPrompt(batch);
+async function processOne(k, retries = 3) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const text = await callModel(prompt);
-      const result = extractJson(text);
-
-      for (const k of batch) {
-        const entry = result[k.character];
-        if (!entry || typeof entry.story !== 'string' || entry.story.trim() === '') {
-          throw new Error(`Missing or invalid story for ${k.character}`);
-        }
-        // Strip any extra fields the model added (IPA leakage, explanations, etc.)
-        result[k.character] = { story: entry.story };
-      }
-
-      return result;
+      const story = await callModel(buildPrompt(k));
+      if (!story) throw new Error('Empty response');
+      if (!story.includes('**')) throw new Error('No bold anchor in story');
+      return story;
     } catch (e) {
       if (attempt < retries) {
         const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
         const waitMs = retryMatch
           ? Math.ceil(parseFloat(retryMatch[1])) * 1000 + 1000
           : (USE_LOCAL ? 2000 : 35000);
-        process.stdout.write(`\n  Retrying (${attempt + 1}/${retries}): ${e.message.slice(0, 80)}... waiting ${Math.round(waitMs / 1000)}s`);
+        process.stdout.write(`\n  Retry ${attempt + 1}/${retries}: ${e.message.slice(0, 80)} (${Math.round(waitMs / 1000)}s)`);
         await sleep(waitMs);
       } else {
         throw e;
@@ -337,7 +174,7 @@ async function processBatch(batch, retries = 3) {
   }
 }
 
-// ─── Main ───────────────────────────────────────────────────────────────────
+// ─── Main ────────────────────────────────────────────────────────────────────
 
 async function main() {
   const allKanji = JSON.parse(fs.readFileSync(KANJI_JSON));
@@ -350,51 +187,52 @@ async function main() {
   let existing = {};
   if (!REGEN && fs.existsSync(OUT_FILE)) {
     existing = JSON.parse(fs.readFileSync(OUT_FILE));
-    // Migrate old-format entries (had meaning/onyomi/kunyomi instead of story)
-    let migrated = 0;
+    // Drop old-format entries
+    let dropped = 0;
     for (const [char, val] of Object.entries(existing)) {
-      if (typeof val === 'string' || (val && !val.story)) {
-        delete existing[char];
-        migrated++;
-      }
+      if (!val?.story) { delete existing[char]; dropped++; }
     }
-    if (migrated > 0) console.log(`Dropped ${migrated} old-format entries (will regenerate)`);
+    if (dropped > 0) console.log(`Dropped ${dropped} old-format entries`);
+  }
+
+  if (REGEN_FLAGGED && fs.existsSync(FLAGGED_FILE)) {
+    const flagged = JSON.parse(fs.readFileSync(FLAGGED_FILE));
+    let cleared = 0;
+    for (const char of Object.keys(flagged)) {
+      if (existing[char]) { delete existing[char]; cleared++; }
+    }
+    console.log(`--regen-flagged: cleared ${cleared} entries`);
   }
 
   const todo = kanji.filter(k => !existing[k.character]);
   const mode = USE_LOCAL ? `Ollama (${OLLAMA_MODEL})` : 'Gemini 2.5 Flash';
-  console.log(`Mode: ${mode}`);
-  console.log(`Total: ${kanji.length} | Done: ${kanji.length - todo.length} | Remaining: ${todo.length}`);
-  if (levelFilter) console.log(`Filtering to JLPT N${levelFilter}`);
-  if (REGEN) console.log('--regen flag: starting fresh');
-
+  console.log(`Mode: ${mode} | Total: ${kanji.length} | Done: ${kanji.length - todo.length} | Remaining: ${todo.length}`);
+  if (levelFilter) console.log(`JLPT N${levelFilter} only`);
   if (todo.length === 0) { console.log('All done!'); return; }
 
   const startTime = Date.now();
   let done = 0;
 
-  for (let i = 0; i < todo.length; i += BATCH_SIZE) {
-    const batch = todo.slice(i, i + BATCH_SIZE);
+  for (let i = 0; i < todo.length; i++) {
+    const k = todo[i];
     const elapsed = Math.round((Date.now() - startTime) / 1000);
     const eta = done > 0 ? Math.round((elapsed / done) * (todo.length - done)) : '?';
-    process.stdout.write(`\r[${elapsed}s elapsed, ~${eta}s left] Processing ${i + 1}–${Math.min(i + BATCH_SIZE, todo.length)} / ${todo.length}...  `);
+    process.stdout.write(`\r[${elapsed}s ~${eta}s left] ${i + 1}/${todo.length} ${k.character}   `);
 
     try {
-      const results = await processBatch(batch);
-      Object.assign(existing, results);
-      done += Object.keys(results).length;
+      const story = await processOne(k);
+      existing[k.character] = { story };
+      done++;
       fs.writeFileSync(OUT_FILE, JSON.stringify(existing, null, 2));
     } catch (e) {
-      console.error(`\nBatch failed (${batch.map(k => k.character).join('')}): ${e.message}`);
-      fs.writeFileSync(OUT_FILE, JSON.stringify(existing, null, 2));
+      console.error(`\nFailed ${k.character}: ${e.message}`);
     }
 
-    if (DELAY_MS > 0 && i + BATCH_SIZE < todo.length) await sleep(DELAY_MS);
+    if (DELAY_MS > 0 && i < todo.length - 1) await sleep(DELAY_MS);
   }
 
   const totalSec = Math.round((Date.now() - startTime) / 1000);
-  const sizeMB = (fs.statSync(OUT_FILE).size / 1024 / 1024).toFixed(2);
-  console.log(`\nDone! Generated ${done} new entries in ${totalSec}s. Total: ${Object.keys(existing).length} kanji. File: ${sizeMB} MB`);
+  console.log(`\nDone! ${done} new stories in ${totalSec}s. Total: ${Object.keys(existing).length}`);
 }
 
 main().catch(e => { console.error('\nFatal:', e.message); process.exit(1); });
