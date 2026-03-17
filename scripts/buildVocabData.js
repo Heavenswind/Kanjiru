@@ -2,9 +2,10 @@
  * Generates vocabulary examples for all kanji.
  * Saves incrementally to src/data/vocab.json — safe to re-run.
  *
- * Each kanji gets 3 vocab words. Each word's story anchors the reading
- * using IPA looked up in code — cast character resolved deterministically,
- * never left to the model.
+ * Two-pass approach:
+ *   Pass 1: get word + reading + meaning (JSON, 3 entries)
+ *   Pass 2: for each word, build story using the word's ACTUAL reading — cast/IPA anchors
+ *           are resolved in code from the real reading, then injected into the story prompt.
  *
  * Usage:
  *   node scripts/buildVocabData.js --local
@@ -32,7 +33,7 @@ const REGEN        = args.includes('--regen');
 const modelArg     = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
 const levelArg     = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
 const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--')) ? modelArg : 'gemma3:12b';
-const DELAY_MS     = USE_LOCAL ? 0 : 13000;
+const DELAY_MS     = USE_LOCAL ? 0 : 4000; // between API calls (pass 1 + pass 2 × 3 = 4 calls per kanji)
 
 const envPath = path.join(__dirname, '../.env');
 if (fs.existsSync(envPath)) {
@@ -91,7 +92,7 @@ function buildAnchorInstructions(reading) {
     const cast = CAST[m];
     const ipa  = IPA[m];
     if (cast) {
-      instructions.push(`"${m}" → bold **${cast.name}** (${cast.description}, IPA: ${cast.ipa})`);
+      instructions.push(`"${m}" → YOU MUST bold **${cast.name}** (${cast.description}, IPA: ${cast.ipa})`);
     } else if (ipa) {
       instructions.push(`"${m}" → bold an English word starting with ${ipa} — NOT a cast name`);
     }
@@ -100,60 +101,33 @@ function buildAnchorInstructions(reading) {
   return instructions;
 }
 
-// ─── Prompt ──────────────────────────────────────────────────────────────────
+// ─── Prompts ─────────────────────────────────────────────────────────────────
 
 function buildPrompt(k) {
   const meaning = k.meanings[0];
+  const onReadings = k.readings_on.join(', ') || '—';
+  const kunReadings = k.readings_kun.map(r => r.replace(/[.\-].*/g, '').replace(/^-/, '')).filter(Boolean).join(', ') || '—';
 
-  return `You are a Japanese language teacher creating vocabulary study cards for English speakers.
+  return `You are a Japanese language teacher creating vocabulary study cards.
 
-For the kanji ${k.character} (meaning: ${meaning}), provide exactly 3 common vocabulary words.
+For the kanji ${k.character} (meaning: ${meaning}), provide exactly 5 common vocabulary words.
 
-Each word needs these fields:
-- "word": the Japanese word (kanji + kana as normally written)
-- "reading": the full hiragana reading
-- "meaning": concise English translation (2-5 words, capitalize each)
-- "story": a vivid 1-2 sentence scene that anchors the reading and implies the meaning
+Known readings:
+- On-yomi (used in compound nouns): ${onReadings}
+- Kun-yomi (native Japanese words): ${kunReadings}
 
-STORY RULES:
-- Use the kanji meanings as visual props in the scene
-- NEVER state the word's meaning directly — it must emerge from the scene
-- The reading anchor instructions below tell you exactly what to bold for each mora
-- Bold exactly those words/names, in the order the mora appear in the reading
-- No other bold text in the story
-
-VOCAB RULES:
-- Every word MUST contain the kanji ${k.character}
-- Prefer high-frequency, real words
-- Readings must be accurate hiragana
+RULES:
+- EVERY word MUST contain the kanji ${k.character} — no exceptions
+- Cover as many different readings as possible across the 5 words
+- Include both on-yomi compounds and kun-yomi words where they exist
+- Prefer high-frequency words a JLPT N5/N4 learner would encounter
+- Readings must be accurate hiragana only
+- Meaning: concise English translation, 2-5 words, Title Case
+- No duplicates
 
 OUTPUT FORMAT:
-Respond with ONLY a JSON array of exactly 3 objects. No markdown, no explanation.
-[{"word":"...","reading":"...","meaning":"...","story":"..."},...]
-
-EXAMPLES:
-[
-  {
-    "word": "人口",
-    "reading": "じんこう",
-    "meaning": "Population",
-    "story": "Every **gin**-soaked night, **Kofi** counts the Mouths lining up at his bar — more Persons through the door every week."
-  },
-  {
-    "word": "空港",
-    "reading": "くうこう",
-    "meaning": "Airport",
-    "story": "The **coop** on the roof explodes open just as **Kofi** arrives — birds everywhere, total chaos."
-  }
-]
-
-READING ANCHOR INSTRUCTIONS FOR EACH WORD:
-(You will choose the 3 words — for each word's reading, apply these mora-by-mora rules using the cast/IPA system below)
-
-For any mora in a reading, follow this priority:
-${buildAnchorInstructions(k.readings_on[0] ?? k.readings_kun[0]?.replace(/[.-].*/, '') ?? '').join('\n') || '— use the IPA of each mora to find a bold English sound-alike'}
-
-Note: the above shows anchors for the kanji's own reading. Apply the same logic to whatever reading each vocab word has — bold a cast character name if that mora has one, otherwise bold an IPA-matched English word.`;
+Respond with ONLY a JSON array of exactly 5 objects. No markdown, no explanation.
+[{"word":"...","reading":"...","meaning":"..."},...]`;
 }
 
 // ─── API ─────────────────────────────────────────────────────────────────────
@@ -162,7 +136,7 @@ function callOllama(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       model: OLLAMA_MODEL, prompt, stream: false,
-      options: { temperature: 0.6, num_predict: 1000 },
+      options: { temperature: 0.6, num_predict: 600 },
     });
     const req = http.request(
       { hostname: 'localhost', port: 11434, path: '/api/generate', method: 'POST',
@@ -188,7 +162,7 @@ function callGemini(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.6, maxOutputTokens: 1000 },
+      generationConfig: { temperature: 0.6, maxOutputTokens: 600 },
     });
     const req = https.request(
       { hostname: 'generativelanguage.googleapis.com',
@@ -223,20 +197,10 @@ function extractJson(text) {
   return JSON.parse(stripped.slice(start, end + 1));
 }
 
-// ─── Process one kanji ───────────────────────────────────────────────────────
-
-async function processOne(k, retries = 3) {
+async function callWithRetry(prompt, retries = 3) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const text    = await callModel(buildPrompt(k));
-      const entries = extractJson(text);
-      if (!Array.isArray(entries) || entries.length === 0)
-        throw new Error('Empty or invalid array');
-      for (const e of entries) {
-        if (!e.word || !e.reading || !e.meaning || !e.story)
-          throw new Error(`Malformed entry: ${JSON.stringify(e)}`);
-      }
-      return entries;
+      return await callModel(prompt);
     } catch (e) {
       if (attempt < retries) {
         const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
@@ -250,6 +214,25 @@ async function processOne(k, retries = 3) {
       }
     }
   }
+}
+
+// ─── Process one kanji ───────────────────────────────────────────────────────
+
+async function processOne(k) {
+  const text    = await callWithRetry(buildPrompt(k));
+  const entries = extractJson(text);
+
+  if (!Array.isArray(entries) || entries.length === 0)
+    throw new Error('Empty or invalid array');
+
+  for (const e of entries) {
+    if (!e.word || !e.reading || !e.meaning)
+      throw new Error(`Malformed entry: ${JSON.stringify(e)}`);
+    if (!e.word.includes(k.character))
+      throw new Error(`Word "${e.word}" does not contain kanji ${k.character}`);
+  }
+
+  return entries;
 }
 
 // ─── Main ────────────────────────────────────────────────────────────────────
@@ -267,7 +250,7 @@ async function main() {
     existing = JSON.parse(fs.readFileSync(OUT_FILE));
     let dropped = 0;
     for (const [char, entries] of Object.entries(existing)) {
-      if (!Array.isArray(entries) || entries.some(e => !e.story)) {
+      if (!Array.isArray(entries) || entries.some(e => !e.word || !e.reading || !e.meaning)) {
         delete existing[char]; dropped++;
       }
     }

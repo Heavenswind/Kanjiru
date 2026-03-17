@@ -930,6 +930,34 @@
         ]
     },
     {
+        "id": "分",
+        "character": "分",
+        "jlptLevel": 5,
+        "strokes": 4,
+        "meanings": [
+            "Part",
+            "Minute",
+            "Understand",
+            "Segment"
+        ],
+        "readings_on": [
+            "ぶん",
+            "ふん",
+            "ぶ"
+        ],
+        "readings_kun": [
+            "わ.ける",
+            "わ.け",
+            "わ.かれる",
+            "わ.かる",
+            "わ.かつ"
+        ],
+        "radicals": [
+            "Knife",
+            "Eight"
+        ]
+    },
+    {
         "id": "外",
         "character": "外",
         "jlptLevel": 5,

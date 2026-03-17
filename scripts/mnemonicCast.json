@@ -433,27 +433,221 @@
       "description": "A friendly American locksmith who fixes everything",
       "ipa": "/dʒoʊ/"
     },
-    { "sound": "へ",  "name": "Heh", "description": "A sarcastic French teenager who rolls his eyes at everything", "ipa": "/heɪ/" },
-    { "sound": "ぱ",  "name": "Pa",  "description": "A boisterous Italian grandfather who slaps the table when he laughs", "ipa": "/pɑː/" },
-    { "sound": "ぴ",  "name": "Pi",  "description": "A precise Greek mathematician who measures everything twice", "ipa": "/piː/" },
-    { "sound": "ぷ",  "name": "Pu",  "description": "A puffed-up Cambodian chef proud of every dish he makes", "ipa": "/puː/" },
-    { "sound": "ぺ",  "name": "Peh", "description": "A pessimistic Polish accountant who expects the worst", "ipa": "/peɪ/" },
-    { "sound": "ぽ",  "name": "Po",  "description": "A portly Peruvian baker who hums while kneading dough", "ipa": "/poʊ/" },
-    { "sound": "きゃ", "name": "Kya", "description": "A sharp-clawed Kenyan acrobat who leaps without warning", "ipa": "/kjɑː/" },
-    { "sound": "しゃ", "name": "Sha", "description": "A shadowy Moroccan jeweler who trades in whispers", "ipa": "/ʃɑː/" },
-    { "sound": "ちゃ", "name": "Cha", "description": "A chatty Taiwanese tea vendor who never stops talking", "ipa": "/tʃɑː/" },
-    { "sound": "ちゅ", "name": "Chu", "description": "A chubby Chinese chef who tastes everything before serving", "ipa": "/tʃuː/" },
-    { "sound": "にゃ", "name": "Nya", "description": "A nimble Nepalese climber who moves like a cat", "ipa": "/njɑː/" },
-    { "sound": "にゅ", "name": "Nyu", "description": "A new Ugandan recruit still figuring out the rules", "ipa": "/njuː/" },
-    { "sound": "にょ", "name": "Nyo", "description": "A nyonya Malaysian grandmother who rules the kitchen", "ipa": "/njoʊ/" },
-    { "sound": "ひゃ", "name": "Hya", "description": "A hyper Armenian kid who bounces off every wall", "ipa": "/hjɑː/" },
-    { "sound": "みゃ", "name": "Mya", "description": "A mysterious Burmese fortune teller who never blinks", "ipa": "/mjɑː/" },
-    { "sound": "りゃ", "name": "Rya", "description": "A rapid Rwandan weaver whose hands never slow down", "ipa": "/rjɑː/" },
-    { "sound": "ぎゃ", "name": "Gya", "description": "A giddy Ghanaian acrobat who laughs mid-flip", "ipa": "/ɡjɑː/" },
-    { "sound": "ぎゅ", "name": "Gyu", "description": "A gruff Uzbek butcher who handles every cut with precision", "ipa": "/ɡjuː/" },
-    { "sound": "ぎょ", "name": "Gyo", "description": "A gloomy Norwegian fisherman who never expects a good catch", "ipa": "/ɡjoʊ/" },
-    { "sound": "じゃ", "name": "Ja",  "description": "A jazzy Jamaican DJ who fills every room with sound", "ipa": "/dʒɑː/" },
-    { "sound": "びゃ", "name": "Bya", "description": "A blazing Belarusian sprinter who moves before the gun fires", "ipa": "/bjɑː/" },
-    { "sound": "ぴゃ", "name": "Pya", "description": "A piercing-eyed Paraguayan hawk trainer who never misses", "ipa": "/pjɑː/" }
+    {
+      "sound": "へ",
+      "name": "Heh",
+      "description": "A sarcastic French teenager who rolls his eyes at everything",
+      "ipa": "/heɪ/"
+    },
+    {
+      "sound": "ぱ",
+      "name": "Pa",
+      "description": "A boisterous Italian grandfather who slaps the table when he laughs",
+      "ipa": "/pɑː/"
+    },
+    {
+      "sound": "ぴ",
+      "name": "Pi",
+      "description": "A precise Greek mathematician who measures everything twice",
+      "ipa": "/piː/"
+    },
+    {
+      "sound": "ぷ",
+      "name": "Pu",
+      "description": "A puffed-up Cambodian chef proud of every dish he makes",
+      "ipa": "/puː/"
+    },
+    {
+      "sound": "ぺ",
+      "name": "Peh",
+      "description": "A pessimistic Polish accountant who expects the worst",
+      "ipa": "/peɪ/"
+    },
+    {
+      "sound": "ぽ",
+      "name": "Po",
+      "description": "A portly Peruvian baker who hums while kneading dough",
+      "ipa": "/poʊ/"
+    },
+    {
+      "sound": "きゃ",
+      "name": "Kya",
+      "description": "A sharp-clawed Kenyan acrobat who leaps without warning",
+      "ipa": "/kjɑː/"
+    },
+    {
+      "sound": "しゃ",
+      "name": "Sha",
+      "description": "A shadowy Moroccan jeweler who trades in whispers",
+      "ipa": "/ʃɑː/"
+    },
+    {
+      "sound": "ちゃ",
+      "name": "Cha",
+      "description": "A chatty Taiwanese tea vendor who never stops talking",
+      "ipa": "/tʃɑː/"
+    },
+    {
+      "sound": "ちゅ",
+      "name": "Chu",
+      "description": "A chubby Chinese chef who tastes everything before serving",
+      "ipa": "/tʃuː/"
+    },
+    {
+      "sound": "にゃ",
+      "name": "Nya",
+      "description": "A nimble Nepalese climber who moves like a cat",
+      "ipa": "/njɑː/"
+    },
+    {
+      "sound": "にゅ",
+      "name": "Nyu",
+      "description": "A new Ugandan recruit still figuring out the rules",
+      "ipa": "/njuː/"
+    },
+    {
+      "sound": "にょ",
+      "name": "Nyo",
+      "description": "A nyonya Malaysian grandmother who rules the kitchen",
+      "ipa": "/njoʊ/"
+    },
+    {
+      "sound": "ひゃ",
+      "name": "Hya",
+      "description": "A hyper Armenian kid who bounces off every wall",
+      "ipa": "/hjɑː/"
+    },
+    {
+      "sound": "みゃ",
+      "name": "Mya",
+      "description": "A mysterious Burmese fortune teller who never blinks",
+      "ipa": "/mjɑː/"
+    },
+    {
+      "sound": "りゃ",
+      "name": "Rya",
+      "description": "A rapid Rwandan weaver whose hands never slow down",
+      "ipa": "/rjɑː/"
+    },
+    {
+      "sound": "ぎゃ",
+      "name": "Gya",
+      "description": "A giddy Ghanaian acrobat who laughs mid-flip",
+      "ipa": "/ɡjɑː/"
+    },
+    {
+      "sound": "ぎゅ",
+      "name": "Gyu",
+      "description": "A gruff Uzbek butcher who handles every cut with precision",
+      "ipa": "/ɡjuː/"
+    },
+    {
+      "sound": "ぎょ",
+      "name": "Gyo",
+      "description": "A gloomy Norwegian fisherman who never expects a good catch",
+      "ipa": "/ɡjoʊ/"
+    },
+    {
+      "sound": "じゃ",
+      "name": "Ja",
+      "description": "A jazzy Jamaican DJ who fills every room with sound",
+      "ipa": "/dʒɑː/"
+    },
+    {
+      "sound": "びゃ",
+      "name": "Bya",
+      "description": "A blazing Belarusian sprinter who moves before the gun fires",
+      "ipa": "/bjɑː/"
+    },
+    {
+      "sound": "ぴゃ",
+      "name": "Pya",
+      "description": "A piercing-eyed Paraguayan hawk trainer who never misses",
+      "ipa": "/pjɑː/"
+    },
+    {
+      "sound": "きゅう",
+      "name": "Kyu",
+      "description": "A Japanese student always late to class",
+      "ipa": "/kjuː/"
+    },
+    {
+      "sound": "きょう",
+      "name": "Kyo",
+      "description": "A precise, elegant tea ceremony master",
+      "ipa": "/kjoʊ/"
+    },
+    {
+      "sound": "ぎゅう",
+      "name": "Gyu",
+      "description": "A gruff Uzbek butcher who handles every cut with precision",
+      "ipa": "/ɡjuː/"
+    },
+    {
+      "sound": "ぎょう",
+      "name": "Gyo",
+      "description": "A gloomy Norwegian fisherman who never expects a good catch",
+      "ipa": "/ɡjoʊ/"
+    },
+    {
+      "sound": "しゅう",
+      "name": "Shura",
+      "description": "A fierce Russian gymnast with ice in her eyes",
+      "ipa": "/ʃuː/"
+    },
+    {
+      "sound": "しょう",
+      "name": "Sho",
+      "description": "A laid-back surfer from California, always in board shorts",
+      "ipa": "/ʃoʊ/"
+    },
+    {
+      "sound": "じゅう",
+      "name": "Ju",
+      "description": "An Italian gamer who never quits until she hits 100% completion",
+      "ipa": "/dʒuː/"
+    },
+    {
+      "sound": "じょう",
+      "name": "Joe",
+      "description": "A friendly American locksmith who fixes everything",
+      "ipa": "/dʒoʊ/"
+    },
+    {
+      "sound": "ちゅう",
+      "name": "Chu",
+      "description": "A chubby Chinese chef who tastes everything before serving",
+      "ipa": "/tʃuː/"
+    },
+    {
+      "sound": "ちょう",
+      "name": "Cho",
+      "description": "A passionate Thai chef who runs a chaotic street kitchen",
+      "ipa": "/tʃoʊ/"
+    },
+    {
+      "sound": "にゅう",
+      "name": "Nyu",
+      "description": "A new Ugandan recruit still figuring out the rules",
+      "ipa": "/njuː/"
+    },
+    {
+      "sound": "にょう",
+      "name": "Nyo",
+      "description": "A nyonya Malaysian grandmother who rules the kitchen",
+      "ipa": "/njoʊ/"
+    },
+    {
+      "sound": "りゅう",
+      "name": "Ryu",
+      "description": "A stoic Japanese martial artist who trains alone at dawn",
+      "ipa": "/rjuː/"
+    },
+    {
+      "sound": "りょう",
+      "name": "Rio",
+      "description": "A Brazilian backpacker always arriving somewhere new",
+      "ipa": "/rjoʊ/"
+    }
   ]
 }

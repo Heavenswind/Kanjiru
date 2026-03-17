@@ -23,6 +23,10 @@
 - If cast entry exists: prompt says "Bold **Name** (description) — their name starts with /ipa/"
 - If no cast entry: prompt says "Bold an English word matching /ipa/, do NOT use any character name"
 
+### Added long-vowel compound mora back to cast + deduped
+- じゅう→Ju, じょう→Joe, きゅう→Kyu, きょう→Kyo, しょう→Sho, ちょう→Cho etc. now resolve correctly
+- Deduped cast — 108 clean entries total
+
 ### Completed cast coverage for all practical mora
 - Added へ, ぱ-row, and all compound mora (きゃ、しゃ、じゃ、ちゃ etc.) — 94 entries total
 - Remaining gaps (を、ん、びゅ、ぴょ etc.) are too rare in on-yomi to matter
@@ -66,6 +70,39 @@
 
 **Next:** Stories for simple number kanji (一, 二, 三...) are still weak — they leak the meaning through paraphrase. Need to either tighten the prompt or add a critic/rewrite pass. Also need to decide: regenerate all existing stories, or only regenerate the bad ones?
 
+### Rewrote buildVocabData.js to two-pass approach
+- **Problem:** Old single-pass approach built anchor instructions from the kanji's on-yomi, not the actual word's reading. E.g. 物語 (ものがたり) was getting anchors based on ぶつ/もの instead of the word's real mora sequence.
+- **Fix:** Two-pass generation:
+  - Pass 1: `buildWordsPrompt(k)` → model returns JSON array of `{word, reading, meaning}` only
+  - Pass 2: for each word, `buildStoryPrompt(entry, kanjiMeaning)` calls `buildAnchorInstructions(entry.reading)` with the real reading, then asks model for just the story text
+- Anchor instructions now always match the actual word reading (e.g. ものがたり → Mo+No+Ga+Ta+Ri)
+- Story prompt requests plain text (not JSON), shorter output (600 tokens)
+- `callWithRetry` extracted as shared helper used by both passes
+- Delay applied between pass-2 story calls when using Gemini (rate limit safe)
+
+### Added ColoredReading component + vocabDecomp.json
+- **New component:** `src/components/ui/ColoredReading.tsx` — splits a hiragana/katakana reading into mora using the same splitMora logic as the scripts, renders each mora in a cycling color (blue/orange/green/purple). Replaces the plain grey `vocabReading` text in `LearnSessionScreen.tsx`.
+- **New script:** `scripts/buildVocabDecomp.js` — greedy decomposition of vocab words into per-kanji reading parts. Output: `scripts/vocabDecomp.json` → `{ "一日": { reading: "いちにち", parts: [{ kanji:"一", reading:"いち", type:"on" }, { kanji:"日", reading:"にち", type:"on" }] } }`. Handles rendaku (voicing), sokuon/geminate (いち→いっ), kun-yomi stripping. 232 words, 34 unknowns (irregular compounds or kanji not in dataset).
+- **User intent:** color the reading segments to show which mora come from which kanji — furigana-style decomposition so the user understands the phonetics of each word component.
+
+### Added 分 to kanji.json
+- JLPT N5, 4 strokes, inserted after 半 (index 42)
+- on: ぶん, ふん, ぶ / kun: わ.ける, わ.け, わ.かれる, わ.かる, わ.かつ
+- Meanings: Part, Minute, Understand, Segment
+- Radicals: Knife, Eight
+- Fixed 5 vocab decompositions (九分, 五分, 十分, 半分, 気分) — unknowns dropped from 34→29
+
+### Refactored LearnSessionScreen to 3-step flow
+- **Step 1 (intro):** Kanji + meaning + mnemonic + ON/KUN pills + radicals. Label updated to "ON 音読み" / "KUN 訓読み".
+- **Step 2 (examples):** All vocab rows with decomp-based colored readings — on-yomi in blue (#7eb8f7), kun-yomi in orange (#f7a97e), kana/unknown in grey. Legend shown at top.
+- **Step 3 (quiz):** One vocab word (preferring words containing the target kanji). 4-choice hiragana picker using ChoiceButton. Distractors drawn from session batch first, global vocab as fallback. Shows correct answer on wrong guess.
+- Progress bar stays per-kanji; step position shown as animated dot indicator + label in header.
+- Skip button only visible on intro step; "‹ Prev" only on intro step.
+- Primary button label changes: "See examples →" / "Quiz me →" / "Next kanji →" / "Add X kanji to reviews".
+- `vocabDecomp.json` copied to `src/data/` so it can be statically imported.
+- `ColoredReading` extended with `parts: DecompPart[]` prop mode for type-based coloring.
+
 ## Pending / In Progress
 - Mnemonic story quality: meaning-leakage in generated stories, especially simple kanji
+- Vocab stories: regenerate N5 with `node scripts/buildVocabData.js --local --level 5 --regen`
 - Pipeline goal: kanji → radicals/readings → mnemonic story → user reads story to learn kanji
