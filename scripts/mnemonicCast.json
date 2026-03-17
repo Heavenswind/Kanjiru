@@ -2,28 +2,10 @@
   "description": "Character cast for on-yomi reading mnemonics. Each character's name starts with or closely mirrors the target sound. Names are from varied cultures to stay distinct. Use them naturally in scenes — never explain the sound connection.",
   "cast": [
     {
-      "sound": "こう",
-      "name": "Kofi",
-      "description": "A warm Ghanaian carpenter who builds things with his bare hands",
-      "ipa": "/koʊ/"
-    },
-    {
-      "sound": "しょう",
-      "name": "Sho",
-      "description": "A laid-back surfer from California, always in board shorts",
-      "ipa": "/ʃoʊ/"
-    },
-    {
       "sound": "し",
       "name": "Sheila",
       "description": "A tough Australian woman who runs a sheep farm",
       "ipa": "/ʃiː/"
-    },
-    {
-      "sound": "そう",
-      "name": "Sosa",
-      "description": "A flashy Dominican baseball player who hits home runs",
-      "ipa": "/soʊ/"
     },
     {
       "sound": "き",
@@ -32,136 +14,16 @@
       "ipa": "/kiː/"
     },
     {
-      "sound": "かん",
-      "name": "Khan",
-      "description": "A commanding Mongolian warlord on horseback",
-      "ipa": "/kɑːn/"
-    },
-    {
-      "sound": "とう",
-      "name": "Tova",
-      "description": "A no-nonsense Swedish farmer who wakes at 4am",
-      "ipa": "/toʊ/"
-    },
-    {
-      "sound": "きょう",
-      "name": "Kyo",
-      "description": "A precise, elegant tea ceremony master",
-      "ipa": "/kjoʊ/"
-    },
-    {
       "sound": "か",
       "name": "Carlos",
       "description": "A fast-talking Mexican street vendor who never stops moving",
       "ipa": "/kɑː/"
     },
     {
-      "sound": "せい",
-      "name": "Selma",
-      "description": "A stubborn Greek grandmother who never takes no for an answer",
-      "ipa": "/seɪ/"
-    },
-    {
-      "sound": "けん",
-      "name": "Kenny",
-      "description": "A bumbling British plumber who always makes things worse",
-      "ipa": "/ken/"
-    },
-    {
-      "sound": "ちょう",
-      "name": "Cho",
-      "description": "A passionate Thai chef who runs a chaotic street kitchen",
-      "ipa": "/tʃoʊ/"
-    },
-    {
-      "sound": "けい",
-      "name": "Kay",
-      "description": "A sharp Canadian detective who never loses a case",
-      "ipa": "/keɪ/"
-    },
-    {
-      "sound": "しん",
-      "name": "Shin",
-      "description": "A gentle Korean doctor who works night shifts",
-      "ipa": "/ʃɪn/"
-    },
-    {
-      "sound": "しゅう",
-      "name": "Shula",
-      "description": "A fierce South African rugby coach",
-      "ipa": "/ʃuː/"
-    },
-    {
-      "sound": "ほう",
-      "name": "Homer",
-      "description": "A clumsy American dad who always causes accidents",
-      "ipa": "/hoʊ/"
-    },
-    {
-      "sound": "よう",
-      "name": "Yoan",
-      "description": "A Bulgarian banker obsessed with luxury watches, always checking the time",
-      "ipa": "/joʊ/"
-    },
-    {
-      "sound": "じょう",
-      "name": "Joe",
-      "description": "A friendly American locksmith who fixes everything",
-      "ipa": "/dʒoʊ/"
-    },
-    {
-      "sound": "せん",
-      "name": "Senna",
-      "description": "A fearless Brazilian racing driver",
-      "ipa": "/sen/"
-    },
-    {
-      "sound": "りょう",
-      "name": "Rio",
-      "description": "A Brazilian backpacker always arriving somewhere new",
-      "ipa": "/rjoʊ/"
-    },
-    {
-      "sound": "ぼう",
-      "name": "Bo",
-      "description": "A chubby British police officer who patrols on a bicycle",
-      "ipa": "/boʊ/"
-    },
-    {
-      "sound": "さい",
-      "name": "Sai",
-      "description": "A Thai fortune teller surrounded by candles",
-      "ipa": "/sɑːɪ/"
-    },
-    {
-      "sound": "かい",
-      "name": "Kai",
-      "description": "A salty German sailor who's been at sea too long",
-      "ipa": "/kɑːɪ/"
-    },
-    {
-      "sound": "てい",
-      "name": "Tay",
-      "description": "A perfectionist Scottish architect who re-draws everything",
-      "ipa": "/teɪ/"
-    },
-    {
       "sound": "い",
       "name": "Eve",
       "description": "A curious English botanist always wandering into gardens",
       "ipa": "/iː/"
-    },
-    {
-      "sound": "きゅう",
-      "name": "Kyu",
-      "description": "A Japanese student always late to class",
-      "ipa": "/kjuː/"
-    },
-    {
-      "sound": "ゆう",
-      "name": "Yusuf",
-      "description": "A brooding Turkish artist who paints only at night",
-      "ipa": "/juː/"
     },
     {
       "sound": "ふ",
@@ -188,40 +50,10 @@
       "ipa": "/koʊ/"
     },
     {
-      "sound": "たい",
-      "name": "Tai",
-      "description": "A massive Samoan rugby player who moves slowly but hits hard",
-      "ipa": "/tɑːɪ/"
-    },
-    {
-      "sound": "きん",
-      "name": "Kin",
-      "description": "A meticulous Vietnamese goldsmith",
-      "ipa": "/kiːn/"
-    },
-    {
-      "sound": "はん",
-      "name": "Hans",
-      "description": "A stiff German engineer who follows every manual exactly",
-      "ipa": "/hɑːn/"
-    },
-    {
       "sound": "ひ",
       "name": "Hina",
       "description": "A cheerful Pakistani girl who bakes bread every morning",
       "ipa": "/hiː/"
-    },
-    {
-      "sound": "はく",
-      "name": "Haku",
-      "description": "A silent Japanese mountain monk who appears and vanishes like mist",
-      "ipa": "/hɑːku/"
-    },
-    {
-      "sound": "かく",
-      "name": "Kaku",
-      "description": "A sharp-tongued Okinawan fisherman who argues with everyone",
-      "ipa": "/kɑːku/"
     },
     {
       "sound": "さ",
@@ -230,97 +62,7 @@
       "ipa": "/sɑː/"
     },
     {
-      "sound": "ぶん",
-      "name": "Bruno",
-      "description": "A stocky Italian baker who dusts everything in flour",
-      "ipa": "/buːn/"
-    },
-    {
-      "sound": "もん",
-      "name": "Monica",
-      "description": "A sharp Colombian woman who runs the whole neighborhood",
-      "ipa": "/moʊn/"
-    },
-    {
-      "sound": "りゅう",
-      "name": "Ryu",
-      "description": "A stoic Japanese martial artist who trains alone at dawn",
-      "ipa": "/rjuː/"
-    },
-    {
-      "sound": "れい",
-      "name": "Ray",
-      "description": "A slick American jazz musician who plays in smoky bars",
-      "ipa": "/reɪ/"
-    },
-    {
-      "sound": "どう",
-      "name": "Dora",
-      "description": "A no-nonsense Dominican aunt who always has an opinion",
-      "ipa": "/doʊ/"
-    },
-    {
-      "sound": "ない",
-      "name": "Nadia",
-      "description": "A cool Russian chess player who thinks three moves ahead",
-      "ipa": "/nɑːɪ/"
-    },
-    {
-      "sound": "まい",
-      "name": "Mai",
-      "description": "A cheerful Vietnamese girl who dances everywhere she goes",
-      "ipa": "/mɑːɪ/"
-    },
-    {
-      "sound": "めい",
-      "name": "Mei",
-      "description": "A sharp Chinese schoolgirl who corrects everyone's mistakes",
-      "ipa": "/meɪ/"
-    },
-    {
-      "sound": "ちょく",
-      "name": "Chuck",
-      "description": "A blunt American truck driver who takes no detours",
-      "ipa": "/tʃoʊku/"
-    },
-    {
-      "sound": "りつ",
-      "name": "Ritz",
-      "description": "A fussy Austrian conductor who snaps his baton at every mistake",
-      "ipa": "/riːts/"
-    },
-    {
-      "sound": "りょく",
-      "name": "Ryoko",
-      "description": "A stern Japanese herbalist who works in silence",
-      "ipa": "/rjoʊku/"
-    },
-    {
-      "sound": "へん",
-      "name": "Henry",
-      "description": "A Canadian actuary who loves his whisky and hides spreadsheets behind his glass",
-      "ipa": "/hen/"
-    },
-    {
-      "sound": "まり",
-      "name": "Mariana",
-      "description": "A world-traveling Brazilian who takes her dog everywhere and never checks a map",
-      "ipa": "/mɑːriː/"
-    },
-    {
-      "sound": "どん",
-      "name": "Don B",
-      "description": "A Colombian barber who only cuts hair near trendy restaurants so he can eat after",
-      "ipa": "/doʊn/"
-    },
-    {
       "sound": "じゅ",
-      "name": "Ju",
-      "description": "An Italian gamer who never quits until she hits 100% completion",
-      "ipa": "/dʒuː/"
-    },
-    {
-      "sound": "じゅう",
       "name": "Ju",
       "description": "An Italian gamer who never quits until she hits 100% completion",
       "ipa": "/dʒuː/"
@@ -691,119 +433,27 @@
       "description": "A friendly American locksmith who fixes everything",
       "ipa": "/dʒoʊ/"
     },
-    {
-      "sound": "えい",
-      "name": "Ay",
-      "description": "A cheerful Jamaican postman who greets everyone on the street",
-      "ipa": "/eɪ/"
-    },
-    {
-      "sound": "おう",
-      "name": "Oba",
-      "description": "A dignified Nigerian elder who sits at the head of every table",
-      "ipa": "/oʊ/"
-    },
-    {
-      "sound": "くう",
-      "name": "Ku",
-      "description": "A cool-headed Senegalese chef who works in total silence",
-      "ipa": "/kuː/"
-    },
-    {
-      "sound": "げい",
-      "name": "Geh",
-      "description": "A loud Neapolitan woman who gestures with both hands when she talks",
-      "ipa": "/ɡeɪ/"
-    },
-    {
-      "sound": "ごう",
-      "name": "Go",
-      "description": "A giant Fijian bouncer who stands perfectly still",
-      "ipa": "/ɡoʊ/"
-    },
-    {
-      "sound": "すう",
-      "name": "Su",
-      "description": "A swift Taiwanese delivery rider who never misses a drop",
-      "ipa": "/suː/"
-    },
-    {
-      "sound": "ぜい",
-      "name": "Zeh",
-      "description": "A zealous French debate student who argues every point",
-      "ipa": "/zeɪ/"
-    },
-    {
-      "sound": "ぞう",
-      "name": "Zo",
-      "description": "A brooding Congolese sculptor who carves only at night",
-      "ipa": "/zoʊ/"
-    },
-    {
-      "sound": "つう",
-      "name": "Tsu",
-      "description": "A wiry Japanese fisherman who casts his net in one clean throw",
-      "ipa": "/tsuː/"
-    },
-    {
-      "sound": "でい",
-      "name": "Deh",
-      "description": "A Danish nurse who delivers bad news with a smile",
-      "ipa": "/deɪ/"
-    },
-    {
-      "sound": "ねい",
-      "name": "Neh",
-      "description": "A skeptical Canadian who ends every sentence with a question",
-      "ipa": "/neɪ/"
-    },
-    {
-      "sound": "のう",
-      "name": "No",
-      "description": "A stubborn Norwegian fisherman who refuses every offer",
-      "ipa": "/noʊ/"
-    },
-    {
-      "sound": "べい",
-      "name": "Beh",
-      "description": "A belligerent Belgian football fan who argues every call",
-      "ipa": "/beɪ/"
-    },
-    {
-      "sound": "ふう",
-      "name": "Fuad",
-      "description": "A Lebanese merchant who haggles over every price",
-      "ipa": "/fuː/"
-    },
-    {
-      "sound": "もう",
-      "name": "Mo",
-      "description": "A laid-back Jamaican fisherman who moves at his own pace",
-      "ipa": "/moʊ/"
-    },
-    {
-      "sound": "むっ",
-      "name": "Mu",
-      "description": "A brooding Malian philosopher who stares into the distance",
-      "ipa": "/muː/"
-    },
-    {
-      "sound": "よっ",
-      "name": "Yoan",
-      "description": "A Bulgarian banker obsessed with luxury watches, always checking the time",
-      "ipa": "/joʊ/"
-    },
-    {
-      "sound": "ろう",
-      "name": "Ro",
-      "description": "A rowdy Portuguese grandmother who sings at full volume",
-      "ipa": "/roʊ/"
-    },
-    {
-      "sound": "ぐう",
-      "name": "Gu",
-      "description": "A gruff Mongolian blacksmith who only speaks when necessary",
-      "ipa": "/ɡuː/"
-    }
+    { "sound": "へ",  "name": "Heh", "description": "A sarcastic French teenager who rolls his eyes at everything", "ipa": "/heɪ/" },
+    { "sound": "ぱ",  "name": "Pa",  "description": "A boisterous Italian grandfather who slaps the table when he laughs", "ipa": "/pɑː/" },
+    { "sound": "ぴ",  "name": "Pi",  "description": "A precise Greek mathematician who measures everything twice", "ipa": "/piː/" },
+    { "sound": "ぷ",  "name": "Pu",  "description": "A puffed-up Cambodian chef proud of every dish he makes", "ipa": "/puː/" },
+    { "sound": "ぺ",  "name": "Peh", "description": "A pessimistic Polish accountant who expects the worst", "ipa": "/peɪ/" },
+    { "sound": "ぽ",  "name": "Po",  "description": "A portly Peruvian baker who hums while kneading dough", "ipa": "/poʊ/" },
+    { "sound": "きゃ", "name": "Kya", "description": "A sharp-clawed Kenyan acrobat who leaps without warning", "ipa": "/kjɑː/" },
+    { "sound": "しゃ", "name": "Sha", "description": "A shadowy Moroccan jeweler who trades in whispers", "ipa": "/ʃɑː/" },
+    { "sound": "ちゃ", "name": "Cha", "description": "A chatty Taiwanese tea vendor who never stops talking", "ipa": "/tʃɑː/" },
+    { "sound": "ちゅ", "name": "Chu", "description": "A chubby Chinese chef who tastes everything before serving", "ipa": "/tʃuː/" },
+    { "sound": "にゃ", "name": "Nya", "description": "A nimble Nepalese climber who moves like a cat", "ipa": "/njɑː/" },
+    { "sound": "にゅ", "name": "Nyu", "description": "A new Ugandan recruit still figuring out the rules", "ipa": "/njuː/" },
+    { "sound": "にょ", "name": "Nyo", "description": "A nyonya Malaysian grandmother who rules the kitchen", "ipa": "/njoʊ/" },
+    { "sound": "ひゃ", "name": "Hya", "description": "A hyper Armenian kid who bounces off every wall", "ipa": "/hjɑː/" },
+    { "sound": "みゃ", "name": "Mya", "description": "A mysterious Burmese fortune teller who never blinks", "ipa": "/mjɑː/" },
+    { "sound": "りゃ", "name": "Rya", "description": "A rapid Rwandan weaver whose hands never slow down", "ipa": "/rjɑː/" },
+    { "sound": "ぎゃ", "name": "Gya", "description": "A giddy Ghanaian acrobat who laughs mid-flip", "ipa": "/ɡjɑː/" },
+    { "sound": "ぎゅ", "name": "Gyu", "description": "A gruff Uzbek butcher who handles every cut with precision", "ipa": "/ɡjuː/" },
+    { "sound": "ぎょ", "name": "Gyo", "description": "A gloomy Norwegian fisherman who never expects a good catch", "ipa": "/ɡjoʊ/" },
+    { "sound": "じゃ", "name": "Ja",  "description": "A jazzy Jamaican DJ who fills every room with sound", "ipa": "/dʒɑː/" },
+    { "sound": "びゃ", "name": "Bya", "description": "A blazing Belarusian sprinter who moves before the gun fires", "ipa": "/bjɑː/" },
+    { "sound": "ぴゃ", "name": "Pya", "description": "A piercing-eyed Paraguayan hawk trainer who never misses", "ipa": "/pjɑː/" }
   ]
 }

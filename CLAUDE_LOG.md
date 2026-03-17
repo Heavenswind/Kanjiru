@@ -23,6 +23,14 @@
 - If cast entry exists: prompt says "Bold **Name** (description) — their name starts with /ipa/"
 - If no cast entry: prompt says "Bold an English word matching /ipa/, do NOT use any character name"
 
+### Completed cast coverage for all practical mora
+- Added へ, ぱ-row, and all compound mora (きゃ、しゃ、じゃ、ちゃ etc.) — 94 entries total
+- Remaining gaps (を、ん、びゅ、ぴょ etc.) are too rare in on-yomi to matter
+
+### Trimmed cast to single-mora and compound-mora only
+- Removed 64 multi-mora entries (こう, もく, けん, etc.) — those use IPA English word anchors instead
+- Cast now covers only 1-mora (に, く, し...) and compound mora (きゅ, しょ, じゅ...) — 72 entries total
+
 ### Filled all cast gaps for IPA-equivalent sounds
 - Scanned all IPA mora entries vs cast — found 31 missing (including じゅう, きゅ, きょ, しょ, etc.)
 - All reuse the same character as their IPA-equivalent (e.g. じゅう → Ju, きゅ → Kyu, ごう → Go)
