@@ -23,6 +23,11 @@
 - If cast entry exists: prompt says "Bold **Name** (description) — their name starts with /ipa/"
 - If no cast entry: prompt says "Bold an English word matching /ipa/, do NOT use any character name"
 
+### Filled all cast gaps for IPA-equivalent sounds
+- Scanned all IPA mora entries vs cast — found 31 missing (including じゅう, きゅ, きょ, しょ, etc.)
+- All reuse the same character as their IPA-equivalent (e.g. じゅう → Ju, きゅ → Kyu, ごう → Go)
+- Cast now has full coverage for every mora in romajiIPA.json that shares IPA with an existing entry
+
 ### Added ipa field to mnemonicCast.json
 - Every cast entry now has `ipa` field populated from romajiIPA.json (e.g. Kofi → /koʊ/, Sheila → /ʃiː/)
 - All 103 entries updated, none missing
