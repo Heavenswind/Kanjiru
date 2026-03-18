@@ -79,6 +79,10 @@ yarn-error.log
 # KanjiVG source SVGs (local cache, not shipped with app)
 scripts/kanjivg/
 
+# Large source data files (used only by build scripts, not shipped)
+scripts/JmdictFurigana.json
+src/data/jmdict-eng-3.6.2.json
+
 # Android release keystore (never commit)
 android/app/*.keystore
 android/app/google-services.json
