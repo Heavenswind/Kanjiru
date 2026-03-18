@@ -112,7 +112,42 @@
 - `ColoredReading` updated: `parts` mode now uses `VocabPart[]` (text/reading), colors kanji segments by alternating index, kana/okurigana segments grey
 - `LearnSessionScreen` updated: uses `useVocabForKanjiFiltered`, passes `v.parts` directly, removed `vocabDecomp` import
 
+## 2026-03-19
+
+### Learn session flow — final design
+The learn session flow is:
+1. **Intro** — kanji character (120px), meaning, mnemonic, ON/KUN readings, radicals
+2. **Examples** — up to 5 vocab words from the same JLPT level pool, sorted by `common` flag then `jlptLevel` (higher = easier), with colored decomposed readings
+3. **Vocab intro** — the specific word that will be quizzed: shown big with reading revealed and meaning. Skipped for number kanji (一二三四五六七八九十) and when no good quiz word exists. For solo-word kanji (e.g. 山, 川, 火 — where the kanji itself is a common spoken word with kun-yomi) shows a note.
+4. **Quiz** — sub-steps depend on kanji type:
+   - **Number kanji**: meaning only (no vocab quiz)
+   - **Solo-word kanji** (kun-yomi standalone): meaning → reading (how do you say it?) → word meaning (with reading shown)
+   - **Regular kanji** with good quiz word: meaning → word meaning (with reading shown)
+   - **No good quiz word**: meaning only
+
+### Quiz word selection logic (`LearnSessionScreen`)
+- Pool: `exampleVocab` (level-filtered, common-first) not enrolled-filtered
+- Prefer: solo kanji word (kanjiUsed.length === 1) > word where all other kanji were seen before this one in the session
+- Fallback: word with fewest unseen kanji, then shortest word
+- Ref keyed by `forChar + forIndex` — invalidates when index changes (not just character)
+- `isSoloWord`: solo entry exists AND `word === character` AND reading is a kun-yomi reading (excludes cases like 小/しょう which is on-yomi)
+- `hasGoodQuizWord`: false for number kanji, false if neither solo nor seen candidate found
+- `NUMBER_KANJI = new Set('一二三四五六七八九十')` — these skip vocab-intro and word-meaning quiz entirely
+
+### Vocab hooks (`useVocabData.ts`)
+- `useVocabForKanjiByLevel(char, levelKanjiIds)` — filters to words where all kanji are in the JLPT level pool, sorts by `common` then `jlptLevel desc`
+- Examples use `levelKanjiIds` (all N-level kanji), not `enrolledKanji`
+
 ## 2026-03-18
+
+### Learn session: 4-step flow with vocab teaching step
+- Added `vocab-intro` step between examples and quiz
+- **Step 3 (vocab-intro):** shows the quiz word big with colored reading revealed + meaning — teaches the word before testing it
+- **Step 4 quiz sub-step 1:** show kanji, ask its meaning (4 kanji meaning choices)
+- **Step 4 quiz sub-step 2:** show vocab word + colored reading revealed, ask word meaning (4 meaning choices)
+- Removed reading quiz entirely — word meaning with reading shown is more natural
+- `quizSubStep` renamed `'reading'` → `'word-meaning'`
+- Skip logic now covers both `vocab-intro` and `quiz` steps when no vocab available
 
 ### Learn session quiz: meaning question first, then reading question
 - `LearnSessionScreen` quiz step now has two sub-steps: `meaning` then `reading`

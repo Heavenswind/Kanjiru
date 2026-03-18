@@ -117,6 +117,7 @@ for (const entry of jmdict.words) {
   );
   if (!sense) continue;
   const meaning = sense.gloss[0].text;
+  const pos = sense.partOfSpeech ?? [];
 
   // For each kanji form, pair with its applicable kana reading
   for (const kf of kanjiforms) {
@@ -139,7 +140,7 @@ for (const entry of jmdict.words) {
 
     const kanji = kanjiIn(word);
 
-    wordEntries.push({ word, reading, meaning, common, jlptLevel, parts, kanjiUsed: kanji });
+    wordEntries.push({ word, reading, meaning, pos, common, jlptLevel, parts, kanjiUsed: kanji });
   }
 }
 
@@ -189,6 +190,7 @@ for (const k of allKanji) {
     word: e.word,
     reading: e.reading,
     meaning: capitalize(e.meaning),
+    pos: e.pos,
     jlptLevel: e.jlptLevel,
     common: e.common,
     parts: e.parts,

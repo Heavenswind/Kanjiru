@@ -21,7 +21,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { PROGRESS_QUERY_KEY } from '../../queries/useProgressQuery';
 import { formatReading, uuid } from '../../utils/kanjiUtils';
 import { useSettingsStore } from '../../stores/useSettingsStore';
-import { useVocabForKanjiFiltered, useVocabData } from '../../hooks/useVocabData';
+import { useVocabForKanjiByLevel, useVocabData } from '../../hooks/useVocabData';
 import type { VocabEntry } from '../../hooks/useVocabData';
 import { useMnemonicForKanji } from '../../hooks/useMnemonicsData';
 import { ColoredReading, ColoredWord } from '../../components/ui/ColoredReading';
@@ -60,7 +60,7 @@ type Props = {
 };
 
 type Phase = 'loading' | 'studying' | 'enrolling' | 'done' | 'empty';
-type KanjiStep = 'intro' | 'examples' | 'quiz';
+type KanjiStep = 'intro' | 'examples' | 'vocab-intro' | 'quiz';
 
 export default function LearnSessionScreen({ navigation, route }: Props) {
   const { jlptLevel } = route.params;
@@ -73,7 +73,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
   const [phase, setPhase] = useState<Phase>('studying');
   // Keyed by index so step is always 'intro' for any new index value
   const [stepByIndex, setStepByIndex] = useState<Record<number, KanjiStep>>({});
-  const [quizSubStep, setQuizSubStep] = useState<'meaning' | 'reading'>('meaning');
+  const [quizSubStep, setQuizSubStep] = useState<'meaning' | 'reading' | 'word-meaning'>('meaning');
   const [quizAnswerState, setQuizAnswerState] = useState<'idle' | 'correct' | 'wrong'>('idle');
   const [quizSelected, setQuizSelected] = useState<string | null>(null);
 
@@ -114,80 +114,77 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
   const isLast = index === batch.length - 1;
 
   const allVocab = useVocabData();
-  // Include current batch as "known" — user is learning them right now
-  const knownKanji = React.useMemo(
-    () => new Set([...enrolledIds, ...batch.map(k => k.id)]),
-    [enrolledIds, batch],
+  // All kanji IDs in this JLPT level — used for examples
+  const levelKanjiIds = React.useMemo(
+    () => new Set((grouped[jlptLevel] ?? []).map(k => k.id)),
+    [grouped, jlptLevel],
   );
-  const vocab = useVocabForKanjiFiltered(current?.character ?? '', knownKanji);
+  const exampleVocab = useVocabForKanjiByLevel(current?.character ?? '', levelKanjiIds);
   const mnemonic = useMnemonicForKanji(current?.character ?? '');
 
-  // Quiz data: frozen per kanji character — stored in a ref so choices never reshuffle
+  // Quiz data: frozen per kanji+index — stored in a ref so choices never reshuffle mid-step
   const quizDataRef = useRef<{
     forChar: string;
+    forIndex: number;
+    hasGoodQuizWord: boolean;
+    isSoloWord: boolean;
     quizWord: VocabEntry;
     correctMeaning: string;
     meaningChoices: string[];
     correctReading: string;
     readingChoices: string[];
+    correctWordMeaning: string;
+    wordMeaningChoices: string[];
   } | null>(null);
 
-  if (current && vocab.length > 0 && quizDataRef.current?.forChar !== current.character) {
-    const candidates = vocab.filter(v => v.word.includes(current.character));
-    // Prefer words where the target kanji is the only kanji (e.g. 月 over 十月)
-    const soloCandidate = candidates.find(v => v.kanjiUsed.length === 1);
-    const quizWord = soloCandidate ?? (candidates.length > 0 ? candidates[0] : vocab[0]);
+  const NUMBER_KANJI = new Set('一二三四五六七八九十');
+  const isNumberKanji = current ? NUMBER_KANJI.has(current.character) : false;
 
-    // Kanji meaning choices — ask what the kanji means, not the vocab word
+  if (current && exampleVocab.length > 0 &&
+    (quizDataRef.current?.forChar !== current.character || quizDataRef.current?.forIndex !== index)) {
+    const prevSeenKanji = new Set([...enrolledIds, ...batch.slice(0, index).map(k => k.id)]);
+    const candidates = exampleVocab.filter(v => v.word.includes(current.character));
+    const kunReadings = new Set(current.readings_kun.map(r => r.replace(/[.-].*/,'')).filter(Boolean));
+    const hasKunYomi = kunReadings.size > 0;
+    // If the kanji has kun-yomi, use it as a standalone word
+    const soloEntry = candidates.find(v => v.word === current.character && kunReadings.has(v.reading) && v.pos.includes('n') && !v.pos.includes('n-suf') && !v.pos.includes('n-pref'));
+    // Otherwise pick the best compound: most known kanji, then most common (exampleVocab is already common-sorted)
+    const bestCompound = !hasKunYomi && candidates.length > 0
+      ? candidates.reduce((best, v) => {
+          const knownCount = (e: typeof v) => e.kanjiUsed.filter(k => k === current.character || prevSeenKanji.has(k)).length;
+          const diff = knownCount(v) - knownCount(best);
+          return diff > 0 ? v : best; // higher known count wins; ties keep earlier (more common) entry
+        })
+      : undefined;
+    const isSoloWord = !!soloEntry;
+    const quizWord = soloEntry ?? bestCompound ?? exampleVocab[0];
+    const hasGoodQuizWord = !isNumberKanji && !!(soloEntry ?? bestCompound);
+
+    // Kanji meaning choices
     const correctMeaning = current.meanings[0];
-    const allKanjiMeanings = Object.values(grouped)
-      .flat()
-      .map(k => k.meanings[0])
-      .filter(m => m && m !== correctMeaning);
-    const meaningDistractors = shuffle([...new Set(allKanjiMeanings)]).slice(0, 3);
-    const meaningChoices = shuffle([correctMeaning, ...meaningDistractors]);
+    const allKanjiMeanings = Object.values(grouped).flat().map(k => k.meanings[0]).filter(m => m && m !== correctMeaning);
+    const meaningChoices = shuffle([correctMeaning, ...shuffle([...new Set(allKanjiMeanings)]).slice(0, 3)]);
 
-    // Reading choices
+    // Reading choices (kun-yomi of the solo word, e.g. やま for 山)
     const correctReading = quizWord.reading;
-    const correctLen = correctReading.length;
+    const allReadings = Object.values(allVocab).flat().map(v => v.reading).filter(r => r !== correctReading);
+    const readingChoices = shuffle([correctReading, ...shuffle([...new Set(allReadings)]).slice(0, 3)]);
 
-    function distractorScore(r: string): number {
-      let score = 0;
-      if (r.length === correctLen) score += 4;
-      else if (Math.abs(r.length - correctLen) === 1) score += 2;
-      if (r[0] === correctReading[0]) score += 1;
-      return score;
-    }
+    // Word meaning choices — show word + reading, ask what it means
+    const correctWordMeaning = quizWord.meaning;
+    const allWordMeanings = Object.values(allVocab).flat().map(v => v.meaning).filter(m => m && m !== correctWordMeaning);
+    const wordMeaningChoices = shuffle([correctWordMeaning, ...shuffle([...new Set(allWordMeanings)]).slice(0, 3)]);
 
-    const sessionPool = batch
-      .flatMap(k => allVocab[k.character] ?? [])
-      .map(v => v.reading)
-      .filter(r => r !== correctReading);
-
-    const globalPool = Object.values(allVocab)
-      .flat()
-      .map(v => v.reading)
-      .filter(r => r !== correctReading);
-
-    const pool = [...new Set([...sessionPool, ...globalPool])];
-    const shuffled = shuffle(pool);
-    const scored = shuffled
-      .map(r => ({ r, score: distractorScore(r) }))
-      .sort((a, b) => b.score - a.score);
-
-    const readingDistractors = scored.slice(0, 3).map(x => x.r);
-    const readingChoices = shuffle([correctReading, ...readingDistractors]);
-
-    quizDataRef.current = { forChar: current.character, quizWord, correctMeaning, meaningChoices, correctReading, readingChoices };
+    quizDataRef.current = { forChar: current.character, forIndex: index, hasGoodQuizWord, isSoloWord, quizWord, correctMeaning, meaningChoices, correctReading, readingChoices, correctWordMeaning, wordMeaningChoices };
   }
 
   const quizData = (current && quizDataRef.current?.forChar === current.character)
     ? quizDataRef.current
     : null;
 
-  // Skip to quiz step if no vocab available
+  // Skip vocab-intro and quiz steps if no vocab available
   useEffect(() => {
-    if (kanjiStep === 'quiz' && quizData === null) {
+    if (kanjiStep === 'vocab-intro' && (quizData === null || !quizData.hasGoodQuizWord)) {
       handleNext();
     }
   }, [kanjiStep, quizData]);
@@ -274,9 +271,10 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
   const handleQuizChoice = useCallback((choice: string) => {
     if (quizAnswerState !== 'idle') return;
     setQuizSelected(choice);
-    const correct = quizSubStep === 'meaning'
-      ? quizData?.correctMeaning
-      : quizData?.correctReading;
+    const correct =
+      quizSubStep === 'meaning' ? quizData?.correctMeaning :
+      quizSubStep === 'reading' ? quizData?.correctReading :
+      quizData?.correctWordMeaning;
     setQuizAnswerState(choice === correct ? 'correct' : 'wrong');
   }, [quizAnswerState, quizSubStep, quizData]);
 
@@ -325,7 +323,8 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
   const stepLabel =
     kanjiStep === 'intro' ? 'Kanji' :
       kanjiStep === 'examples' ? 'Examples' :
-        'Quiz';
+        kanjiStep === 'vocab-intro' ? 'Vocabulary' :
+          'Quiz';
 
   // ─── Main render ─────────────────────────────────────────────────────────
 
@@ -360,7 +359,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
         </View>
         {/* Step dots */}
         <View style={styles.stepDots}>
-          {(['intro', 'examples', 'quiz'] as KanjiStep[]).map(s => (
+          {(['intro', 'examples', 'vocab-intro', 'quiz'] as KanjiStep[]).map(s => (
             <View
               key={s}
               style={[styles.dot, kanjiStep === s && styles.dotActive]}
@@ -450,7 +449,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
             <Text style={styles.examplesHint}>
               Colors show how each kanji is read in this word
             </Text>
-            {vocab.slice(0, 5).map((v, i) => (
+            {exampleVocab.slice(0, 5).map((v, i) => (
               <View key={i} style={styles.vocabRow}>
                 <View style={styles.vocabWord}>
                   {v.parts
@@ -466,17 +465,49 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
           </View>
         )}
 
-        {/* ── Step 3: Quiz ── */}
+        {/* ── Step 3: Vocab Intro ── */}
+        {kanjiStep === 'vocab-intro' && quizData && (
+          <View style={styles.quizContainer}>
+            <Text style={styles.readingLabel}>Vocabulary</Text>
+            {quizData.isSoloWord && (
+              <Text style={styles.soloWordNote}>This kanji is also a word by itself</Text>
+            )}
+            <Text style={styles.quizWord}>{quizData.quizWord.word}</Text>
+            {quizData.quizWord.parts
+              ? <ColoredReading parts={quizData.quizWord.parts} fontSize={18} />
+              : <ColoredReading reading={quizData.quizWord.reading} fontSize={18} />}
+            <Text style={[styles.quizMeaning, { marginTop: 12, fontSize: 18, color: '#fff' }]}>{quizData.quizWord.meaning}</Text>
+          </View>
+        )}
+
+        {/* ── Step 4: Quiz ── */}
         {kanjiStep === 'quiz' && quizData && (() => {
-          const isMeaning = quizSubStep === 'meaning';
-          const correctAnswer = isMeaning ? quizData.correctMeaning : quizData.correctReading;
-          const choices = isMeaning ? quizData.meaningChoices : quizData.readingChoices;
+          const correctAnswer =
+            quizSubStep === 'meaning' ? quizData.correctMeaning :
+            quizSubStep === 'reading' ? quizData.correctReading :
+            quizData.correctWordMeaning;
+          const choices =
+            quizSubStep === 'meaning' ? quizData.meaningChoices :
+            quizSubStep === 'reading' ? quizData.readingChoices :
+            quizData.wordMeaningChoices;
+          const label =
+            quizSubStep === 'meaning' ? 'Kanji Meaning' :
+            quizSubStep === 'reading' ? 'How to say it' :
+            'Word Meaning';
+          const prompt =
+            quizSubStep === 'meaning' ? 'What does this kanji mean?' :
+            quizSubStep === 'reading' ? `How do you say ${quizData.quizWord.word}?` :
+            'What does this word mean?';
           return (
             <View style={styles.quizContainer}>
-              <Text style={styles.readingLabel}>{isMeaning ? 'Meaning Quiz' : 'Reading Quiz'}</Text>
-              <Text style={styles.quizWord}>{isMeaning ? current.character : quizData.quizWord.word}</Text>
-              {!isMeaning && <Text style={styles.quizMeaning}>{quizData.quizWord.meaning}</Text>}
-              <Text style={styles.quizPrompt}>{isMeaning ? 'What does this kanji mean?' : 'What is the reading?'}</Text>
+              <Text style={styles.readingLabel}>{label}</Text>
+              <Text style={styles.quizWord}>{quizSubStep === 'meaning' ? current.character : quizData.quizWord.word}</Text>
+              {quizSubStep === 'word-meaning' && (
+                quizData.quizWord.parts
+                  ? <ColoredReading parts={quizData.quizWord.parts} fontSize={16} />
+                  : <ColoredReading reading={quizData.quizWord.reading} fontSize={16} />
+              )}
+              <Text style={styles.quizPrompt}>{prompt}</Text>
 
               {quizAnswerState === 'wrong' && (
                 <Text style={styles.quizCorrectReveal}>
@@ -523,16 +554,20 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
           disabled={kanjiStep === 'quiz' && quizAnswerState === 'idle'}
           onPress={
             kanjiStep === 'intro' ? () => setKanjiStep('examples') :
-              kanjiStep === 'examples' ? () => setKanjiStep('quiz') :
-                quizSubStep === 'meaning' ? () => { setQuizSubStep('reading'); setQuizAnswerState('idle'); setQuizSelected(null); } :
-                  handleNext
+            kanjiStep === 'examples' ? () => setKanjiStep(quizData?.hasGoodQuizWord ? 'vocab-intro' : 'quiz') :
+            kanjiStep === 'vocab-intro' ? () => setKanjiStep('quiz') :
+            quizSubStep === 'meaning' && quizData?.isSoloWord ? () => { setQuizSubStep('reading'); setQuizAnswerState('idle'); setQuizSelected(null); } :
+            quizSubStep === 'meaning' && quizData?.hasGoodQuizWord ? () => { setQuizSubStep('word-meaning'); setQuizAnswerState('idle'); setQuizSelected(null); } :
+            quizSubStep === 'reading' ? () => { setQuizSubStep('word-meaning'); setQuizAnswerState('idle'); setQuizSelected(null); } :
+            handleNext
           }>
           <Text style={styles.nextBtnText}>
             {kanjiStep === 'intro' ? 'See examples →' :
-              kanjiStep === 'examples' ? 'Quiz me →' :
-                quizAnswerState === 'idle' ? 'Pick an answer' :
-                  quizSubStep === 'meaning' ? 'Next →' :
-                    isLast ? `Add ${batch.length} kanji to reviews` : 'Next kanji →'}
+              kanjiStep === 'examples' ? (quizData?.hasGoodQuizWord ? 'Learn a word →' : 'Quiz me →') :
+              kanjiStep === 'vocab-intro' ? 'Quiz me →' :
+              quizAnswerState === 'idle' ? 'Pick an answer' :
+              (quizSubStep === 'meaning' || quizSubStep === 'reading') && (quizData?.isSoloWord || quizData?.hasGoodQuizWord) ? 'Next →' :
+              isLast ? `Add ${batch.length} kanji to reviews` : 'Next kanji →'}
           </Text>
         </TouchableOpacity>
       </View>
@@ -605,6 +640,7 @@ const styles = StyleSheet.create({
   vocabWordText: { color: '#fff', fontSize: 20 },
   vocabMeaning: { flex: 1, color: '#ccc', fontSize: 14 },
   quizContainer: { width: '100%', alignItems: 'center' },
+  soloWordNote: { color: '#e94560', fontSize: 13, fontWeight: 'bold', marginBottom: 8, textAlign: 'center' },
   quizWord: { fontSize: 64, color: '#fff', textAlign: 'center', marginVertical: 12 },
   quizMeaning: { color: '#aaa', fontSize: 14, marginBottom: 4 },
   quizPrompt: { color: '#888', fontSize: 14, marginBottom: 20 },

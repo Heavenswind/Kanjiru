@@ -10,6 +10,7 @@ export type VocabEntry = {
   word: string;
   reading: string;
   meaning: string;
+  pos: string[];
   jlptLevel: number;
   common: boolean;
   parts: VocabPart[] | null;
@@ -37,6 +38,28 @@ export function useVocabData() {
 
 export function useVocabForKanji(character: string): VocabEntry[] {
   return vocab[character] ?? [];
+}
+
+/**
+ * Returns vocab entries for a kanji filtered to words where every kanji
+ * in the word belongs to the given JLPT level pool.
+ */
+export function useVocabForKanjiByLevel(
+  character: string,
+  levelKanjiIds: Set<string>,
+): VocabEntry[] {
+  const all = vocab[character] ?? [];
+  const filtered = all.filter(v => v.kanjiUsed.every(k => levelKanjiIds.has(k)));
+  function sort(entries: VocabEntry[]) {
+    return [...entries].sort((a, b) => {
+      if (a.common !== b.common) return a.common ? -1 : 1;
+      if (a.jlptLevel !== b.jlptLevel) return b.jlptLevel - a.jlptLevel; // higher = easier/more common
+      return 0;
+    });
+  }
+  if (filtered.length > 0) return sort(filtered);
+  const simple = all.filter(v => v.kanjiUsed.length <= 1);
+  return sort(simple.length > 0 ? simple : all);
 }
 
 /**
