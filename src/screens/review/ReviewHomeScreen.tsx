@@ -10,7 +10,7 @@ import {isDue} from '../../engine/srs/scheduler';
 import {ReviewItem} from '../../types/review';
 import vocabData from '../../data/vocab.json';
 
-const allVocab = vocabData as Record<string, {word: string; reading: string; meaning: string}[]>;
+const allVocab = vocabData as Record<string, {word: string; reading: string; meaning: string; jlptLevel: number}[]>;
 
 type Props = {
   navigation: StackNavigationProp<ReviewStackParamList, 'ReviewHome'>;
@@ -41,7 +41,7 @@ export default function ReviewHomeScreen({navigation}: Props) {
   );
 
   const dueVocabItems = useMemo<ReviewItem[]>(() => {
-    type VocabItem = {kind: 'vocab'; vocab: {word: string; reading: string; meaning: string}; kanjiId: string; questionType: 'meaning' | 'reading'};
+    type VocabItem = {kind: 'vocab'; vocab: {word: string; reading: string; meaning: string; jlptLevel: number}; kanjiId: string; questionType: 'meaning' | 'reading'};
     const allKanjiKnown = (word: string) =>
       [...word].filter(c => c >= '\u4e00' && c <= '\u9fff').every(c => enrolledKanjiIds.has(c));
     const items: VocabItem[] = [];

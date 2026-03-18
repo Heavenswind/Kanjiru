@@ -1,17 +1,12 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import type { VocabPart } from '../../hooks/useVocabData';
 
-// Colors that cycle across mora segments — used when no decomp data available
-const MORA_COLORS = ['#7eb8f7', '#f7a97e', '#a8e6a3', '#d8a8f7'];
-
-const TYPE_COLOR: Record<string, string> = {
-  on: '#7eb8f7',
-  kun: '#f7a97e',
-  kana: '#888',
-  unknown: '#888',
-};
+// Alternating colors for kanji segments
+const KANJI_COLORS = ['#7eb8f7', '#f7a97e', '#a8e6a3', '#d8a8f7'];
 
 const SMALL_KANA = new Set('ぁぃぅぇぉゃゅょァィゥェォャュョ');
+const CJK_RE = /[\u4E00-\u9FFF\u3400-\u4DBF]/;
 
 function toHiragana(str: string): string {
   return str.replace(/[\u30A1-\u30F6]/g, c =>
@@ -37,28 +32,59 @@ function splitMora(reading: string): string[] {
   return mora;
 }
 
-export type DecompPart = {
-  kanji: string;
-  reading: string;
-  type: 'on' | 'kun' | 'kana' | 'unknown';
-};
-
 type Props =
-  | { reading: string; parts?: never; fontSize?: number }
-  | { parts: DecompPart[]; reading?: never; fontSize?: number };
+  | { parts: VocabPart[]; reading?: never; fontSize?: number }
+  | { reading: string; parts?: never; fontSize?: number };
 
-export function ColoredReading({ reading, parts, fontSize = 12 }: Props) {
+/**
+ * Renders the kanji word with each kanji character colored to match
+ * its reading segment in ColoredReading (same color index logic).
+ * Kana/okurigana segments are rendered in white.
+ */
+export function ColoredWord({ parts, fontSize = 20 }: { parts: VocabPart[]; fontSize?: number }) {
+  let kanjiColorIndex = 0;
+  return (
+    <View style={styles.row}>
+      {parts.map((p, i) => {
+        const isKanji = CJK_RE.test(p.text);
+        const color = isKanji
+          ? KANJI_COLORS[kanjiColorIndex++ % KANJI_COLORS.length]
+          : '#fff';
+        return (
+          <Text key={i} style={[styles.wordSegment, { color, fontSize }]}>
+            {p.text}
+          </Text>
+        );
+      })}
+    </View>
+  );
+}
+
+/**
+ * Renders a Japanese reading with color-coded segments.
+ *
+ * - parts mode: uses JMdict furigana decomposition. Each kanji segment gets
+ *   an alternating color; plain kana segments (okurigana) are grey.
+ * - reading mode: splits into mora and cycles through colors.
+ */
+export function ColoredReading({ parts, reading, fontSize = 13 }: Props) {
   if (parts) {
+    let kanjiColorIndex = 0;
     return (
       <View style={styles.row}>
-        {parts.map((p, i) => (
-          <Text
-            key={i}
-            style={[styles.mora, { color: TYPE_COLOR[p.type] ?? '#888', fontSize }]}
-          >
-            {p.reading}
-          </Text>
-        ))}
+        {parts.map((p, i) => {
+          const isKanji = CJK_RE.test(p.text);
+          const color = isKanji
+            ? KANJI_COLORS[kanjiColorIndex++ % KANJI_COLORS.length]
+            : '#888';
+          // Show the reading if available, otherwise show the text itself (kana)
+          const display = p.reading ?? p.text;
+          return (
+            <Text key={i} style={[styles.segment, { color, fontSize }]}>
+              {display}
+            </Text>
+          );
+        })}
       </View>
     );
   }
@@ -69,7 +95,7 @@ export function ColoredReading({ reading, parts, fontSize = 12 }: Props) {
       {mora.map((m, i) => (
         <Text
           key={i}
-          style={[styles.mora, { color: MORA_COLORS[i % MORA_COLORS.length], fontSize }]}
+          style={[styles.segment, { color: KANJI_COLORS[i % KANJI_COLORS.length], fontSize }]}
         >
           {m}
         </Text>
@@ -82,8 +108,12 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
+    alignItems: 'baseline',
   },
-  mora: {
+  segment: {
     fontWeight: '500',
+  },
+  wordSegment: {
+    fontWeight: 'bold',
   },
 });

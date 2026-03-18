@@ -22,6 +22,7 @@ export interface VocabEntry {
   word: string;
   reading: string;
   meaning: string;
+  jlptLevel: number;
   mnemonic?: string;
 }
 

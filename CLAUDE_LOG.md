@@ -102,6 +102,25 @@
 - `vocabDecomp.json` copied to `src/data/` so it can be statically imported.
 - `ColoredReading` extended with `parts: DecompPart[]` prop mode for type-based coloring.
 
+### Replaced LLM vocab with JMdict + JmdictFurigana pipeline
+- New script: `scripts/buildVocabFromJMdict.js` — pulls real words from JMdict (215k entries), deduplicates, ranks by `common` flag + jlptLevel + word length, attaches furigana decomposition from JmdictFurigana (230k entries)
+- Downloaded `scripts/JmdictFurigana.json` (33MB, gitignored) — maps every word+reading to per-character ruby/rt pairs
+- New vocab.json shape per entry: `{ word, reading, meaning, jlptLevel, common, parts: [{text, reading}]|null, kanjiUsed: string[] }`
+- 2212 kanji covered, 15 words each
+- `parts` replaces `vocabDecomp.json` — decomposition is now embedded per entry
+- `useVocabData.ts` updated: new `VocabEntry` and `VocabPart` types, added `useVocabForKanjiFiltered(char, enrolledKanji)` — returns only words whose kanji the user already knows
+- `ColoredReading` updated: `parts` mode now uses `VocabPart[]` (text/reading), colors kanji segments by alternating index, kana/okurigana segments grey
+- `LearnSessionScreen` updated: uses `useVocabForKanjiFiltered`, passes `v.parts` directly, removed `vocabDecomp` import
+
+## 2026-03-18
+
+### Learn session quiz: meaning question first, then reading question
+- `LearnSessionScreen` quiz step now has two sub-steps: `meaning` then `reading`
+- Added `quizSubStep: 'meaning' | 'reading'` state; reset to `'meaning'` on each new kanji
+- **Meaning sub-step:** shows the big kanji character, asks "What does this kanji mean?" — distractors drawn from other kanji's `meanings[0]` via `grouped`
+- **Reading sub-step:** shows a vocab word + meaning hint, asks "What is the reading?" — existing scored distractor logic
+- After answering meaning → "Next →" advances to reading sub-step (resets answer state); after answering reading → next kanji / enroll
+
 ## Pending / In Progress
 - Mnemonic story quality: meaning-leakage in generated stories, especially simple kanji
 - Vocab stories: regenerate N5 with `node scripts/buildVocabData.js --local --level 5 --regen`

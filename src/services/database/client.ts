@@ -51,5 +51,21 @@ export async function runMigrations() {
   await sqlite.execute(
     'CREATE INDEX IF NOT EXISTS user_vocab_next_review_idx ON vocab_progress (user_id, next_review);',
   );
+  // Remove vocab entries with numeric/circle characters (bad JMdict entries like 九〇)
+  await sqlite.execute(
+    `DELETE FROM vocab_progress WHERE
+      vocab_word GLOB '*[0-9]*' OR
+      vocab_word LIKE '%〇%' OR
+      vocab_word LIKE '%０%' OR
+      vocab_word LIKE '%１%' OR
+      vocab_word LIKE '%２%' OR
+      vocab_word LIKE '%３%' OR
+      vocab_word LIKE '%４%' OR
+      vocab_word LIKE '%５%' OR
+      vocab_word LIKE '%６%' OR
+      vocab_word LIKE '%７%' OR
+      vocab_word LIKE '%８%' OR
+      vocab_word LIKE '%９%'`
+  );
   console.log('[DB] runMigrations done');
 }

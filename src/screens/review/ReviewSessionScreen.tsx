@@ -25,7 +25,7 @@ import { QuestionType } from '../../types/review';
 import { useSettingsStore } from '../../stores/useSettingsStore';
 import vocabData from '../../data/vocab.json';
 
-const allVocab = vocabData as Record<string, { word: string; reading: string; meaning: string }[]>;
+const allVocab = vocabData as Record<string, { word: string; reading: string; meaning: string; jlptLevel: number }[]>;
 
 type Props = {
   navigation: StackNavigationProp<ReviewStackParamList, 'ReviewSession'>;
@@ -35,6 +35,15 @@ type Props = {
 type AnswerState = 'idle' | 'correct' | 'wrong';
 
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+const SMALL_KANA = new Set('ぁぃぅぇぉゃゅょっァィゥェォャュョッ');
+function moraCount(reading: string): number {
+  let count = 0;
+  for (let i = 0; i < reading.length; i++) {
+    if (!SMALL_KANA.has(reading[i])) count++;
+  }
+  return count;
+}
 
 function shuffle<T>(arr: T[]): T[] {
   const a = [...arr];
@@ -122,20 +131,79 @@ export default function ReviewSessionScreen({ navigation, route }: Props) {
     if (displayedItem.kind === 'vocab') {
       if (displayedItem.questionType === 'reading') {
         const correct = displayedItem.vocab.reading;
+        const targetLevel = displayedItem.vocab.jlptLevel;
+        const correctMora = moraCount(correct);
+
+        const isVerbReading = displayedItem.vocab.meaning.startsWith('To ');
+
+        const VERB_ENDINGS = new Set('うくぐすつぬぶむる');
         const allReadings = Object.values(allVocab)
           .flat()
+          .filter(v => v.jlptLevel === targetLevel && v.meaning.startsWith('To ') === isVerbReading)
           .map(v => v.reading)
-          .filter(r => r !== correct);
-        const distractors = shuffle([...new Set(allReadings)]).slice(0, 3);
+          .filter(r => r !== correct)
+          .filter(r => !isVerbReading || VERB_ENDINGS.has(r[r.length - 1]));
+
+        const unique = [...new Set(allReadings)];
+        // Score: same mora count = best; same first char = bonus
+        const scored = unique.map(r => ({
+          r,
+          score: Math.abs(moraCount(r) - correctMora) * 2 - (r[0] === correct[0] ? 1 : 0),
+        })).sort((a, b) => a.score - b.score);
+
+        const distractors = shuffle(scored.slice(0, 20).map(x => x.r)).slice(0, 3);
+
+        if (distractors.length < 3) {
+          const fallback = shuffle(unique.filter(r => !distractors.includes(r)))
+            .slice(0, 3 - distractors.length);
+          distractors.push(...fallback);
+        }
         while (distractors.length < 3) distractors.push(`(unknown ${distractors.length})`);
         return { correctAnswer: correct, choices: shuffle([correct, ...distractors]) };
       }
       const correct = cap(displayedItem.vocab.meaning);
+      const targetLevel = displayedItem.vocab.jlptLevel;
+      const isVerb = correct.startsWith('To ');
+      // Content words from correct answer (length > 3, skip "to/a/the/of")
+      const STOP = new Set(['to', 'a', 'the', 'of', 'in', 'on', 'at', 'be', 'do']);
+      const correctKeyWords = new Set(
+        correct.toLowerCase().split(/\s+/).filter(w => w.length > 3 && !STOP.has(w)),
+      );
+
       const allMeanings = Object.values(allVocab)
         .flat()
+        .filter(v => v.jlptLevel === targetLevel)
         .map(v => cap(v.meaning))
-        .filter(m => m !== correct);
-      const distractors = shuffle([...new Set(allMeanings)]).slice(0, 3);
+        .filter(m => m !== correct)
+        // Same part-of-speech: verbs vs non-verbs
+        .filter(m => isVerb ? m.startsWith('To ') : !m.startsWith('To '))
+        // Exclude meanings sharing a content word with the correct answer
+        .filter(m => {
+          const mWords = m.toLowerCase().split(/\s+/);
+          return !mWords.some(w => w.length > 3 && !STOP.has(w) && correctKeyWords.has(w));
+        });
+
+      const correctWordCount = correct.split(/\s+/).length;
+      const unique = [...new Set(allMeanings)];
+      // Sort by similarity of word count, then shuffle within same-score buckets
+      const scored = unique.map(m => ({
+        m,
+        score: Math.abs(m.split(/\s+/).length - correctWordCount),
+      })).sort((a, b) => a.score - b.score);
+
+      // Take top 20 candidates (similar length) and shuffle for variety
+      const distractors = shuffle(scored.slice(0, 20).map(x => x.m)).slice(0, 3);
+
+      // Fallback: relax POS filter if not enough
+      if (distractors.length < 3) {
+        const fallback = shuffle([...new Set(
+          Object.values(allVocab).flat()
+            .filter(v => v.jlptLevel === targetLevel)
+            .map(v => cap(v.meaning))
+            .filter(m => m !== correct && !distractors.includes(m)),
+        )]).slice(0, 3 - distractors.length);
+        distractors.push(...fallback);
+      }
       while (distractors.length < 3) distractors.push(`(unknown ${distractors.length})`);
       return { correctAnswer: correct, choices: shuffle([correct, ...distractors]) };
     }
