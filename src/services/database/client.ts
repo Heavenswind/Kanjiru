@@ -51,6 +51,11 @@ export async function runMigrations() {
   await sqlite.execute(
     'CREATE INDEX IF NOT EXISTS user_vocab_next_review_idx ON vocab_progress (user_id, next_review);',
   );
+  // Migrate auto-enrolled vocab that was never taught to pending lesson state (srsLevel = -1)
+  await sqlite.execute(
+    `UPDATE vocab_progress SET srs_level = -1, learned_at = NULL
+     WHERE srs_level = 0 AND repetitions = 0 AND last_review IS NULL`
+  );
   // Remove vocab entries with numeric/circle characters (bad JMdict entries like 九〇)
   await sqlite.execute(
     `DELETE FROM vocab_progress WHERE

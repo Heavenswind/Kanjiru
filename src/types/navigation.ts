@@ -11,6 +11,7 @@ export type LearnStackParamList = {
   KanjiList: {jlptLevel: number};
   KanjiDetail: {kanjiId: string; jlptLevel: number};
   LearnSession: {jlptLevel: number};
+  VocabLearnSession: {jlptLevel: number};
 };
 
 export type ReviewStackParamList = {

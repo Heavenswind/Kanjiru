@@ -46,6 +46,7 @@ export default function ReviewHomeScreen({navigation}: Props) {
       [...word].filter(c => c >= '\u4e00' && c <= '\u9fff').every(c => enrolledKanjiIds.has(c));
     const items: VocabItem[] = [];
     for (const p of (vocabProgress ?? [])) {
+      if (p.srsLevel < 0) continue;
       if (new Date(p.nextReview) > new Date()) continue;
       const words = allVocab[p.kanjiId] ?? [];
       const entry = words.find(v => v.word === p.vocabWord);
@@ -90,7 +91,7 @@ export default function ReviewHomeScreen({navigation}: Props) {
   const nextReview = useMemo(() => {
     if (allDueItems.length > 0) return null;
     const kanjiDates = (progress ?? []).map(p => new Date(p.nextReview).getTime());
-    const vocabDates = (vocabProgress ?? []).map(p => new Date(p.nextReview).getTime());
+    const vocabDates = (vocabProgress ?? []).filter(p => p.srsLevel >= 0).map(p => new Date(p.nextReview).getTime());
     const all = [...kanjiDates, ...vocabDates].sort((a, b) => a - b);
     return all[0] ? new Date(all[0]) : null;
   }, [progress, vocabProgress, allDueItems]);

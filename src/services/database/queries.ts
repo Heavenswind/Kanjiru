@@ -1,4 +1,4 @@
-import {and, eq, lte} from 'drizzle-orm';
+import {and, eq, gte, lte} from 'drizzle-orm';
 import {uuid} from '../../utils/kanjiUtils';
 import {db, sqlite} from './client';
 import {kanjiProgress, vocabProgress} from './schema';
@@ -119,7 +119,21 @@ export async function getDueVocabCards(userId: string): Promise<VocabProgress[]>
     .where(
       and(
         eq(vocabProgress.userId, userId),
+        gte(vocabProgress.srsLevel, 0),
         lte(vocabProgress.nextReview, new Date()),
+      ),
+    );
+  return rows.map(toVocabProgress);
+}
+
+export async function getPendingVocabLessons(userId: string): Promise<VocabProgress[]> {
+  const rows = await db
+    .select()
+    .from(vocabProgress)
+    .where(
+      and(
+        eq(vocabProgress.userId, userId),
+        eq(vocabProgress.srsLevel, -1),
       ),
     );
   return rows.map(toVocabProgress);

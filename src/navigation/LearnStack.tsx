@@ -5,6 +5,7 @@ import LevelPickerScreen from '../screens/learn/LevelPickerScreen';
 import KanjiListScreen from '../screens/learn/KanjiListScreen';
 import KanjiDetailScreen from '../screens/learn/KanjiDetailScreen';
 import LearnSessionScreen from '../screens/learn/LearnSessionScreen';
+import VocabLearnSessionScreen from '../screens/learn/VocabLearnSessionScreen';
 
 const Stack = createStackNavigator<LearnStackParamList>();
 
@@ -25,6 +26,11 @@ export default function LearnStack() {
       <Stack.Screen
         name="LearnSession"
         component={LearnSessionScreen}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="VocabLearnSession"
+        component={VocabLearnSessionScreen}
         options={{headerShown: false}}
       />
       <Stack.Screen

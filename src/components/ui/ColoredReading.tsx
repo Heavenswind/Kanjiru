@@ -61,6 +61,42 @@ export function ColoredWord({ parts, fontSize = 20 }: { parts: VocabPart[]; font
 }
 
 /**
+ * Renders the word with furigana (hiragana) above each kanji segment.
+ * Kanji segments are color-coded; plain kana segments have no ruby text.
+ * Font size scales down automatically for longer words.
+ */
+export function FuriganaWord({ parts, fontSize = 72 }: { parts: VocabPart[]; fontSize?: number }) {
+  // Scale down for longer words so they fit on one line
+  const charCount = parts.reduce((n, p) => n + p.text.length, 0);
+  const scaled = charCount <= 2 ? fontSize
+    : charCount <= 3 ? Math.round(fontSize * 0.78)
+    : charCount <= 4 ? Math.round(fontSize * 0.65)
+    : Math.round(fontSize * 0.52);
+  const rubySize = Math.max(9, Math.round(scaled * 0.38));
+  let kanjiColorIndex = 0;
+  return (
+    <View style={styles.furiganaRow}>
+      {parts.map((p, i) => {
+        const isKanji = CJK_RE.test(p.text);
+        const color = isKanji
+          ? KANJI_COLORS[kanjiColorIndex++ % KANJI_COLORS.length]
+          : '#fff';
+        return (
+          <View key={i} style={styles.furiganaCell}>
+            <Text style={[styles.furiganaReading, { fontSize: rubySize, color: isKanji ? color : 'transparent' }]}>
+              {isKanji && p.reading ? p.reading : ' '}
+            </Text>
+            <Text style={[styles.furiganaChar, { fontSize: scaled, color }]}>
+              {p.text}
+            </Text>
+          </View>
+        );
+      })}
+    </View>
+  );
+}
+
+/**
  * Renders a Japanese reading with color-coded segments.
  *
  * - parts mode: uses JMdict furigana decomposition. Each kanji segment gets
@@ -114,6 +150,21 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   wordSegment: {
+    fontWeight: 'bold',
+  },
+  furiganaRow: {
+    flexDirection: 'row',
+    flexWrap: 'nowrap',
+    alignItems: 'flex-end',
+  },
+  furiganaCell: {
+    alignItems: 'center',
+  },
+  furiganaReading: {
+    fontWeight: '400',
+    lineHeight: undefined,
+  },
+  furiganaChar: {
     fontWeight: 'bold',
   },
 });
