@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {LearnStackParamList} from '../../types/navigation';
 import {useKanjiGrouped} from '../../hooks/useKanjiData';
 import {useProgressQuery} from '../../queries/useProgressQuery';
@@ -57,6 +58,8 @@ export default function LearnSessionScreen({navigation, route}: Props) {
   const queryClient = useQueryClient();
   const lessonsPerSession = useSettingsStore(s => s.lessonsPerSession);
   const autoShowReadings = useSettingsStore(s => s.autoShowReadings);
+
+  const insets = useSafeAreaInsets();
 
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>('studying');
@@ -164,7 +167,7 @@ export default function LearnSessionScreen({navigation, route}: Props) {
 
   if (batch.length === 0) {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 24}]}>
         <Text style={styles.doneTitle}>All caught up!</Text>
         <Text style={styles.doneSubtitle}>
           You've enrolled all N{jlptLevel} kanji. Keep reviewing to master them.
@@ -178,7 +181,7 @@ export default function LearnSessionScreen({navigation, route}: Props) {
 
   if (phase === 'enrolling') {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 24}]}>
         <ActivityIndicator size="large" color="#e94560" />
         <Text style={styles.enrollingText}>Adding to your reviews…</Text>
       </View>
@@ -187,7 +190,7 @@ export default function LearnSessionScreen({navigation, route}: Props) {
 
   if (phase === 'done') {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 24}]}>
         <Text style={styles.doneTitle}>Nice work!</Text>
         <Text style={styles.doneSubtitle}>
           {batch.length} N{jlptLevel} kanji added to your reviews.{'\n'}
@@ -201,7 +204,7 @@ export default function LearnSessionScreen({navigation, route}: Props) {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {paddingTop: insets.top + 24, justifyContent: 'flex-start'}]}>
       {/* Progress */}
       <View style={styles.progressRow}>
         <View style={styles.progressHeader}>

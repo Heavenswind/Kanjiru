@@ -23,6 +23,7 @@ export default function MainTabs() {
           backgroundColor: '#0f0f1a',
           borderTopWidth: 0,
           elevation: 0,
+          shadowOpacity: 0,
         },
         tabBarActiveTintColor: '#e94560',
         tabBarInactiveTintColor: '#555',
