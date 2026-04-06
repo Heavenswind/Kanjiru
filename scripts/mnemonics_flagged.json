@@ -3,12 +3,20 @@
     {
       "type": "meaning_leak",
       "detail": "\"One\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"each\""
     }
   ],
   "二": [
     {
       "type": "meaning_leak",
       "detail": "\"Two\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Nia\""
     }
   ],
   "九": [
@@ -18,19 +26,27 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Kyu\" (kaɪuː) doesn't match reading \"きゅう\" (kjuː)"
+      "detail": "eSpeak failed for \"Kyu\""
     }
   ],
   "七": [
     {
       "type": "meaning_leak",
       "detail": "\"Seven\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"sheet\""
     }
   ],
   "人": [
     {
       "type": "meaning_leak",
       "detail": "\"Person\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"jingle\""
     }
   ],
   "入": [
@@ -40,7 +56,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Nyu\" (naɪuː) doesn't match reading \"にゅう\" (njuː)"
+      "detail": "eSpeak failed for \"Nyu\""
     }
   ],
   "八": [
@@ -50,13 +66,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"hacked\" (hakt) doesn't match reading \"はち\" (hɑːtʃ)"
+      "detail": "eSpeak failed for \"hatch\""
     }
   ],
   "十": [
     {
       "type": "meaning_leak",
       "detail": "\"Ten\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Ju\""
     }
   ],
   "三": [
@@ -66,19 +86,27 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"sawn\" (sɔːn) doesn't match reading \"さん\" (sɑːn)"
+      "detail": "eSpeak failed for \"sand\""
     }
   ],
   "上": [
     {
       "type": "meaning_leak",
       "detail": "\"Above\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Joe\""
     }
   ],
   "下": [
     {
       "type": "meaning_leak",
       "detail": "\"Below\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Carlos\""
     }
   ],
   "大": [
@@ -88,13 +116,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Dahlia\" (deɪliːə) doesn't match reading \"だい\" (dɑːɪ)"
+      "detail": "eSpeak failed for \"daddy\""
     }
   ],
   "女": [
     {
       "type": "meaning_leak",
       "detail": "\"Woman\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Joe\""
     }
   ],
   "山": [
@@ -104,7 +136,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"sawn\" (sɔːn) doesn't match reading \"さん\" (sɑːn)"
+      "detail": "eSpeak failed for \"sun\""
     }
   ],
   "川": [
@@ -114,7 +146,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"send\" (sɛnd) doesn't match reading \"せん\" (sen)"
+      "detail": "eSpeak failed for \"send\""
     }
   ],
   "土": [
@@ -124,7 +156,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Do\" (duː) doesn't match reading \"ど\" (doʊ)"
+      "detail": "eSpeak failed for \"Do\""
     }
   ],
   "千": [
@@ -134,13 +166,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"sending\" (sɛndɪŋ) doesn't match reading \"せん\" (sen)"
+      "detail": "eSpeak failed for \"send\""
     }
   ],
   "子": [
     {
       "type": "meaning_leak",
       "detail": "\"Child\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Sheila\""
     }
   ],
   "小": [
@@ -150,13 +186,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Sho\" (ʃəʊ) doesn't match reading \"しょう\" (ʃoʊ)"
+      "detail": "eSpeak failed for \"Sho\""
     }
   ],
   "中": [
     {
       "type": "meaning_leak",
       "detail": "\"In\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Chu\""
     }
   ],
   "五": [
@@ -166,7 +206,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Go\" (ɡəʊ) doesn't match reading \"ご\" (ɡoʊ)"
+      "detail": "eSpeak failed for \"Go\""
     }
   ],
   "六": [
@@ -176,7 +216,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"rocky\" (ɹɒki) doesn't match reading \"ろく\" (roʊku)"
+      "detail": "eSpeak failed for \"rook\""
     }
   ],
   "円": [
@@ -186,7 +226,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"engine\" (ɛndʒɪn) doesn't match reading \"えん\" (en)"
+      "detail": "eSpeak failed for \"pen\""
     }
   ],
   "天": [
@@ -196,19 +236,27 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"tennis\" (tɛnɪs) doesn't match reading \"てん\" (ten)"
+      "detail": "eSpeak failed for \"ten\""
     }
   ],
   "日": [
     {
       "type": "meaning_leak",
       "detail": "\"Day\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"niche\""
     }
   ],
   "月": [
     {
       "type": "meaning_leak",
       "detail": "\"Month\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"gets\""
     }
   ],
   "木": [
@@ -218,7 +266,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"book\" (bʊk) doesn't match reading \"ぼく\" (boʊku)"
+      "detail": "eSpeak failed for \"book\""
     }
   ],
   "水": [
@@ -228,31 +276,47 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"sweet\" (swiːt) doesn't match reading \"すい\" (suːɪ)"
+      "detail": "eSpeak failed for \"sueing\""
     }
   ],
   "火": [
     {
       "type": "meaning_leak",
       "detail": "\"Fire\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Carlos\""
     }
   ],
   "出": [
     {
       "type": "meaning_leak",
       "detail": "\"Exit\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"shoots\""
     }
   ],
   "右": [
     {
       "type": "meaning_leak",
       "detail": "\"Right\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Oo\""
     }
   ],
   "四": [
     {
       "type": "meaning_leak",
       "detail": "\"Four\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Sheila\""
     }
   ],
   "左": [
@@ -262,7 +326,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Sasha\" (saʃə) doesn't match reading \"さ\" (sɑː)"
+      "detail": "eSpeak failed for \"Sasha\""
     }
   ],
   "本": [
@@ -272,7 +336,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"honed\" (həʊnd) doesn't match reading \"ほん\" (hoʊn)"
+      "detail": "eSpeak failed for \"Home\""
     }
   ],
   "白": [
@@ -282,7 +346,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"hawk\" (hɔːk) doesn't match reading \"はく\" (hɑːku)"
+      "detail": "eSpeak failed for \"hawk\""
     }
   ],
   "万": [
@@ -292,7 +356,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"man\" (man) doesn't match reading \"まん\" (mɑːn)"
+      "detail": "eSpeak failed for \"man\""
     }
   ],
   "今": [
@@ -302,7 +366,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"cone\" (kəʊn) doesn't match reading \"こん\" (koʊn)"
+      "detail": "eSpeak failed for \"cone\""
     }
   ],
   "午": [
@@ -312,13 +376,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Go\" (ɡəʊ) doesn't match reading \"ご\" (ɡoʊ)"
+      "detail": "eSpeak failed for \"Go\""
     }
   ],
   "友": [
     {
       "type": "meaning_leak",
       "detail": "\"Friend\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"juice\""
     }
   ],
   "父": [
@@ -328,7 +396,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Fuad\" (fjuːad) doesn't match reading \"ふ\" (fuː)"
+      "detail": "eSpeak failed for \"Fuad\""
     }
   ],
   "北": [
@@ -338,19 +406,27 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"hawk\" (hɔːk) doesn't match reading \"ほく\" (hoʊku)"
+      "detail": "eSpeak failed for \"hoak\""
     }
   ],
   "半": [
     {
       "type": "meaning_leak",
       "detail": "\"Half\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"hahn\""
     }
   ],
   "分": [
     {
       "type": "meaning_leak",
       "detail": "\"Part\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"moon\""
     }
   ],
   "外": [
@@ -360,7 +436,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"gawker\" (ɡɔːkə) doesn't match reading \"がい\" (ɡɑːɪ)"
+      "detail": "eSpeak failed for \"guy\""
     }
   ],
   "母": [
@@ -370,7 +446,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Bo\" (bəʊ) doesn't match reading \"ぼ\" (boʊ)"
+      "detail": "eSpeak failed for \"Bo\""
     }
   ],
   "休": [
@@ -380,7 +456,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Kyu\" (kaɪuː) doesn't match reading \"きゅう\" (kjuː)"
+      "detail": "eSpeak failed for \"Kyu\""
     }
   ],
   "先": [
@@ -390,13 +466,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"send\" (sɛnd) doesn't match reading \"せん\" (sen)"
+      "detail": "eSpeak failed for \"sentence\""
     }
   ],
   "名": [
     {
       "type": "meaning_leak",
       "detail": "\"Name\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"May\""
     }
   ],
   "年": [
@@ -406,7 +486,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Nen\" (nɛn) doesn't match reading \"ねん\" (nen)"
+      "detail": "eSpeak failed for \"Nen\""
     }
   ],
   "気": [
@@ -416,7 +496,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Kiki\" (kɪki) doesn't match reading \"き\" (kiː)"
+      "detail": "eSpeak failed for \"Kiki\""
     }
   ],
   "百": [
@@ -426,13 +506,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"hacker\" (hakə) doesn't match reading \"ひゃく\" (hjɑːku)"
+      "detail": "eSpeak failed for \"hacking\""
     }
   ],
   "男": [
     {
+      "type": "meaning_leak",
+      "detail": "\"Male\" appears verbatim in mnemonic_meaning"
+    },
+    {
       "type": "phonetic_fail",
-      "detail": "\"dawn\" (dɔːn) doesn't match reading \"だん\" (dɑːn)"
+      "detail": "eSpeak failed for \"dawn\""
     }
   ],
   "見": [
@@ -442,13 +526,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"kettle\" (kɛtəl) doesn't match reading \"けん\" (ken)"
+      "detail": "eSpeak failed for \"Ken\""
     }
   ],
   "車": [
     {
       "type": "meaning_leak",
       "detail": "\"Car\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Sha\""
     }
   ],
   "毎": [
@@ -458,7 +546,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"mighty\" (maɪti) doesn't match reading \"まい\" (mɑːɪ)"
+      "detail": "eSpeak failed for \"ma\""
     }
   ],
   "行": [
@@ -468,19 +556,27 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"coat\" (kəʊt) doesn't match reading \"こう\" (koʊ)"
+      "detail": "eSpeak failed for \"coat\""
     }
   ],
   "西": [
     {
       "type": "meaning_leak",
       "detail": "\"West\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"say\""
     }
   ],
   "何": [
     {
       "type": "meaning_leak",
       "detail": "\"What\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Carlos\""
     }
   ],
   "来": [
@@ -490,7 +586,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"rarity\" (ɹeəɹəti) doesn't match reading \"らい\" (rɑːɪ)"
+      "detail": "eSpeak failed for \"raw\""
     }
   ],
   "学": [
@@ -500,19 +596,27 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Gawk\" (ɡɔːk) doesn't match reading \"がく\" (ɡɑːku)"
+      "detail": "eSpeak failed for \"gawk\""
     }
   ],
   "金": [
     {
       "type": "meaning_leak",
       "detail": "\"Gold\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"keen\""
     }
   ],
   "雨": [
     {
       "type": "meaning_leak",
       "detail": "\"Rain\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Oo\""
     }
   ],
   "国": [
@@ -522,7 +626,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"cuckoo\" (kʊkuː) doesn't match reading \"こく\" (koʊku)"
+      "detail": "eSpeak failed for \"co-cooked\""
     }
   ],
   "東": [
@@ -532,13 +636,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"toe\" (təʊ) doesn't match reading \"とう\" (toʊ)"
+      "detail": "eSpeak failed for \"toe\""
     }
   ],
   "長": [
     {
       "type": "meaning_leak",
       "detail": "\"Long\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Cho\""
     }
   ],
   "前": [
@@ -548,7 +656,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"zen\" (zɛn) doesn't match reading \"ぜん\" (zen)"
+      "detail": "eSpeak failed for \"zenith\""
     }
   ],
   "南": [
@@ -558,7 +666,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"nano\" (nanəʊ) doesn't match reading \"なん\" (nɑːn)"
+      "detail": "eSpeak failed for \"non\""
     }
   ],
   "後": [
@@ -568,7 +676,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Go\" (ɡəʊ) doesn't match reading \"ご\" (ɡoʊ)"
+      "detail": "eSpeak failed for \"Go\""
     }
   ],
   "食": [
@@ -578,7 +686,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"showcase\" (ʃəʊkeɪs) doesn't match reading \"しょく\" (ʃoʊku)"
+      "detail": "eSpeak failed for \"show\""
     }
   ],
   "校": [
@@ -588,13 +696,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"coach\" (kəʊtʃ) doesn't match reading \"こう\" (koʊ)"
+      "detail": "eSpeak failed for \"coat\""
     }
   ],
   "時": [
     {
       "type": "meaning_leak",
       "detail": "\"Time\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Ji\""
     }
   ],
   "高": [
@@ -604,7 +716,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"coat\" (kəʊt) doesn't match reading \"こう\" (koʊ)"
+      "detail": "eSpeak failed for \"coat\""
     }
   ],
   "間": [
@@ -614,13 +726,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"canon\" (kanən) doesn't match reading \"かん\" (kɑːn)"
+      "detail": "eSpeak failed for \"cannon\""
     }
   ],
   "話": [
     {
       "type": "meaning_leak",
       "detail": "\"Tale\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"Wa\""
     }
   ],
   "電": [
@@ -630,13 +746,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"den\" (dɛn) doesn't match reading \"でん\" (den)"
+      "detail": "eSpeak failed for \"den\""
     }
   ],
   "聞": [
     {
       "type": "meaning_leak",
       "detail": "\"Hear\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"boom\""
     }
   ],
   "語": [
@@ -646,7 +766,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Go\" (ɡəʊ) doesn't match reading \"ご\" (ɡoʊ)"
+      "detail": "eSpeak failed for \"Go\""
     }
   ],
   "読": [
@@ -656,13 +776,17 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"doodle\" (duːdəl) doesn't match reading \"どく\" (doʊku)"
+      "detail": "eSpeak failed for \"doughco\""
     }
   ],
   "生": [
     {
       "type": "meaning_leak",
       "detail": "\"Life\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "eSpeak failed for \"say\""
     }
   ],
   "書": [
@@ -672,7 +796,7 @@
     },
     {
       "type": "phonetic_fail",
-      "detail": "\"Sho\" (ʃəʊ) doesn't match reading \"しょ\" (ʃoʊ)"
+      "detail": "eSpeak failed for \"Sho\""
     }
   ]
 }
