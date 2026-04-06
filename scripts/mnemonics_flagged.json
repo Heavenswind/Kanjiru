@@ -1,50 +1,678 @@
 {
-  "二": {
-    "story": "**Nia** and **Ji** are arguing over which of the **futon**'s two horizontal cushions belongs to whom, each claiming one as their own.",
-    "issues": [
-      "MEANING_LEAK"
-    ],
-    "reason": "Story explicitly states 'two horizontal cushions', which is the kanji's meaning.",
-    "source": "llm"
-  },
-  "九": {
-    "story": "The constantly late student, **Kyu**, finally arrives, but he's so exhausted he just curls up like a twisted hook on the classroom floor, joining the eight other students already present.",
-    "issues": [
-      "MEANING_LEAK"
-    ],
-    "reason": "The story implies the meaning by stating 'joining the eight other students already present', making the total nine.",
-    "source": "llm"
-  },
-  "七": {
-    "story": "A blacksmith hammers a metal **sheet**, making a series of sharp, angular bends. He finishes the sixth bend, then delivers one final, powerful blow, perfecting the shape into a downward stroke crossed by a horizontal one.",
-    "issues": [
-      "MEANING_LEAK"
-    ],
-    "reason": "The story implies the meaning by describing 'finishes the sixth bend, then delivers one final blow', making a total of seven actions.",
-    "source": "llm"
-  },
-  "木": {
-    "story": "**Box**y lumberjacks carefully stacked fallen **bo**ards to build a sturdy shelter from the rain, using the thick branches as supports. The forest floor was littered with the remnants of their work, a silent testament to their industry. A lone, towering form stood watch over them, its limbs reaching towards the sky.",
-    "issues": [
-      "WRONG_CAST:bo(ぼ)≠[ぼく,もく,き,こ]"
-    ],
-    "reason": "WRONG_CAST:bo(ぼ)≠[ぼく,もく,き,こ]",
-    "source": "preflight"
-  },
-  "来": {
-    "story": "A **ray** of sunlight warmed the earth, revealing a field of freshly harvested rice, beckoning travelers toward a welcoming village. They eagerly stepped forward, drawn by the promise of shelter and sustenance from the fertile ground. Soon, the entire community gathered to greet the newcomers, their faces alight with joy.",
-    "issues": [
-      "WRONG_CAST:ray(れい)≠[らい,たい,く,きた,きた,き,き,き,こ]"
-    ],
-    "reason": "WRONG_CAST:ray(れい)≠[らい,たい,く,きた,きた,き,き,き,こ]",
-    "source": "preflight"
-  },
-  "読": {
-    "story": "**Do**ctors shouted as they tried to sell a scroll, desperately hoping someone would decipher the ancient script etched upon it. The scroll's message, once understood, would reveal a crucial secret about the kingdom's past. Finally, a scholar painstakingly traced the characters, bringing the hidden knowledge to light.",
-    "issues": [
-      "WRONG_CAST:Do(ど)≠[どく,とく,とう,よ]"
-    ],
-    "reason": "WRONG_CAST:Do(ど)≠[どく,とく,とう,よ]",
-    "source": "preflight"
-  }
+  "一": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"One\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "二": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Two\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "九": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Nine\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Kyu\" (kaɪuː) doesn't match reading \"きゅう\" (kjuː)"
+    }
+  ],
+  "七": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Seven\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "人": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Person\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "入": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Enter\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Nyu\" (naɪuː) doesn't match reading \"にゅう\" (njuː)"
+    }
+  ],
+  "八": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Eight\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"hacked\" (hakt) doesn't match reading \"はち\" (hɑːtʃ)"
+    }
+  ],
+  "十": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Ten\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "三": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Three\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"sawn\" (sɔːn) doesn't match reading \"さん\" (sɑːn)"
+    }
+  ],
+  "上": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Above\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "下": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Below\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "大": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Large\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Dahlia\" (deɪliːə) doesn't match reading \"だい\" (dɑːɪ)"
+    }
+  ],
+  "女": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Woman\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "山": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Mountain\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"sawn\" (sɔːn) doesn't match reading \"さん\" (sɑːn)"
+    }
+  ],
+  "川": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Stream\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"send\" (sɛnd) doesn't match reading \"せん\" (sen)"
+    }
+  ],
+  "土": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Soil\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Do\" (duː) doesn't match reading \"ど\" (doʊ)"
+    }
+  ],
+  "千": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Thousand\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"sending\" (sɛndɪŋ) doesn't match reading \"せん\" (sen)"
+    }
+  ],
+  "子": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Child\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "小": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Little\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Sho\" (ʃəʊ) doesn't match reading \"しょう\" (ʃoʊ)"
+    }
+  ],
+  "中": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"In\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "五": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Five\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Go\" (ɡəʊ) doesn't match reading \"ご\" (ɡoʊ)"
+    }
+  ],
+  "六": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Six\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"rocky\" (ɹɒki) doesn't match reading \"ろく\" (roʊku)"
+    }
+  ],
+  "円": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Circle\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"engine\" (ɛndʒɪn) doesn't match reading \"えん\" (en)"
+    }
+  ],
+  "天": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Heavens\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"tennis\" (tɛnɪs) doesn't match reading \"てん\" (ten)"
+    }
+  ],
+  "日": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Day\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "月": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Month\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "木": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Tree\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"book\" (bʊk) doesn't match reading \"ぼく\" (boʊku)"
+    }
+  ],
+  "水": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Water\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"sweet\" (swiːt) doesn't match reading \"すい\" (suːɪ)"
+    }
+  ],
+  "火": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Fire\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "出": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Exit\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "右": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Right\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "四": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Four\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "左": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Left\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Sasha\" (saʃə) doesn't match reading \"さ\" (sɑː)"
+    }
+  ],
+  "本": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Book\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"honed\" (həʊnd) doesn't match reading \"ほん\" (hoʊn)"
+    }
+  ],
+  "白": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"White\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"hawk\" (hɔːk) doesn't match reading \"はく\" (hɑːku)"
+    }
+  ],
+  "万": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Ten Thousand\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"man\" (man) doesn't match reading \"まん\" (mɑːn)"
+    }
+  ],
+  "今": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Now\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"cone\" (kəʊn) doesn't match reading \"こん\" (koʊn)"
+    }
+  ],
+  "午": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Noon\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Go\" (ɡəʊ) doesn't match reading \"ご\" (ɡoʊ)"
+    }
+  ],
+  "友": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Friend\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "父": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Father\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Fuad\" (fjuːad) doesn't match reading \"ふ\" (fuː)"
+    }
+  ],
+  "北": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"North\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"hawk\" (hɔːk) doesn't match reading \"ほく\" (hoʊku)"
+    }
+  ],
+  "半": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Half\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "分": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Part\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "外": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Outside\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"gawker\" (ɡɔːkə) doesn't match reading \"がい\" (ɡɑːɪ)"
+    }
+  ],
+  "母": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Mother\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Bo\" (bəʊ) doesn't match reading \"ぼ\" (boʊ)"
+    }
+  ],
+  "休": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Rest\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Kyu\" (kaɪuː) doesn't match reading \"きゅう\" (kjuː)"
+    }
+  ],
+  "先": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Before\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"send\" (sɛnd) doesn't match reading \"せん\" (sen)"
+    }
+  ],
+  "名": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Name\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "年": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Year\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Nen\" (nɛn) doesn't match reading \"ねん\" (nen)"
+    }
+  ],
+  "気": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Spirit\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Kiki\" (kɪki) doesn't match reading \"き\" (kiː)"
+    }
+  ],
+  "百": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Hundred\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"hacker\" (hakə) doesn't match reading \"ひゃく\" (hjɑːku)"
+    }
+  ],
+  "男": [
+    {
+      "type": "phonetic_fail",
+      "detail": "\"dawn\" (dɔːn) doesn't match reading \"だん\" (dɑːn)"
+    }
+  ],
+  "見": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"See\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"kettle\" (kɛtəl) doesn't match reading \"けん\" (ken)"
+    }
+  ],
+  "車": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Car\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "毎": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Every\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"mighty\" (maɪti) doesn't match reading \"まい\" (mɑːɪ)"
+    }
+  ],
+  "行": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Going\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"coat\" (kəʊt) doesn't match reading \"こう\" (koʊ)"
+    }
+  ],
+  "西": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"West\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "何": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"What\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "来": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Come\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"rarity\" (ɹeəɹəti) doesn't match reading \"らい\" (rɑːɪ)"
+    }
+  ],
+  "学": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Study\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Gawk\" (ɡɔːk) doesn't match reading \"がく\" (ɡɑːku)"
+    }
+  ],
+  "金": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Gold\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "雨": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Rain\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "国": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Country\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"cuckoo\" (kʊkuː) doesn't match reading \"こく\" (koʊku)"
+    }
+  ],
+  "東": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"East\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"toe\" (təʊ) doesn't match reading \"とう\" (toʊ)"
+    }
+  ],
+  "長": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Long\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "前": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"In Front\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"zen\" (zɛn) doesn't match reading \"ぜん\" (zen)"
+    }
+  ],
+  "南": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"South\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"nano\" (nanəʊ) doesn't match reading \"なん\" (nɑːn)"
+    }
+  ],
+  "後": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Behind\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Go\" (ɡəʊ) doesn't match reading \"ご\" (ɡoʊ)"
+    }
+  ],
+  "食": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Eat\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"showcase\" (ʃəʊkeɪs) doesn't match reading \"しょく\" (ʃoʊku)"
+    }
+  ],
+  "校": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Exam\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"coach\" (kəʊtʃ) doesn't match reading \"こう\" (koʊ)"
+    }
+  ],
+  "時": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Time\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "高": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Tall\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"coat\" (kəʊt) doesn't match reading \"こう\" (koʊ)"
+    }
+  ],
+  "間": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Interval\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"canon\" (kanən) doesn't match reading \"かん\" (kɑːn)"
+    }
+  ],
+  "話": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Tale\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "電": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Electricity\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"den\" (dɛn) doesn't match reading \"でん\" (den)"
+    }
+  ],
+  "聞": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Hear\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "語": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Word\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Go\" (ɡəʊ) doesn't match reading \"ご\" (ɡoʊ)"
+    }
+  ],
+  "読": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Read\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"doodle\" (duːdəl) doesn't match reading \"どく\" (doʊku)"
+    }
+  ],
+  "生": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Life\" appears verbatim in mnemonic_meaning"
+    }
+  ],
+  "書": [
+    {
+      "type": "meaning_leak",
+      "detail": "\"Write\" appears verbatim in mnemonic_meaning"
+    },
+    {
+      "type": "phonetic_fail",
+      "detail": "\"Sho\" (ʃəʊ) doesn't match reading \"しょ\" (ʃoʊ)"
+    }
+  ]
 }
