@@ -161,11 +161,15 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 // ─── Parse response ──────────────────────────────────────────────────────────
 
 function parseResponse(raw) {
-  // Strip markdown code fences if model wrapped in ```json ... ```
-  const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+  // Extract the first JSON object from the response, ignoring surrounding text
+  const jsonMatch = raw.match(/\{[\s\S]*\}/);
+  if (!jsonMatch) {
+    console.error('\n--- RAW RESPONSE ---\n' + raw + '\n--- END ---');
+    throw new Error('No JSON object found in response');
+  }
   let parsed;
   try {
-    parsed = JSON.parse(cleaned);
+    parsed = JSON.parse(jsonMatch[0]);
   } catch (e) {
     console.error('\n--- RAW RESPONSE ---\n' + raw + '\n--- END ---');
     throw e;
