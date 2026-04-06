@@ -64,16 +64,11 @@ const CAST = Object.fromEntries(
 function buildMeaningPrompt(k) {
   const radicals = k.radicals.slice(0, 4).join(', ') || '—';
   const meaning = k.meanings[0];
-  return `Write one mnemonic for a Japanese kanji. Return ONLY valid JSON.
+  return `Japanese kanji mnemonic. Output JSON only.
 
-Kanji: ${k.character}
-Meaning: ${meaning}
-Radicals: ${radicals}
+${k.character} | meaning: ${meaning} | radicals: ${radicals}
 
-Rules:
-- Use the radicals as physical objects in a vivid scene
-- The scene must clearly land on the meaning "${meaning}"
-- No reading sounds. 2 sentences max.
+Use the radicals as props in a 1-2 sentence scene that ends on the meaning. No reading sounds.
 
 {"mnemonic_meaning": "..."}`;
 }
@@ -85,19 +80,14 @@ function buildReadingPrompt(k) {
   const meaning = k.meanings[0];
 
   const anchor = cast
-    ? `Bold the name **${cast.name}** (${cast.description}). Their name sounds like ${ipa}. Do NOT explain the sound connection.`
-    : `Bold an English word whose first sounds match ${ipa}.`;
+    ? `Use **${cast.name}** (${cast.description}) as the character. Bold their name.`
+    : `Bold an English word that starts with the sound ${ipa}.`;
 
-  return `Write one mnemonic for a Japanese kanji reading. Return ONLY valid JSON.
+  return `Japanese kanji reading mnemonic. Output JSON only.
 
-Kanji: ${k.character}
-Meaning: ${meaning}
-Reading: ${primaryReading} (${ipa})
+${k.character} | meaning: ${meaning} | reading: ${primaryReading} (${ipa})
 
-Rules:
-- ${anchor}
-- Vivid scene featuring the bold word/name
-- Tie back to the meaning "${meaning}". 2 sentences max.
+${anchor} Write 1-2 sentences tying the scene to the meaning.
 
 {"mnemonic_reading": "..."}`;
 }
