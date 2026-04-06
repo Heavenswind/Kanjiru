@@ -94,14 +94,11 @@ ${anchor} Write 1-2 sentences tying the scene to the meaning.
 
 // ─── API ─────────────────────────────────────────────────────────────────────
 
-function callOllama(prompt) {
+function callOllama(prompt, field) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       model: OLLAMA_MODEL, prompt, stream: false,
-      format: {
-        type: 'object',
-        properties: { mnemonic_meaning: { type: 'string' }, mnemonic_reading: { type: 'string' } },
-      },
+      format: { type: 'object', properties: { [field]: { type: 'string' } }, required: [field] },
       options: { temperature: 0.7, num_predict: 150 },
     });
     const req = http.request(
@@ -160,7 +157,7 @@ function callGemini(prompt) {
   });
 }
 
-function callModel(prompt) { return USE_LOCAL ? callOllama(prompt) : callGemini(prompt); }
+function callModel(prompt, field) { return USE_LOCAL ? callOllama(prompt, field) : callGemini(prompt); }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ─── Parse response ──────────────────────────────────────────────────────────
@@ -182,10 +179,10 @@ function parseField(raw, field) {
   return parsed[field];
 }
 
-async function callWithRetry(prompt, retries = 3) {
+async function callWithRetry(prompt, field, retries = 3) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      return await callModel(prompt);
+      return await callModel(prompt, field);
     } catch (e) {
       if (attempt < retries) {
         const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
@@ -207,8 +204,8 @@ async function processOne(k, retries = 3) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
       const [rawMeaning, rawReading] = await Promise.all([
-        callWithRetry(buildMeaningPrompt(k)),
-        callWithRetry(buildReadingPrompt(k)),
+        callWithRetry(buildMeaningPrompt(k), 'mnemonic_meaning'),
+        callWithRetry(buildReadingPrompt(k), 'mnemonic_reading'),
       ]);
       const mnemonic_meaning = parseField(rawMeaning, 'mnemonic_meaning');
       const mnemonic_reading = parseField(rawReading, 'mnemonic_reading');
