@@ -107,19 +107,23 @@ function callOllama(prompt) {
       {
         hostname: 'localhost', port: 11434, path: '/api/generate', method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
+        timeout: 300000,
       },
       res => {
         let data = '';
         res.on('data', c => (data += c));
         res.on('end', () => {
           try {
+            if (!data) return reject(new Error('Empty response from Ollama'));
             const parsed = JSON.parse(data);
             if (parsed.error) return reject(new Error(parsed.error));
+            if (!parsed.response) return reject(new Error(`No response field. Raw: ${data.slice(0, 200)}`));
             resolve(parsed.response.trim());
-          } catch (e) { reject(new Error(`Ollama parse error: ${e.message}`)); }
+          } catch (e) { reject(new Error(`Ollama parse error: ${e.message} — raw: ${data.slice(0, 200)}`)); }
         });
       }
     );
+    req.on('timeout', () => { req.destroy(); reject(new Error('Ollama request timed out after 5min')); });
     req.on('error', e => reject(new Error(`Ollama error: ${e.message} — is Ollama running?`)));
     req.write(body); req.end();
   });
