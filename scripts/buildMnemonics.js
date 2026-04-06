@@ -22,20 +22,20 @@ const https = require('https');
 
 // ─── Config ──────────────────────────────────────────────────────────────────
 
-const KANJI_JSON   = path.join(__dirname, '../src/data/kanji.json');
-const IPA_JSON     = path.join(__dirname, './romajiIPA.json');
-const CAST_JSON    = path.join(__dirname, './mnemonicCast.json');
-const OUT_FILE     = path.join(__dirname, '../src/data/mnemonics.json');
+const KANJI_JSON = path.join(__dirname, '../src/data/kanji.json');
+const IPA_JSON = path.join(__dirname, './romajiIPA.json');
+const CAST_JSON = path.join(__dirname, './mnemonicCast.json');
+const OUT_FILE = path.join(__dirname, '../src/data/mnemonics.json');
 const FLAGGED_FILE = path.join(__dirname, './mnemonics_flagged.json');
 
 const args = process.argv.slice(2);
-const USE_LOCAL     = args.includes('--local');
-const REGEN         = args.includes('--regen');
+const USE_LOCAL = args.includes('--local');
+const REGEN = args.includes('--regen');
 const REGEN_FLAGGED = args.includes('--regen-flagged');
-const modelArg  = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
-const levelArg  = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
-const OLLAMA_MODEL  = (USE_LOCAL && modelArg && !modelArg.startsWith('--')) ? modelArg : 'gemma3:12b';
-const DELAY_MS      = USE_LOCAL ? 0 : 13000;
+const modelArg = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
+const levelArg = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
+const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--')) ? modelArg : 'gemma4:e4b';
+const DELAY_MS = USE_LOCAL ? 0 : 13000;
 
 // Load .env
 const envPath = path.join(__dirname, '../.env');
@@ -54,7 +54,7 @@ if (!USE_LOCAL && !GEMINI_KEY) {
 
 // ─── Load data ───────────────────────────────────────────────────────────────
 
-const IPA  = JSON.parse(fs.readFileSync(IPA_JSON)).mora;
+const IPA = JSON.parse(fs.readFileSync(IPA_JSON)).mora;
 const CAST = Object.fromEntries(
   JSON.parse(fs.readFileSync(CAST_JSON)).cast.map(e => [e.sound, e])
 );
@@ -63,10 +63,10 @@ const CAST = Object.fromEntries(
 
 function buildPrompt(k) {
   const primaryReading = k.readings_on[0] ?? k.readings_kun[0]?.replace(/[.-].*/, '');
-  const ipa            = IPA[primaryReading] ?? '?';
-  const cast           = CAST[primaryReading];
-  const radicals       = k.radicals.slice(0, 4).join(', ') || '—';
-  const meaning        = k.meanings[0];
+  const ipa = IPA[primaryReading] ?? '?';
+  const cast = CAST[primaryReading];
+  const radicals = k.radicals.slice(0, 4).join(', ') || '—';
+  const meaning = k.meanings[0];
 
   const readingAnchor = cast
     ? `Bold the name **${cast.name}** (${cast.description}). Their name starts with ${ipa}, which matches this reading. Do NOT explain the sound connection.`
@@ -101,7 +101,7 @@ function callOllama(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       model: OLLAMA_MODEL, prompt, stream: false,
-      options: { temperature: 0.7, num_predict: 400 },
+      options: { temperature: 0.7, num_predict: 2048 },
     });
     const req = http.request(
       {
