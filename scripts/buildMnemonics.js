@@ -61,38 +61,45 @@ const CAST = Object.fromEntries(
 
 // ─── Prompt ──────────────────────────────────────────────────────────────────
 
-function buildPrompt(k) {
-  const primaryReading = k.readings_on[0] ?? k.readings_kun[0]?.replace(/[.-].*/, '');
-  const ipa = IPA[primaryReading] ?? '?';
-  const cast = CAST[primaryReading];
+function buildMeaningPrompt(k) {
   const radicals = k.radicals.slice(0, 4).join(', ') || '—';
   const meaning = k.meanings[0];
-
-  const readingAnchor = cast
-    ? `Bold the name **${cast.name}** (${cast.description}). Their name starts with ${ipa}, which matches this reading. Do NOT explain the sound connection.`
-    : `Bold an English word whose first sounds match ${ipa}. Do NOT use any character name.`;
-
-  return `Write two short mnemonics for this Japanese kanji. Return ONLY valid JSON — no markdown, no explanation.
+  return `Write one mnemonic for a Japanese kanji. Return ONLY valid JSON.
 
 Kanji: ${k.character}
 Meaning: ${meaning}
 Radicals: ${radicals}
-Primary reading: ${primaryReading} (${ipa})
 
-Rules for mnemonic_meaning:
-- Use the radicals (${radicals}) as physical objects or characters in a scene
-- End with or clearly land on the meaning "${meaning}" — make it the obvious punchline of the scene
-- No cast character. No reading sounds.
-- 2 vivid, concrete sentences max
+Rules:
+- Use the radicals as physical objects in a vivid scene
+- The scene must clearly land on the meaning "${meaning}"
+- No reading sounds. 2 sentences max.
 
-Rules for mnemonic_reading:
-- ${readingAnchor}
-- The scene must feature the cast character doing something vivid and memorable
-- Tie the scene back to the meaning "${meaning}" so both the sound and the meaning stick together
-- 2 sentences max
+{"mnemonic_meaning": "..."}`;
+}
 
-Respond with this exact JSON shape:
-{"mnemonic_meaning": "...", "mnemonic_reading": "..."}`;
+function buildReadingPrompt(k) {
+  const primaryReading = k.readings_on[0] ?? k.readings_kun[0]?.replace(/[.-].*/, '');
+  const ipa = IPA[primaryReading] ?? '?';
+  const cast = CAST[primaryReading];
+  const meaning = k.meanings[0];
+
+  const anchor = cast
+    ? `Bold the name **${cast.name}** (${cast.description}). Their name sounds like ${ipa}. Do NOT explain the sound connection.`
+    : `Bold an English word whose first sounds match ${ipa}.`;
+
+  return `Write one mnemonic for a Japanese kanji reading. Return ONLY valid JSON.
+
+Kanji: ${k.character}
+Meaning: ${meaning}
+Reading: ${primaryReading} (${ipa})
+
+Rules:
+- ${anchor}
+- Vivid scene featuring the bold word/name
+- Tie back to the meaning "${meaning}". 2 sentences max.
+
+{"mnemonic_reading": "..."}`;
 }
 
 // ─── API ─────────────────────────────────────────────────────────────────────
@@ -164,12 +171,11 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ─── Parse response ──────────────────────────────────────────────────────────
 
-function parseResponse(raw) {
-  // Extract the first JSON object from the response, ignoring surrounding text
+function parseField(raw, field) {
   const jsonMatch = raw.match(/\{[\s\S]*\}/);
   if (!jsonMatch) {
     console.error('\n--- RAW RESPONSE ---\n' + raw + '\n--- END ---');
-    throw new Error('No JSON object found in response');
+    throw new Error(`No JSON object found in response for ${field}`);
   }
   let parsed;
   try {
@@ -178,13 +184,27 @@ function parseResponse(raw) {
     console.error('\n--- RAW RESPONSE ---\n' + raw + '\n--- END ---');
     throw e;
   }
-  if (!parsed.mnemonic_meaning || !parsed.mnemonic_reading) {
-    throw new Error('Missing mnemonic_meaning or mnemonic_reading fields');
+  if (!parsed[field]) throw new Error(`Missing ${field} in response`);
+  return parsed[field];
+}
+
+async function callWithRetry(prompt, retries = 3) {
+  for (let attempt = 0; attempt <= retries; attempt++) {
+    try {
+      return await callModel(prompt);
+    } catch (e) {
+      if (attempt < retries) {
+        const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
+        const waitMs = retryMatch
+          ? Math.ceil(parseFloat(retryMatch[1])) * 1000 + 1000
+          : (USE_LOCAL ? 2000 : 35000);
+        process.stdout.write(`\n  Retry ${attempt + 1}/${retries}: ${e.message.slice(0, 80)} (${Math.round(waitMs / 1000)}s)`);
+        await sleep(waitMs);
+      } else {
+        throw e;
+      }
+    }
   }
-  if (!parsed.mnemonic_reading.includes('**')) {
-    throw new Error('No bold anchor in mnemonic_reading');
-  }
-  return { mnemonic_meaning: parsed.mnemonic_meaning, mnemonic_reading: parsed.mnemonic_reading };
 }
 
 // ─── Process one kanji ───────────────────────────────────────────────────────
@@ -192,14 +212,17 @@ function parseResponse(raw) {
 async function processOne(k, retries = 3) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const raw = await callModel(buildPrompt(k));
-      return parseResponse(raw);
+      const [rawMeaning, rawReading] = await Promise.all([
+        callWithRetry(buildMeaningPrompt(k)),
+        callWithRetry(buildReadingPrompt(k)),
+      ]);
+      const mnemonic_meaning = parseField(rawMeaning, 'mnemonic_meaning');
+      const mnemonic_reading = parseField(rawReading, 'mnemonic_reading');
+      if (!mnemonic_reading.includes('**')) throw new Error('No bold anchor in mnemonic_reading');
+      return { mnemonic_meaning, mnemonic_reading };
     } catch (e) {
       if (attempt < retries) {
-        const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
-        const waitMs = retryMatch
-          ? Math.ceil(parseFloat(retryMatch[1])) * 1000 + 1000
-          : (USE_LOCAL ? 2000 : 35000);
+        const waitMs = USE_LOCAL ? 2000 : 35000;
         process.stdout.write(`\n  Retry ${attempt + 1}/${retries}: ${e.message.slice(0, 80)} (${Math.round(waitMs / 1000)}s)`);
         await sleep(waitMs);
       } else {
