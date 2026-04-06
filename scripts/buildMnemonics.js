@@ -97,7 +97,11 @@ ${anchor} Write 1-2 sentences tying the scene to the meaning.
 function callOllama(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
-      model: OLLAMA_MODEL, prompt, stream: false, format: 'json',
+      model: OLLAMA_MODEL, prompt, stream: false,
+      format: {
+        type: 'object',
+        properties: { mnemonic_meaning: { type: 'string' }, mnemonic_reading: { type: 'string' } },
+      },
       options: { temperature: 0.7, num_predict: 150 },
     });
     const req = http.request(
