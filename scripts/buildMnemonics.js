@@ -98,7 +98,7 @@ function callOllama(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       model: OLLAMA_MODEL, prompt, stream: false, format: 'json',
-      options: { temperature: 0.7, num_predict: 200 },
+      options: { temperature: 0.7, num_predict: 120, stop: ['}'] },
     });
     const req = http.request(
       {
