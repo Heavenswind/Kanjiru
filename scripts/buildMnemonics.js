@@ -116,8 +116,11 @@ function callOllama(prompt) {
             if (parsed.error) return reject(new Error(parsed.error));
             if (!parsed.response) return reject(new Error(`No response field. Raw: ${data.slice(0, 200)}`));
             let response = parsed.response.trim();
-            // stop: ['}'] cuts before the brace — re-append it
-            if (!response.endsWith('}')) response += '}';
+            // stop: ['}'] halts before the closing brace; repair the JSON
+            if (!response.endsWith('}')) {
+              if (!response.endsWith('"')) response += '"';
+              response += '}';
+            }
             resolve(response);
           } catch (e) { reject(new Error(`Ollama parse error: ${e.message} — raw: ${data.slice(0, 200)}`)); }
         });
