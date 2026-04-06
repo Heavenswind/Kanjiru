@@ -2,8 +2,9 @@
  * Generates mnemonic stories for all kanji.
  * Saves incrementally to src/data/mnemonics.json — safe to re-run.
  *
- * Each story anchors the on-yomi reading using its IPA, and weaves in the
- * kanji's radicals as scene props. The meaning is never stated — it emerges.
+ * Each kanji gets two mnemonics:
+ *   mnemonic_meaning — uses radical names as scene props; meaning emerges
+ *   mnemonic_reading — cast character anchors the primary on-yomi sound
  *
  * Usage:
  *   node scripts/buildMnemonics.js --local
@@ -28,13 +29,13 @@ const OUT_FILE     = path.join(__dirname, '../src/data/mnemonics.json');
 const FLAGGED_FILE = path.join(__dirname, './mnemonics_flagged.json');
 
 const args = process.argv.slice(2);
-const USE_LOCAL = args.includes('--local');
-const REGEN = args.includes('--regen');
+const USE_LOCAL     = args.includes('--local');
+const REGEN         = args.includes('--regen');
 const REGEN_FLAGGED = args.includes('--regen-flagged');
-const modelArg = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
-const levelArg = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
-const OLLAMA_MODEL = (USE_LOCAL && modelArg && !modelArg.startsWith('--')) ? modelArg : 'gemma3:12b';
-const DELAY_MS = USE_LOCAL ? 0 : 13000;
+const modelArg  = args.find(a => a.startsWith('--model=')) ?? args[args.indexOf('--model') + 1];
+const levelArg  = args.find(a => a.startsWith('--level=')) ?? args[args.indexOf('--level') + 1];
+const OLLAMA_MODEL  = (USE_LOCAL && modelArg && !modelArg.startsWith('--')) ? modelArg : 'gemma3:12b';
+const DELAY_MS      = USE_LOCAL ? 0 : 13000;
 
 // Load .env
 const envPath = path.join(__dirname, '../.env');
@@ -61,30 +62,37 @@ const CAST = Object.fromEntries(
 // ─── Prompt ──────────────────────────────────────────────────────────────────
 
 function buildPrompt(k) {
-  const reading  = k.readings_on[0] ?? k.readings_kun[0]?.replace(/[.-].*/, '');
-  const ipa      = IPA[reading] ?? '?';
-  const cast     = CAST[reading];
-  const radicals = k.radicals.slice(0, 4).join(', ') || '—';
-  const meaning  = k.meanings[0];
+  const primaryReading = k.readings_on[0] ?? k.readings_kun[0]?.replace(/[.-].*/, '');
+  const ipa            = IPA[primaryReading] ?? '?';
+  const cast           = CAST[primaryReading];
+  const radicals       = k.radicals.slice(0, 4).join(', ') || '—';
+  const meaning        = k.meanings[0];
 
-  const anchorInstruction = cast
-    ? `Bold the name **${cast.name}** (${cast.description}) — their name starts with ${ipa}, which matches this reading exactly.`
+  const readingAnchor = cast
+    ? `Bold the name **${cast.name}** (${cast.description}). Their name starts with ${ipa}, which matches this reading. Do NOT explain the sound connection.`
     : `Bold an English word whose first sounds match ${ipa}. Do NOT use any character name.`;
 
-  return `Write a single mnemonic story (2-3 sentences) for this Japanese kanji.
+  return `Write two short mnemonics for this Japanese kanji. Return ONLY valid JSON — no markdown, no explanation.
 
 Kanji: ${k.character}
 Meaning: ${meaning}
 Radicals: ${radicals}
-Reading: ${reading} (${ipa})
+Primary reading: ${primaryReading} (${ipa})
 
-Rules:
-1. Sound anchor: ${anchorInstruction}
-2. Use the radicals as physical objects or characters in the scene.
-3. NEVER write the meaning "${meaning}" or any synonym. It must emerge from the scene.
-4. Vivid and concrete. 2-3 sentences max.
+Rules for mnemonic_meaning:
+- Use the radicals (${radicals}) as physical objects or characters in a scene
+- End with or clearly land on the meaning "${meaning}" — make it the obvious punchline of the scene
+- No cast character. No reading sounds.
+- 2 vivid, concrete sentences max
 
-Respond with ONLY the story. No labels, no explanation.`;
+Rules for mnemonic_reading:
+- ${readingAnchor}
+- The scene must feature the cast character doing something vivid and memorable
+- Tie the scene back to the meaning "${meaning}" so both the sound and the meaning stick together
+- 2 sentences max
+
+Respond with this exact JSON shape:
+{"mnemonic_meaning": "...", "mnemonic_reading": "..."}`;
 }
 
 // ─── API ─────────────────────────────────────────────────────────────────────
@@ -93,12 +101,12 @@ function callOllama(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       model: OLLAMA_MODEL, prompt, stream: false,
-      options: { temperature: 0.7, num_predict: 300 },
+      options: { temperature: 0.7, num_predict: 400 },
     });
     const req = http.request(
       {
         hostname: 'localhost', port: 11434, path: '/api/generate', method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
       },
       res => {
         let data = '';
@@ -121,14 +129,14 @@ function callGemini(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.7, maxOutputTokens: 300 },
+      generationConfig: { temperature: 0.7, maxOutputTokens: 2048 },
     });
     const req = https.request(
       {
         hostname: 'generativelanguage.googleapis.com',
         path: `/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_KEY}`,
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) },
       },
       res => {
         let data = '';
@@ -150,15 +158,34 @@ function callGemini(prompt) {
 function callModel(prompt) { return USE_LOCAL ? callOllama(prompt) : callGemini(prompt); }
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
+// ─── Parse response ──────────────────────────────────────────────────────────
+
+function parseResponse(raw) {
+  // Strip markdown code fences if model wrapped in ```json ... ```
+  const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim();
+  let parsed;
+  try {
+    parsed = JSON.parse(cleaned);
+  } catch (e) {
+    console.error('\n--- RAW RESPONSE ---\n' + raw + '\n--- END ---');
+    throw e;
+  }
+  if (!parsed.mnemonic_meaning || !parsed.mnemonic_reading) {
+    throw new Error('Missing mnemonic_meaning or mnemonic_reading fields');
+  }
+  if (!parsed.mnemonic_reading.includes('**')) {
+    throw new Error('No bold anchor in mnemonic_reading');
+  }
+  return { mnemonic_meaning: parsed.mnemonic_meaning, mnemonic_reading: parsed.mnemonic_reading };
+}
+
 // ─── Process one kanji ───────────────────────────────────────────────────────
 
 async function processOne(k, retries = 3) {
   for (let attempt = 0; attempt <= retries; attempt++) {
     try {
-      const story = await callModel(buildPrompt(k));
-      if (!story) throw new Error('Empty response');
-      if (!story.includes('**')) throw new Error('No bold anchor in story');
-      return story;
+      const raw = await callModel(buildPrompt(k));
+      return parseResponse(raw);
     } catch (e) {
       if (attempt < retries) {
         const retryMatch = e.message.match(/retry in (\d+(\.\d+)?)s/);
@@ -187,12 +214,15 @@ async function main() {
   let existing = {};
   if (!REGEN && fs.existsSync(OUT_FILE)) {
     existing = JSON.parse(fs.readFileSync(OUT_FILE));
-    // Drop old-format entries
+    // Drop old-format entries (had `story` instead of split mnemonics)
     let dropped = 0;
     for (const [char, val] of Object.entries(existing)) {
-      if (!val?.story) { delete existing[char]; dropped++; }
+      if (!val?.mnemonic_meaning || !val?.mnemonic_reading) {
+        delete existing[char];
+        dropped++;
+      }
     }
-    if (dropped > 0) console.log(`Dropped ${dropped} old-format entries`);
+    if (dropped > 0) console.log(`Dropped ${dropped} old-format entries (will regenerate)`);
   }
 
   if (REGEN_FLAGGED && fs.existsSync(FLAGGED_FILE)) {
@@ -220,8 +250,8 @@ async function main() {
     process.stdout.write(`\r[${elapsed}s ~${eta}s left] ${i + 1}/${todo.length} ${k.character}   `);
 
     try {
-      const story = await processOne(k);
-      existing[k.character] = { story };
+      const mnemonics = await processOne(k);
+      existing[k.character] = mnemonics;
       done++;
       fs.writeFileSync(OUT_FILE, JSON.stringify(existing, null, 2));
     } catch (e) {
@@ -232,7 +262,7 @@ async function main() {
   }
 
   const totalSec = Math.round((Date.now() - startTime) / 1000);
-  console.log(`\nDone! ${done} new stories in ${totalSec}s. Total: ${Object.keys(existing).length}`);
+  console.log(`\nDone! ${done} new mnemonics in ${totalSec}s. Total: ${Object.keys(existing).length}`);
 }
 
 main().catch(e => { console.error('\nFatal:', e.message); process.exit(1); });
