@@ -21,10 +21,11 @@ const args = process.argv.slice(2);
 const maxPassesArg = args.find(a => a.startsWith('--max-passes=')) ?? args[args.indexOf('--max-passes') + 1];
 const MAX_PASSES = (maxPassesArg && !maxPassesArg.startsWith('--')) ? parseInt(maxPassesArg) : 10;
 
-// Forward these args to sub-scripts
-const FORWARD = args.filter(a =>
+// Forward these args to sub-scripts (strip --max-passes and its value)
+const maxPassesIdx = args.indexOf('--max-passes');
+const FORWARD = args.filter((a, i) =>
   !a.startsWith('--max-passes') &&
-  a !== args[args.indexOf('--max-passes') + 1]
+  !(maxPassesIdx !== -1 && i === maxPassesIdx + 1)
 );
 
 function run(script, extraArgs = []) {
