@@ -72,7 +72,10 @@ async function main() {
     console.log(`\n[pipeline] Pass ${pass} complete. Flagged: ${count}`);
 
     if (count === 0) {
-      console.log('\n[pipeline] All mnemonics pass audit. Done!');
+      console.log('\n[pipeline] All mnemonics pass audit.');
+      console.log('\n[pipeline] Step 3: merge into masterDataWithMnemonics.json\n');
+      run('buildMasterDataWithMnemonics.js');
+      console.log('\n[pipeline] Done!');
       return;
     }
 

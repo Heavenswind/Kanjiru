@@ -33,14 +33,28 @@ const IPA        = JSON.parse(fs.readFileSync(IPA_JSON)).mora;
 
 // ─── IPA lookup — longest prefix match ────────────────────────────────────────
 
-function lookupIPA(hiragana) {
+// Tokenize a hiragana string into moras, then join their IPAs into one string.
+// e.g. はいきゅう → /hɑːiːkjuː/
+function readingToIPA(hiragana) {
   if (!hiragana) return null;
-  // Try progressively shorter prefixes (max 4 chars covers きゅう etc.)
-  for (let len = Math.min(4, hiragana.length); len >= 1; len--) {
-    const mora = hiragana.slice(0, len);
-    if (IPA[mora]) return IPA[mora];
+  const parts = [];
+  let i = 0;
+  while (i < hiragana.length) {
+    let matched = false;
+    // Try longest match first (4 chars covers e.g. きゅう, ひゃく)
+    for (let len = Math.min(4, hiragana.length - i); len >= 1; len--) {
+      const chunk = hiragana.slice(i, i + len);
+      if (IPA[chunk]) {
+        // Strip surrounding slashes so we can rejoin cleanly
+        parts.push(IPA[chunk].replace(/\//g, ''));
+        i += len;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched) i++; // skip unrecognised char (e.g. punctuation)
   }
-  return null;
+  return parts.length ? `/${parts.join('')}/` : null;
 }
 
 // ─── Radicals ─────────────────────────────────────────────────────────────────
@@ -51,6 +65,10 @@ const radicals = Object.entries(radicalKanji).map(([name, character]) => ({
   name,
   character,
 }));
+
+// ─── Kanji meaning lookup map ─────────────────────────────────────────────────
+
+const kanjiMeaningsMap = Object.fromEntries(allKanji.map(k => [k.character, k.meanings]));
 
 // ─── Kanji ────────────────────────────────────────────────────────────────────
 
@@ -70,11 +88,11 @@ const kanji = allKanji.map(k => {
     jlptLevel: k.jlptLevel,
     meaning: k.meanings[0],
     readings: {
-      on:  k.readings_on.map(r => ({ kana: r, ipa: lookupIPA(r) })),
-      kun: k.readings_kun.map(r => ({ kana: r, ipa: lookupIPA(r.replace(/[.-].*/, '')) })),
+      on:  k.readings_on.map(r => ({ kana: r, ipa: readingToIPA(r) })),
+      kun: k.readings_kun.map(r => ({ kana: r, ipa: readingToIPA(r.replace(/[.-].*/, '')) })),
     },
     primaryReading,
-    primaryReadingIPA: lookupIPA(primaryReading),
+    primaryReadingIPA: readingToIPA(primaryReading),
     radicals: k.radicals,
     isPictographic: NUMBER_CHARS.has(k.character) || isSelfRef,
   };
@@ -94,7 +112,8 @@ const vocab = vocabFlat.map(v => {
       text:        p.kanji,
       reading:     p.reading ?? null,
       readingType: p.type   ?? null,
-      ipa:         lookupIPA(p.reading),
+      ipa:         readingToIPA(p.reading),
+      kanjiMeanings: kanjiMeaningsMap[p.kanji] ?? null,
     }));
   } else if (v.parts) {
     // Fall back to vocab.json parts (includes kana segments)
@@ -102,7 +121,8 @@ const vocab = vocabFlat.map(v => {
       text:        p.text,
       reading:     p.reading ?? null,
       readingType: null,
-      ipa:         lookupIPA(p.reading),
+      ipa:         readingToIPA(p.reading),
+      kanjiMeanings: kanjiMeaningsMap[p.text] ?? null,
     }));
   } else {
     decomposition = [];
@@ -111,10 +131,13 @@ const vocab = vocabFlat.map(v => {
   return {
     type: 'vocab',
     id: `vocab:${v.word}`,
-    word:     v.word,
-    jlptLevel: v.jlptLevel,
-    meaning:  v.meaning,
-    reading:  v.reading,
+    word:        v.word,
+    jlptLevel:   v.jlptLevel,
+    meaning:     v.meaning,
+    reading:     v.reading,
+    readingIPA:  readingToIPA(v.reading),
+    pos:         v.pos ?? [],
+    kanjiUsed:   v.kanjiUsed ?? [],
     decomposition,
   };
 });

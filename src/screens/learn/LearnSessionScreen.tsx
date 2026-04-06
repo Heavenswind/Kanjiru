@@ -26,6 +26,7 @@ import { useVocabForKanjiByLevel, useVocabData } from '../../hooks/useVocabData'
 import { useMnemonicForKanji } from '../../hooks/useMnemonicsData';
 import { ColoredReading, ColoredWord } from '../../components/ui/ColoredReading';
 import ChoiceButton from '../../components/quiz/ChoiceButton';
+import FlagMnemonicButton from '../../components/ui/FlagMnemonicButton';
 import radicalKanjiData from '../../data/radicalKanji.json';
 import type { KanjiEntry, KanjiProgress, VocabProgress } from '../../types/kanji';
 
@@ -149,7 +150,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
       const vocabItems: VocabProgress[] = batch.flatMap(k => {
         const words = allVocab[k.character] ?? [];
         return words
-          .filter(v => v.common && allKanjiKnown(v.word))
+          .filter(v => allKanjiKnown(v.word))
           .map(v => ({
             id: uuid(), userId,
             vocabWord: v.word, kanjiId: k.id,
@@ -320,7 +321,10 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
             )}
 
             {mnemonic?.meaning ? (
-              <MnemonicText text={mnemonic.meaning} style={styles.mnemonicText} />
+              <View style={styles.mnemonicRow}>
+                <MnemonicText text={mnemonic.meaning} style={[styles.mnemonicText, styles.mnemonicFlex]} />
+                <FlagMnemonicButton itemKey={current.character} field="meaning" />
+              </View>
             ) : null}
 
             <View style={styles.details}>
@@ -335,7 +339,10 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
                     ))}
                   </View>
                   {mnemonic?.onyomi && mnemonic.onyomi.length > (current.readings_on[0]?.length ?? 0) ? (
-                    <MnemonicText text={mnemonic.onyomi} style={styles.readingMnemonic} />
+                    <View style={styles.mnemonicRow}>
+                      <MnemonicText text={mnemonic.onyomi} style={[styles.readingMnemonic, styles.mnemonicFlex]} />
+                      <FlagMnemonicButton itemKey={current.character} field="reading" />
+                    </View>
                   ) : null}
                 </View>
               )}
@@ -352,7 +359,10 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
                       ))}
                   </View>
                   {mnemonic?.kunyomi && mnemonic.kunyomi.length > (current.readings_kun[0]?.length ?? 0) ? (
-                    <MnemonicText text={mnemonic.kunyomi} style={styles.readingMnemonic} />
+                    <View style={styles.mnemonicRow}>
+                      <MnemonicText text={mnemonic.kunyomi} style={[styles.readingMnemonic, styles.mnemonicFlex]} />
+                      <FlagMnemonicButton itemKey={current.character} field="reading" />
+                    </View>
                   ) : null}
                 </View>
               )}
@@ -486,6 +496,8 @@ const styles = StyleSheet.create({
   kunPill: { borderColor: '#8858b5' },
   pillText: { color: '#fff', fontSize: 16 },
   readingMnemonic: { color: '#888', fontSize: 13, fontStyle: 'italic', marginTop: 8, lineHeight: 18 },
+  mnemonicRow: { flexDirection: 'row', alignItems: 'flex-start', width: '100%' },
+  mnemonicFlex: { flex: 1 },
   altMeanings: { color: '#aaa', marginTop: 8, marginBottom: 4, textAlign: 'center', fontSize: 13 },
   radicalRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   radicalPill: { backgroundColor: '#1e3a5f', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 6, alignItems: 'center', minWidth: 52 },

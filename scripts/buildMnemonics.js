@@ -26,8 +26,8 @@ const https = require('https');
 // ─── Config ──────────────────────────────────────────────────────────────────
 
 const KANJI_JSON    = path.join(__dirname, '../src/data/kanji.json');
-const VOCAB_JSON    = path.join(__dirname, '../src/data/vocab.json');
 const RADICAL_JSON  = path.join(__dirname, '../src/data/radicalKanji.json');
+const MASTER_JSON   = path.join(__dirname, '../src/data/masterData.json');
 const IPA_JSON      = path.join(__dirname, './romajiIPA.json');
 const CAST_JSON     = path.join(__dirname, './mnemonicCast.json');
 const OUT_FILE      = path.join(__dirname, '../src/data/mnemonics.json');
@@ -90,11 +90,10 @@ function resolveKanji(char) {
 }
 
 function resolveVocab(word) {
-  const flat = Object.values(JSON.parse(fs.readFileSync(VOCAB_JSON))).flat();
-  const v = flat.find(e => e.word === word);
+  const v = JSON.parse(fs.readFileSync(MASTER_JSON)).find(e => e.type === 'vocab' && e.word === word);
   if (!v) return null;
   return { type: 'vocab', key: word, character: word, meaning: v.meaning,
-           reading: v.reading, radicals: [] };
+           reading: v.reading, radicals: [], decomposition: v.decomposition ?? [] };
 }
 
 function resolveRadical(name) {
@@ -112,11 +111,34 @@ function resolveEntry() {
 
 // ─── Prompts ──────────────────────────────────────────────────────────────────
 
-const NUMBER_CHARS = new Set(['一','二','三','四','五','六','七','八','九','十','百','千','万']);
+const NUMBER_CHARS = new Set(['一','二','三','四','五','六','七','八','九','十','百','千','万','円']);
 
-// True when the kanji's only radicals are the meaning itself — no scene props available
+// Shape hints for number kanji — fed into prompt so model doesn't hallucinate strokes
+const NUMBER_SHAPE_HINTS = {
+  '一': 'one horizontal line',
+  '二': 'two horizontal lines stacked',
+  '三': 'three horizontal lines stacked',
+  '四': 'a box shape with a dividing cross inside — like a window split into four panes',
+  '五': 'a horizontal stroke, a vertical stroke crossing it, and a curved hook at the bottom — like the number 5 squashed flat',
+  '六': 'a short horizontal stroke at top, then two diagonal strokes spreading apart below — like a small hat over two legs',
+  '七': 'a horizontal stroke with a vertical stroke cutting down and curving left — like a backwards 7, or the digit 7 mirrored',
+  '八': 'two diagonal strokes spreading apart from a central point — like a V or two legs stepping apart',
+  '九': 'a horizontal stroke and a curved hook that loops back — like the digit 9 bent sideways',
+  '十': 'a horizontal stroke crossed by a vertical stroke — a perfect plus sign or cross',
+  '百': 'a horizontal stroke at top, then the character 白 (white) below it — a cross on top of a small box',
+  '千': 'a diagonal stroke at top, then a horizontal stroke, then a vertical stroke dropping down — like a T with a slanted cap',
+  '万': 'a horizontal stroke, then a diagonal drop, then a curved hook sweeping right — like a curving flag on a pole',
+  '円': 'a rectangle enclosing two parallel horizontal lines — like a yen coin stamped in a box',
+};
+
+// True when the kanji's only radicals are the meaning itself — no useful scene props
 function isSelfReferential(entry) {
   return entry.radicals.length > 0 && entry.radicals.every(r => r === entry.meaning);
+}
+
+// Read isPictographic straight from masterData if available
+function isKanjiPictographic(entry) {
+  return entry._raw?.isPictographic ?? NUMBER_CHARS.has(entry.character) ?? isSelfReferential(entry);
 }
 
 function buildMeaningPrompt(entry) {
@@ -141,31 +163,66 @@ Example — 走 (run)
 
   // ── Vocab ──
   if (type === 'vocab') {
+    const kanjiParts = entry.decomposition?.filter(p => p.readingType && p.kanjiMeanings?.length)
+      .map(p => `${p.text}(${p.kanjiMeanings.join('/')})`)
+      .join(' + ') ?? '';
+    const kanjiContext = kanjiParts ? ` | kanji: ${kanjiParts}` : '';
+
     return `Japanese vocabulary meaning mnemonic. Output JSON only. No explanation, just the JSON.
 
-Word: ${character} | meaning: ${meaning}
+Word: ${character} | meaning: ${meaning}${kanjiContext}
 
-Write a vivid 2-3 sentence present-tense scene that makes **${meaning}** instantly memorable. Bold **${meaning}** once.
+Use the kanji parts to derive the meaning in 1-2 short sentences. Keep it direct and compositional — "X + Y = Z". Bold **${meaning}** once at the end.
 
-Example — 月光 | meaning: moonlight
-{"mnemonic_meaning": "You step outside at midnight and the whole yard is silver. The **moonlight** is so bright you can read by it — every leaf casts a sharp shadow."}
+Example — 牛肉 | meaning: beef | kanji: 牛(cow) + 肉(meat)
+{"mnemonic_meaning": "When you combine **cow** and **meat**, what do you get? **Beef**."}
+
+Example — 月光 | meaning: moonlight | kanji: 月(moon) + 光(light)
+{"mnemonic_meaning": "**Moon** plus **light** — that's **moonlight**, the silver glow that turns everything pale at night."}
+
+Example — 今回 | meaning: this time | kanji: 今(now) + 回(time/occurrence)
+{"mnemonic_meaning": "**Now** plus **occurrence** — as in, the occurrence that is happening **now**. This is **this time**."}
 
 {"mnemonic_meaning": "..."}`;
   }
 
-  // ── Kanji: pictographic / number (no useful radical props) ──
-  if (NUMBER_CHARS.has(character) || isSelfReferential(entry)) {
+  // ── Kanji: number (shape IS the digit — keep it dead simple) ──
+  if (NUMBER_CHARS.has(character)) {
+    const shapeHint = NUMBER_SHAPE_HINTS[character] ?? 'a simple shape';
+    return `Japanese kanji meaning mnemonic. Output JSON only. No explanation, just the JSON.
+
+${character} | meaning: ${meaning} | shape: ${shapeHint}
+
+In one short sentence connect the shape description above to the meaning. Bold **${meaning}** once. Do NOT invent stroke counts.
+
+Example — 一 | meaning: one | shape: one horizontal line
+{"mnemonic_meaning": "A single horizontal stroke — just **one** line for **one**."}
+
+Example — 三 | meaning: three | shape: three horizontal lines stacked
+{"mnemonic_meaning": "**Three** horizontal lines stacked — count them top to bottom: one, two, **three**."}
+
+Example — 十 | meaning: ten | shape: a horizontal stroke crossed by a vertical stroke — a perfect plus sign
+{"mnemonic_meaning": "A perfect plus sign — the cross you draw when you reach **ten** on a tally sheet."}
+
+{"mnemonic_meaning": "..."}`;
+  }
+
+  // ── Kanji: pictographic (shape resembles the meaning) ──
+  if (isKanjiPictographic(entry)) {
     return `Japanese kanji meaning mnemonic. Output JSON only. No explanation, just the JSON.
 
 ${character} | meaning: ${meaning}
 
-This kanji is pictographic — its strokes form a picture. Describe in 2-3 vivid present-tense sentences what the strokes physically look like and what they draw. Bold **${meaning}** once. Do NOT count things using the meaning word.
+This kanji is pictographic — it looks like what it means. In 1-2 vivid sentences describe what the shape looks like and connect it to the meaning. Bold **${meaning}** once.
 
 Example — 人 | meaning: person
-{"mnemonic_meaning": "Two strokes lean against each other like a pair of legs mid-stride — someone is walking. Those two lines ARE a **person**, caught in a single step."}
+{"mnemonic_meaning": "Two strokes lean against each other like a pair of legs mid-stride — those two lines ARE a **person** caught in a single step."}
 
 Example — 山 | meaning: mountain
-{"mnemonic_meaning": "Three peaks rise from a flat base, the tallest in the centre flanked by two shorter ones — a **mountain** range drawn in three strokes."}
+{"mnemonic_meaning": "Three peaks rise from a flat base, the tallest in the centre flanked by two shorter ones — a **mountain** drawn in three strokes."}
+
+Example — 女 | meaning: woman
+{"mnemonic_meaning": "A figure kneels gracefully, one arm sweeping out to the side — the pose of a **woman** bowing."}
 
 {"mnemonic_meaning": "..."}`;
   }
@@ -177,30 +234,71 @@ Example — 山 | meaning: mountain
 ${character} | meaning: ${meaning} | radicals: ${radList}
 
 Rules:
-- Treat each radical as a real physical object or person in a scene
-- 2-3 vivid present-tense sentences
-- Bold **${meaning}** once where it fits naturally
-- No pronunciation sounds
+- Use the radicals as physical props in a single vivid image
+- Exactly 1-2 short punchy sentences — no rambling
+- Bold the meaning word **${meaning}** ONCE at the end — nowhere else
+- Do NOT bold radical names or any other words
+- No pronunciation, no cast characters
 
 Example — 休 | meaning: rest | radicals: Person, Tree
-{"mnemonic_meaning": "A **person** stumbles out of the city and collapses against a **tree**. They close their eyes — this is what true **rest** feels like."}
+{"mnemonic_meaning": "A person slumps against a tree and closes their eyes — pure **rest**."}
 
 Example — 明 | meaning: bright | radicals: Sun, Moon
-{"mnemonic_meaning": "The **sun** and **moon** are in the sky at the same time, flooding everything with twice the usual light — impossibly **bright**."}
+{"mnemonic_meaning": "Sun and moon in the sky at the same time — impossibly **bright**."}
+
+Example — 東 | meaning: east | radicals: Tree, Sun
+{"mnemonic_meaning": "The sun rises directly behind the tree — that direction is **east**."}
+
+Example — 聞 | meaning: hear | radicals: Gate, Ear
+{"mnemonic_meaning": "An ear pressed against the gate, straining to **hear** what's on the other side."}
 
 {"mnemonic_meaning": "..."}`;
 }
 
 function buildReadingPrompt(entry, visualMnemonic) {
-  const { character, meaning, reading } = entry;
+  const { type, character, meaning, reading } = entry;
   if (!reading) return null;
 
+  // For vocab: anchor each part's reading separately in one flowing sentence
+  if (type === 'vocab' && entry.decomposition?.length > 0) {
+    const parts = entry.decomposition.filter(p => p.reading);
+    const partLines = parts.map(p => {
+      const cast = CAST[p.reading];
+      const ipa  = IPA[p.reading] ?? p.ipa ?? '?';
+      if (cast) return `  ${p.text}(${p.reading} = ${ipa}): use cast character ${cast.name} — bold only the matching sound syllable(s) of their name`;
+      return `  ${p.text}(${p.reading} = ${ipa}): find an English word that STARTS with the sound ${ipa} — bold it`;
+    }).join('\n');
+
+    return `Japanese vocabulary reading mnemonic. Output JSON only. No explanation, just the JSON.
+
+Word: ${character} | meaning: ${meaning} | reading: ${reading}
+
+Scene so far: "${visualMnemonic}"
+
+Anchor each part's sound with a word or name whose START sounds like it. Write 1-2 sentences continuing the scene. Bold each anchor.
+NEVER reference the Japanese reading or romaji directly.
+${partLines}
+
+Example — 月光 | meaning: moonlight | reading: げっこう
+  月(げっ = /ɡeɪ/): find English word starting with /ɡeɪ/ → "gaze"
+  光(こう = /koʊ/): find English word starting with /koʊ/ → "coat"
+{"mnemonic_reading": "You **gaze** up at the moonlight and it **coats** everything in silver — the trees, the road, your hands."}
+
+Example — 毎日 | meaning: every day | reading: まいにち
+  毎(まい = /mɑːɪ/): find English word starting with /mɑːɪ/ → "my"
+  日(にち = /niːtʃ/): find English word starting with /niːtʃ/ → "niche"
+{"mnemonic_reading": "**My** sun fills its **niche** in the sky every single morning — rising is just what it does, every day."}
+
+{"mnemonic_reading": "..."}`;
+  }
+
+  // For kanji/radical: single reading anchor
   const ipa  = IPA[reading] ?? '?';
   const cast = CAST[reading];
 
   const anchor = cast
-    ? `${cast.name} (${cast.description}) walks into the scene. Bold ONLY the part of their name that matches the reading sound ${reading} — e.g. reading じん + name Jinny → write **Jin**ny.`
-    : `Introduce a person or object whose name starts with the sound ${ipa}. Bold only the matching sound portion.`;
+    ? `${cast.name} (${cast.description}) appears in the scene. Bold ONLY the syllables of their name that match the sound ${reading} — e.g. reading じん + name Jinny → **Jin**ny. Do NOT bold any other part of their name.`
+    : `Introduce someone whose name starts with the sound ${ipa}. Bold only the matching sound portion of the name.`;
 
   return `Japanese reading mnemonic. Output JSON only. No explanation, just the JSON.
 
@@ -208,15 +306,19 @@ ${character} | meaning: ${meaning} | reading: ${reading} (${ipa})
 
 Scene so far: "${visualMnemonic}"
 
-${anchor} Continue the scene in 2-3 sentences.
+${anchor} Write exactly 1 punchy sentence. The cast character does one vivid action in the scene. Bold ONLY the sound portion of the name — once and never again. Do NOT bold any other word.
 
 Example — 人 | meaning: person | reading: じん /dʒɪn/
-Cast: Jinny → **Jin**ny
-{"mnemonic_reading": "**Jin**ny rushes in, nearly colliding with the walking person — she's always in a hurry, that **Jin**ny."}
+Cast: Jinny → bold "Jin" only
+{"mnemonic_reading": "**Jin**ny sprints past the walking person without even glancing up."}
 
 Example — 山 | meaning: mountain | reading: さん /sɑːn/
-Cast: Sandra → **San**dra
-{"mnemonic_reading": "**San**dra has been climbing this mountain for three days, boots worn to nothing. She plants her flag at the peak and shouts her own name into the wind."}
+Cast: Sandra → bold "San" only
+{"mnemonic_reading": "**San**dra drives a flag into the tallest peak and roars her own name at the sky."}
+
+Example — 東 | meaning: east | reading: とう /toʊ/
+Cast: Touru → bold "Tou" only
+{"mnemonic_reading": "**Tou**ru stands beneath the tree, face turned east, watching the sun climb."}
 
 {"mnemonic_reading": "..."}`;
 }
@@ -228,7 +330,7 @@ function callOllama(prompt, field) {
     const body = JSON.stringify({
       model: OLLAMA_MODEL, prompt, stream: false,
       format: { type: 'object', properties: { [field]: { type: 'string' } }, required: [field] },
-      options: { temperature: 0.7, num_predict: 400, repeat_penalty: 1.4, repeat_last_n: 128, think: false },
+      options: { temperature: 0.7, num_predict: 200, repeat_penalty: 1.4, repeat_last_n: 128, think: false },
     });
     const req = http.request(
       { hostname: 'localhost', port: 11434, path: '/api/generate', method: 'POST',

@@ -85,7 +85,7 @@ export default function VocabLearnSessionScreen({ navigation, route }: Props) {
     for (const p of pending) {
       const words = allVocab[p.kanjiId] ?? [];
       const entry = words.find(v => v.word === p.vocabWord);
-      if (entry && entry.common) result.push({ progress: p, entry });
+      if (entry) result.push({ progress: p, entry });
       if (result.length >= lessonsPerSession) break;
     }
     return result;

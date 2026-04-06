@@ -1,42 +1,462 @@
 {
   "一": {
-    "mnemonic_meaning": "A single, strong stroke descends vertically, a simple line representing **One** – a direct and unwavering mark.",
-    "mnemonic_reading": "**Ich**abod Crane nervously adjusts his collar, the single, strong stroke of his name echoing the simplicity of the character. He’s a bit awkward, but undeniably present, a direct and unwavering presence in the bustling town square. He hopes nobody notices his blush."
+    "mnemonic_meaning": "A single horizontal stroke represents **one** simple thing.",
+    "mnemonic_reading": "**Ich**iro meticulously lines up dominoes, each representing a solitary step."
   },
   "二": {
-    "mnemonic_meaning": "A horizontal line stretches across the page, then a shorter line descends from the top right — it looks like **two** horizontal lines, one above the other.",
-    "mnemonic_reading": "**Ni**a bursts into the scene, a whirlwind of energy, and playfully bounces between the two horizontal lines, mimicking their shape."
+    "mnemonic_meaning": "Two horizontal lines stacked — like **two** rows of something.",
+    "mnemonic_reading": "**Ni**a effortlessly leaps over a hurdle, a blur of speed and determination."
   },
   "九": {
-    "mnemonic_meaning": "A horizontal line stretches across the page, then a hook descends from the right — it resembles a curved, leaning beam. Another stroke angles downward from the left, connecting with the hook, forming a sturdy frame for **Nine**.",
-    "mnemonic_reading": "**Kyu** bursts in, apologizing profusely for being late again, clutching a stack of textbooks precariously. 'Sorry, sensei! Traffic was terrible!' **Kyu** exclaims, nearly dropping everything in their haste."
+    "mnemonic_meaning": "The shape of **Nine** looks like the number 9 bent sideways, mirroring the numeral itself.",
+    "mnemonic_reading": "**Kyu** dashes into class, tripping over his own feet and scattering papers everywhere."
   },
   "七": {
-    "mnemonic_meaning": "A horizontal line stretches across the page, then a diagonal stroke swoops down to meet it, followed by a short vertical line that appears to be resting on the diagonal — it looks like **Seven** bundles tied together.",
-    "mnemonic_reading": "**Shi**zuko carefully arranged the seven bundles, ensuring each was perfectly aligned. She smiled, remembering her grandmother's teachings about the importance of order and balance. \"These **Shi**zuko bundles are ready for the festival!\""
+    "mnemonic_meaning": "The shape looks like a mirrored **seven**, showing you have **seven**.",
+    "mnemonic_reading": "**Shichi**ro meticulously counts seven pebbles, arranging them in a perfect line."
   },
   "人": {
-    "mnemonic_meaning": "A single stroke leans against a shorter, curved stroke, forming a figure in motion — this is a **person** taking a step. The first stroke represents the body, while the second shows a leg extended forward.",
-    "mnemonic_reading": "**Jin** the cat playfully weaves between the person's legs, purring loudly for attention. He's a mischievous feline, always seeking a playful interaction. The person smiles, enjoying Jin's energetic antics."
+    "mnemonic_meaning": "A single **person** walks alone — a solitary **person**.",
+    "mnemonic_reading": "**Jin** quickly sketches the solitary person in a worn notebook."
   },
   "入": {
-    "mnemonic_meaning": "A horizontal line sits atop a hook, then a vertical stroke descends into the curve of the hook— it's a doorway being **Enter**ed.",
-    "mnemonic_reading": "**Nyu** stumbles through the doorway, tripping over an invisible obstacle and scattering a pile of training manuals. He looks around, bewildered, muttering, \"Is this the right way?\""
+    "mnemonic_meaning": "A person uses a **Enter** key to open a door - **Enter**!",
+    "mnemonic_reading": "**Nyu** frantically types 'open sesame' on a keyboard, hoping to unlock a treasure chest."
   },
   "八": {
-    "mnemonic_meaning": "A horizontal line stretches across the top, then a curved stroke dives down and right, followed by a final, angled stroke that leans against the curve — it's a stylized representation of the number **Eight**, laid out in a single, sweeping motion.",
-    "mnemonic_reading": "**Hachi**ko, the loyal dog, patiently waits at the train station, his tail wagging hopefully. He remembers his owner's scent and refuses to leave, a steadfast guardian against the bustling crowd. Every day, he looks down the tracks, anticipating his beloved friend's return."
+    "mnemonic_meaning": "The two diagonal strokes spreading apart resemble two legs walking away, representing **eight** steps.",
+    "mnemonic_reading": "**Hachi**ro kicks a pile of pebbles down the hill, counting each one as they tumble."
   },
   "十": {
-    "mnemonic_meaning": "A horizontal stroke stretches across the page, then a vertical stroke drops down from the right, followed by three short horizontal strokes stacked beneath — it's a **Ten**, like a short fence with a post.",
-    "mnemonic_reading": "**Ju**lietta bursts through the gate, frantically checking her progress bar. \"I need to reach 100% completion before the deadline!\" she exclaims, already strategizing her next move."
+    "mnemonic_meaning": "A horizontal stroke crossed by a vertical stroke — imagine a plus sign marking that you've reached **ten**.",
+    "mnemonic_reading": "**Ju** frantically presses buttons, determined to reach 100% completion before the timer runs out."
   },
   "三": {
-    "mnemonic_meaning": "A horizontal line stretches across the top, then a shorter line drops down and curves slightly to the left. Finally, a line descends from the first, creating a visual of **Three** stacked layers, like a simple tiered cake.",
-    "mnemonic_reading": "**San**ford, a renowned architect, points to the tiered cake design. \"It's inspired by the three layers of the ancient temple,\" he explains, gesturing with a flourish."
+    "mnemonic_meaning": "**Three** horizontal lines stacked — just like counting **three** things in a row.",
+    "mnemonic_reading": "**San**dy sculpts a miniature castle out of sand, then gleefully kicks it down."
   },
   "上": {
-    "mnemonic_meaning": "A giant **toe** reaches up, firmly planting itself **above** the solid **ground**. The toe pushes the ground upwards, creating a small hill **above** the surface. This shows something is **above** something else.",
-    "mnemonic_reading": "**Joe** smiles, wiping his brow with a handkerchief, and says, \"Well, that's quite the hill! Seems something's definitely **above** the ground here.\""
+    "mnemonic_meaning": "A giant toe stands firmly on the ground, reaching **above**.",
+    "mnemonic_reading": "**Jo**e expertly unlocks the giant toe's base, revealing a hidden staircase."
+  },
+  "下": {
+    "mnemonic_meaning": "A toe taps the ground— everything is **below**.",
+    "mnemonic_reading": "**Ka**rlos juggles three mangoes while shouting, 'Fresh fruit, below the price!'"
+  },
+  "大": {
+    "mnemonic_meaning": "A giant, **large** building stands tall.",
+    "mnemonic_reading": "**Dai**na expertly balances a stack of books on her head, navigating the crowded hall."
+  },
+  "女": {
+    "mnemonic_meaning": "A **woman** carefully arranges flowers in a vase — a beautiful **woman**.",
+    "mnemonic_reading": "**Jo**e, grinning, uses his lockpicks to magically secure the flowers in place, ensuring their beauty lasts forever."
+  },
+  "山": {
+    "mnemonic_meaning": "A giant **mountain** is formed from piles of rocks — a formidable **mountain**.",
+    "mnemonic_reading": "**San**ford carefully stacks pebbles to resemble a miniature mountain range."
+  },
+  "川": {
+    "mnemonic_meaning": "A **river** flows, carving a path for a babbling **stream**.",
+    "mnemonic_reading": "**Sen**di throws a handful of shimmering pebbles into the stream, giggling as they skip across the surface."
+  },
+  "土": {
+    "mnemonic_meaning": "A pile of **dirt** is used to build a small mound— that’s **Soil**.",
+    "mnemonic_reading": "**Do** doggedly pushes the dirt mound higher with his bare hands, focused only on the finish line."
+  },
+  "千": {
+    "mnemonic_meaning": "The diagonal stroke and vertical drop resemble a **thousand** letters falling from a slanted cap.",
+    "mnemonic_reading": "**Sen**di adjusts her glasses, meticulously cataloging the falling letters."
+  },
+  "子": {
+    "mnemonic_meaning": "A tiny child clings to a giant child — a sweet **Child**.",
+    "mnemonic_reading": "**Shi**ela throws a handful of hay at the clinging children, laughing."
+  },
+  "小": {
+    "mnemonic_meaning": "A **small** toy house fits perfectly in your hand— it's **little**.",
+    "mnemonic_reading": "**Sho** casually slides across the tiny house, leaving a trail of sand."
+  },
+  "中": {
+    "mnemonic_meaning": "A building sits squarely **in** the middle of a field.",
+    "mnemonic_reading": "**Chu** furiously tastes a giant bowl of noodles, declaring them perfectly seasoned."
+  },
+  "五": {
+    "mnemonic_meaning": "The flattened, squashed shape of **Five** looks like the number 5 has been pressed down.",
+    "mnemonic_reading": "**Go** silently flexes his massive biceps, crushing a soda can with one hand."
+  },
+  "六": {
+    "mnemonic_meaning": "Imagine a tiny hat over two legs, representing **six** people standing in a row.",
+    "mnemonic_reading": "**Roku** shuffles a deck of cards, dealing six hands with a flourish."
+  },
+  "円": {
+    "mnemonic_meaning": "The rectangular shape, containing two parallel lines, resembles a yen coin stamped in a box, forming a **circle** of value.",
+    "mnemonic_reading": "**En**sley meticulously stacks yen coins into a perfect circle, admiring his creation."
+  },
+  "天": {
+    "mnemonic_meaning": "A giant heaven prop covers the land—look up at the **Heavens**.",
+    "mnemonic_reading": "**Ten**zin dramatically leaps from the giant heaven prop, scattering dust and debris."
+  },
+  "日": {
+    "mnemonic_meaning": "A giant sun shines down on a single **Day**.",
+    "mnemonic_reading": "**Ni**cholas meticulously sketches the sun's rays with charcoal, capturing every detail."
+  },
+  "月": {
+    "mnemonic_meaning": "A giant **moon** hangs in the sky, marking the passage of each **month**.",
+    "mnemonic_reading": "**Gets**u swiftly sketches the moon's reflection in a puddle, capturing its ethereal glow."
+  },
+  "木": {
+    "mnemonic_meaning": "A single **tree** stands tall and proud – a symbol of nature's **tree**.",
+    "mnemonic_reading": "**Boku**mi, the forest ranger, sharply whistles to halt a runaway deer."
+  },
+  "水": {
+    "mnemonic_meaning": "A giant drop of **water** falls from the sky, creating a puddle.",
+    "mnemonic_reading": "**Sui**ko splashes playfully in the puddle, sending droplets flying."
+  },
+  "火": {
+    "mnemonic_meaning": "A giant **Fire** burns uncontrollably, consuming everything it touches.",
+    "mnemonic_reading": "**Ka**rlos frantically juggles flaming torches while shouting, 'Hot stuff, hot stuff!'"
+  },
+  "出": {
+    "mnemonic_meaning": "A giant **mountain** blocks the doorway—you must **Exit**.",
+    "mnemonic_reading": "**Shu**zuko expertly maneuvers a tiny boat through the flooded doorway."
+  },
+  "右": {
+    "mnemonic_meaning": "A narwhal playfully blows bubbles from its mouth – that's the **right** way.",
+    "mnemonic_reading": "**U**o shuffles his feet, kicking up dust as he grunts a dismissive agreement."
+  },
+  "四": {
+    "mnemonic_meaning": "Imagine a window with **four** panes, just like the dividing cross inside the box shape.",
+    "mnemonic_reading": "**Shi**ela expertly shears a sheep, her movements precise and quick."
+  },
+  "左": {
+    "mnemonic_meaning": "A **narwhal** builds a house, forever pointing **left**.",
+    "mnemonic_reading": "**Sa**sha twirls into the house, scattering sawdust with her restless energy."
+  },
+  "本": {
+    "mnemonic_meaning": "Stack several **Book**s high, creating a tower of knowledge – a **Book**-filled library!",
+    "mnemonic_reading": "**Hōn**ora meticulously balances a stack of books on her head while gracefully bowing."
+  },
+  "白": {
+    "mnemonic_meaning": "A fluffy **white** cloud drifts across the sky – pure **white**.",
+    "mnemonic_reading": "**Haku**ley meticulously arranges a collection of white seashells on the beach."
+  },
+  "万": {
+    "mnemonic_meaning": "Imagine a flagpole with a curving flag—representing **ten thousand** people gathered for a grand celebration.",
+    "mnemonic_reading": "**Mān**fred blows a horn, summoning the ten thousand people to begin the festivities."
+  },
+  "今": {
+    "mnemonic_meaning": "Holding a clock showing **Now**, you quickly jot down a note—it’s happening **Now**.",
+    "mnemonic_reading": "**Kō**ichi slams the door, startling the person holding the clock."
+  },
+  "午": {
+    "mnemonic_meaning": "Slide down a dusty slope at high speed — it's **Noon**.",
+    "mnemonic_reading": "**Go** silently judges your speed as you whiz past."
+  },
+  "友": {
+    "mnemonic_meaning": "A narwhal sits on a stool, offering a friendly wave — a true **Friend**.",
+    "mnemonic_reading": "**Juu**lia throws a handful of glitter into the air, laughing with her new friend."
+  },
+  "父": {
+    "mnemonic_meaning": "A **Father** holds up a small child — a **Father**'s love.",
+    "mnemonic_reading": "**Fu**ad loudly argues with the Father about the cost of the child's toy, shaking his fist."
+  },
+  "北": {
+    "mnemonic_meaning": "Point your fingers like a spoon, scooping up the **North**.",
+    "mnemonic_reading": "**Hoku**mi gracefully balances a stack of bowls on her head, proving her mastery of North."
+  },
+  "半": {
+    "mnemonic_meaning": "A **triceratops** uses its horn to split a dried leaf in **half**.",
+    "mnemonic_reading": "**Han**na dramatically throws the halved leaf into the air, laughing at the triceratops."
+  },
+  "分": {
+    "mnemonic_meaning": "Slice the cake into eight pieces — that's a **Part**.",
+    "mnemonic_reading": "**Bunn**ie throws a handful of sprinkles into the air, giggling at the colorful rain."
+  },
+  "外": {
+    "mnemonic_meaning": "Evening shadows stretch from a toe, pointing towards the **outside**.",
+    "mnemonic_reading": "**Gai**l slams the door, a whirlwind of frustrated energy, and storms out into the evening."
+  },
+  "母": {
+    "mnemonic_meaning": "A sunbeam drips onto a mother's face — she is **Mother**.",
+    "mnemonic_reading": "**Bo** sighs dramatically, meticulously dusting the same page of a worn book."
+  },
+  "休": {
+    "mnemonic_meaning": "A leader leans against a tree, finally able to **rest**.",
+    "mnemonic_reading": "**Kyu** frantically waves his arms, desperately trying to catch up to the leader."
+  },
+  "先": {
+    "mnemonic_meaning": "Slide down a dirt hill on your **legs**— it's all **before** you.",
+    "mnemonic_reading": "**Sen**dō practices calligraphy, meticulously copying ancient scrolls."
+  },
+  "名": {
+    "mnemonic_meaning": "At **evening**, someone whispers a **name** into the darkness.",
+    "mnemonic_reading": "**Mei**ling dramatically throws a handful of glittering confetti into the air."
+  },
+  "年": {
+    "mnemonic_meaning": "A gun shoots a cow into the sky — marking a new **Year**.",
+    "mnemonic_reading": "**Nen**a expertly flips a pancake high in the air, catching it perfectly on her plate."
+  },
+  "気": {
+    "mnemonic_meaning": "A surge of energy illuminates a hidden treasure chest — a feeling of **Spirit**.",
+    "mnemonic_reading": "**Ki**ki giggles uncontrollably while juggling glowing orbs, each representing a spark of spirit."
+  },
+  "百": {
+    "mnemonic_meaning": "Imagine a cross marking **hundred** items, with a small box representing a portion of that **hundred**.",
+    "mnemonic_reading": "**Hjaku**mi throws a hundred origami cranes into the wind, each representing a wish."
+  },
+  "男": {
+    "mnemonic_meaning": "A farmer tends his rice paddy, wielding immense power — a symbol of **Male**.",
+    "mnemonic_reading": "**Dan**iel throws a handful of seeds into the paddy, scattering them like blessings."
+  },
+  "見": {
+    "mnemonic_meaning": "A single eye stares intently, focused to **See**.",
+    "mnemonic_reading": "**Ken**ji meticulously sketches the eye in his notebook, highlighting the intensity of its gaze."
+  },
+  "車": {
+    "mnemonic_meaning": "A tiny wheel rolls across a flat surface — that's a **Car**.",
+    "mnemonic_reading": "**Sha** whispers a cryptic message about a stolen engine, then vanishes into the shadows."
+  },
+  "毎": {
+    "mnemonic_meaning": "A gun is pointed through a window — happening **every**.",
+    "mnemonic_reading": "**Mai**a calmly adjusts her glasses and points out the sniper's location."
+  },
+  "行": {
+    "mnemonic_meaning": "Someone is **going** down a path, carrying a large **go** cart.",
+    "mnemonic_reading": "**Kō**ji expertly flips the go-cart, demonstrating its maneuverability."
+  },
+  "西": {
+    "mnemonic_meaning": "A lone tree stands on the edge of a cliff, facing the setting sun — that's the **West**.",
+    "mnemonic_reading": "**Sei**ren dramatically throws a handful of wildflowers into the wind, a silent farewell to the setting sun."
+  },
+  "何": {
+    "mnemonic_meaning": "A leader is wearing a lip ring and asks, '**What**?'",
+    "mnemonic_reading": "**Ka**rlos juggles flaming torches while shouting, 'I got the best tacos in town, *what*?'"
+  },
+  "来": {
+    "mnemonic_meaning": "A mound of earth holds a bowl of rice, inviting you to **Come**.",
+    "mnemonic_reading": "**Rai**chel dramatically throws a handful of rice at the mound of earth."
+  },
+  "学": {
+    "mnemonic_meaning": "A **Viking** child diligently **studies** ancient scrolls, guarding knowledge.",
+    "mnemonic_reading": "**Gaku**ro expertly flips a page of the scroll, revealing a hidden diagram."
+  },
+  "金": {
+    "mnemonic_meaning": "A nugget of **Gold** is shaped like a metal ingot.",
+    "mnemonic_reading": "**Kinn**saku throws the gold ingot into the air, laughing as it spins."
+  },
+  "雨": {
+    "mnemonic_meaning": "A single drop of rain falls, then another, and another — it's **Rain**.",
+    "mnemonic_reading": "**Oo** grunts and kicks a puddle, sending a spray of water onto the ground."
+  },
+  "国": {
+    "mnemonic_meaning": "A king shouts from his mouth, dropping orders across the land — a **Country**.",
+    "mnemonic_reading": "**Koku**ro meticulously arranges miniature flags on the table, mimicking the king's decrees."
+  },
+  "東": {
+    "mnemonic_meaning": "A tree casts a shadow as the sun rises — that's the **east**.",
+    "mnemonic_reading": "**Tou**ko meticulously sketches the rising sun, capturing the moment with precise lines."
+  },
+  "長": {
+    "mnemonic_meaning": "A **long** rope stretches across a vast landscape — undeniably **long**.",
+    "mnemonic_reading": "**Cho** furiously tosses a wok full of noodles into the air, yelling, \"More noodles!\""
+  },
+  "前": {
+    "mnemonic_meaning": "Horns jut from the ground, a crescent moon glints off a knife — it’s all **in front**.",
+    "mnemonic_reading": "**Zen**ith kicks a pebble across the field, then vanishes into the shadows."
+  },
+  "南": {
+    "mnemonic_meaning": "A horned dryad crosses her head, pointing **South**.",
+    "mnemonic_reading": "**Nan**cy throws a handful of glittering dust into the dryad’s face."
+  },
+  "後": {
+    "mnemonic_meaning": "Someone is loitering near a pile of poop in the snow — they're stuck **behind**.",
+    "mnemonic_reading": "**Go** stands motionless, a snow-dusted guardian, as the person struggles to free themselves."
+  },
+  "食": {
+    "mnemonic_meaning": "Imagine someone vigorously chewing a large piece of food — they are **Eat**.",
+    "mnemonic_reading": "**Shoku**ko dramatically slams a plate of noodles onto the table, demanding attention."
+  },
+  "校": {
+    "mnemonic_meaning": "A father sits under a tree, shielding his eyes with a lid — it’s time for an **Exam**.",
+    "mnemonic_reading": "**Kō**ji meticulously sharpens his pencil, preparing to critique the exam papers."
+  },
+  "時": {
+    "mnemonic_meaning": "A sun rises over a temple rooftop—marking the passage of **Time**.",
+    "mnemonic_reading": "**Ji** meticulously brushes calligraphy strokes, each one representing a moment in history."
+  },
+  "高": {
+    "mnemonic_meaning": "A man with a lid for a hat, a mouth full of mustaches, reaches for something **Tall**.",
+    "mnemonic_reading": "**Kō**ichi slams the lid of his toolbox shut, scattering tools across the floor."
+  },
+  "間": {
+    "mnemonic_meaning": "A gate stands in front of a bright sun, marking a measured **interval**.",
+    "mnemonic_reading": "**Kan**eda adjusts his sunglasses, shielding his eyes from the sun's glare as he steps through the gate."
+  },
+  "話": {
+    "mnemonic_meaning": "A person tells a **tale** while excitedly gesturing with their tongue.",
+    "mnemonic_reading": "**Wa** wanders into the scene, tapping his walking stick rhythmically and pointing to the storyteller."
+  },
+  "電": {
+    "mnemonic_meaning": "Rain pours onto a rice paddy under a giant umbrella — creating a surge of **electricity**.",
+    "mnemonic_reading": "**Den**nis expertly conducts the surging electricity with a metal rod, creating a dazzling display."
+  },
+  "聞": {
+    "mnemonic_meaning": "Standing at the gate, you cup your ear to **hear**.",
+    "mnemonic_reading": "**Bunn**ie leaps from behind the gate, ears twitching as you listen intently."
+  },
+  "語": {
+    "mnemonic_meaning": "Someone yells a secret through a megaphone to a crowd — they're spreading a **Word**.",
+    "mnemonic_reading": "**Go** calmly adjusts his oversized sunglasses, blocking out the frantic whispers of the crowd."
+  },
+  "読": {
+    "mnemonic_meaning": "Someone says, 'Sell!' while holding a book – it’s time to **read**.",
+    "mnemonic_reading": "**Doku**mi slams the book shut and declares, 'The answer is within these pages!'"
+  },
+  "生": {
+    "mnemonic_meaning": "A tiny sprout bursts from the ground, full of **Life**.",
+    "mnemonic_reading": "**Sei**ren dramatically throws her arms wide, embracing the burgeoning sprout with a flourish."
+  },
+  "書": {
+    "mnemonic_meaning": "A brush paints a sunrise — you **Write**.",
+    "mnemonic_reading": "**Sho** casually carves a message into the wet sand with his surfboard, then grins."
+  },
+  "力": {
+    "mnemonic_meaning": "A muscular arm lifts a weight, displaying immense **Power**.",
+    "mnemonic_reading": "**Ryouko** slams a fist into the weight, shattering it into glittering fragments."
+  },
+  "口": {
+    "mnemonic_meaning": "A giant **Mouth** opens wide, ready to eat everything in sight.",
+    "mnemonic_reading": "**Kō**ichi dives headfirst into the giant mouth, determined to find a way to stop it."
+  },
+  "工": {
+    "mnemonic_meaning": "A construction worker skillfully shapes wood, demonstrating true **Craft**.",
+    "mnemonic_reading": "**Kō**ji meticulously carves a tiny wooden bird, adding a final flourish to his craft."
+  },
+  "夕": {
+    "mnemonic_meaning": "A person sits watching the sunset—it's **Evening**.",
+    "mnemonic_reading": "**Seiki** slams the door, scattering papers across the floor in a fit of frustration."
+  },
+  "手": {
+    "mnemonic_meaning": "A giant **hand** reaches down from the sky, offering support.",
+    "mnemonic_reading": "**Shu**ra executes a perfect triple axel, landing gracefully on the giant hand."
+  },
+  "文": {
+    "mnemonic_meaning": "Imagine a hand holding a pen, writing a complete **Sentence**.",
+    "mnemonic_reading": "**Bunn**ie meticulously arranges a stack of sentences to form a miniature tower."
+  },
+  "犬": {
+    "mnemonic_meaning": "A furry dog playfully bites a dog toy — what a **Dog**.",
+    "mnemonic_reading": "**Ken**ji expertly juggles three oranges while balancing on a rolling barrel."
+  },
+  "正": {
+    "mnemonic_meaning": "A foundation is built, and then abruptly halted — everything is **Correct**.",
+    "mnemonic_reading": "**Sei**ren dramatically flips a perfectly aligned stack of blocks, sending them tumbling."
+  },
+  "田": {
+    "mnemonic_meaning": "A farmer plants seeds in the rice paddy — a bountiful **Rice Field**.",
+    "mnemonic_reading": "**Den**nis meticulously waters the rice field, ensuring each seedling thrives."
+  },
+  "目": {
+    "mnemonic_meaning": "A giant eyeball stares directly at you — an overwhelming **Eye**.",
+    "mnemonic_reading": "**Moku**mi, a stoic woman with eyes like the giant eyeball, calmly polishes a katana."
+  },
+  "立": {
+    "mnemonic_meaning": "A person struggles to **stand up** against a large wooden prop.",
+    "mnemonic_reading": "**Riits**uko dramatically slams a door, scattering papers across the floor."
+  },
+  "元": {
+    "mnemonic_meaning": "A house's origin is a place of new **Beginning**.",
+    "mnemonic_reading": "**Gen**esis throws a handful of glittering dust into the air, creating a brief, shimmering rainbow."
+  },
+  "公": {
+    "mnemonic_meaning": "Two fins swim past a private pool—it's a **public** space.",
+    "mnemonic_reading": "**Kō**ji dives dramatically into the public pool, splashing water everywhere."
+  },
+  "切": {
+    "mnemonic_meaning": "Seven swords slice through the air, a swift, decisive **Cut**.",
+    "mnemonic_reading": "**Sets**uko deftly separates a single grain of rice from a bowl with her chopsticks."
+  },
+  "少": {
+    "mnemonic_meaning": "A tiny slide contains a collection of miniature people — there are just a **few**.",
+    "mnemonic_reading": "**Sho** effortlessly carves a miniature wave on the slide with his hand."
+  },
+  "心": {
+    "mnemonic_meaning": "Hold a heart-shaped box; it’s filled with tiny hearts — a **Heart**.",
+    "mnemonic_reading": "**Shin**ji dramatically throws the heart-shaped box into the air, scattering tiny hearts everywhere."
+  },
+  "方": {
+    "mnemonic_meaning": "A signpost points in all directions — showing the **Direction**.",
+    "mnemonic_reading": "**Ho**pe shoves the signpost aside, declaring that she'll choose her own direction."
+  },
+  "牛": {
+    "mnemonic_meaning": "A large **Cow** grazes peacefully in a pasture.",
+    "mnemonic_reading": "**Gyu** expertly carves a perfect steak, his knife flashing in the afternoon sun."
+  },
+  "止": {
+    "mnemonic_meaning": "A giant hand slams down, halting a rolling ball — **stop**.",
+    "mnemonic_reading": "**Shi**ela kicks a clod of dirt, scowling at the stopped ball."
+  },
+  "兄": {
+    "mnemonic_meaning": "A mouth shouts instructions to legs running a race – a caring **Elder Brother**.",
+    "mnemonic_reading": "**Kei**ra balances a stack of books on her head while confidently strolling past the race."
+  },
+  "冬": {
+    "mnemonic_meaning": "Two snowmen huddle together against the cold — it's **Winter**.",
+    "mnemonic_reading": "**Tou**ko meticulously builds a miniature snow fort, declaring it her winter kingdom."
+  },
+  "古": {
+    "mnemonic_meaning": "An ancient scroll lies on a weathered stone tablet — truly **old**.",
+    "mnemonic_reading": "**Co**ra adjusts her spectacles and sniffs disdainfully at the ancient scroll, muttering about 'proper preservation'."
+  },
+  "台": {
+    "mnemonic_meaning": "A private person stands proudly on a platform, proclaiming their words from a soapbox — a **pedestal**.",
+    "mnemonic_reading": "**Dai**na dramatically throws confetti from the pedestal, showering the crowd with shimmering joy."
+  },
+  "広": {
+    "mnemonic_meaning": "A canopy shades a private garden—it stretches out, incredibly **wide**.",
+    "mnemonic_reading": "**Kō**ji sweeps a handful of cherry blossoms off the stone lantern with a frustrated sigh."
+  },
+  "用": {
+    "mnemonic_meaning": "A diligent worker carries a huge task on their shoulders — to **Utilize**.",
+    "mnemonic_reading": "**Jou**n steps forward, offering a hand to help carry the burden."
+  },
+  "世": {
+    "mnemonic_meaning": "A miniature world spins, showing the progression of a single **Generation**.",
+    "mnemonic_reading": "**Sei**jin meticulously arranges tiny figurines representing his family's history on the spinning world."
+  },
+  "主": {
+    "mnemonic_meaning": "A master holds a scepter, declaring himself **Lord**.",
+    "mnemonic_reading": "**Shu**ra cracks her knuckles, a chilling smile spreading across her face as she launches herself into a gravity-defying aerial routine."
+  },
+  "代": {
+    "mnemonic_meaning": "A leader performs a ceremonial dance, taking the place of someone else — a **Substitute**.",
+    "mnemonic_reading": "**Dai**na throws a handful of glitter into the air, momentarily blinding the leader."
+  },
+  "写": {
+    "mnemonic_meaning": "A beggar uses his forehead to press a copy of a map onto the ground — now you can **copy**.",
+    "mnemonic_reading": "**Sha**wn meticulously polishes a single, ancient coin, whispering its history."
+  },
+  "去": {
+    "mnemonic_meaning": "Dirt spills from a private room — everything is **gone**.",
+    "mnemonic_reading": "**Kyo** meticulously sweeps up the spilled dirt with a tiny bamboo brush, murmuring about proper etiquette."
+  },
+  "字": {
+    "mnemonic_meaning": "A roof shelters a child from the rain — that's a defining **Character**.",
+    "mnemonic_reading": "**Ji** furiously dips his brush into the inkwell, splattering the grandfather with black."
+  },
+  "早": {
+    "mnemonic_meaning": "A sun shines through a cross, signaling the dawn — it's **Early**.",
+    "mnemonic_reading": "**So**phia sketches the sunrise, capturing the early light in her charcoal drawing."
+  },
+  "町": {
+    "mnemonic_meaning": "A farmer plants rice in a paddy alongside a bustling street — that's a **Town**.",
+    "mnemonic_reading": "**Cho** furiously flips a sizzling pancake with a flourish, sending a shower of sparks into the air."
+  },
+  "花": {
+    "mnemonic_meaning": "A leader holds a spoon full of flowers — a beautiful **Flower**.",
+    "mnemonic_reading": "**Ka**rlos whirls a bouquet of flowers above his head while shouting, \"Freshest blooms in the whole district!\""
+  },
+  "赤": {
+    "mnemonic_meaning": "A drop of liquid spills, staining everything **red**.",
+    "mnemonic_reading": "**Seiki** slams the door, leaving a smear of red paint on the handle."
   }
 }

@@ -104,7 +104,7 @@ function extractBoldWord(text) {
 // ─── Audit ───────────────────────────────────────────────────────────────────
 
 const issues = {};
-const stats = { missing: 0, meaning_leak: 0, phonetic_fail: 0, no_anchor: 0, ok: 0 };
+const stats = { missing: 0, meaning_leak: 0, too_many_bolds: 0, no_bold: 0, too_long: 0, repetition: 0, phonetic_fail: 0, no_anchor: 0, ok: 0 };
 
 function flag(char, type, detail) {
   if (!issues[char]) issues[char] = [];
@@ -129,16 +129,56 @@ for (const k of kanji) {
 
   let hasIssue = false;
 
-  // 2. Meaning mnemonic leaks the meaning word
-  const meaning = k.meanings[0].toLowerCase();
-  const meaningText = entry.mnemonic_meaning.toLowerCase();
-  if (meaningText.includes(meaning)) {
-    flag(char, 'meaning_leak', `"${k.meanings[0]}" appears verbatim in mnemonic_meaning`);
+  const m = entry.mnemonic_meaning;
+  const r = entry.mnemonic_reading;
+
+  // 2. Structural: bold count in meaning (should be exactly 1)
+  const mBolds = (m.match(/\*\*[^*]+\*\*/g) ?? []).length;
+  if (mBolds === 0) {
+    flag(char, 'no_bold', 'meaning has no bold');
+    hasIssue = true;
+  } else if (mBolds > 2) {
+    flag(char, 'too_many_bolds', `meaning has ${mBolds} bolds`);
     hasIssue = true;
   }
 
-  // 3. Reading anchor phonetic check
-  const boldWord = extractBoldWord(entry.mnemonic_reading);
+  // 3. Structural: bold count in reading (should be exactly 1)
+  const rBolds = (r.match(/\*\*[^*]+\*\*/g) ?? []).length;
+  if (rBolds === 0) {
+    flag(char, 'no_bold', 'reading has no bold');
+    hasIssue = true;
+  } else if (rBolds > 2) {
+    flag(char, 'too_many_bolds', `reading has ${rBolds} bolds`);
+    hasIssue = true;
+  }
+
+  // 4. Structural: reading too long
+  if (r.length > 300) {
+    flag(char, 'too_long', `reading is ${r.length} chars`);
+    hasIssue = true;
+  }
+
+  // 5. Structural: repetition loops
+  if (/(\b\w+\b)(?:[-\s]+\1){2,}/i.test(m)) {
+    flag(char, 'repetition', 'meaning has repetition loop');
+    hasIssue = true;
+  }
+  if (/(\b\w+\b)(?:[-\s]+\1){2,}/i.test(r)) {
+    flag(char, 'repetition', 'reading has repetition loop');
+    hasIssue = true;
+  }
+
+  // 6. Meaning mnemonic leaks the meaning word outside the bold payoff
+  // Strip all **bold** spans then check if meaning word still appears — that's a leak
+  const meaning = k.meanings[0].toLowerCase();
+  const meaningStripped = m.replace(/\*\*[^*]+\*\*/g, '').toLowerCase();
+  if (meaningStripped.includes(meaning)) {
+    flag(char, 'meaning_leak', `"${k.meanings[0]}" appears outside bold in mnemonic_meaning`);
+    hasIssue = true;
+  }
+
+  // 7. Reading anchor phonetic check
+  const boldWord = extractBoldWord(r);
   if (!boldWord) {
     flag(char, 'no_anchor', 'No bold word found in mnemonic_reading');
     hasIssue = true;
@@ -173,6 +213,10 @@ console.log('═'.repeat(60));
 console.log(`RESULTS: ${kanji.length} kanji audited`);
 console.log(`  ✓ OK:             ${stats.ok}`);
 console.log(`  ✗ Missing:        ${stats.missing}`);
+console.log(`  ✗ Too many bolds: ${stats.too_many_bolds || 0}`);
+console.log(`  ✗ No bold:        ${stats.no_bold || 0}`);
+console.log(`  ✗ Too long:       ${stats.too_long || 0}`);
+console.log(`  ✗ Repetition:     ${stats.repetition || 0}`);
 console.log(`  ✗ Meaning leak:   ${stats.meaning_leak || 0}`);
 console.log(`  ✗ No anchor:      ${stats.no_anchor || 0}`);
 console.log(`  ✗ Phonetic fail:  ${stats.phonetic_fail || 0}`);
