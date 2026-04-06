@@ -98,7 +98,7 @@ function callOllama(prompt) {
   return new Promise((resolve, reject) => {
     const body = JSON.stringify({
       model: OLLAMA_MODEL, prompt, stream: false, format: 'json',
-      options: { temperature: 0.7, num_predict: 120, stop: ['}'] },
+      options: { temperature: 0.7, num_predict: 150 },
     });
     const req = http.request(
       {
@@ -115,13 +115,7 @@ function callOllama(prompt) {
             const parsed = JSON.parse(data);
             if (parsed.error) return reject(new Error(parsed.error));
             if (!parsed.response) return reject(new Error(`No response field. Raw: ${data.slice(0, 200)}`));
-            let response = parsed.response.trim();
-            // stop: ['}'] halts before the closing brace; repair the JSON
-            if (!response.endsWith('}')) {
-              if (!response.endsWith('"')) response += '"';
-              response += '}';
-            }
-            resolve(response);
+            resolve(parsed.response.trim());
           } catch (e) { reject(new Error(`Ollama parse error: ${e.message} — raw: ${data.slice(0, 200)}`)); }
         });
       }
