@@ -32,6 +32,7 @@ const path = require('path');
 const KANJI_JSON    = path.join(__dirname, '../src/data/kanji.json');
 const JMDICT_JSON   = path.join(__dirname, '../src/data/jmdict-eng-3.6.2.json');
 const FURIGANA_JSON = path.join(__dirname, './JmdictFurigana.json');
+const IPA_JSON      = path.join(__dirname, './romajiIPA.json');
 const OUT_FILE      = path.join(__dirname, '../src/data/vocab.json');
 
 const args = process.argv.slice(2);
@@ -49,6 +50,17 @@ const jmdict = JSON.parse(fs.readFileSync(JMDICT_JSON, 'utf8'));
 console.log('Loading JmdictFurigana...');
 const furiganaRaw = fs.readFileSync(FURIGANA_JSON, 'utf8').replace(/^\uFEFF/, '');
 const furiganaList = JSON.parse(furiganaRaw);
+
+const IPA = JSON.parse(fs.readFileSync(IPA_JSON, 'utf8')).mora;
+
+function lookupIPA(hiragana) {
+  if (!hiragana) return null;
+  for (let len = Math.min(4, hiragana.length); len >= 1; len--) {
+    const mora = hiragana.slice(0, len);
+    if (IPA[mora]) return IPA[mora];
+  }
+  return null;
+}
 
 // ─── Build lookup maps ────────────────────────────────────────────────────────
 
@@ -135,7 +147,7 @@ for (const entry of jmdict.words) {
     const furiganaKey = `${word}|${reading}`;
     const furigana = furiganaMap[furiganaKey];
     const parts = furigana
-      ? furigana.map(f => ({ text: f.ruby, reading: f.rt }))
+      ? furigana.map(f => ({ text: f.ruby, reading: f.rt ?? null, ipa: lookupIPA(f.rt) }))
       : null; // null = no decomp available
 
     const kanji = kanjiIn(word);
