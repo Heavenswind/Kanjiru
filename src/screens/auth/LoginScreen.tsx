@@ -12,12 +12,14 @@ import {
 import {StackNavigationProp} from '@react-navigation/stack';
 import {AuthStackParamList} from '../../types/navigation';
 import {signIn} from '../../services/supabase/auth';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 type Props = {
   navigation: StackNavigationProp<AuthStackParamList, 'Login'>;
 };
 
 export default function LoginScreen({navigation}: Props) {
+  const insets = useSafeAreaInsets();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -36,7 +38,7 @@ export default function LoginScreen({navigation}: Props) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.container}
+      style={[styles.container, {paddingTop: insets.top + 16}]}
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Text style={styles.title}>漢字</Text>
       <Text style={styles.subtitle}>Kanji Learning</Text>

@@ -24,6 +24,7 @@ import { FuriganaWord } from '../../components/ui/ColoredReading';
 import ChoiceButton from '../../components/quiz/ChoiceButton';
 import type { VocabProgress, KanjiEntry } from '../../types/kanji';
 import { uuid } from '../../utils/kanjiUtils';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const POS_LABELS: Record<string, string> = {
   'n': 'Noun', 'n-suf': 'Suffix', 'n-pref': 'Prefix', 'n-adv': 'Adv. Noun',
@@ -60,6 +61,7 @@ type QuizType = 'meaning' | 'reading';
 
 export default function VocabLearnSessionScreen({ navigation, route }: Props) {
   const { jlptLevel } = route.params;
+  const insets = useSafeAreaInsets();
   const { data: vocabProgress } = useVocabProgressQuery();
   const allVocab = useVocabData();
   const allKanji = useKanjiData();
@@ -180,7 +182,7 @@ export default function VocabLearnSessionScreen({ navigation, route }: Props) {
   // ── Empty state ────────────────────────────────────────────────────────────
   if (batch.length === 0) {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 16}]}>
         <Text style={styles.doneTitle}>All caught up!</Text>
         <Text style={styles.doneSubtitle}>No pending vocabulary for N{jlptLevel}.</Text>
         <TouchableOpacity style={styles.btn} onPress={() => navigation.goBack()}>
@@ -192,7 +194,7 @@ export default function VocabLearnSessionScreen({ navigation, route }: Props) {
 
   if (phase === 'enrolling') {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 16}]}>
         <ActivityIndicator size="large" color="#e94560" />
         <Text style={styles.enrollingText}>Adding words to reviews…</Text>
       </View>
@@ -201,7 +203,7 @@ export default function VocabLearnSessionScreen({ navigation, route }: Props) {
 
   if (phase === 'done') {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 16}]}>
         <Text style={styles.doneTitle}>Nice work!</Text>
         <Text style={styles.doneSubtitle}>
           {batch.length} word{batch.length !== 1 ? 's' : ''} added to your reviews.
@@ -239,7 +241,7 @@ export default function VocabLearnSessionScreen({ navigation, route }: Props) {
   const correctAnswer = quizType === 'meaning' ? current.entry.meaning : current.entry.reading;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {paddingTop: insets.top + 16}]}>
       {/* Header */}
       <View style={styles.progressRow}>
         <View style={styles.progressHeader}>

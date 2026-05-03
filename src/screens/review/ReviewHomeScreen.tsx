@@ -1,5 +1,6 @@
 import React, {useMemo} from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {ReviewStackParamList} from '../../types/navigation';
 import {useProgressQuery} from '../../queries/useProgressQuery';
@@ -17,6 +18,7 @@ type Props = {
 };
 
 export default function ReviewHomeScreen({navigation}: Props) {
+  const insets = useSafeAreaInsets();
   const allKanji = useKanjiData();
   const {data: progress, isLoading} = useProgressQuery();
   const {data: vocabProgress, isLoading: vocabLoading} = useVocabProgressQuery();
@@ -99,7 +101,7 @@ export default function ReviewHomeScreen({navigation}: Props) {
   const isLoadingAny = isLoading || vocabLoading;
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {paddingTop: insets.top + 16}]}>
       <Text style={styles.title}>Reviews</Text>
 
       <View style={styles.card}>
