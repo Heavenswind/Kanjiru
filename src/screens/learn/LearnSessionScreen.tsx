@@ -28,6 +28,7 @@ import { ColoredReading, ColoredWord } from '../../components/ui/ColoredReading'
 import ChoiceButton from '../../components/quiz/ChoiceButton';
 import FlagMnemonicButton from '../../components/ui/FlagMnemonicButton';
 import radicalKanjiData from '../../data/radicalKanji.json';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import type { KanjiEntry, KanjiProgress, VocabProgress } from '../../types/kanji';
 
 const radicalKanji = radicalKanjiData as Record<string, string>;
@@ -63,6 +64,7 @@ type Phase = 'intro' | 'examples' | 'quiz' | 'enrolling' | 'done';
 
 export default function LearnSessionScreen({ navigation, route }: Props) {
   const { jlptLevel } = route.params;
+  const insets = useSafeAreaInsets();
   const grouped = useKanjiGrouped();
   const { data: progress } = useProgressQuery();
   const session = useAuthStore(s => s.session);
@@ -217,7 +219,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
 
   if (batch.length === 0) {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 16}]}>
         <Text style={styles.doneTitle}>All caught up!</Text>
         <Text style={styles.doneSubtitle}>
           You've enrolled all N{jlptLevel} kanji. Keep reviewing to master them.
@@ -231,7 +233,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
 
   if (phase === 'enrolling') {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 16}]}>
         <ActivityIndicator size="large" color="#e94560" />
         <Text style={styles.enrollingText}>Adding to your reviews…</Text>
       </View>
@@ -240,7 +242,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
 
   if (phase === 'done') {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {paddingTop: insets.top + 16}]}>
         <Text style={styles.doneTitle}>Nice work!</Text>
         <Text style={styles.doneSubtitle}>
           {batch.length} N{jlptLevel} kanji added to your reviews.{'\n'}
@@ -269,7 +271,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
   const choices = allChoicesRef.current?.[index] ?? [];
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {paddingTop: insets.top + 16}]}>
       {/* Progress */}
       <View style={styles.progressRow}>
         <View style={styles.progressHeader}>
@@ -303,7 +305,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.scroll} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
 
         {/* ── Intro ── */}
         {phase === 'intro' && (
@@ -330,13 +332,15 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
             <View style={styles.details}>
               {current.readings_on.length > 0 && (
                 <View style={styles.readingSection}>
-                  <Text style={styles.readingLabel}>ON 音読み</Text>
-                  <View style={styles.pillRow}>
-                    {current.readings_on.map((r, i) => (
-                      <View key={i} style={styles.pill}>
-                        <Text style={styles.pillText}>{r}</Text>
-                      </View>
-                    ))}
+                  <View style={styles.inlineReadingRow}>
+                    <Text style={styles.inlineReadingLabel}>ON</Text>
+                    <View style={styles.pillRow}>
+                      {current.readings_on.map((r, i) => (
+                        <View key={i} style={styles.pill}>
+                          <Text style={styles.pillText}>{r}</Text>
+                        </View>
+                      ))}
+                    </View>
                   </View>
                   {mnemonic?.onyomi && mnemonic.onyomi.length > (current.readings_on[0]?.length ?? 0) ? (
                     <View style={styles.mnemonicRow}>
@@ -349,14 +353,16 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
 
               {current.readings_kun.length > 0 && (
                 <View style={styles.readingSection}>
-                  <Text style={styles.readingLabel}>KUN 訓読み</Text>
-                  <View style={styles.pillRow}>
-                    {[...new Set(current.readings_kun.map(r => formatReading(r)).filter(r => r.length > 0))]
-                      .map((r, i) => (
-                        <View key={i} style={[styles.pill, styles.kunPill]}>
-                          <Text style={styles.pillText}>{r}</Text>
-                        </View>
-                      ))}
+                  <View style={styles.inlineReadingRow}>
+                    <Text style={[styles.inlineReadingLabel, styles.kunLabel]}>KUN</Text>
+                    <View style={styles.pillRow}>
+                      {[...new Set(current.readings_kun.map(r => formatReading(r)).filter(r => r.length > 0))]
+                        .map((r, i) => (
+                          <View key={i} style={[styles.pill, styles.kunPill]}>
+                            <Text style={styles.pillText}>{r}</Text>
+                          </View>
+                        ))}
+                    </View>
                   </View>
                   {mnemonic?.kunyomi && mnemonic.kunyomi.length > (current.readings_kun[0]?.length ?? 0) ? (
                     <View style={styles.mnemonicRow}>
@@ -471,7 +477,7 @@ export default function LearnSessionScreen({ navigation, route }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#1a1a2e', padding: 24, alignItems: 'center', justifyContent: 'center' },
+  container: { flex: 1, backgroundColor: '#1a1a2e', paddingHorizontal: 24, paddingBottom: 24, alignItems: 'center', justifyContent: 'center' },
   progressRow: { width: '100%', marginBottom: 16 },
   progressHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 6 },
   progressCenter: { alignItems: 'center' },
@@ -482,6 +488,7 @@ const styles = StyleSheet.create({
   headerSpacer: { width: 40 },
   progressBar: { width: '100%', height: 4, backgroundColor: '#333', borderRadius: 2 },
   progressFill: { height: 4, backgroundColor: '#e94560', borderRadius: 2 },
+  scroll: { flex: 1, width: '100%' },
   content: { alignItems: 'center', paddingBottom: 24, flexGrow: 1, alignSelf: 'stretch' },
   characterBox: { alignItems: 'center', marginBottom: 16 },
   character: { fontSize: 120, color: '#fff' },
@@ -489,7 +496,10 @@ const styles = StyleSheet.create({
   meaning: { fontSize: 28, color: '#fff', fontWeight: 'bold', textAlign: 'center', marginBottom: 8 },
   mnemonicText: { color: '#aaa', fontSize: 14, textAlign: 'center', fontStyle: 'italic', marginBottom: 20, lineHeight: 20, paddingHorizontal: 8 },
   details: { width: '100%', marginTop: 8 },
-  readingSection: { marginBottom: 16 },
+  readingSection: { marginBottom: 12 },
+  inlineReadingRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
+  inlineReadingLabel: { color: '#285393', fontSize: 11, fontWeight: 'bold', letterSpacing: 1, width: 34 },
+  kunLabel: { color: '#8858b5' },
   readingLabel: { color: '#e94560', fontSize: 11, fontWeight: 'bold', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 8 },
   pillRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   pill: { backgroundColor: '#16213e', borderRadius: 20, paddingHorizontal: 14, paddingVertical: 6, borderWidth: 1, borderColor: '#285393' },

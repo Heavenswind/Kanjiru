@@ -11,7 +11,7 @@ import SettingsScreen from '../screens/settings/SettingsScreen';
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 function TabIcon({label, focused}: {label: string; focused: boolean}) {
-  return <Text style={{fontSize: 18, color: focused ? '#e94560' : '#555'}}>{label}</Text>;
+  return <Text style={{fontSize: 22, color: focused ? '#e94560' : '#555'}}>{label}</Text>;
 }
 
 export default function MainTabs() {
@@ -23,6 +23,7 @@ export default function MainTabs() {
           backgroundColor: '#0f0f1a',
           borderTopWidth: 0,
           elevation: 0,
+          paddingTop: 8,
         },
         tabBarActiveTintColor: '#e94560',
         tabBarInactiveTintColor: '#555',

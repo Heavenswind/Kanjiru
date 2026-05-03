@@ -1,7 +1,7 @@
 import 'react-native-gesture-handler';
 import 'react-native-url-polyfill/auto';
 import React, {useEffect, useState} from 'react';
-import {AppState, AppStateStatus, View, ActivityIndicator, StatusBar} from 'react-native';
+import {AppState, AppStateStatus, View, ActivityIndicator, Platform, StatusBar} from 'react-native';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {QueryClient, QueryClientProvider, focusManager} from '@tanstack/react-query';
@@ -41,7 +41,11 @@ export default function App() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
       <SafeAreaProvider>
-        <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+        <StatusBar
+          translucent={Platform.OS === 'android'}
+          backgroundColor={Platform.OS === 'android' ? 'transparent' : undefined}
+          barStyle="light-content"
+        />
         <QueryClientProvider client={queryClient}>
           <RootNavigator />
         </QueryClientProvider>
