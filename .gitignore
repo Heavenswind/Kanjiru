@@ -93,3 +93,10 @@ android/.gradle/
 
 # OS
 Thumbs.db
+# Third-party reference screenshots (design inspiration only, not ours to redistribute)
+wanikani/
+inspiration.png
+
+# Secrets
+.env.*
+!.env.example
